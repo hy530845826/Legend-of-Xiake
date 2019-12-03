@@ -1,0 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+	color: #fff;
+}
+
+img {
+	border: 0;
+}
+
+body {
+	background: #222;
+	position: relative;
+}
+
+.GameBox {
+    background: #ace;
+	width: 1200px;
+	height: 725px;
+	margin: 75px auto 25px;
+}
+
+
+#map {
+	background: url(../images/map-1.png) no-repeat black;
+	width: 1200px;
+	height: 675px;
+	position: relative;
+	overflow: hidden;
+}
