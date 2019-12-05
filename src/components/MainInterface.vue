@@ -1,10 +1,8 @@
 <template>
-  <div id="content" class="GameBox">
     <div id="map" class="map-1"></div>
-  </div>
 </template>
 <script>
 export default {
-  name: "test"
+  name: "App"
 };
 </script>
