@@ -1,6 +1,6 @@
 <template>
-  <div id="content" class="GameBox">
-    <div id="map" class="map-1"></div>
+  <div>
+    1动作条
   </div>
 </template>
 <script>
