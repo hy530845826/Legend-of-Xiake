@@ -16,6 +16,14 @@ body {
 	background: url(../images/body.jpg);
 }
 
+#GameBox {
+	background: #333;
+	width: 1200px;
+	height: 725px;
+	margin: 75px auto 25px;
+	position: relative;
+}
+
 #map {
 	background: url(../images/map-1.png) no-repeat black;
 	width: 1200px;
