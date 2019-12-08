@@ -23,7 +23,7 @@ export default {
 <style>
 @import "./assets/scss/main.scss";
 #app {
-  background: #ace;
+  background: #333;
   width: 1200px;
   height: 725px;
   margin: 75px auto 25px;

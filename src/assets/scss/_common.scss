@@ -3,6 +3,7 @@
 	padding: 0;
 	color: #fff;
 	list-style: none;
+	font-family: "Helvetica Neue", Helvetica, "PingFang SC", Tahoma, Arial, sans-serif;
 }
 
 img {
@@ -12,6 +13,7 @@ img {
 body {
 	background: #222;
 	position: relative;
+	background: url(../images/body.jpg);
 }
 
 #map {
@@ -23,7 +25,7 @@ body {
 
 #action-bar {
 	height: 50px;
-	background: red;
+	background: rgba(1,1,1,0.1);
 	width: 1200px;
 	position: absolute;
 	bottom: 50px;
