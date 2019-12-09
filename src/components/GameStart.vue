@@ -1,6 +1,7 @@
 <template>
   <div id="Gamestart">
-    加载
+    <div>开始游戏  子界面</div>
+    <button @click="$goRoute('/Game')">真正开始</button>
   </div>
 </template>
 <script>

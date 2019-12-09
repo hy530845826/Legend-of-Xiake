@@ -16,11 +16,16 @@ body {
 	background: url(../images/body.jpg);
 }
 
+#Gamestart{
+	width: 1200px;
+	height: 725px;
+	background: url(../images/Menu2.gif) no-repeat black;
+}
+
 #GameBox {
 	background: #333;
 	width: 1200px;
 	height: 725px;
-	margin: 75px auto 25px;
 	position: relative;
 }
 

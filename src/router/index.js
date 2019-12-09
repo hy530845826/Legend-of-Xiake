@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Game from '@/components/Game.vue'
-import GameStart from '@/components/GameStart.vue'
+import Home from '@/components/GameStart.vue'
 
 Vue.use(Router)
 
@@ -15,12 +15,12 @@ export default new Router({
             component: Game
         },
         {
-            path: '/GameStart',
-            component: GameStart
+            path: '/Home',
+            component: Home
         },
         {
             path: '/',
-            redirect: '/GameStart'
+            redirect: '/Home'
         }
     ]
 })
