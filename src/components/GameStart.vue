@@ -1,7 +1,9 @@
 <template>
   <div id="Gamestart">
-    <div>开始游戏  子界面</div>
-    <button @click="$goRoute('/Game')">真正开始</button>
+    <div id="logoimg"></div>
+    <div @click="$goRoute('/Game')">开始游戏</div>
+    <div>读取游戏</div>
+    <div>游戏说明</div>
   </div>
 </template>
 <script>
