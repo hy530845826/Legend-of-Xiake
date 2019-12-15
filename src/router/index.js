@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Game from '@/components/Game.vue'
-import Home from '@/components/GameStart.vue'
+import Home from '@/components/Home.vue'
 
 Vue.use(Router)
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="Gamestart">
+  <div id="Home">
     <div id="logoimg"></div>
     <div @click="$goRoute('/Game')">开始游戏</div>
     <div>读取游戏</div>

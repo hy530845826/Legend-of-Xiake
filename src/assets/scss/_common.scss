@@ -16,7 +16,7 @@ body {
 	background: url(../images/body.jpg);
 }
 
-#Gamestart{
+#Home{
 	width: 1200px;
 	height: 725px;
 	background: url(../images/Menu0.jpg) no-repeat black;
@@ -52,4 +52,19 @@ body {
 	width: 1200px;
 	position: absolute;
 	bottom: 50px;
+}
+
+#role {
+	width: 65px;
+	height: 100px;
+}
+
+#role-body {
+	width: 65px;
+	height: 100px;
+	background: url(../images/plstand.gif) no-repeat;
+}
+
+#heroimg {
+	display: block;
 }
