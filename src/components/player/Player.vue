@@ -1,6 +1,7 @@
 <template>
   <div id="role">
     <div id="role-body"></div>
+    <div>{{st}}</div>
     <div>{{sk}}</div>
   </div>
 </template>

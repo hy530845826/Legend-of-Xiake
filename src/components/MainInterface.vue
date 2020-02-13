@@ -1,11 +1,14 @@
 <template>
   <div id="map" class="map-1">
-    <player />
-    {{sk}}111111111111111111111
+    <div id="role">
+      <div id="role-body"></div>
+      <!-- <div>{{st}}</div> -->
+      <div>{{sk}}</div>
+    </div>
   </div>
 </template>
 <script>
-import Player from "./player/Player.vue";
+// import Player from "./player/Player.vue";
 import sb from "../js/player";
 
 export default {
@@ -14,16 +17,16 @@ export default {
     return {
       sk: sb.hero,
       st: sb.pll,
-      hero: document.getElementById("role"),
+      hero: document.getElementById("role")
     };
   },
   methods: {},
   mounted() {
     this.hero = $("#role")[0];
     window.console.log(this.hero);
-  },
-  components: {
-    Player
+    // },
+    // components: {
+    //   Player
   }
 };
 </script>

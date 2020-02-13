@@ -9,14 +9,15 @@ var pl = new Player(0, 550,
 
 function CreatePlayer() {
 	var hero = document.createElement("div")
-	var heroimg = document.createElement("img")
+	var heroimg = document.createElement("div")
 
 	hero.className = "hero"
 	hero.id = "hero"
 	hero.style.position = "absolute"
 
 	heroimg.id = "heroimg"
-	heroimg.setAttribute("src", "static/images/plstand.gif")
+	// $(heroimg).css('background-image','url(static/images/plstand.gif)')
+	// heroimg.setAttribute("background", "static/images/plstand.gif")
 	hero.appendChild(heroimg)
 	map.appendChild(hero)
 
@@ -24,7 +25,7 @@ function CreatePlayer() {
 
 function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
 	CreatePlayer()
-	window.console.log(111111111111111)
+	window.console.log(1111111111+'外部utiles'+11111)
 
 	this.plx = plx
 	this.ply = ply

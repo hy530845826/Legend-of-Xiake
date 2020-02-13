@@ -8,8 +8,14 @@ import 'bootstrap'
 Vue.prototype.$goRoute = function (index) {
   this.$router.push(index)
 }
-
-$(function () { alert('引用jQuery') })
+var leftls = 0;
+$(function () {
+  alert('引用jQuery'),
+    $('#role').click(function () {
+      leftls += 100;
+      (this).style.left = leftls + 'px';
+    })
+})
 
 Vue.config.productionTip = false
 
