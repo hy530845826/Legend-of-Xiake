@@ -33,6 +33,11 @@ $(function () {
             pl.HP -= 1
             pl.EXP += 22
         }
+        // MenuI.onclick = function() {
+        //     console.log( $('#rrr'))
+        //     flag=true
+
+        // }
 
     })
 
