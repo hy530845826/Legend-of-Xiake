@@ -1,15 +1,32 @@
 <template>
     <div id="Setting">
       <div id="Blank3">
-        <div id="BlankHP" class="BlankBox">
-          <p>精</p>
-        </div>
-        <div id="BlankMP" class="BlankBox">
-          <p>气</p>
-        </div>
-        <div id="BlankEXP" class="BlankBox">
-          <p>神</p>
-        </div>
+        <div id="Blank3">
+					<div id="BlankHP" class="BlankBox">
+						<p>精</p>
+						<div id="JdtHP" class="JdtBox">
+							<div class="layui-progress layui-progress-big" lay-filter="JdtHP" lay-showPercent="true">
+								<div class="layui-progress-bar layui-bg-red" lay-percent="100%"></div>
+							</div>
+						</div>
+					</div>
+					<div id="BlankMP" class="BlankBox">
+						<p>气</p>
+						<div id="JdtMP" class="JdtBox">
+							<div class="layui-progress layui-progress-big" lay-filter="JdtMP" lay-showPercent="true">
+								<div class="layui-progress-bar layui-bg-blue" lay-percent="100%"></div>
+							</div>
+						</div>
+					</div>
+					<div id="BlankEXP" class="BlankBox">
+						<p>神</p>
+						<div id="JdtEXP" class="JdtBox">
+							<div class="layui-progress layui-progress-big" lay-filter="JdtEXP" lay-showPercent="true" id="zz">
+								<div class="layui-progress-bar layui-bg-orange" lay-percent="0%"></div>
+							</div>
+						</div>
+					</div>
+				</div>
       </div>
       <div id="Level">LV.1</div>
       <div id="Menu">

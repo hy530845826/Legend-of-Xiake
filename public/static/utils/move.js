@@ -5,7 +5,7 @@ window.console.log($map);
 var pl = new Player(0, 550,
 	1, 50, 50, 50, 50, 100, 0,
 	0, 0,
-	90, 0, 1, 1, 1, 0, 0, 0)
+	1, 1, 1, 0, 0, 0)
 
 function CreatePlayer() {
 	var hero = document.createElement("div")
@@ -23,7 +23,7 @@ function CreatePlayer() {
 
 }
 
-function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
+function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, str, dex, intt, wil, per, luk) {
 	CreatePlayer()
 	window.console.log(1111111111+'外部utiles'+11111)
 
@@ -45,11 +45,9 @@ function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hi
 
 	this.ATK = weap + str
 	this.ATKMAX = weap + str * 3
-	this.HIT = hit
 	this.DEF = armor + dex
-	this.DEX = dex
 	this.STR = str
-	this.AGI = agi
+	this.DEX = dex
 	this.INT = intt
 	this.WIL = wil
 	this.PER = per
