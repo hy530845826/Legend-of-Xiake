@@ -1,5 +1,5 @@
 var hero = $('#role')
-var pll = new Player(0, 550,
+var pll = new Player(0, 500,
 	1, 50, 50, 50, 50, 100, 0,
 	0, 0,
 	90, 0, 1, 1, 1, 0, 0, 0)

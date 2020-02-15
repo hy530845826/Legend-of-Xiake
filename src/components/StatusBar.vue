@@ -44,9 +44,10 @@
     <div id="Level">LV.1</div>
     <div id="Menu">
       <ul id="Menuul">
-        <li id="MenuJ">委托(J)</li>
+        <li id="MenuJ" @click='addexp'>委托(J)</li>
         <li id="MenuI" @click="toParent">角色(I)</li>
-        <li id="MenuB">包裹(B)</li>
+        <!-- <li id="MenuB">包裹(B)</li> -->
+        <li id="MenuB">{{mlgb}}</li>
         <li id="MenuK">技能(K)</li>
         <li id="MenuM">地图(M)</li>
         <li id="MenuP">设置(P)</li>
@@ -60,9 +61,13 @@ export default {
   data: function() {
     return { FlagI: true };
   },
+  props:['mlgb'],
   methods: {
     toParent: function() {
       this.$emit("openI", this.FlagI);
+    },
+    addexp: function(){
+
     }
   }
 };

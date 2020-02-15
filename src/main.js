@@ -8,13 +8,15 @@ import 'bootstrap'
 Vue.prototype.$goRoute = function (index) {
   this.$router.push(index)
 }
-var leftls = 0;
+
 $(function () {
-  alert('引用jQuery'),
-    $('#role').click(function () {
-      leftls += 100;
-      (this).style.left = leftls + 'px';
-    })
+  alert('引用jQuery')
+  const configs = ['layer', 'laydate', 'laypage', 'laytpl', 'layedit',
+    'form', 'upload', 'tree', 'table', 'element', 'util',
+    'flow', 'carousel', 'rate', 'transfer']
+  layui.config({ base: 'static/layui_exts/transfer' }).use(configs, () =>
+    new Vue({ el: '#app', router, components: { App }, template: '<App/>' })
+  )
 })
 
 Vue.config.productionTip = false

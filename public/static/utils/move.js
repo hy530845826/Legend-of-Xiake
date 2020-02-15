@@ -2,7 +2,7 @@ window.console.log(1);
 var $map = $('map');
 window.console.log(map);
 window.console.log($map);
-var pl = new Player(0, 550,
+var pl = new Player(0, 500,
 	1, 50, 50, 50, 50, 100, 0,
 	0, 0,
 	1, 1, 1, 0, 0, 0)

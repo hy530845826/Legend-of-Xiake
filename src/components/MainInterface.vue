@@ -2,14 +2,15 @@
   <div id="map" class="map-1">
     <div id="role">
       <div id="role-body"></div>
-      <!-- <div>{{st}}</div> -->
+      <div>{{hero}}</div>
       <div>{{sk}}</div>
+      <div>{{st}}</div>
     </div>
   </div>
 </template>
 <script>
-// import Player from "./player/Player.vue";
 import sb from "../js/player";
+import nc from "../js/vuemove";
 
 export default {
   name: "main-interface",
@@ -23,10 +24,8 @@ export default {
   methods: {},
   mounted() {
     this.hero = $("#role")[0];
-    window.console.log(this.hero);
-    // },
-    // components: {
-    //   Player
+    window.console.log(111+this.hero);
+    nc;
   }
 };
 </script>
