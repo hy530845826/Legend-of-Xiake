@@ -1,42 +1,46 @@
 <template>
   <div id="Setting">
     <div id="Blank3">
-      <div id="Blank3">
-        <div id="BlankHP" class="BlankBox">
-          <p>精</p>
-          <div id="JdtHP" class="JdtBox">
+      <div id="BlankHP" class="BlankBox">
+        <p>精</p>
+        <div id="JdtHP" class="JdtBox">
+          <div class="progress">
             <div
-              class="layui-progress layui-progress-big"
-              lay-filter="JdtHP"
-              lay-showPercent="true"
-            >
-              <div class="layui-progress-bar layui-bg-red" lay-percent="100%"></div>
-            </div>
+              id="axe"
+              class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width:0%"
+            >null</div>
           </div>
         </div>
-        <div id="BlankMP" class="BlankBox">
-          <p>气</p>
-          <div id="JdtMP" class="JdtBox">
+      </div>
+      <div id="BlankMP" class="BlankBox">
+        <p>气</p>
+        <div id="JdtMP" class="JdtBox">
+          <div class="progress">
             <div
-              class="layui-progress layui-progress-big"
-              lay-filter="JdtMP"
-              lay-showPercent="true"
-            >
-              <div class="layui-progress-bar layui-bg-blue" lay-percent="100%"></div>
-            </div>
+              class="progress-bar progress-bar-striped progress-bar-animated"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 0%"
+            >null</div>
           </div>
         </div>
-        <div id="BlankEXP" class="BlankBox">
-          <p>神</p>
-          <div id="JdtEXP" class="JdtBox">
+      </div>
+      <div id="BlankEXP" class="BlankBox">
+        <p>神</p>
+        <div id="JdtEXP" class="JdtBox">
+          <div class="progress">
             <div
-              class="layui-progress layui-progress-big"
-              lay-filter="JdtEXP"
-              lay-showPercent="true"
-              id="zz"
-            >
-              <div class="layui-progress-bar layui-bg-orange" lay-percent="0%"></div>
-            </div>
+              class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 100%"
+            >null</div>
           </div>
         </div>
       </div>
@@ -44,7 +48,7 @@
     <div id="Level">LV.1</div>
     <div id="Menu">
       <ul id="Menuul">
-        <li id="MenuJ" @click='addexp'>委托(J)</li>
+        <li id="MenuJ" @click="addexp">委托(J)</li>
         <li id="MenuI" @click="toParent">角色(I)</li>
         <!-- <li id="MenuB">包裹(B)</li> -->
         <li id="MenuB">{{mlgb}}</li>
@@ -61,14 +65,13 @@ export default {
   data: function() {
     return { FlagI: true };
   },
-  props:['mlgb'],
+  props: ["mlgb"],
   methods: {
     toParent: function() {
       this.$emit("openI", this.FlagI);
     },
-    addexp: function(){
-
-    }
+    addexp: function() {
+    },
   }
 };
 </script>

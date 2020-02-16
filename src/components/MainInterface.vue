@@ -10,7 +10,7 @@
 </template>
 <script>
 import sb from "../js/player";
-import nc from "../js/vuemove";
+import "../js/vuemove";
 
 export default {
   name: "main-interface",
@@ -24,8 +24,7 @@ export default {
   methods: {},
   mounted() {
     this.hero = $("#role")[0];
-    window.console.log(111+this.hero);
-    nc;
+    window.console.log(111 + this.hero);
   }
 };
 </script>
