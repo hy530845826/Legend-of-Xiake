@@ -2,28 +2,155 @@
   <div id="GameBox">
     <main-interface />
     <action-bar />
-    <status-bar :mlgb="niceteam" @openI="zdy($event)" />
-    <div id="abcdefg">
-      <h1 v-if="flag">{{st}}</h1>
+    <status-bar :mlgb="niceteam" @openI="zdy($event)" @openK="zdy1($event)" />
+    <div id="WindowMenu">
+      <div v-if="WindowName">
+        <div id="Idiv" class="MenuDiv">
+          <div class="MenuTitle">
+            <div class="MenuName">
+              角色
+              <span class="MenuClose">X</span>
+            </div>
+          </div>
+          <div class="RoleHead">
+            <div class="Iimg">
+              <img src="../assets/images/plstand.gif" />
+            </div>
+            <div class="RoleName">
+              <ul>
+                <li>〓初入江湖〓</li>
+                <li>黄富贵</li>
+                <li>
+                  LV.
+                  <span id="LV">1</span>
+                </li>
+                <li>
+                  历练：
+                  <span id="EXP">{{st.EXP}}</span> /
+                  <span id="EXPMAX">{{st.EXPMAX}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="RoleBox">
+            <div class="RoleBoxL">
+              <ul>
+                <li>
+                  体力：
+                  <span id="CON">{{st.HP}}</span> /
+                  <span id="CONMAX">{{st.HPMAX}}</span>
+                </li>
+                <li>
+                  攻击：
+                  <span id="ATK">{{st.ATK}}</span> ~
+                  <span id="ATKMAX">{{st.ATKMAX}}</span>
+                </li>
+                <li>
+                  精准：
+                  <span id="HIT">{{st.HIT}}</span>
+                </li>
+                <li>
+                  力量：
+                  <span id="STR">{{st.STR}}</span>
+                </li>
+                <li>
+                  敏捷：
+                  <span id="AGI">{{st.AGI}}</span>
+                </li>
+                <li>
+                  学识：
+                  <span id="INT">{{st.INT}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="RoleBoxR">
+              <ul>
+                <li>
+                  内力：
+                  <span id="MAG">{{st.MP}}</span> /
+                  <span id="MAGMAX">{{st.MPMAX}}</span>
+                </li>
+                <li>
+                  防御：
+                  <span id="DEF">{{st.DEF}}</span>
+                </li>
+                <li>
+                  身法：
+                  <span id="DEX">{{st.DEX}}</span>
+                </li>
+                <li>
+                  意志：
+                  <span id="WIL">{{st.WIL}}</span>
+                </li>
+                <li>
+                  感知：
+                  <span id="PER">{{st.PER}}</span>
+                </li>
+                <li>
+                  福缘：
+                  <span id="LUK">{{st.LUK}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="aa">
+        <div id="Kdiv" class="MenuDiv">
+          <div class="MenuTitle">
+            <div class="MenuName">
+              技能
+              <span class="MenuClose">X</span>
+            </div>
+          </div>
+          <div class="RoleBox">
+            <div class="RoleBoxL">
+              <ul>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(A):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(S):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(D):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(F):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(A):</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 import MainInterface from "./MainInterface.vue";
 import ActionBar from "./ActionBar.vue";
 import StatusBar from "./StatusBar.vue";
-import sb from "../js/player";
+import Player from "../js/player";
 import "../js/vueblank";
 
 export default {
   name: "game",
   data: function() {
     return {
-      flag: false,
-      st: sb.pll,
-      niceteam: "fk"
+      WindowName: false,
+      st: Player.pll,
+      niceteam: "fk",
+      aa: false
     };
   },
   components: {
@@ -33,7 +160,10 @@ export default {
   },
   methods: {
     zdy(msg) {
-      this.flag = msg;
+      this.WindowName = msg;
+    },
+    zdy1(msg) {
+      this.aa = msg;
     }
   }
 };

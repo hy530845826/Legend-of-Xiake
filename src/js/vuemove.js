@@ -4,8 +4,8 @@ var s = false
 var d = false
 var IsMove = 0
 var IsFlash = false
-var abc = require("./player")
-var pl = abc.default.pll
+var Player = require("./player")
+var pl = Player.default.pll
 document.onkeydown = function (event) {
 	event = event || window.event
 	switch (event.keyCode) {

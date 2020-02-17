@@ -1,10 +1,9 @@
-var hero = $('#role')
-var pll = new Player(0, 500,
+var pll = new CreatePlayer(0, 500,
 	1, 50, 50, 50, 50, 100, 0,
 	0, 0,
 	90, 0, 1, 1, 1, 0, 0, 0)
 
-function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
+function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
 
 	this.plx = plx
 	this.ply = ply
@@ -42,5 +41,5 @@ function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hi
 
 window.console.log(pll)
 export default {
-    pll, hero
+    pll
 };

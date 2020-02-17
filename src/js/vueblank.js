@@ -29,7 +29,7 @@ var timer = setInterval(function () {
         window.console.log("DEAD")
         clearInterval(timer)
     }
-}, 200)
+}, 500)
 
 function clickJ () {
     window.console.log('menuj')

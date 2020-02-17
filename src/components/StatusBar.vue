@@ -52,7 +52,7 @@
         <li id="MenuI" @click="toParent">角色(I)</li>
         <!-- <li id="MenuB">包裹(B)</li> -->
         <li id="MenuB">{{mlgb}}</li>
-        <li id="MenuK">技能(K)</li>
+        <li id="MenuK" @click="toParent1">技能(K)</li>
         <li id="MenuM">地图(M)</li>
         <li id="MenuP">设置(P)</li>
       </ul>
@@ -63,15 +63,20 @@
 export default {
   name: "test",
   data: function() {
-    return { FlagI: true };
+    return {
+      FlagI: true,
+      FlagK: true
+    };
   },
   props: ["mlgb"],
   methods: {
     toParent: function() {
       this.$emit("openI", this.FlagI);
     },
-    addexp: function() {
+    toParent1: function() {
+      this.$emit("openK", this.FlagK);
     },
+    addexp: function() {}
   }
 };
 </script>
