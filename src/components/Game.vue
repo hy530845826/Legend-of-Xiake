@@ -2,9 +2,9 @@
   <div id="GameBox">
     <main-interface />
     <action-bar />
-    <status-bar :mlgb="niceteam" @openI="zdy($event)" @openK="zdy1($event)" />
+    <status-bar :mlgb="niceteam" @openWindowMenu="zdy($event)" />
     <div id="WindowMenu">
-      <div v-if="WindowName">
+      <div v-if="WindowName=='MenuI'">
         <div id="Idiv" class="MenuDiv">
           <div class="MenuTitle">
             <div class="MenuName">
@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div v-if="aa">
+      <div v-if="WindowName=='MenuK'">
         <div id="Kdiv" class="MenuDiv">
           <div class="MenuTitle">
             <div class="MenuName">
@@ -147,10 +147,9 @@ export default {
   name: "game",
   data: function() {
     return {
-      WindowName: false,
+      WindowName: "null",
       st: Player.pll,
-      niceteam: "fk",
-      aa: false
+      niceteam: "fk"
     };
   },
   components: {
@@ -161,9 +160,6 @@ export default {
   methods: {
     zdy(msg) {
       this.WindowName = msg;
-    },
-    zdy1(msg) {
-      this.aa = msg;
     }
   }
 };

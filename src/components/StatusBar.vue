@@ -49,10 +49,10 @@
     <div id="Menu">
       <ul id="Menuul">
         <li id="MenuJ" @click="addexp">委托(J)</li>
-        <li id="MenuI" @click="toParent">角色(I)</li>
+        <li id="MenuI" @click="toParent($event)">角色(I)</li>
         <!-- <li id="MenuB">包裹(B)</li> -->
         <li id="MenuB">{{mlgb}}</li>
-        <li id="MenuK" @click="toParent1">技能(K)</li>
+        <li id="MenuK" @click="toParent($event)">技能(K)</li>
         <li id="MenuM">地图(M)</li>
         <li id="MenuP">设置(P)</li>
       </ul>
@@ -64,17 +64,21 @@ export default {
   name: "test",
   data: function() {
     return {
-      FlagI: true,
-      FlagK: true
+      MenuFlag: "null"
     };
   },
   props: ["mlgb"],
   methods: {
-    toParent: function() {
-      this.$emit("openI", this.FlagI);
-    },
-    toParent1: function() {
-      this.$emit("openK", this.FlagK);
+    toParent: function(e) {
+      var FlagID = e.currentTarget.id;
+      //传输到父组件的值用来判定v-if（WindowName）
+      if (this.MenuFlag === FlagID) {
+        this.MenuFlag = "null";
+        this.$emit("openWindowMenu", "null");
+      } else {
+        this.MenuFlag = FlagID;
+        this.$emit("openWindowMenu", FlagID);
+      }
     },
     addexp: function() {}
   }
