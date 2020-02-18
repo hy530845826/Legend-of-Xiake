@@ -4,6 +4,42 @@
     <action-bar />
     <status-bar :mlgb="niceteam" @openWindowMenu="zdy($event)" />
     <div id="WindowMenu">
+      <div v-if="WindowName=='MenuB'">
+        <div id="Bdiv" class="MenuDiv">
+          <div class="MenuTitle">
+            <div class="MenuName">
+              包裹
+              <span class="MenuClose">X</span>
+            </div>
+          </div>
+          <div class="RoleBox">
+            <div class="RoleBoxL">
+              <ul>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(A):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(S):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(D):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(F):</span>
+                </li>
+                <li>
+                  <span>图片</span>
+                  <span>回手掏(A):</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
       <div v-if="WindowName=='MenuI'">
         <div id="Idiv" class="MenuDiv">
           <div class="MenuTitle">
@@ -132,6 +168,20 @@
           </div>
         </div>
       </div>
+      <div v-if="WindowName=='MenuM'">
+        <div id="Mdiv" class="MenuDiv">
+          <div class="MenuTitle">
+            <div class="MenuName">
+              地图
+              <span class="MenuClose">X</span>
+            </div>
+          </div>
+          <div class="RoleBox">
+            {{stenemy}}
+            {{st}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -141,6 +191,7 @@ import MainInterface from "./MainInterface.vue";
 import ActionBar from "./ActionBar.vue";
 import StatusBar from "./StatusBar.vue";
 import Player from "../js/player";
+import Enemy from "../js/enemy";
 import "../js/vueblank";
 
 export default {
@@ -149,6 +200,7 @@ export default {
     return {
       WindowName: "null",
       st: Player.pll,
+      stenemy: Enemy.enemytank,
       niceteam: "fk"
     };
   },

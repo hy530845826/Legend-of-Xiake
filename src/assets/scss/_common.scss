@@ -54,14 +54,14 @@ body {
 	bottom: 50px;
 }
 
-#role,#hero {
+#role,#hero,#enemy {
 	position: absolute;
 	width: 130px;
 	height: 130px;
 	overflow: hidden;
 }
 
-#role-body,#heroimg {
+#role-body,#heroimg,#enemy-body {
 	width: 130px;
 	height: 130px;
 	background: url(../images/plstand.gif) no-repeat;

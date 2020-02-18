@@ -6,6 +6,9 @@ var IsMove = 0
 var IsFlash = false
 var Player = require("./player")
 var pl = Player.default.pll
+var Hit = require("./hit")
+var PlayerHitEnemy = Hit.default.PlayerHitEnemy
+
 document.onkeydown = function (event) {
 	event = event || window.event
 	switch (event.keyCode) {
@@ -41,6 +44,7 @@ document.onkeydown = function (event) {
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(0, 6, 1)
+				PlayerHitEnemy(pl)
 			}
 			break;
 		case 83:
@@ -143,9 +147,10 @@ function flash(num, timer, style) {
 		plflash = setInterval(function () {
 			$('#role-body').css('background-position', (-130 * i) + 'px ' + (-130 * num) + 'px')
 			i++
-			if (i > timer) {
+			if (i > timer + 1) {
 				clearInterval(plflash)
 				IsFlash = false
+				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
 			}
 		}, 100);
 	}

@@ -51,9 +51,9 @@
         <li id="MenuJ" @click="addexp">委托(J)</li>
         <li id="MenuI" @click="toParent($event)">角色(I)</li>
         <!-- <li id="MenuB">包裹(B)</li> -->
-        <li id="MenuB">{{mlgb}}</li>
+        <li id="MenuB" @click="toParent($event)">{{mlgb}}</li>
         <li id="MenuK" @click="toParent($event)">技能(K)</li>
-        <li id="MenuM">地图(M)</li>
+        <li id="MenuM" @click="toParent($event)">地图(M)</li>
         <li id="MenuP">设置(P)</li>
       </ul>
     </div>

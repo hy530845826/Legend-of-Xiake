@@ -35,8 +35,6 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.xcd = 0
 	this.xfx = 0 //平X方向：右0左1
 	this.ccd = 0
-
-	this.weapom = 'jian'
 }
 
 window.console.log(pll)
