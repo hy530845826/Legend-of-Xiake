@@ -88,32 +88,28 @@ document.onkeyup = function (event) {
 			d = false;
 			IsMove = 0;
 			if (IsMove == 0) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //→
 		case 37:
 			a = false;
 			IsMove = 0;
 			if (IsMove == 0) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //←
 		case 38:
 			w = false;
 			IsMove = 0;
 			if (IsMove == 0) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //↑
 		case 40:
 			s = false;
 			IsMove = 0;
 			if (IsMove == 0) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //↓
 	}
@@ -139,6 +135,7 @@ function flash(num, timer, style) {
 				if (i == 0) {
 					clearInterval(plflash)
 					IsFlash = false
+					$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 					$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
 				}
 			}
@@ -150,6 +147,7 @@ function flash(num, timer, style) {
 			if (i > timer + 1) {
 				clearInterval(plflash)
 				IsFlash = false
+				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
 			}
 		}, 100);

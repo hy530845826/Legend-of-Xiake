@@ -178,7 +178,6 @@
           </div>
           <div class="RoleBox">
             {{stenemy}}
-            {{st}}
           </div>
         </div>
       </div>
