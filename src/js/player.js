@@ -33,7 +33,8 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 
 	this.speed = 10
 	this.xcd = 0
-	this.xfx = 0 //平X方向：右0左1
+	this.xfx = true //平X方向：右true左false
+	this.imgfx = true
 	this.ccd = 0
 }
 

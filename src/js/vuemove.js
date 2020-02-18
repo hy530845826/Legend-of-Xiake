@@ -9,21 +9,35 @@ var pl = Player.default.pll
 var Hit = require("./hit")
 var PlayerHitEnemy = Hit.default.PlayerHitEnemy
 
+var rotateNum = 180; //旋转角度
+
 document.onkeydown = function (event) {
 	event = event || window.event
 	switch (event.keyCode) {
 		case 39:
 			d = true;
 			IsMove += 1;
+			pl.xfx = true;
 			if (IsMove == 1 && !IsFlash) {
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				if (pl.xfx != pl.imgfx) {
+					pl.imgfx = true;
+					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
+					rotateNum += 180;
+				}
 			}
 			break; //→
 		case 37:
 			a = true;
 			IsMove += 1;
+			pl.xfx = false;
 			if (IsMove == 1 && !IsFlash) {
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				if (pl.xfx != pl.imgfx) {
+					pl.imgfx = false;
+					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
+					rotateNum += 180;
+				}
 			}
 			break; //←
 		case 38:
@@ -74,7 +88,7 @@ setInterval(function () {
 		pl.ply -= pl.speed;
 	} else if (a && !IsFlash && pl.plx > 0) {
 		pl.plx -= pl.speed;
-	} else if (d && !IsFlash && pl.plx < 1100) {
+	} else if (d && !IsFlash && pl.plx < 1070) {
 		pl.plx += pl.speed;
 	}
 	$('#role').css('top', pl.ply + "px")
