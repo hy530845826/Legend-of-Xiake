@@ -3,11 +3,14 @@
 var Enemy = require("./enemy")
 var enemy = Enemy.default.enemytank
 
-function PlayerHitEnemy(obj) {
-    var t1 = obj.ply;
-    var l1 = obj.plx;
-    var r1 = obj.plx + 130;
-    var b1 = obj.ply + 130;
+function PlayerHitEnemy(obj, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) {
+    //左上角坐标+判定的长宽
+    var t1, l1, r1, b1
+    t1 = obj.ply + TopSpacing
+    b1 = t1 + JudegeHeight
+    //根据player方向定位
+    obj.xfx ? l1 = obj.plx + LeftSpacing : l1 = obj.plx + 130 - LeftSpacing - JudgeWidth
+    r1 = l1 + JudgeWidth
 
     var obj2 = enemy;
 

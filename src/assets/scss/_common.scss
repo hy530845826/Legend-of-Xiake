@@ -56,9 +56,10 @@ body {
 
 #role,#hero,#enemy {
 	position: absolute;
-	width: 130px;
-	height: 130px;
+	width: 129px;
+	height: 129px;
 	overflow: hidden;
+	border:1px solid red;
 }
 
 #role-body,#heroimg,#enemy-body {
