@@ -54,8 +54,8 @@
             </div>
             <div class="RoleName">
               <ul>
-                <li>〓初入江湖〓</li>
-                <li>黄富贵</li>
+                <li>〓{{st.appellation}}〓</li>
+                <li>{{st.name}}</li>
                 <li>
                   LV.
                   <span id="LV">1</span>
@@ -176,9 +176,7 @@
               <span class="MenuClose">X</span>
             </div>
           </div>
-          <div class="RoleBox">
-            {{stenemy}}
-          </div>
+          <div class="RoleBox">{{stenemy}}</div>
         </div>
       </div>
     </div>

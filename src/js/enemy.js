@@ -1,7 +1,7 @@
 window.console.log(111111111);
 
 var enemytank = new CreateEnemy(400, 400,
-    1, 10, 10, 50, 50, 10,
+    1, 10, 10, 50, 50, 40,
     0, 0,
     90, 0, 1, 1, 1);
 

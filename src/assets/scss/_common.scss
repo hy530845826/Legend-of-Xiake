@@ -54,7 +54,7 @@ body {
 	bottom: 50px;
 }
 
-#role,#hero,#enemy {
+#role,#enemy,#npc {
 	position: absolute;
 	width: 129px;
 	height: 129px;
@@ -62,12 +62,19 @@ body {
 	border:1px solid red;
 }
 
-#role-body,#heroimg,#enemy-body {
+#role-body,#enemy-body{
 	width: 130px;
 	height: 130px;
 	background: url(../images/plstand.gif) no-repeat;
 }
 
-#heroimg {
-	display: block;
+#npc {
+	left:700px;
+	top:500px;
+}
+#npc-body {
+	width: 130px;
+	height: 130px;
+	background: url(../images/npcmed.gif) no-repeat;
+	cursor: pointer;
 }

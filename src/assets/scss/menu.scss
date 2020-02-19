@@ -1,12 +1,11 @@
 .MenuDiv {
 	color: red;
 	width: 360px;
-	height: 457px;
+	height: 460px;
     background: #222;
     position: absolute;
     top: 100px;
     left: 690px;
-	
 }
 
 .MenuDiv .MenuTitle{
@@ -25,9 +24,8 @@
 }
 
 #Idiv .RoleHead {
-	padding: 27px 0 20px;
+	padding-bottom: 20px;
 	height: 150px;
-
 }
 
 #Idiv .Iimg img {
@@ -36,6 +34,7 @@
 }
 
 #Idiv .RoleName {
+	padding-top: 24px;
 	text-align: center;
 }
 

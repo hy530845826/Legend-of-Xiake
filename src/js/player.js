@@ -4,7 +4,8 @@ var pll = new CreatePlayer(0, 500,
 	90, 0, 1, 1, 1, 0, 0, 0)
 
 function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
-
+	this.appellation = '初入江湖'
+	this.name = '黄富贵'
 	this.plx = plx
 	this.ply = ply
 
