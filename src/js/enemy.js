@@ -7,6 +7,9 @@ var enemytank = new CreateEnemy(400, 400,
 
 function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, dex, str, agi, intt) {
     window.console.log('内部消息');
+    this.UID = 0
+    this.name = 'null'
+
     this.plx = plx
     this.ply = ply
 
@@ -35,37 +38,21 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, 
     this.ccd = 0
 }
 window.console.log(enemytank)
-var str = JSON.stringify(enemytank)
-window.console.log(str)
-str = JSON.parse(str)
-window.console.log(str)
+import enemy_data from './enemy_data.json'
+var EnemyData = enemy_data
+window.console.log(EnemyData)//已经是一个json对象了
 
-function UpdateEnemy(obj, plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, dex, str, agi, intt) {
-    obj.plx = plx
-    obj.ply = ply
-
-    obj.LV = lv
-    obj.HPMAX = hpmax
-    obj.HP = hp
-    obj.MPMAX = mpmax
-    obj.MP = mp
-    obj.EXP = exp
-
-    obj.WEAP = weap
-    obj.ARMOR = armor
-
-    obj.ATK = weap + str
-    obj.ATKMAX = weap + str * 3
-    obj.HIT = hit
-    obj.DEF = armor + dex
-    obj.DEX = dex
-    obj.STR = str
-    obj.AGI = agi
-    obj.INT = intt
+function UpdateEnemy(obj, uid) {
+    var enemydata = EnemyData[uid]
+    for (var sb in obj) {
+        obj[sb] = enemydata[sb]
+    }
 }
+
 setInterval(function () {
     $('#enemy').css('top', enemytank.ply + "px")
     $('#enemy').css('left', enemytank.plx + "px")
+    $('#enemy').css('z-index', enemytank.ply)
 }, 500)
 
 export default {

@@ -96,6 +96,7 @@ setInterval(function () {
 	}
 	$('#role').css('top', pl.ply + "px")
 	$('#role').css('left', pl.plx + "px")
+	$('#role').css('z-index', pl.ply)
 }, 40);
 
 document.onkeyup = function (event) {

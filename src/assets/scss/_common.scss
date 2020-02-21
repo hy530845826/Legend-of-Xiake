@@ -4,6 +4,7 @@
 	color: #fff;
 	list-style: none;
 	font-family: "Helvetica Neue", Helvetica, "PingFang SC", Tahoma, Arial, sans-serif;
+	z-index: 900;
 }
 
 img {
@@ -16,19 +17,19 @@ body {
 	background: url(../images/body.jpg);
 }
 
-#Home{
+#Home {
 	width: 1200px;
 	height: 725px;
 	background: url(../images/Menu0.jpg) no-repeat black;
 	position: relative;
 }
 
-#logoimg{
-	width:441px;
+#logoimg {
+	width: 441px;
 	height: 82px;
 	position: absolute;
-	left:380px;
-	top:50px;
+	left: 380px;
+	top: 50px;
 	background: url(../images/logo.gif) no-repeat;
 }
 
@@ -48,30 +49,35 @@ body {
 
 #action-bar {
 	height: 50px;
-	background: rgba(1,1,1,0.1);
+	background: rgba(1, 1, 1, 0.1);
 	width: 1200px;
 	position: absolute;
 	bottom: 50px;
 }
 
-#role,#enemy,#npc {
+#role,
+#enemy,
+#npc {
 	position: absolute;
 	width: 129px;
 	height: 129px;
 	overflow: hidden;
-	border:1px solid red;
+	border: 1px solid red;
 }
 
-#role-body,#enemy-body{
+#role-body,
+#enemy-body {
 	width: 130px;
 	height: 130px;
 	background: url(../images/plstand.gif) no-repeat;
 }
 
 #npc {
-	left:700px;
-	top:500px;
+	left: 700px;
+	top: 500px;
+	z-index: 500;
 }
+
 #npc-body {
 	width: 130px;
 	height: 130px;

@@ -40,7 +40,7 @@ export default {
   data: function() {
     return {
       st: Player.pll,
-      ShowMission: false,
+      ShowMission: false
     };
   },
   methods: {
@@ -48,10 +48,7 @@ export default {
       this.ShowMission = !this.ShowMission;
     },
     AcceptMission: function() {
-      Enemy.UpdateEnemy(Enemy.enemytank,200, 400,
-    1, 10, 10, 50, 50, 40,
-    0, 0,
-    90, 0, 1, 1, 1)
+      Enemy.UpdateEnemy(Enemy.enemytank, 1);
     }
   },
   mounted() {
