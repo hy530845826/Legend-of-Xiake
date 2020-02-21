@@ -34,11 +34,40 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, 
     this.xfx = 0 //平X方向：右0左1
     this.ccd = 0
 }
+window.console.log(enemytank)
+var str = JSON.stringify(enemytank)
+window.console.log(str)
+str = JSON.parse(str)
+window.console.log(str)
+
+function UpdateEnemy(obj, plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, dex, str, agi, intt) {
+    obj.plx = plx
+    obj.ply = ply
+
+    obj.LV = lv
+    obj.HPMAX = hpmax
+    obj.HP = hp
+    obj.MPMAX = mpmax
+    obj.MP = mp
+    obj.EXP = exp
+
+    obj.WEAP = weap
+    obj.ARMOR = armor
+
+    obj.ATK = weap + str
+    obj.ATKMAX = weap + str * 3
+    obj.HIT = hit
+    obj.DEF = armor + dex
+    obj.DEX = dex
+    obj.STR = str
+    obj.AGI = agi
+    obj.INT = intt
+}
 setInterval(function () {
-    $('#enemy').css('top', enemytank.plx + "px")
-    $('#enemy').css('left', enemytank.ply + "px")
+    $('#enemy').css('top', enemytank.ply + "px")
+    $('#enemy').css('left', enemytank.plx + "px")
 }, 500)
 
 export default {
-    enemytank
+    enemytank, UpdateEnemy
 }

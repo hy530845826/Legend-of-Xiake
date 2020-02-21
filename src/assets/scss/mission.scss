@@ -1,4 +1,4 @@
-.Mission {
+#Mission {
 	color: red;
 	width: 360px;
 	height: 460px;
@@ -8,10 +8,45 @@
     left: 150px;
 }
 
-.Mission .MenuTitle{
+#Mission .MenuTitle{
 	background: #555;
 	text-align: center;
 	font-size: 20px;
 	height: 30px;
 	line-height: 30px;
+}
+
+#Mission .MissionContent div{
+	font-family: "仿宋";
+	font-size: 18px;
+}
+
+#Mission .MissionContent div:first-child{
+	text-indent: 2em;
+	padding-bottom: 25px;
+}
+
+#Mission .MissionContent span{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#Mission .MissionBottom{
+	width: 360px;
+	position: absolute;
+	bottom: 0;
+}
+
+#Mission .MissionBottom span{
+	display: inline-block;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #555;
+	cursor: pointer;
+}
+
+#Mission .MissionBottom span:last-child {
+	float: right;
 }

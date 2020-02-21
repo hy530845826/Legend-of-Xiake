@@ -5,7 +5,7 @@
       <div>{{st}}</div>
     </div>
     <div id="npc">
-      <div id="npc-body" @click="fuckyou"></div>
+      <div id="npc-body" @click="RefuseMission"></div>
       <div>{{st}}</div>
     </div>
     <div id="enemy">
@@ -16,13 +16,15 @@
       <div id="Mission" class="Mission">
         <div class="MenuTitle">委托name</div>
         <div class="MissionContent">
-          <span>任务说明:</span>
-          你好，勇士{{st.name}}
-          //这里用变量确定委托的名字（可能需要组件）
+          <div>这是一个很长的故事巴拉巴拉巴拉，在很久很久以前有一个蓝精灵，他重来也不骑小毛驴。</div>
+          <div>
+            <span>任务说明:</span>
+            你好，勇士{{st.name}}//这里用变量确定委托的名字（可能需要组件）
+          </div>
         </div>
         <div class="MissionBottom">
-          <span>接受委托</span>
-          <span>拒绝委托</span>
+          <span @click="AcceptMission">接受委托</span>
+          <span @click="RefuseMission">拒绝委托</span>
         </div>
       </div>
     </div>
@@ -30,7 +32,7 @@
 </template>
 <script>
 import Player from "../js/player";
-import "../js/enemy";
+import Enemy from "../js/enemy";
 import "../js/vuemove";
 
 export default {
@@ -38,12 +40,18 @@ export default {
   data: function() {
     return {
       st: Player.pll,
-      ShowMission: false
+      ShowMission: false,
     };
   },
   methods: {
-    fuckyou: function() {
+    RefuseMission: function() {
       this.ShowMission = !this.ShowMission;
+    },
+    AcceptMission: function() {
+      Enemy.UpdateEnemy(Enemy.enemytank,200, 400,
+    1, 10, 10, 50, 50, 40,
+    0, 0,
+    90, 0, 1, 1, 1)
     }
   },
   mounted() {
