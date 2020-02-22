@@ -6,11 +6,11 @@
     </div>
     <div id="npc">
       <div id="npc-body" @click="RefuseMission"></div>
-      <div>{{st}}</div>
+      <div>{{el_name}}</div>
     </div>
     <div id="enemy">
       <div id="enemy-body"></div>
-      <div>{{st}}</div>
+      <div>{{el_name}}</div>
     </div>
     <div v-if="ShowMission">
       <div id="Mission" class="Mission">
@@ -40,7 +40,8 @@ export default {
   data: function() {
     return {
       st: Player.pll,
-      ShowMission: false
+      ShowMission: false,
+      el_name: Enemy.ell.name
     };
   },
   methods: {
@@ -48,7 +49,7 @@ export default {
       this.ShowMission = !this.ShowMission;
     },
     AcceptMission: function() {
-      Enemy.UpdateEnemy(Enemy.enemytank, 1);
+      Enemy.UpdateEnemy(Enemy.ell, 1);
     }
   },
   mounted() {

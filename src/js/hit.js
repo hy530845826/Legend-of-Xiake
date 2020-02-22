@@ -1,7 +1,7 @@
 // var Player = require("./player")
 // var pl = Player.default.pll
 var Enemy = require("./enemy")
-var enemy = Enemy.default.enemytank
+var enemy = Enemy.default.ell
 
 function PlayerHitEnemy(obj, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) {
     //左上角坐标+判定的长宽

@@ -105,28 +105,28 @@ document.onkeyup = function (event) {
 		case 39:
 			d = false;
 			IsMove = 0;
-			if (IsMove == 0) {
+			if (IsMove == 0 && IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //→
 		case 37:
 			a = false;
 			IsMove = 0;
-			if (IsMove == 0) {
+			if (IsMove == 0 && IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //←
 		case 38:
 			w = false;
 			IsMove = 0;
-			if (IsMove == 0) {
+			if (IsMove == 0 && IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //↑
 		case 40:
 			s = false;
 			IsMove = 0;
-			if (IsMove == 0) {
+			if (IsMove == 0 && IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //↓

@@ -56,7 +56,6 @@ body {
 }
 
 #role,
-#enemy,
 #npc {
 	position: absolute;
 	width: 129px;
@@ -70,6 +69,14 @@ body {
 	width: 130px;
 	height: 130px;
 	background: url(../images/plstand.gif) no-repeat;
+}
+
+#enemy{
+	position: absolute;
+	overflow: hidden;
+	border: 1px solid red;
+	left:-130px;
+	top: -130px;
 }
 
 #npc {

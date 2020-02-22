@@ -197,7 +197,7 @@ export default {
     return {
       WindowName: "null",
       st: Player.pll,
-      stenemy: Enemy.enemytank,
+      stenemy: Enemy.ell,
       niceteam: "fk"
     };
   },
