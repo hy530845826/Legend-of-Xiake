@@ -37,6 +37,7 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, 
     this.xcd = 0
     this.xfx = true //平X方向：右true左false
     this.imgfx = true
+    this.hited = false
     this.ccd = 0
 
 }
@@ -50,6 +51,8 @@ function UpdateEnemy(obj, uid) {
 }
 
 function EnemyMove(obj) {
+
+
     var fx = RandomFX(0, 4); //停止、下左上右为01234
     //随机数[m~n]
     function RandomFX(m, n) {
@@ -65,17 +68,28 @@ function EnemyMove(obj) {
 
     var rotateNum = 180; //旋转角度
     obj.randommove = setInterval(function () {
+        $('#enemy-body.ellstand').css({ 'width': '67px', 'height': '109px', 'background-image': 'url(static/images/e1stand.gif)' })
+        $('#enemy-body.ellmove').css({ 'width': '83px', 'height': '115px', 'background-image': 'url(static/images/e1move.gif)' })
+        $('#enemy-body.ellhited').css({ 'width': '72px', 'height': '108px', 'background-image': 'url(static/images/e1hited.gif)' })
+        $('#enemy-body.elldead').css({ 'width': '169px', 'height': '154px', 'background-image': 'url(static/images/e1dead.gif)' })
+
         obj.speed = tempspeed
-        if (fx == 0) {
+        if (obj.hited == true) {
+            $('#enemy-body').attr('class', 'ellhited')
             obj.speed = 0
-            $('#enemy-body').css('background-image', 'url(static/images/e1stand.gif)')
-        } else if (fx == 1 && obj.ply < 540 && obj.ply > 0) {
+        } else if (obj.HP <= 0 && obj.hited == false) {
+            $('#enemy-body').attr('class', 'elldead')
+        } else if (fx == 0) {
+            $('#enemy-body').attr('class', 'ellstand')
+            obj.speed = 0
+        } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
+            $('#enemy-body').attr('class', 'ellmove')
             obj.ply += obj.speed;
-            $('#enemy-body').css('background-image', 'url(static/images/e1move.gif)')
         } else if (fx == 3 && obj.ply > 380) {
+            $('#enemy-body').attr('class', 'ellmove')
             obj.ply -= obj.speed;
-            $('#enemy-body').css('background-image', 'url(static/images/e1move.gif)')
         } else if (fx == 2 && obj.plx > 0) {
+            $('#enemy-body').attr('class', 'ellmove')
             obj.xfx = false;
             if (obj.xfx != obj.imgfx) {
                 obj.imgfx = false;
@@ -83,8 +97,8 @@ function EnemyMove(obj) {
                 rotateNum += 180;
             }
             obj.plx -= obj.speed;
-            $('#enemy-body').css('background-image', 'url(static/images/e1move.gif)')
-        } else if (fx == 4 && obj.plx < 1070 && obj.plx > 0) {
+        } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
+            $('#enemy-body').attr('class', 'ellmove')
             obj.xfx = true;
             if (obj.xfx != obj.imgfx) {
                 obj.imgfx = true;
@@ -92,7 +106,6 @@ function EnemyMove(obj) {
                 rotateNum += 180;
             }
             obj.plx += obj.speed;
-            $('#enemy-body').css('background-image', 'url(static/images/e1move.gif)')
         } else {
             fx = RandomFX(0, 4);
         }

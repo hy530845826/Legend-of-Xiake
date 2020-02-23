@@ -9,7 +9,7 @@
       <div>{{el_name}}</div>
     </div>
     <div id="enemy">
-      <div id="enemy-body"></div>
+      <div id="enemy-body" class="ellstand"></div>
       <div>{{el_name}}</div>
     </div>
     <div v-if="ShowMission">

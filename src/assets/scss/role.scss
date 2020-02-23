@@ -1,0 +1,43 @@
+#role,
+#npc {
+    position: absolute;
+    width: 129px;
+    height: 129px;
+    overflow: hidden;
+    border: 1px solid red;
+}
+
+#role-body {
+    width: 130px;
+    height: 130px;
+    background: url(../images/plstand.gif) no-repeat;
+}
+
+#enemy {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid red;
+    left: -130px;
+    top: -130px;
+}
+
+#enemy-body.ellstand,
+#enemy-body.ellmove,
+#enemy-body.ellhited {
+    width: 0;
+    height: 0;
+    background: url(../images/plstand.gif) no-repeat;
+}
+
+#npc {
+    left: 700px;
+    top: 500px;
+    z-index: 500;
+}
+
+#npc-body {
+    width: 130px;
+    height: 130px;
+    background: url(../images/npcmed.gif) no-repeat;
+    cursor: pointer;
+}
