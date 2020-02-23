@@ -6,7 +6,7 @@ import enemy_data from './enemy_data.json'
 var EnemyData = enemy_data
 window.console.log(EnemyData)//已经是一个json对象了
 
-function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, dex, str, agi, intt) {
+function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, str, agi, intt) {
     window.console.log('内部消息');
     this.UID = 0
     this.name = 'null'
@@ -21,38 +21,40 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, weap, armor, hit, 
     this.MP = mp
     this.EXP = exp
 
-    this.WEAP = weap
-    this.ARMOR = armor
-
-    this.ATK = weap + str
-    this.ATKMAX = weap + str * 3
-    this.HIT = hit
-    this.DEF = armor + dex
-    this.DEX = dex
+    this.ATK = atk
+    this.ATKMAX = atkmax
+    this.DEF = def
     this.STR = str
     this.AGI = agi
     this.INT = intt
 
     this.speed = 10
-    this.xcd = 0
-    this.xfx = true //平X方向：右true左false
-    this.imgfx = true
-    this.hited = false
-    this.ccd = 0
 
+    this.ellstandx = 0
+    this.ellstandy = 0
+    this.ellmovex = 0
+    this.ellmovey = 0
+    this.ellhitedx = 0
+    this.ellhitedy = 0
+    this.elldeadx = 0
+    this.elldeady = 0
 }
 
 function UpdateEnemy(obj, uid) {
+    $('#enemy-body').attr('class', 'ellstand')
     var enemydata = EnemyData[uid]
-    for (var sb in obj) {
-        obj[sb] = enemydata[sb]
+    for (var index in obj) {
+        obj[index] = enemydata[index]
     }
+    $('#qwea').innerHTML = "LV."
+
+    obj.xfx = true //平X方向：右true左false
+    obj.imgfx = true
+    obj.hited = false
     window.console.log(obj)
 }
 
 function EnemyMove(obj) {
-
-
     var fx = RandomFX(0, 4); //停止、下左上右为01234
     //随机数[m~n]
     function RandomFX(m, n) {
@@ -68,10 +70,10 @@ function EnemyMove(obj) {
 
     var rotateNum = 180; //旋转角度
     obj.randommove = setInterval(function () {
-        $('#enemy-body.ellstand').css({ 'width': '67px', 'height': '109px', 'background-image': 'url(static/images/e1stand.gif)' })
-        $('#enemy-body.ellmove').css({ 'width': '83px', 'height': '115px', 'background-image': 'url(static/images/e1move.gif)' })
-        $('#enemy-body.ellhited').css({ 'width': '72px', 'height': '108px', 'background-image': 'url(static/images/e1hited.gif)' })
-        $('#enemy-body.elldead').css({ 'width': '169px', 'height': '154px', 'background-image': 'url(static/images/e1dead.gif)' })
+        $('#enemy-body.ellstand').css({ 'width': obj.ellstandx + 'px', 'height': obj.ellstandy + 'px', 'background-image': 'url(static/images/e1stand.gif)' })
+        $('#enemy-body.ellmove').css({ 'width': obj.ellmovex + 'px', 'height': obj.ellmovey + 'px', 'background-image': 'url(static/images/e1move.gif)' })
+        $('#enemy-body.ellhited').css({ 'width': obj.ellhitedx + 'px', 'height': obj.ellhitedy + 'px', 'background-image': 'url(static/images/e1hited.gif)' })
+        $('#enemy-body.elldead').css({ 'width': obj.elldeadx + 'px', 'height': obj.elldeady + 'px', 'background-image': 'url(static/images/e1dead.gif)' })
 
         obj.speed = tempspeed
         if (obj.hited == true) {

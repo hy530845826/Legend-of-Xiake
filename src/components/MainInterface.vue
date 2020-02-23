@@ -10,7 +10,7 @@
     </div>
     <div id="enemy">
       <div id="enemy-body" class="ellstand"></div>
-      <div>{{el_name}}</div>
+      <div id="enemy-name">{{el_name}}</div>
     </div>
     <div v-if="ShowMission">
       <div id="Mission" class="Mission">
