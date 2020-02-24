@@ -1,10 +1,14 @@
 var ell = new CreateEnemy(-130, -130);
+
 EnemyMove(ell)
 
 window.console.log(ell)
 import enemy_data from './enemy_data.json'
 var EnemyData = enemy_data
 window.console.log(EnemyData)//已经是一个json对象了
+
+var Player = require("./player")
+var pl = Player.default.pll
 
 function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, str, agi, intt) {
     window.console.log('内部消息');
@@ -34,10 +38,13 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.ellstandy = 0
     this.ellmovex = 0
     this.ellmovey = 0
+    this.ellbackx = 0
+    this.ellbacky = 0
     this.ellhitedx = 0
     this.ellhitedy = 0
     this.elldeadx = 0
     this.elldeady = 0
+    this.elldeadt = 0
 }
 
 function UpdateEnemy(obj, uid) {
@@ -46,10 +53,10 @@ function UpdateEnemy(obj, uid) {
     for (var index in obj) {
         obj[index] = enemydata[index]
     }
-    $('#qwea').innerHTML = "LV."
-
-    obj.xfx = true //平X方向：右true左false
-    obj.imgfx = true
+    if (pl.plx < obj.plx) {
+        obj.imgfx = false
+        $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(" + 180 + "deg)" })
+    } else { obj.imgfx = true }
     obj.hited = false
     window.console.log(obj)
 }
@@ -62,20 +69,27 @@ function EnemyMove(obj) {
         return num;
     }
 
-    //0.2秒随机更改方向
+    //0.5秒随机更改方向
     obj.randomfx = setInterval(function () {
-        fx = RandomFX(0, 4);
-    }, 200);
+        fx = RandomFX(0, 4)
+    }, 500);
     var tempspeed = obj.speed
 
-    var rotateNum = 180; //旋转角度
     obj.randommove = setInterval(function () {
-        $('#enemy-body.ellstand').css({ 'width': obj.ellstandx + 'px', 'height': obj.ellstandy + 'px', 'background-image': 'url(static/images/e1stand.gif)' })
-        $('#enemy-body.ellmove').css({ 'width': obj.ellmovex + 'px', 'height': obj.ellmovey + 'px', 'background-image': 'url(static/images/e1move.gif)' })
-        $('#enemy-body.ellhited').css({ 'width': obj.ellhitedx + 'px', 'height': obj.ellhitedy + 'px', 'background-image': 'url(static/images/e1hited.gif)' })
-        $('#enemy-body.elldead').css({ 'width': obj.elldeadx + 'px', 'height': obj.elldeady + 'px', 'background-image': 'url(static/images/e1dead.gif)' })
+        $('#enemy-body.ellstand').css({ 'width': obj.ellstandx + 'px', 'height': obj.ellstandy + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'stand.gif)' })
+        $('#enemy-body.ellmove').css({ 'width': obj.ellmovex + 'px', 'height': obj.ellmovey + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'move.gif)' })
+        $('#enemy-body.ellback').css({ 'width': obj.ellbackx + 'px', 'height': obj.ellbacky + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'back.gif)' })
+        $('#enemy-body.ellhited').css({ 'width': obj.ellhitedx + 'px', 'height': obj.ellhitedy + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'hited.gif)' })
+        $('#enemy-body.elldead').css({ 'width': obj.elldeadx + 'px', 'height': obj.elldeady + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'dead.gif)' })
 
         obj.speed = tempspeed
+
+        pl.plx < obj.plx ? obj.realfx = true : obj.realfx = false
+        if (obj.realfx == obj.imgfx) {
+            obj.imgfx = !obj.imgfx
+            pl.plx < obj.plx ? $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(180deg)" }) : $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(0deg)" })
+        }
+
         if (obj.hited == true) {
             $('#enemy-body').attr('class', 'ellhited')
             obj.speed = 0
@@ -91,22 +105,10 @@ function EnemyMove(obj) {
             $('#enemy-body').attr('class', 'ellmove')
             obj.ply -= obj.speed;
         } else if (fx == 2 && obj.plx > 0) {
-            $('#enemy-body').attr('class', 'ellmove')
-            obj.xfx = false;
-            if (obj.xfx != obj.imgfx) {
-                obj.imgfx = false;
-                $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
-                rotateNum += 180;
-            }
+            obj.realfx ? $('#enemy-body').attr('class', 'ellmove') : $('#enemy-body').attr('class', 'ellback')
             obj.plx -= obj.speed;
         } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
-            $('#enemy-body').attr('class', 'ellmove')
-            obj.xfx = true;
-            if (obj.xfx != obj.imgfx) {
-                obj.imgfx = true;
-                $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
-                rotateNum += 180;
-            }
+            obj.realfx ? $('#enemy-body').attr('class', 'ellback') : $('#enemy-body').attr('class', 'ellmove')
             obj.plx += obj.speed;
         } else {
             fx = RandomFX(0, 4);

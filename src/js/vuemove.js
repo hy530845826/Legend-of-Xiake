@@ -22,6 +22,9 @@ document.onkeydown = function (event) {
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 				if (pl.xfx != pl.imgfx) {
 					pl.imgfx = true;
+					pl.pdx = 5
+					pl.pdy = 40
+					pl.pdw = 120
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
 					rotateNum += 180;
 				}
@@ -35,6 +38,9 @@ document.onkeydown = function (event) {
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 				if (pl.xfx != pl.imgfx) {
 					pl.imgfx = false;
+					pl.pdx = 130 - 60 - 5
+					pl.pdy = 40
+					pl.pdw = 120
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
 					rotateNum += 180;
 				}
@@ -44,6 +50,8 @@ document.onkeydown = function (event) {
 			w = true;
 			IsMove += 1;
 			if (IsMove == 1 && !IsFlash) {
+				pl.pdy = 40
+				pl.pdw = 120
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 			}
 			break; //↑
@@ -51,6 +59,8 @@ document.onkeydown = function (event) {
 			s = true;
 			IsMove += 1;
 			if (IsMove == 1 && !IsFlash) {
+				pl.pdy = 40
+				pl.pdw = 120
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 			}
 			break; //↓
@@ -106,6 +116,8 @@ document.onkeyup = function (event) {
 			d = false;
 			IsMove = 0;
 			if (IsMove == 0 && IsFlash == false) {
+				pl.pdy = 27
+				pl.pdw = 60
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //→
@@ -113,6 +125,8 @@ document.onkeyup = function (event) {
 			a = false;
 			IsMove = 0;
 			if (IsMove == 0 && IsFlash == false) {
+				pl.pdy = 27
+				pl.pdw = 60
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //←
@@ -120,6 +134,8 @@ document.onkeyup = function (event) {
 			w = false;
 			IsMove = 0;
 			if (IsMove == 0 && IsFlash == false) {
+				pl.pdy = 27
+				pl.pdw = 60
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //↑
@@ -127,6 +143,8 @@ document.onkeyup = function (event) {
 			s = false;
 			IsMove = 0;
 			if (IsMove == 0 && IsFlash == false) {
+				pl.pdy = 27
+				pl.pdw = 60
 				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 			}
 			break; //↓

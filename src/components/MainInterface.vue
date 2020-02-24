@@ -49,7 +49,13 @@ export default {
       this.ShowMission = !this.ShowMission;
     },
     AcceptMission: function() {
-      Enemy.UpdateEnemy(Enemy.ell, 1);
+      this.ShowMission = !this.ShowMission;
+      var fx = RandomFX(0, 1); 
+      function RandomFX(m, n) {
+        var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
+        return num;
+      }
+      Enemy.UpdateEnemy(Enemy.ell, fx);
     }
   },
   mounted() {
