@@ -50,7 +50,7 @@ export default {
     },
     AcceptMission: function() {
       this.ShowMission = !this.ShowMission;
-      var fx = RandomFX(0, 1); 
+      var fx = RandomFX(0, 2); 
       function RandomFX(m, n) {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
         return num;

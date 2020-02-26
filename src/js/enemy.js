@@ -42,6 +42,7 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.ellbacky = 0
     this.ellhitedx = 0
     this.ellhitedy = 0
+    this.ellhitedt = 0
     this.elldeadx = 0
     this.elldeady = 0
     this.elldeadt = 0

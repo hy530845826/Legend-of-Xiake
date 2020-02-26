@@ -54,7 +54,7 @@
         <li id="MenuB" @click="toParent($event)">{{mlgb}}</li>
         <li id="MenuK" @click="toParent($event)">技能(K)</li>
         <li id="MenuM" @click="toParent($event)">地图(M)</li>
-        <li id="MenuP">设置(P)</li>
+        <li id="MenuP" @click="toParent($event)">设置(P)</li>
       </ul>
     </div>
   </div>

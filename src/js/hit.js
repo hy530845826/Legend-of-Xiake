@@ -31,7 +31,7 @@ function PlayerHitEnemy(obj, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) 
             if (obj2.HP <= 0) {
                 setTimeout(() => { PlayerKillEnemy(obj2) }, obj2.elldeadt)
             }
-        }, 525)
+        }, obj2.ellhitedt)
 
     }
 }
