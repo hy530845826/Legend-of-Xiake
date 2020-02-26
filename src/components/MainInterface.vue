@@ -6,11 +6,11 @@
     </div>
     <div id="npc">
       <div id="npc-body" @click="RefuseMission"></div>
-      <div>{{el_name}}</div>
+      <div>{{el_data}}</div>
     </div>
     <div id="enemy">
       <div id="enemy-body" class="ellstand"></div>
-      <div id="enemy-name">{{el_name}}</div>
+      <div id="enemy-name">{{el_data[0]}} {{el_data[1]}}</div>
     </div>
     <div v-if="ShowMission">
       <div id="Mission" class="Mission">
@@ -41,7 +41,7 @@ export default {
     return {
       st: Player.pll,
       ShowMission: false,
-      el_name: Enemy.ell.name
+      el_data: [Enemy.ell.LV, Enemy.ell.name]
     };
   },
   methods: {
@@ -50,12 +50,15 @@ export default {
     },
     AcceptMission: function() {
       this.ShowMission = !this.ShowMission;
-      var fx = RandomFX(0, 2); 
+      var fx = RandomFX(0, 2);
       function RandomFX(m, n) {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
         return num;
       }
       Enemy.UpdateEnemy(Enemy.ell, fx);
+      //重新渲染名字和等级
+      this.$set(this.el_data, 0, "LV." + Enemy.ell.LV);
+      this.$set(this.el_data, 1, Enemy.ell.name);
     }
   },
   mounted() {

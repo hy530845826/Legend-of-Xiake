@@ -45,13 +45,12 @@
         </div>
       </div>
     </div>
-    <div id="Level">LV.1</div>
+    <div id="Level">LV.{{pl_lv}}</div>
     <div id="Menu">
       <ul id="Menuul">
         <li id="MenuJ" @click="addexp">委托(J)</li>
         <li id="MenuI" @click="toParent($event)">角色(I)</li>
-        <!-- <li id="MenuB">包裹(B)</li> -->
-        <li id="MenuB" @click="toParent($event)">{{mlgb}}</li>
+        <li id="MenuB" @click="toParent($event)">包裹(B)</li>
         <li id="MenuK" @click="toParent($event)">技能(K)</li>
         <li id="MenuM" @click="toParent($event)">地图(M)</li>
         <li id="MenuP" @click="toParent($event)">设置(P)</li>
@@ -67,7 +66,7 @@ export default {
       MenuFlag: "null"
     };
   },
-  props: ["mlgb"],
+  props: ["pl_lv"],
   methods: {
     toParent: function(e) {
       var FlagID = e.currentTarget.id;

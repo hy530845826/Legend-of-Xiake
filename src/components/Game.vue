@@ -3,7 +3,7 @@
     <audio src="./static/sound/02 Lost Woods.mp3" class="bgmusic" autoplay></audio>
     <main-interface />
     <action-bar />
-    <status-bar :mlgb="niceteam" @openWindowMenu="zdy($event)" ref="StatusBar" />
+    <status-bar :pl_lv="st.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
     <div id="WindowMenu">
       <div v-if="WindowName=='MenuB'">
         <div id="Bdiv" class="MenuDiv">
@@ -214,8 +214,7 @@ export default {
     return {
       WindowName: "null",
       st: Player.pll,
-      stenemy: Enemy.ell,
-      niceteam: "fk"
+      stenemy: Enemy.ell
     };
   },
   components: {
