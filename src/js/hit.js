@@ -1,5 +1,5 @@
-// var Player = require("./player")
-// var pl = Player.default.pll
+var Player = require("./player")
+var pl = Player.default.pll
 var Enemy = require("./enemy")
 var enemy = Enemy.default.ell
 
@@ -39,6 +39,7 @@ function PlayerHitEnemy(obj, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) 
 function PlayerKillEnemy(obj) {
     window.console.log("击杀");
     if (obj == enemy) {
+        pl.EXP += obj.EXP
         enemy.plx = -130;
         enemy.ply = -130;
     }

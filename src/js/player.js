@@ -41,7 +41,16 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.ccd = 0
 }
 
+function LevelUP() {
+	pll.EXP = pll.EXP - pll.EXPMAX
+	pll.HP = pll.HPMAX
+	pll.MP = pll.MPMAX
+	pll.LV += 1
+	$('#Level').innerHTML = "LV." + pll.LV
+	window.console.log("LEVEL UP")
+}
+
 window.console.log(pll)
 export default {
-    pll
+	pll, LevelUP
 };

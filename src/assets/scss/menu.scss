@@ -85,5 +85,10 @@
 	text-align: center;
 	height: 30px;
 	line-height: 30px;
-	border: 1px solid red;
+	background: #555;
+	border: 1px solid #900;
+}
+
+#Pdiv .SettingBox li:hover {
+	color: yellow;
 }

@@ -1,6 +1,6 @@
 window.console.log('blankjs里面函数')
-var abc = require("./player")
-var pl = abc.default.pll
+var Player = require("./player")
+var pl = Player.default.pll
 
 var timer = setInterval(function () {
     var HPNow = parseInt((pl.HP / pl.HPMAX) * 100)
@@ -13,14 +13,9 @@ var timer = setInterval(function () {
     $('#JdtMP .progress-bar').text(MPNow + '%')
     $('#JdtEXP .progress-bar').text(EXPNow + '%')
 
-
     //升级
     if (pl.EXP >= pl.EXPMAX) {
-        pl.EXP = pl.EXP - pl.EXPMAX
-        pl.HP = pl.HPMAX
-        pl.LV += 1
-        $('#Level').innerHTML = "LV." + pl.LV
-        window.console.log("LEVEL UP")
+        Player.default.LevelUP()
     }
     //死亡HP=0
     if (pl.HP <= 0) {
@@ -31,15 +26,6 @@ var timer = setInterval(function () {
     }
 }, 500)
 
-function clickJ () {
-    window.console.log('menuj')
-    pl.HP -= 1
-    pl.EXP += 22
-}
-// MenuI.onclick = function() {
-//     console.log( $('#rrr'))
-//     flag=true
-// }
-export default{
-    clickJ
+export default {
+
 }

@@ -1,5 +1,6 @@
 <template>
   <div id="GameBox">
+    <audio src="./static/sound/02 Lost Woods.mp3" class="bgmusic" autoplay></audio>
     <main-interface />
     <action-bar />
     <status-bar :mlgb="niceteam" @openWindowMenu="zdy($event)" ref="StatusBar" />
