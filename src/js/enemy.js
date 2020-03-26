@@ -1,4 +1,6 @@
 var ell = new CreateEnemy(-130, -130);
+var Hit = require("./hit")
+var EnemyHitPlayer = Hit.default.EnemyHitPlayer
 
 EnemyMove(ell)
 
@@ -46,6 +48,10 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.elldeadx = 0
     this.elldeady = 0
     this.elldeadt = 0
+
+    this.ellattack1x = 0
+    this.ellattack1y = 0
+    this.ellattack1t = 0
 }
 
 function UpdateEnemy(obj, uid) {
@@ -59,12 +65,13 @@ function UpdateEnemy(obj, uid) {
         $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(" + 180 + "deg)" })
     } else { obj.imgfx = true }
     obj.hited = false
+    obj.IsFlash = false
     $('#enemy-hp .progress-bar').css('width', 100 + '%')
     window.console.log(obj)
 }
 
 function EnemyMove(obj) {
-    var fx = RandomFX(0, 4); //停止、下左上右为01234
+    var fx = RandomFX(0, 5); //停止、下左上右、攻击为012345
     //随机数[m~n]
     function RandomFX(m, n) {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
@@ -73,7 +80,7 @@ function EnemyMove(obj) {
 
     //0.5秒随机更改方向
     obj.randomfx = setInterval(function () {
-        fx = RandomFX(0, 4)
+        fx = RandomFX(0, 5)
     }, 500);
     var tempspeed = obj.speed
 
@@ -83,6 +90,7 @@ function EnemyMove(obj) {
         $('#enemy-body.ellback').css({ 'width': obj.ellbackx + 'px', 'height': obj.ellbacky + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'back.gif)' })
         $('#enemy-body.ellhited').css({ 'width': obj.ellhitedx + 'px', 'height': obj.ellhitedy + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'hited.gif)' })
         $('#enemy-body.elldead').css({ 'width': obj.elldeadx + 'px', 'height': obj.elldeady + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'dead.gif)' })
+        $('#enemy-body.ellattack1').css({ 'width': obj.ellattack1x + 'px', 'height': obj.ellattack1y + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'attack1.gif)' })
 
         obj.speed = tempspeed
 
@@ -100,20 +108,30 @@ function EnemyMove(obj) {
         } else if (fx == 0) {
             $('#enemy-body').attr('class', 'ellstand')
             obj.speed = 0
+            obj.IsFlash = false
         } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
             $('#enemy-body').attr('class', 'ellmove')
-            obj.ply += obj.speed;
+            obj.ply += obj.speed
+            obj.IsFlash = false
         } else if (fx == 3 && obj.ply > 380) {
             $('#enemy-body').attr('class', 'ellmove')
-            obj.ply -= obj.speed;
+            obj.ply -= obj.speed
+            obj.IsFlash = false
         } else if (fx == 2 && obj.plx > 0) {
             obj.realfx ? $('#enemy-body').attr('class', 'ellmove') : $('#enemy-body').attr('class', 'ellback')
-            obj.plx -= obj.speed;
+            obj.plx -= obj.speed
+            obj.IsFlash = false
         } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
             obj.realfx ? $('#enemy-body').attr('class', 'ellback') : $('#enemy-body').attr('class', 'ellmove')
-            obj.plx += obj.speed;
-        } else {
-            fx = RandomFX(0, 4);
+            obj.plx += obj.speed
+            obj.IsFlash = false
+        } else if (fx == 5 && obj.IsFlash == false) {
+            $('#enemy-body').attr('class', 'ellattack1')
+            obj.speed = 0
+            obj.IsFlash = true
+            EnemyHitPlayer(obj, pl)
+        } else if (fx != 5) {
+            fx = RandomFX(0, 5);
         }
         $('#enemy').css('top', obj.ply + "px")
         $('#enemy').css('left', obj.plx + "px")

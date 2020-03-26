@@ -1,5 +1,6 @@
 [{"UID": 0,"name": "流氓","plx": 400,"ply": 400,"LV": 1,"HPMAX": 3,"HP": 3,"MPMAX": 50,"MP": 50,"EXP": 40,"ATK": 1,"ATKMAX": 3,"DEF": 0,"STR": 1,"AGI": 1,"INT": 1,"speed": 10,
-    "ellstandx": 74,"ellstandy" : 102,"ellmovex" : 68,"ellmovey" : 104,"ellbackx" : 70,"ellbacky" : 107,"ellhitedx" : 88,"ellhitedy" : 102,"ellhitedt" : 440,"elldeadx" : 195,"elldeady" : 209,"elldeadt" : 930}, 
+    "ellstandx": 74,"ellstandy" : 102,"ellmovex" : 68,"ellmovey" : 104,"ellbackx" : 70,"ellbacky" : 107,"ellhitedx" : 88,"ellhitedy" : 102,"ellhitedt" : 440,"elldeadx" : 195,"elldeady" : 209,"elldeadt" : 930,
+    "ellattack1x": 128,"ellattack1y": 110,"ellattack1t": 1001}, 
 {"UID": 1,"name": "强盗","plx": 400,"ply": 400,"LV": 1,"HPMAX": 5,"HP": 5,"MPMAX": 50,"MP": 50,"EXP": 70,"ATK": 1,"ATKMAX": 3,"DEF": 0,"STR": 1,"AGI": 1,"INT": 1,"speed": 10,
     "ellstandx": 67,"ellstandy" : 109,"ellmovex" : 97,"ellmovey" : 109,"ellbackx" : 83,"ellbacky" : 115,"ellhitedx" : 72,"ellhitedy" : 108,"ellhitedt" : 525,"elldeadx" : 169,"elldeady" : 154,"elldeadt" : 960},
 {"UID": 2,"name": "肥肥","plx": 400,"ply": 400,"LV": 1,"HPMAX": 10,"HP": 10,"MPMAX": 50,"MP": 50,"EXP": 120,"ATK": 1,"ATKMAX": 3,"DEF": 0,"STR": 1,"AGI": 1,"INT": 1,"speed": 10,
