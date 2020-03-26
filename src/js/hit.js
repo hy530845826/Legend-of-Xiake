@@ -25,10 +25,27 @@ function PlayerHitEnemy(obj, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) 
     else if (obj2.HP > 0) {
         window.console.log('击中')
         obj2.hited = true
-        obj2.HP -= RandomDamage(obj.ATK, obj.ATKMAX)
+        var random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
+        obj2.HP -= random_damage
+
+        //-HP提示
+        $("#map").prepend("<div class='damage-font'>" + random_damage + "</div>")
+        l2 += 10
+        var opa = 1
+        $('.damage-font').css({ 'top': t2 + 'px', 'left': l2 + 'px' })
+        var tik = setInterval(function () {
+            t2 -= 1, opa -= 0.01
+            $('.damage-font').css({ 'top': t2 + "px", 'left': l2 + "px", 'opacity': opa })
+        }, 10)
+        setTimeout(function () {
+            clearInterval(tik)
+            $(".damage-font").remove("#map .damage-font")
+        }, 500)
+
+        //HP_progress
         var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
         $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
-        window.console.log(obj2.HP + "     -        " + enemy_hp_progress)
+
         setTimeout(() => {
             obj2.hited = false
             if (obj2.HP <= 0) {
