@@ -6,7 +6,6 @@
         <div id="JdtHP" class="JdtBox">
           <div class="progress">
             <div
-              id="axe"
               class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
               role="progressbar"
               aria-valuemin="0"

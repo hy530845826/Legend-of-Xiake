@@ -21,11 +21,14 @@ function PlayerHitEnemy(obj, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) 
 
     // window.console.log("t1: " + t1 + " l1: " + l1 + " r1: " + r1 + " b1: " + b1)
     // window.console.log("t2: " + t2 + " l2: " + l2 + " r2: " + r2 + " b2: " + b2)
-    if ((b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) && obj2.HP > 0) { /*表示没击中obj2*/ } else {
+    if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
+    else if (obj2.HP > 0) {
         window.console.log('击中')
         obj2.hited = true
         obj2.HP -= RandomDamage(obj.ATK, obj.ATKMAX)
-        window.console.log(obj2.HP)
+        var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
+        $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
+        window.console.log(obj2.HP + "     -        " + enemy_hp_progress)
         setTimeout(() => {
             obj2.hited = false
             if (obj2.HP <= 0) {

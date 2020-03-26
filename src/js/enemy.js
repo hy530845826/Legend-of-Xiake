@@ -59,6 +59,7 @@ function UpdateEnemy(obj, uid) {
         $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(" + 180 + "deg)" })
     } else { obj.imgfx = true }
     obj.hited = false
+    $('#enemy-hp .progress-bar').css('width', 100 + '%')
     window.console.log(obj)
 }
 

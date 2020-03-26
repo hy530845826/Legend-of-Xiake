@@ -10,6 +10,16 @@
     </div>
     <div id="enemy">
       <div id="enemy-body" class="ellstand"></div>
+      <div id="enemy-hp" class="progress">
+        <div
+          class="progress-bar bg-danger"
+          role="progressbar"
+          style="width: 100%;"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
       <div id="enemy-name">{{el_data[0]}} {{el_data[1]}}</div>
     </div>
     <div v-if="ShowMission">
