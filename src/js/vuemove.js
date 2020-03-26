@@ -11,7 +11,6 @@ var enemy = Enemy.default.ell
 var Hit = require("./hit")
 var PlayerHitEnemy = Hit.default.PlayerHitEnemy
 
-
 var rotateNum = 180; //旋转角度
 
 document.onkeydown = function (event) {

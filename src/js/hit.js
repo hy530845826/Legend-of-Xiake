@@ -21,19 +21,7 @@ function PlayerHitEnemy(obj, obj2, TopSpacing, JudegeHeight, LeftSpacing, JudgeW
         var random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
         obj2.HP -= random_damage
 
-        //-HP提示
-        $("#map").prepend("<div class='damage-font'>" + random_damage + "</div>")
-        l2 += 10
-        var opa = 1
-        $('.damage-font').css({ 'top': t2 + 'px', 'left': l2 + 'px' })
-        var tik = setInterval(function () {
-            t2 -= 1, opa -= 0.01
-            $('.damage-font').css({ 'top': t2 + "px", 'left': l2 + "px", 'opacity': opa })
-        }, 10)
-        setTimeout(function () {
-            clearInterval(tik)
-            $(".damage-font").remove("#map .damage-font")
-        }, 500)
+        TipsHP(t2, l2, random_damage)
 
         //HP_progress
         var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
@@ -75,21 +63,25 @@ function EnemyHitPlayer(obj, obj2) {
         var random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
         obj2.HP -= random_damage
 
-        //-HP提示
-        $("#map").prepend("<div class='damage-font'>" + random_damage + "</div>")
-        l2 += 10
-        var opa = 1
-        $('.damage-font').css({ 'top': t2 + 'px', 'left': l2 + 'px' })
-        var tik = setInterval(function () {
-            t2 -= 1, opa -= 0.01
-            $('.damage-font').css({ 'top': t2 + "px", 'left': l2 + "px", 'opacity': opa })
-        }, 10)
-        setTimeout(function () {
-            clearInterval(tik)
-            $(".damage-font").remove("#map .damage-font")
-        }, 500)
-
+        TipsHP(t2, l2, random_damage)
     }
+}
+
+function TipsHP(top, left, random_damage) {
+    var random_class = RandomCode(8)
+    //-HP提示
+    $("#map").prepend("<div class='damage-font " + random_class + "'>" + random_damage + "</div>")
+    left += 10
+    var opa = 1
+    $('.' + random_class).css({ 'top': top + 'px', 'left': left + 'px' })
+    var tik = setInterval(function () {
+        top -= 1, opa -= 0.01
+        $('.' + random_class).css({ 'top': top + "px", 'left': left + "px", 'opacity': opa })
+    }, 20)
+    setTimeout(function () {
+        clearInterval(tik)
+        $('.' + random_class).remove('#map .' + random_class)
+    }, 1000)
 }
 
 //随机数[m~n]
@@ -97,6 +89,20 @@ function RandomDamage(m, n) {
     var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
     return num;
 }
+
+//产生x位数验证码
+function RandomCode(codelength) {
+    var randomcode = "";
+
+    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    for (var i = 0; i < codelength; i++) {
+        var index = Math.floor(Math.random() * 36); //取得索引0~35
+        randomcode += random[index]; //組合字符串
+    }
+    return randomcode;
+}
+
 export default {
     PlayerHitEnemy, EnemyHitPlayer
 }
