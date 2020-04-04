@@ -9,7 +9,7 @@ var pl = Player.default.pll
 var Enemy = require("./enemy")
 var enemy = Enemy.default.ell
 var Hit = require("./hit")
-var PlayerHitEnemy = Hit.default.PlayerHitEnemy
+var HitJudgement = Hit.default.HitJudgement
 
 var rotateNum = 180; //旋转角度
 
@@ -70,28 +70,28 @@ document.onkeydown = function (event) {
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(0, 6, 1)
-				PlayerHitEnemy(pl, enemy, 30, 20, 60, 50)
+				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
 			}
 			break;
 		case 83:
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(1, 6, 0)
-				PlayerHitEnemy(pl, enemy, 30, 70, 60, 50)
+				HitJudgement(pl, enemy, true, 30, 70, 60, 50)
 			}
 			break;
 		case 68:
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(2, 6, 0)
-				PlayerHitEnemy(pl, enemy, 55, 35, 60, 60)
+				HitJudgement(pl, enemy, true, 55, 35, 60, 60)
 			}
 			break;
 		case 70:
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(3, 6, 1)
-				PlayerHitEnemy(pl, enemy, 50, 20, 60, 70)
+				HitJudgement(pl, enemy, true, 50, 20, 60, 70)
 			}
 			break;
 	}

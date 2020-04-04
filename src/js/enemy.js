@@ -1,6 +1,6 @@
 var ell = new CreateEnemy(-130, -130);
 var Hit = require("./hit")
-var EnemyHitPlayer = Hit.default.EnemyHitPlayer
+var HitJudgement = Hit.default.HitJudgement
 
 EnemyMove(ell)
 
@@ -34,7 +34,7 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.AGI = agi
     this.INT = intt
 
-    this.speed = 10
+    this.speed = 0
 
     this.ellstandx = 0
     this.ellstandy = 0
@@ -100,39 +100,44 @@ function EnemyMove(obj) {
             pl.plx < obj.plx ? $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(180deg)" }) : $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(0deg)" })
         }
 
-        if (obj.hited == true) {
-            $('#enemy-body').attr('class', 'ellhited')
-            obj.speed = 0
-        } else if (obj.HP <= 0 && obj.hited == false) {
-            $('#enemy-body').attr('class', 'elldead')
-        } else if (fx == 0) {
-            $('#enemy-body').attr('class', 'ellstand')
-            obj.speed = 0
-            obj.IsFlash = false
-        } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
-            $('#enemy-body').attr('class', 'ellmove')
-            obj.ply += obj.speed
-            obj.IsFlash = false
-        } else if (fx == 3 && obj.ply > 380) {
-            $('#enemy-body').attr('class', 'ellmove')
-            obj.ply -= obj.speed
-            obj.IsFlash = false
-        } else if (fx == 2 && obj.plx > 0) {
-            obj.realfx ? $('#enemy-body').attr('class', 'ellmove') : $('#enemy-body').attr('class', 'ellback')
-            obj.plx -= obj.speed
-            obj.IsFlash = false
-        } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
-            obj.realfx ? $('#enemy-body').attr('class', 'ellback') : $('#enemy-body').attr('class', 'ellmove')
-            obj.plx += obj.speed
-            obj.IsFlash = false
-        } else if (fx == 5 && obj.IsFlash == false) {
-            $('#enemy-body').attr('class', 'ellattack1')
-            obj.speed = 0
-            obj.IsFlash = true
-            EnemyHitPlayer(obj, pl)
-        } else if (fx != 5) {
-            fx = RandomFX(0, 5);
+        if (obj.IsFlash == false) {
+            if (obj.hited == true) {
+                $('#enemy-body').attr('class', 'ellhited')
+                obj.speed = 0
+            } else if (obj.HP <= 0 && obj.hited == false) {
+                $('#enemy-body').attr('class', 'elldead')
+            } else if (fx == 0) {
+                $('#enemy-body').attr('class', 'ellstand')
+                obj.speed = 0
+            } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
+                $('#enemy-body').attr('class', 'ellmove')
+                obj.ply += obj.speed
+            } else if (fx == 3 && obj.ply > 380) {
+                $('#enemy-body').attr('class', 'ellmove')
+                obj.ply -= obj.speed
+            } else if (fx == 2 && obj.plx > 0) {
+                obj.realfx ? $('#enemy-body').attr('class', 'ellmove') : $('#enemy-body').attr('class', 'ellback')
+                obj.plx -= obj.speed
+            } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
+                obj.realfx ? $('#enemy-body').attr('class', 'ellback') : $('#enemy-body').attr('class', 'ellmove')
+                obj.plx += obj.speed
+            } else if (fx == 5) {
+                $('#enemy-body').attr('class', 'ellattack1')
+                obj.speed = 0
+                obj.IsFlash = true
+                var tempwidth = obj.ellattack1x - obj.ellstandx
+                if (obj.realfx == true) { //位置补正
+                    obj.plx -= tempwidth
+                    setTimeout(() => { obj.plx += tempwidth }, obj.ellattack1t);
+                }
+
+                HitJudgement(obj, pl, false)
+                setTimeout(() => { obj.IsFlash = false }, obj.ellattack1t);
+            } else if (fx != 5) {
+                fx = RandomFX(0, 5);
+            }
         }
+
         $('#enemy').css('top', obj.ply + "px")
         $('#enemy').css('left', obj.plx + "px")
         $('#enemy').css('z-index', ell.ply)

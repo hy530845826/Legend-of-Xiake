@@ -55,9 +55,16 @@ body {
 	bottom: 50px;
 }
 
-.damage-font {
+.damage-font-enemy {
 	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 	font-size: 25px;
 	color: #f50;
+	position: absolute;
+}
+
+.damage-font-player {
+	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+	font-size: 30px;
+	color: #c0c;
 	position: absolute;
 }
