@@ -1,6 +1,7 @@
 <template>
   <div id="GameBox">
-    <audio src="./static/sound/02 Lost Woods.mp3" class="bgmusic" autoplay></audio>
+    <audio src="./static/sound/02.mp3" class="bgmusic" loop autoplay></audio>
+    <audio src="./static/sound/03.mp3" class="bgmusic" loop></audio>
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="st.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
@@ -10,7 +11,7 @@
           <div class="MenuTitle">
             <div class="MenuName">
               包裹
-              <span class="MenuClose">X</span>
+              <span class="MenuClose" @click="ReturnGame">X</span>
             </div>
           </div>
           <div class="RoleBox">
@@ -46,7 +47,7 @@
           <div class="MenuTitle">
             <div class="MenuName">
               角色
-              <span class="MenuClose">X</span>
+              <span class="MenuClose" @click="ReturnGame">X</span>
             </div>
           </div>
           <div class="RoleHead">
@@ -138,7 +139,7 @@
           <div class="MenuTitle">
             <div class="MenuName">
               技能
-              <span class="MenuClose">X</span>
+              <span class="MenuClose" @click="ReturnGame">X</span>
             </div>
           </div>
           <div class="RoleBox">
@@ -174,7 +175,7 @@
           <div class="MenuTitle">
             <div class="MenuName">
               地图
-              <span class="MenuClose">X</span>
+              <span class="MenuClose" @click="ReturnGame">X</span>
             </div>
           </div>
           <div class="RoleBox">{{stenemy}}</div>
@@ -188,7 +189,7 @@
           <div class="SettingBox">
             <ul>
               <li @click="ReturnGame">返回游戏</li>
-              <li id="SettingMusic">音量：开</li>
+              <li id="SettingMusic" @click="SettingMusic()">音乐：{{MusicFlagText}}</li>
               <li id="SettingSaveGame" @click="SettingConfirm($event)">保存游戏</li>
               <li id="SettingLoadGame" @click="SettingConfirm($event)">读取游戏</li>
               <li id="SettingQuitGame" @click="SettingConfirm($event)">退出游戏</li>
@@ -214,7 +215,9 @@ export default {
     return {
       WindowName: "null",
       st: Player.pll,
-      stenemy: Enemy.ell
+      stenemy: Enemy.ell,
+      MusicFlag: true,
+      MusicFlagText: "开"
     };
   },
   components: {
@@ -228,23 +231,33 @@ export default {
     },
     ReturnGame: function() {
       this.WindowName = "null";
-      this.$refs.StatusBar.MenuFlag = "null"; //修改子组件flag值解决设置再次打开需要2次的bug
+      this.$refs.StatusBar.MenuFlag = "null"; //修改子组件flag值 解决设置再次打开需要2次的bug
+    },
+    SettingMusic: function() {
+      this.MusicFlag = !this.MusicFlag;
+      if (this.MusicFlag) {
+        this.MusicFlagText = "开";
+        $(".bgmusic")[0].play();
+      } else {
+        this.MusicFlagText = "关";
+        $(".bgmusic")[0].pause();
+      }
     },
     SettingConfirm: function(e) {
       var SettingID = e.currentTarget.id;
       switch (SettingID) {
         case "SettingSaveGame":
-          if (confirm("确定要保存游戏吗？/n保存进度将会被覆盖") == true) {
+          if (confirm("确定要保存游戏吗？保存进度将会被覆盖") == true) {
             return true;
           }
           break;
         case "SettingLoadGame":
-          if (confirm("确定要读取游戏吗？/n当前进度可能尚未保存") == true) {
+          if (confirm("确定要读取游戏吗？当前进度可能尚未保存") == true) {
             return true;
           }
           break;
         case "SettingQuitGame":
-          if (confirm("确定要退出游戏吗？/n当前进度可能尚未保存") == true) {
+          if (confirm("确定要退出游戏吗？当前进度可能尚未保存") == true) {
             this.$router.push({ path: "/Home" });
           }
           break;

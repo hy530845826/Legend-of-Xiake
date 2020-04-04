@@ -16,7 +16,7 @@ var rotateNum = 180; //旋转角度
 document.onkeydown = function (event) {
 	event = event || window.event
 	switch (event.keyCode) {
-		case 39:
+		case 39: //→
 			d = true;
 			IsMove += 1;
 			pl.xfx = true;
@@ -31,8 +31,8 @@ document.onkeydown = function (event) {
 					rotateNum += 180;
 				}
 			}
-			break; //→
-		case 37:
+			break;
+		case 37: //←
 			a = true;
 			IsMove += 1;
 			pl.xfx = false;
@@ -47,8 +47,8 @@ document.onkeydown = function (event) {
 					rotateNum += 180;
 				}
 			}
-			break; //←
-		case 38:
+			break;
+		case 38: //↑
 			w = true;
 			IsMove += 1;
 			if (IsMove == 1 && !IsFlash) {
@@ -56,8 +56,8 @@ document.onkeydown = function (event) {
 				pl.pdw = 120
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 			}
-			break; //↑
-		case 40:
+			break;
+		case 40: //↓
 			s = true;
 			IsMove += 1;
 			if (IsMove == 1 && !IsFlash) {
@@ -65,29 +65,32 @@ document.onkeydown = function (event) {
 				pl.pdw = 120
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 			}
-			break; //↓
-		case 65:
+			break;
+		case 73: //I
+			alert("1")
+			break;
+		case 65: //A
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(0, 6, 1)
 				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
 			}
 			break;
-		case 83:
+		case 83: //S
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(1, 6, 0)
 				HitJudgement(pl, enemy, true, 30, 70, 60, 50)
 			}
 			break;
-		case 68:
+		case 68: //D
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(2, 6, 0)
 				HitJudgement(pl, enemy, true, 55, 35, 60, 60)
 			}
 			break;
-		case 70:
+		case 70: //F
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
 				flash(3, 6, 1)
