@@ -53,3 +53,17 @@
     background: url(../images/npcmed.gif) no-repeat;
     cursor: pointer;
 }
+
+#Portal-L {
+    position: absolute;
+    top: 450px;
+    left: 0px;
+    z-index: 400;
+}
+
+#Portal-R {
+    position: absolute;
+    top: 450px;
+    right: 0px;
+    z-index: 400;
+}

@@ -66,8 +66,8 @@ document.onkeydown = function (event) {
 				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
 			}
 			break;
-		case 73: //I
-			alert("1")
+		case 67: //C
+			ChangeMap()
 			break;
 		case 65: //A
 			if (IsFlash == false) {
@@ -192,6 +192,43 @@ function flash(num, timer, style) {
 				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
 			}
 		}, 100);
+	}
+}
+
+function ChangeMap() {
+	var l1, r1, b1
+	var t2, l2, r2, b2
+	var t3, l3, r3, b3
+	var tempPosition = 20
+
+	b1 = pl.ply + 130
+	l1 = pl.plx
+	r1 = pl.plx + 130
+
+	var obj2 = $('.Portal')[0]
+	t2 = obj2.offsetTop;
+	l2 = obj2.offsetLeft;
+	r2 = l2 + 100;
+	b2 = t2 + 80;
+
+	var obj3 = $('.Portal')[1]
+	t3 = obj3.offsetTop;
+	l3 = obj3.offsetLeft;
+	r3 = l3 + 100;
+	b3 = t3 + 80;
+
+	if ((b1 + tempPosition) < b2 || (b1 - tempPosition) > b2 || (l1 - tempPosition) > l2 || (r1 + tempPosition) < r2) { /*没碰到*/ }
+	else {
+		window.console.log("left")
+		$('#map').css('background-image', 'url(static/images/Menu0.jpg)')
+		pl.plx = l3 - 30
+		pl.ply = t3 - 70
+	}
+	if ((b1 + tempPosition) < b3 || (b1 - tempPosition) > b3 || (l1 - tempPosition) > l3 || (r1 + tempPosition) < r3) { /*没碰到*/ }
+	else {
+		window.console.log("right")
+		pl.plx = l2
+		pl.ply = t2 - 70
 	}
 }
 
