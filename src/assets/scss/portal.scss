@@ -1,0 +1,19 @@
+.Portal {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    background: url(../images/portal.png) no-repeat;
+}
+
+.Portal-L {
+    top: 450px;
+    left: 0px;
+    z-index: 400;
+}
+
+.Portal-R {
+    top: 450px;
+    right: 0px;
+    z-index: 400;
+}
+

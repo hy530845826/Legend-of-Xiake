@@ -22,12 +22,7 @@
       </div>
       <div id="enemy-name">{{el_data[0]}} {{el_data[1]}}</div>
     </div>
-    <div id="Portal-L" class="Portal">
-      <img src="../assets/images/portal.png" alt />
-    </div>
-    <div id="Portal-R" class="Portal">
-      <img src="../assets/images/portal.png" alt />
-    </div>
+    <div class="Portal Portal-R to-map-2 mapPosition-left"></div>
     <div v-if="ShowMission">
       <div id="Mission" class="Mission">
         <div class="MenuTitle">委托name</div>

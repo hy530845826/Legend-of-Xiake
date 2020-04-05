@@ -196,40 +196,69 @@ function flash(num, timer, style) {
 }
 
 function ChangeMap() {
+	var PortalNumber = GetPortalNumber()
 	var l1, r1, b1
-	var t2, l2, r2, b2
-	var t3, l3, r3, b3
 	var tempPosition = 20
 
 	b1 = pl.ply + 130
 	l1 = pl.plx
 	r1 = pl.plx + 130
 
-	var obj2 = $('.Portal')[0]
-	t2 = obj2.offsetTop;
-	l2 = obj2.offsetLeft;
-	r2 = l2 + 100;
-	b2 = t2 + 80;
+	for (let i = 0; i < PortalNumber; i++) { //根据传送门个数判定是否进入
+		var t2, l2, r2, b2
+		var targetObj = $('.Portal')[i]
 
-	var obj3 = $('.Portal')[1]
-	t3 = obj3.offsetTop;
-	l3 = obj3.offsetLeft;
-	r3 = l3 + 100;
-	b3 = t3 + 80;
+		t2 = targetObj.offsetTop;
+		l2 = targetObj.offsetLeft;
+		r2 = l2 + 100;
+		b2 = t2 + 80;
 
-	if ((b1 + tempPosition) < b2 || (b1 - tempPosition) > b2 || (l1 - tempPosition) > l2 || (r1 + tempPosition) < r2) { /*没碰到*/ }
-	else {
-		window.console.log("left")
-		$('#map').css('background-image', 'url(static/images/Menu0.jpg)')
-		pl.plx = l3 - 30
-		pl.ply = t3 - 70
+		if ((b1 + tempPosition) < b2 || (b1 - tempPosition) > b2 || (l1 - tempPosition) > l2 || (r1 + tempPosition) < r2) { /*没碰到*/ }
+		else {
+			var PortalToMapID = parseInt(targetObj.className.replace(/[^0-9]/ig, "")) //传送门的to-mapID
+			// var PortalToMapPosition = targetObj.className.match(/mapPosition-(\S*)/)[1] //获取传送位置
+			// window.console.log("传送门的to-mapID:" + PortalToMapID + "	传送门的位置:" + PortalToMapPosition)
+			var NowMapIDNumber = GetMapIDNumber()
+			window.console.log("进入地图map-" + PortalToMapID)
+			$('#map').attr('class', 'map-' + PortalToMapID)
+			CreatePortal(NowMapIDNumber)
+		}
 	}
-	if ((b1 + tempPosition) < b3 || (b1 - tempPosition) > b3 || (l1 - tempPosition) > l3 || (r1 + tempPosition) < r3) { /*没碰到*/ }
-	else {
-		window.console.log("right")
-		pl.plx = l2
-		pl.ply = t2 - 70
+}
+
+function CreatePortal(LastMapIDNumber) {
+	$('.Portal').remove('#map .Portal')
+	var NowMapIDNumber = GetMapIDNumber()
+	switch (NowMapIDNumber) {
+		case 1:
+			$("#map").prepend("<div class='Portal Portal-R to-map-2 mapPosition-left'> </div>");
+			break;
+		case 2:
+			$("#map").prepend("<div class='Portal Portal-L to-map-1 mapPosition-right'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-3 mapPosition-left'> </div>");
+			break;
 	}
+	var targetObj = $('.to-map-' + LastMapIDNumber)[0]
+	var t2 = targetObj.offsetTop
+	var l2 = targetObj.offsetLeft
+	pl.plx = l2
+	pl.ply = t2 - 70
+}
+
+function GetMapIDNumber() {
+	var MapID = $("#map").attr("class")
+	var NowMapIDNumber = parseInt(MapID.replace(/[^0-9]/ig, "")) //map-1→1
+	return NowMapIDNumber
+}
+
+function GetPortalNumber() {
+	var NowMapIDNumber = GetMapIDNumber()
+	var PortalNumber //传送门个数
+	switch (NowMapIDNumber) {
+		case 1: PortalNumber = 1; break;
+		case 2: PortalNumber = 2; break;
+	}
+	return PortalNumber
 }
 
 export default {
