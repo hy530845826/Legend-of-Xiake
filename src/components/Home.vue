@@ -4,7 +4,7 @@
     <div @click="$goRoute('/Game')">开始游戏</div>
     <div>读取游戏</div>
     <div>游戏说明</div>
-    <audio src="./static/sound/01.mp3" class="bgmusic" autoplay></audio>
+    <audio src="./static/sound/home.mp3" class="bgmusic" autoplay></audio>
   </div>
 </template>
 <script>

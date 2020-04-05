@@ -238,11 +238,17 @@ function CreatePortal(LastMapIDNumber) {
 			$("#map").prepend("<div class='Portal Portal-R to-map-3 mapPosition-left'> </div>");
 			break;
 	}
+
 	var targetObj = $('.to-map-' + LastMapIDNumber)[0]
 	var t2 = targetObj.offsetTop
 	var l2 = targetObj.offsetLeft
 	pl.plx = l2
 	pl.ply = t2 - 70
+
+	window.console.log($('#BGM').attr('src'))
+	$('#BGM').attr('src', './static/sound/map-' + NowMapIDNumber + '.mp3')
+	window.console.log($('#BGM').attr('src'))
+
 }
 
 function GetMapIDNumber() {

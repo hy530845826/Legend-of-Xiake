@@ -1,7 +1,6 @@
 <template>
   <div id="GameBox">
-    <audio src="./static/sound/02.mp3" class="bgmusic" loop autoplay></audio>
-    <audio src="./static/sound/03.mp3" class="bgmusic" loop></audio>
+    <audio src="./static/sound/map-1.mp3" id="BGM" class="bgmusic" loop autoplay></audio>
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="st.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
