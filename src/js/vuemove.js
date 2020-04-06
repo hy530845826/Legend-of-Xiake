@@ -207,7 +207,6 @@ function ChangeMap() {
 	for (let i = 0; i < PortalNumber; i++) { //根据传送门个数判定是否进入
 		var t2, l2, r2, b2
 		var targetObj = $('.Portal')[i]
-
 		t2 = targetObj.offsetTop;
 		l2 = targetObj.offsetLeft;
 		r2 = l2 + 100;
@@ -215,54 +214,137 @@ function ChangeMap() {
 
 		if ((b1 + tempPosition) < b2 || (b1 - tempPosition) > b2 || (l1 - tempPosition) > l2 || (r1 + tempPosition) < r2) { /*没碰到*/ }
 		else {
-			var PortalToMapID = parseInt(targetObj.className.replace(/[^0-9]/ig, "")) //传送门的to-mapID
-			// var PortalToMapPosition = targetObj.className.match(/mapPosition-(\S*)/)[1] //获取传送位置
-			// window.console.log("传送门的to-mapID:" + PortalToMapID + "	传送门的位置:" + PortalToMapPosition)
-			var NowMapIDNumber = GetMapIDNumber()
-			window.console.log("进入地图map-" + PortalToMapID)
+			var PortalToMapID = parseInt(targetObj.className.match(/to-map-(\S*)/)[1]) //获取传送门的to-mapID
+			var PortalMusicID = parseInt(targetObj.className.match(/music-(\S*)/)[1]) //获取bgmID
+			var MapIDNumber = GetMapIDNumber()
+			var MapBGMNumber = GetMapBGMNumber()
+			window.console.log("当前地图map-" + MapIDNumber + "	切换至:map-" + PortalToMapID)
+			window.console.log("当前BGM:" + MapBGMNumber + ".mp3	切换至:" + PortalMusicID + ".mp3")
 			$('#map').attr('class', 'map-' + PortalToMapID)
-			CreatePortal(NowMapIDNumber)
+			ChangeBGM(MapBGMNumber, PortalMusicID) //切换BGM
+			CreatePortal(MapIDNumber, PortalToMapID)
 		}
 	}
 }
 
-function CreatePortal(LastMapIDNumber) {
+function CreatePortal(MapIDNumber, PortalToMapID) {
 	$('.Portal').remove('#map .Portal')
-	var NowMapIDNumber = GetMapIDNumber()
-	switch (NowMapIDNumber) {
+	switch (PortalToMapID) {
+		case 0:
+			$("#map").prepend("<div class='Portal Portal-songshan to-map-6 music-3'> </div>");
+			$("#map").prepend("<div class='Portal Portal-wudang to-map-7 music-4'> </div>");
+			$("#map").prepend("<div class='Portal Portal-tiezhangfeng to-map-10 music-6'> </div>");
+			$("#map").prepend("<div class='Portal Portal-shunanzhuhai to-map-11 music-7'> </div>");
+			$("#map").prepend("<div class='Portal Portal-jueqinggu to-map-14 music-9'> </div>");
+			$("#map").prepend("<div class='Portal Portal-emei to-map-16 music-10'> </div>");
+			$("#map").prepend("<div class='Portal Portal-dashamo to-map-17 music-11'> </div>");
+			break;
 		case 1:
-			$("#map").prepend("<div class='Portal Portal-R to-map-2 mapPosition-left'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-2 music-1'> </div>");
 			break;
 		case 2:
-			$("#map").prepend("<div class='Portal Portal-L to-map-1 mapPosition-right'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-3 mapPosition-left'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-1 music-1'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-5 music-3'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-0 music-2'> </div>");
+			break;
+		case 3:
+			$("#map").prepend("<div class='Portal Portal-L to-map-2 music-1'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-4 music-2'> </div>");
+			break;
+		case 4:
+			$("#map").prepend("<div class='Portal Portal-L to-map-3 music-2'> </div>");
+			break;
+		case 5:
+			$("#map").prepend("<div class='Portal Portal-L to-map-2 music-1'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-6 music-3'> </div>");
+			break;
+		case 6:
+			$("#map").prepend("<div class='Portal Portal-L to-map-5 music-3'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-0 music-0'> </div>");
+			break;
+		case 7:
+			$("#map").prepend("<div class='Portal Portal-L to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-8 music-4'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-10 music-6'> </div>");
+			break;
+		case 8:
+			$("#map").prepend("<div class='Portal Portal-L to-map-7 music-4'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-9 music-5'> </div>");
+			break;
+		case 9:
+			$("#map").prepend("<div class='Portal Portal-L to-map-8 music-4'> </div>");
+			break;
+		case 10:
+			$("#map").prepend("<div class='Portal Portal-L to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-7 music-4'> </div>");
+			break;
+		case 11:
+			$("#map").prepend("<div class='Portal Portal-L to-map-12 music-7'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-0 music-0'> </div>");
+			break;
+		case 12:
+			$("#map").prepend("<div class='Portal Portal-L to-map-13 music-8'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-11 music-7'> </div>");
+			break;
+		case 13:
+			$("#map").prepend("<div class='Portal Portal-R to-map-12 music-7'> </div>");
+			break;
+		case 14:
+			$("#map").prepend("<div class='Portal Portal-L to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-15 music-9'> </div>");
+			break;
+		case 15:
+			$("#map").prepend("<div class='Portal Portal-L to-map-14 music-9'> </div>");
+			break;
+		case 16:
+			$("#map").prepend("<div class='Portal Portal-M to-map-0 music-0'> </div>");
+			break;
+		case 17:
+			$("#map").prepend("<div class='Portal Portal-L to-map-18 music-11'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-0 music-0'> </div>");
+			break;
+		case 18:
+			$("#map").prepend("<div class='Portal Portal-M to-map-19 music-12'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-17 music-11'> </div>");
+			break;
+		case 19:
+			$("#map").prepend("<div class='Portal Portal-L to-map-18 music-11'> </div>");
 			break;
 	}
 
-	var targetObj = $('.to-map-' + LastMapIDNumber)[0]
+	var targetObj = $('.to-map-' + MapIDNumber)[0]
 	var t2 = targetObj.offsetTop
 	var l2 = targetObj.offsetLeft
 	pl.plx = l2
 	pl.ply = t2 - 70
+}
 
-	window.console.log($('#BGM').attr('src'))
-	$('#BGM').attr('src', './static/sound/map-' + NowMapIDNumber + '.mp3')
-	window.console.log($('#BGM').attr('src'))
-
+function ChangeBGM(MapBGMNumber, PortalMusicID) {
+	if (MapBGMNumber != PortalMusicID) {
+		$('#BGM').attr('src', './static/sound/map-' + PortalMusicID + '.mp3')
+	}
 }
 
 function GetMapIDNumber() {
 	var MapID = $("#map").attr("class")
-	var NowMapIDNumber = parseInt(MapID.replace(/[^0-9]/ig, "")) //map-1→1
-	return NowMapIDNumber
+	var MapIDNumber = parseInt(MapID.replace(/[^0-9]/ig, "")) //map-1→1
+	return MapIDNumber
+}
+
+function GetMapBGMNumber() {
+	var MapID = $("#BGM").attr("src")
+	var MapBGMNumber = parseInt(MapID.match(/(\d*)\.mp3/)[1]) //map-1.mp3→1
+	return MapBGMNumber
 }
 
 function GetPortalNumber() {
-	var NowMapIDNumber = GetMapIDNumber()
+	var MapIDNumber = GetMapIDNumber()
 	var PortalNumber //传送门个数
-	switch (NowMapIDNumber) {
-		case 1: PortalNumber = 1; break;
-		case 2: PortalNumber = 2; break;
+	switch (MapIDNumber) {
+		case 1: case 4: case 9: case 13: case 15: case 16: case 19: PortalNumber = 1; break;
+		case 3: case 5: case 6: case 8: case 10: case 11: case 12: case 14: case 17: case 18: PortalNumber = 2; break;
+		case 2: case 7: PortalNumber = 3; break;
+		case 0: PortalNumber = 7; break;
 	}
 	return PortalNumber
 }
