@@ -14,6 +14,7 @@ var HitJudgement = Hit.default.HitJudgement
 var rotateNum = 180; //旋转角度
 
 document.onkeydown = function (event) {
+	if (pl.loading) { return } //加载中静止操作角色
 	event = event || window.event
 	switch (event.keyCode) {
 		case 39: //→
@@ -218,16 +219,59 @@ function ChangeMap() {
 			var PortalMusicID = parseInt(targetObj.className.match(/music-(\S*)/)[1]) //获取bgmID
 			var MapIDNumber = GetMapIDNumber()
 			var MapBGMNumber = GetMapBGMNumber()
-			window.console.log("当前地图map-" + MapIDNumber + "	切换至:map-" + PortalToMapID)
-			window.console.log("当前BGM:" + MapBGMNumber + ".mp3	切换至:" + PortalMusicID + ".mp3")
-			$('#map').attr('class', 'map-' + PortalToMapID)
-			ChangeBGM(MapBGMNumber, PortalMusicID) //切换BGM
-			CreatePortal(MapIDNumber, PortalToMapID)
+
+			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID)
+			// $('#map').attr('class', 'map-' + PortalToMapID)
+			// ChangeBGM(MapBGMNumber, PortalMusicID) //切换BGM
+			// CreatePortal(PortalToMapID)
+			// window.console.log(Loading)
 		}
 	}
 }
 
-function CreatePortal(MapIDNumber, PortalToMapID) {
+function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
+	//0.禁止角色操作，黑屏显示loading
+	$('#loading-screen').css('display', 'block')
+	pl.loading = true
+	var i = 10
+	$('#loading-screen .progress-bar').css('width', i + '%')
+	//1.加载地图
+	window.console.log("当前地图map-" + MapIDNumber + "	切换至:map-" + PortalToMapID)
+	$('#map').attr('class', 'map-' + PortalToMapID)
+	//2.计时器timer结束执行-ChangeBGM
+	var timer = setInterval(function () {
+		i++
+		if (i >= 50) {
+			clearInterval(timer)
+			window.console.log("当前BGM:" + MapBGMNumber + ".mp3	切换至:" + PortalMusicID + ".mp3")
+			ChangeBGM(MapBGMNumber, PortalMusicID)
+			//3.计时器timer2结束执行-CreatePortal
+			var timer2 = setInterval(function () {
+				i++
+				if (i >= 90) {
+					clearInterval(timer2)
+					CreatePortal(PortalToMapID)
+					//4.计时器timer3结束执行-MovePlayer
+					var timer3 = setInterval(function () {
+						i += 2
+						if (i >= 100) {
+							clearInterval(timer3)
+							MovePlayer(MapIDNumber)
+							//5.允许角色操作，黑屏关闭loading
+							$('#loading-screen').css('display', 'none')
+							pl.loading = false
+						}
+						$('#loading-screen .progress-bar').css('width', i + '%')
+					}, 400)
+				}
+				$('#loading-screen .progress-bar').css('width', i + '%')
+			}, 80)
+		}
+		$('#loading-screen .progress-bar').css('width', i + '%')
+	}, 10)
+}
+
+function CreatePortal(PortalToMapID) {
 	$('.Portal').remove('#map .Portal')
 	switch (PortalToMapID) {
 		case 0:
@@ -245,7 +289,7 @@ function CreatePortal(MapIDNumber, PortalToMapID) {
 		case 2:
 			$("#map").prepend("<div class='Portal Portal-L to-map-1 music-1'> </div>");
 			$("#map").prepend("<div class='Portal Portal-R to-map-5 music-3'> </div>");
-			$("#map").prepend("<div class='Portal Portal-M to-map-0 music-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-3 music-2'> </div>");
 			break;
 		case 3:
 			$("#map").prepend("<div class='Portal Portal-L to-map-2 music-1'> </div>");
@@ -311,18 +355,21 @@ function CreatePortal(MapIDNumber, PortalToMapID) {
 			$("#map").prepend("<div class='Portal Portal-L to-map-18 music-11'> </div>");
 			break;
 	}
-
-	var targetObj = $('.to-map-' + MapIDNumber)[0]
-	var t2 = targetObj.offsetTop
-	var l2 = targetObj.offsetLeft
-	pl.plx = l2
-	pl.ply = t2 - 70
 }
 
 function ChangeBGM(MapBGMNumber, PortalMusicID) {
 	if (MapBGMNumber != PortalMusicID) {
 		$('#BGM').attr('src', './static/sound/map-' + PortalMusicID + '.mp3')
 	}
+}
+
+function MovePlayer(MapIDNumber) {
+	var targetObj = $('.to-map-' + MapIDNumber)[0]
+	window.console.log($('.to-map-' + MapIDNumber))
+	var t2 = targetObj.offsetTop
+	var l2 = targetObj.offsetLeft
+	pl.plx = l2
+	pl.ply = t2 - 70
 }
 
 function GetMapIDNumber() {

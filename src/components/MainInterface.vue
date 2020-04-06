@@ -1,5 +1,17 @@
 <template>
   <div id="map" class="map-1">
+    <div id="loading-screen">
+      <div id="loading-progress" class="progress">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          style="width: 100%;"
+          aria-valuenow="100"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+    </div>
     <div id="role">
       <div id="role-body"></div>
       <div>{{st}}</div>
