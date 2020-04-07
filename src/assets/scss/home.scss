@@ -1,0 +1,38 @@
+#Home {
+    width: 1200px;
+    height: 725px;
+    background: url(../images/Menu0.jpg) no-repeat black;
+    position: relative;
+}
+
+#HomeMenu {
+    width: 441px;
+    position: absolute;
+    left: 380px;
+    top: 130px;
+}
+
+#logoimg {
+    width: 441px;
+    height: 82px;
+    background: url(../images/logo.gif) no-repeat;
+}
+
+#HomeMenu ul {
+    width: 200px;
+    text-align: center;
+    margin: 150px auto 0;
+}
+
+#HomeMenu li {
+    font-family: LiSu;
+    font-size: 36px;
+    margin-bottom: 16px;
+    height: 54px;
+    line-height: 54px;
+    cursor: pointer;
+}
+
+#HomeMenu li:hover {
+    color: yellow;
+}
