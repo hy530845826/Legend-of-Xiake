@@ -32,7 +32,7 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.PER = per
 	this.LUK = luk
 
-	this.speed = 50
+	this.speed = 10
 	this.pdx = 5 //判定距离(宽60)
 	this.pdy = 27
 	this.pdw = 60

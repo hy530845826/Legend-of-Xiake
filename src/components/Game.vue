@@ -4,7 +4,7 @@
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="st.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
-    <introduction v-if="IntroductionFlag" />
+    <introduction v-if="WindowName=='introduction'" @openWindowMenu="zdy2($event)"/>
     <div id="WindowMenu">
       <div v-if="WindowName=='MenuB'">
         <div id="Bdiv" class="MenuDiv">
@@ -229,7 +229,6 @@ export default {
       WindowName: "null",
       st: Player.pll,
       stenemy: Enemy.ell,
-      IntroductionFlag: false,
       MusicFlag: true,
       MusicFlagText: "开"
     };
@@ -243,6 +242,10 @@ export default {
   methods: {
     zdy(msg) {
       this.WindowName = msg;
+    },
+    zdy2(msg) {
+      this.WindowName = msg;
+      this.$refs.StatusBar.MenuFlag = "null";
     },
     ReturnGame: function() {
       this.WindowName = "null";
@@ -259,7 +262,7 @@ export default {
       }
     },
     SettingIntroduction: function() {
-      this.IntroductionFlag = true;
+      this.WindowName = "introduction";
     },
     SettingConfirm: function(e) {
       var SettingID = e.currentTarget.id;
