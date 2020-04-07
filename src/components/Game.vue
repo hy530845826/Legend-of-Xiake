@@ -4,6 +4,7 @@
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="st.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
+    <introduction v-if="IntroductionFlag" />
     <div id="WindowMenu">
       <div v-if="WindowName=='MenuB'">
         <div id="Bdiv" class="MenuDiv">
@@ -13,30 +14,41 @@
               <span class="MenuClose" @click="ReturnGame">X</span>
             </div>
           </div>
-          <div class="RoleBox">
-            <div class="RoleBoxL">
-              <ul>
-                <li>
-                  <span>图片</span>
-                  <span>回手掏(A):</span>
-                </li>
-                <li>
-                  <span>图片</span>
-                  <span>回手掏(S):</span>
-                </li>
-                <li>
-                  <span>图片</span>
-                  <span>回手掏(D):</span>
-                </li>
-                <li>
-                  <span>图片</span>
-                  <span>回手掏(F):</span>
-                </li>
-                <li>
-                  <span>图片</span>
-                  <span>回手掏(A):</span>
-                </li>
-              </ul>
+          <div class="BagBox">
+            <ul>
+              <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </li>
+              <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </li>
+              <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </li>
+              <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </li>
+            </ul>
+            <div class="Bag-Introduction">装备介绍</div>
+            <div class="Bag-Money">
+              铜钱：
+              <span id="money">0</span>
             </div>
           </div>
         </div>
@@ -141,28 +153,28 @@
               <span class="MenuClose" @click="ReturnGame">X</span>
             </div>
           </div>
-          <div class="RoleBox">
+          <div class="SkillBox">
             <div class="RoleBoxL">
               <ul>
                 <li>
-                  <span>图片</span>
-                  <span>回手掏(A):</span>
+                  <span class="Skill-Icon"></span>
+                  <div class="Skill-Introduction">回手掏(A):</div>
                 </li>
                 <li>
-                  <span>图片</span>
-                  <span>回手掏(S):</span>
+                  <span class="Skill-Icon"></span>
+                  <div class="Skill-Introduction">回手掏(S):</div>
                 </li>
                 <li>
-                  <span>图片</span>
-                  <span>回手掏(D):</span>
+                  <span class="Skill-Icon"></span>
+                  <div class="Skill-Introduction">回手掏(D):大量文字介绍大量文字介绍大量文字介绍大量文字介绍大量文字介绍大量文字介绍大量文字介介介</div>
                 </li>
                 <li>
-                  <span>图片</span>
-                  <span>回手掏(F):</span>
+                  <span class="Skill-Icon"></span>
+                  <div class="Skill-Introduction">回手掏(F):</div>
                 </li>
                 <li>
-                  <span>图片</span>
-                  <span>回手掏(A):</span>
+                  <span class="Skill-Icon"></span>
+                  <div class="Skill-Introduction">回手掏(A):</div>
                 </li>
               </ul>
             </div>
@@ -189,6 +201,7 @@
             <ul>
               <li @click="ReturnGame">返回游戏</li>
               <li id="SettingMusic" @click="SettingMusic()">音乐：{{MusicFlagText}}</li>
+              <li id="SettingIntroduction" @click="SettingIntroduction()">游戏说明</li>
               <li id="SettingSaveGame" @click="SettingConfirm($event)">保存游戏</li>
               <li id="SettingLoadGame" @click="SettingConfirm($event)">读取游戏</li>
               <li id="SettingQuitGame" @click="SettingConfirm($event)">退出游戏</li>
@@ -204,6 +217,7 @@
 import MainInterface from "./MainInterface.vue";
 import ActionBar from "./ActionBar.vue";
 import StatusBar from "./StatusBar.vue";
+import Introduction from "./Introduction.vue";
 import Player from "../js/player";
 import Enemy from "../js/enemy";
 import "../js/vueblank";
@@ -215,6 +229,7 @@ export default {
       WindowName: "null",
       st: Player.pll,
       stenemy: Enemy.ell,
+      IntroductionFlag: false,
       MusicFlag: true,
       MusicFlagText: "开"
     };
@@ -222,7 +237,8 @@ export default {
   components: {
     MainInterface,
     ActionBar,
-    StatusBar
+    StatusBar,
+    Introduction
   },
   methods: {
     zdy(msg) {
@@ -241,6 +257,9 @@ export default {
         this.MusicFlagText = "关";
         $(".bgmusic")[0].pause();
       }
+    },
+    SettingIntroduction: function() {
+      this.IntroductionFlag = true;
     },
     SettingConfirm: function(e) {
       var SettingID = e.currentTarget.id;

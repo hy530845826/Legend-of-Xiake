@@ -68,10 +68,86 @@
 	padding-left: 30px;
 }
 
+#Bdiv .BagBox ul {
+	padding: 15px;
+	margin-bottom: 0;
+}
+
+#Bdiv .BagBox li {
+	height: 64px;
+	margin-bottom: 2px;
+}
+
+#Bdiv .BagBox li span {
+	display: inline-block;
+	margin-right: 2px;
+	background-color: #444;
+	border: 3px solid #888;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+}
+
+#Bdiv .BagBox li span:hover {
+	border-color: #bbb;
+}
+
+#Bdiv .Bag-Introduction {
+	width: 330px;
+	height: 80px;
+	margin: 0 15px;
+	border: 3px solid #888;
+	background: #555;
+}
+
+#Bdiv .Bag-Money {
+	width: 125px;
+	height: 30px;
+	line-height: 30px;
+	margin: 15px 15px 0 220px;
+	overflow: hidden;
+}
+
+#Bdiv .Bag-Money #money {
+	float: right;
+}
+
+#Kdiv .SkillBox ul {
+	padding: 15px;
+	margin-bottom: 0;
+}
+
+#Kdiv .SkillBox li {
+	height: 64px;
+	margin-bottom: 2px;
+	background-color: #444;
+	overflow: hidden;
+}
+
+#Kdiv .SkillBox li .Skill-Icon {
+	display: inline-block;
+	margin-right: 2px;
+	border: 3px solid #888;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+}
+
+#Kdiv .SkillBox li .Skill-Icon:hover {
+	border-color: #bbb;
+}
+
+#Kdiv .SkillBox li .Skill-Introduction {
+	width: 260px;
+	height: 64px;
+	line-height: 21px;
+	float: right;
+}
+
 #Pdiv {
 	color: red;
 	width: 210px;
-	height: 310px;
+	height: 330px;
 	background: #222;
 	position: absolute;
 	top: 175px;
