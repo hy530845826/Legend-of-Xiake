@@ -1,16 +1,49 @@
 #role,
 #npc {
     position: absolute;
-    width: 129px;
-    height: 129px;
-    overflow: hidden;
-    border: 1px solid red;
+    background-color: purple;
 }
 
 #role-body {
-    width: 130px;
-    height: 130px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#role-hited-judge {
+    width: 67px;
+    height: 124px;
+    border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#role-hit-judge {
+    width: 0px;
+    height: 0px;
+    border: 1px solid yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.plstand #role-body {
+    width: 67px;
+    height: 124px;
     background: url(../images/plstand.gif) no-repeat;
+}
+
+.plmove #role-body {
+    width: 70px;
+    height: 122px;
+    background: url(../images/plmove.gif) no-repeat;
+}
+
+.plskill1 #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../images/普通攻击.png) no-repeat;
 }
 
 #enemy {

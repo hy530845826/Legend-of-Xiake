@@ -11,6 +11,9 @@ var enemy = Enemy.default.ell
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
+import player_options from './player_options.json'
+var PlayerOptions = player_options
+
 var rotateNum = 180; //旋转角度
 
 document.onkeydown = function (event) {
@@ -22,7 +25,8 @@ document.onkeydown = function (event) {
 			IsMove += 1;
 			pl.xfx = true;
 			if (IsMove == 1 && !IsFlash) {
-				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				ChangePlayerState('plmove')
 				if (pl.xfx != pl.imgfx) {
 					pl.imgfx = true;
 					pl.pdx = 5
@@ -38,7 +42,8 @@ document.onkeydown = function (event) {
 			IsMove += 1;
 			pl.xfx = false;
 			if (IsMove == 1 && !IsFlash) {
-				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				ChangePlayerState('plmove')
 				if (pl.xfx != pl.imgfx) {
 					pl.imgfx = false;
 					pl.pdx = 130 - 60 - 5
@@ -55,7 +60,8 @@ document.onkeydown = function (event) {
 			if (IsMove == 1 && !IsFlash) {
 				pl.pdy = 40
 				pl.pdw = 120
-				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				ChangePlayerState('plmove')
 			}
 			break;
 		case 40: //↓
@@ -64,7 +70,8 @@ document.onkeydown = function (event) {
 			if (IsMove == 1 && !IsFlash) {
 				pl.pdy = 40
 				pl.pdw = 120
-				$('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plmove.gif)')
+				ChangePlayerState('plmove')
 			}
 			break;
 		case 67: //C
@@ -72,29 +79,30 @@ document.onkeydown = function (event) {
 			break;
 		case 65: //A
 			if (IsFlash == false) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(0, 6, 1)
+				// $('#role-body').css('background-image', 'url(static/images/普通攻击.png)')
+				// ChangePlayerState('plskill1')
+				flash('plskill1', 192, 0, 10, 1)
 				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
 			}
 			break;
 		case 83: //S
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(1, 6, 0)
+				flash(130, 1, 6, 0)
 				HitJudgement(pl, enemy, true, 30, 70, 60, 50)
 			}
 			break;
 		case 68: //D
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(2, 6, 0)
+				flash(130, 2, 6, 0)
 				HitJudgement(pl, enemy, true, 55, 35, 60, 60)
 			}
 			break;
 		case 70: //F
 			if (IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(3, 6, 1)
+				flash(130, 3, 6, 1)
 				HitJudgement(pl, enemy, true, 50, 20, 60, 70)
 			}
 			break;
@@ -124,7 +132,8 @@ document.onkeyup = function (event) {
 			if (IsMove == 0 && IsFlash == false) {
 				pl.pdy = 27
 				pl.pdw = 60
-				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				ChangePlayerState('plstand')
 			}
 			break; //→
 		case 37:
@@ -133,7 +142,8 @@ document.onkeyup = function (event) {
 			if (IsMove == 0 && IsFlash == false) {
 				pl.pdy = 27
 				pl.pdw = 60
-				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				ChangePlayerState('plstand')
 			}
 			break; //←
 		case 38:
@@ -142,7 +152,8 @@ document.onkeyup = function (event) {
 			if (IsMove == 0 && IsFlash == false) {
 				pl.pdy = 27
 				pl.pdw = 60
-				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				ChangePlayerState('plstand')
 			}
 			break; //↑
 		case 40:
@@ -151,50 +162,83 @@ document.onkeyup = function (event) {
 			if (IsMove == 0 && IsFlash == false) {
 				pl.pdy = 27
 				pl.pdw = 60
-				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				ChangePlayerState('plstand')
 			}
 			break; //↓
 	}
 }
 
-function flash(num, timer, style) {
+function flash(StateName, width, num, TikTok, style) {
 	IsFlash = true
 	var i = 0
+	ChangePlayerState(StateName)
 	clearInterval(plflash)
 	var plflash
 	//style 0顺序逆序 1顺序
 	if (style == 0) {
 		plflash = setInterval(function () {
 			if (i >= 0) {
-				$('#role-body').css('background-position', (-130 * i) + 'px ' + (-130 * num) + 'px')
+				$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * num) + 'px')
 				i++
-				if (i == timer) {
+				if (i == TikTok - 1) {
 					i = -i
 				}
 			} else {
-				$('#role-body').css('background-position', (130 * i) + 'px ' + (-130 * num) + 'px')
+				$('#role-body').css('background-position', (width * i) + 'px ' + (-width * num) + 'px')
 				i++
 				if (i == 0) {
 					clearInterval(plflash)
 					IsFlash = false
-					$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+					// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+					ChangePlayerState('plstand')
 					$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
 				}
 			}
-		}, 100);
+		}, 80);
 	} else if (style == 1) {
 		plflash = setInterval(function () {
-			$('#role-body').css('background-position', (-130 * i) + 'px ' + (-130 * num) + 'px')
+			$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * num) + 'px')
 			i++
-			if (i > timer + 1) {
+			if (i > TikTok) {
 				clearInterval(plflash)
 				IsFlash = false
-				$('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
+				ChangePlayerState('plstand')
 				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+			} else {
+				CheckPlayerHit(StateName, i)
 			}
-		}, 100);
+		}, 80);
 	}
 }
+
+function ChangePlayerState(StateName) {
+	$('#role').attr('class', StateName)
+	CheckPlayerHit(StateName)
+}
+
+function CheckPlayerHit(StateName, TikTok) {
+	TikTok = TikTok || 1
+	for (var index in PlayerOptions) {
+		var data = PlayerOptions[index]
+		if (StateName == data[0].UName) {
+			var target = data[TikTok]
+			$('#role-body').css('left', target.check_x + 'px')
+			$('#role-body').css('top', target.check_y + 'px')
+			$('#role-hited-judge').css('width', target.hited_x + 'px')
+			$('#role-hited-judge').css('height', target.hited_y + 'px')
+			$('#role-hited-judge').css('left', target.hited_left + 'px')
+			$('#role-hited-judge').css('top', target.hited_top + 'px')
+			$('#role-hit-judge').css('width', target.hit_x || 0 + 'px')
+			$('#role-hit-judge').css('height', target.hit_y || 0 + 'px')
+			$('#role-hit-judge').css('left', target.hit_left || 0 + 'px')
+			$('#role-hit-judge').css('top', target.hit_top || 0 + 'px')
+			break;
+		}
+	}
+}
+
 
 function ChangeMap() {
 	var PortalNumber = GetPortalNumber()

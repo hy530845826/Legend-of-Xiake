@@ -12,9 +12,11 @@
         ></div>
       </div>
     </div>
-    <div id="role">
+    <div id="role" class="plstand">
       <div id="role-body"></div>
-      <div>{{st}}</div>
+      <div id="role-hit-judge"></div>
+      <div id="role-hited-judge"></div>
+      <div></div>
     </div>
     <div id="npc">
       <div id="npc-body" @click="RefuseMission"></div>

@@ -419,7 +419,20 @@ export default {
           }
           break;
       }
+    },
+    LoadingSkillIcon: function() {
+      var SkillIconArr = $("#Kdiv .SkillBox li .Skill-Icon");
+      var sum = SkillIconArr.length;
+      for (let i = 0; i < sum; i++) {
+        $(SkillIconArr[i]).css(
+          "background-image",
+          "url(static/images/skill-" + i + ".png)"
+        );
+      }
     }
+  },
+  mounted() {
+    this.LoadingSkillIcon();
   }
 };
 </script>

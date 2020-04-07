@@ -10,7 +10,7 @@ Vue.prototype.$goRoute = function (index) {
 }
 
 $(function () {
-  alert('引用jQuery')
+  window.console.log('引用jQuery')
 })
 
 Vue.config.productionTip = false
