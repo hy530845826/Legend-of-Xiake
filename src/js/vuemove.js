@@ -238,20 +238,23 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 	//1.加载地图
 	window.console.log("当前地图map-" + MapIDNumber + "	切换至:map-" + PortalToMapID)
 	$('#map').attr('class', 'map-' + PortalToMapID)
-	//2.计时器timer结束执行-ChangeBGM
+	//1.5修改小地图坐标
+	$('#map-' + MapIDNumber).attr('class', '')
+	$('#map-' + PortalToMapID).attr('class', 'Player-Position')
+	//2.计时器timer结束执行-ChangeBGM(200ms)
 	var timer = setInterval(function () {
-		i++
+		i += 2
 		if (i >= 50) {
 			clearInterval(timer)
 			window.console.log("当前BGM:" + MapBGMNumber + ".mp3	切换至:" + PortalMusicID + ".mp3")
 			ChangeBGM(MapBGMNumber, PortalMusicID)
-			//3.计时器timer2结束执行-CreatePortal
+			//3.计时器timer2结束执行-CreatePortal(3200ms)
 			var timer2 = setInterval(function () {
 				i++
 				if (i >= 90) {
 					clearInterval(timer2)
 					CreatePortal(PortalToMapID)
-					//4.计时器timer3结束执行-MovePlayer
+					//4.计时器timer3结束执行-MovePlayer(2000ms)
 					var timer3 = setInterval(function () {
 						i += 2
 						if (i >= 100) {
