@@ -81,7 +81,7 @@ document.onkeydown = function (event) {
 			if (IsFlash == false) {
 				// $('#role-body').css('background-image', 'url(static/images/普通攻击.png)')
 				// ChangePlayerState('plskill1')
-				flash('plskill1', 192, 0, 10, 1)
+				flash('plskill1', 10, 192, 0, 1)
 				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
 			}
 			break;
@@ -169,9 +169,10 @@ document.onkeyup = function (event) {
 	}
 }
 
-function flash(StateName, width, num, TikTok, style) {
+function flash(StateName, TikTok, width, height, style) {
 	IsFlash = true
-	var i = 0
+	var i = 1
+	var xxx = pl.plx, yyy = pl.ply
 	ChangePlayerState(StateName)
 	clearInterval(plflash)
 	var plflash
@@ -179,13 +180,13 @@ function flash(StateName, width, num, TikTok, style) {
 	if (style == 0) {
 		plflash = setInterval(function () {
 			if (i >= 0) {
-				$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * num) + 'px')
+				$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * height) + 'px')
 				i++
 				if (i == TikTok - 1) {
 					i = -i
 				}
 			} else {
-				$('#role-body').css('background-position', (width * i) + 'px ' + (-width * num) + 'px')
+				$('#role-body').css('background-position', (width * i) + 'px ' + (-width * height) + 'px')
 				i++
 				if (i == 0) {
 					clearInterval(plflash)
@@ -198,11 +199,13 @@ function flash(StateName, width, num, TikTok, style) {
 		}, 80);
 	} else if (style == 1) {
 		plflash = setInterval(function () {
-			$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * num) + 'px')
+			$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * height) + 'px')
 			i++
 			if (i > TikTok) {
 				clearInterval(plflash)
 				IsFlash = false
+				pl.plx = xxx
+				pl.ply = yyy
 				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
 				ChangePlayerState('plstand')
 				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
@@ -224,8 +227,10 @@ function CheckPlayerHit(StateName, TikTok) {
 		var data = PlayerOptions[index]
 		if (StateName == data[0].UName) {
 			var target = data[TikTok]
-			$('#role-body').css('left', target.check_x + 'px')
-			$('#role-body').css('top', target.check_y + 'px')
+			if (target.check_x != undefined) { pl.plx += target.check_x }
+			if (target.check_y != undefined) { pl.ply += target.check_y }
+			$('#role-body').css('left', target.img_x + 'px')
+			$('#role-body').css('top', target.img_y + 'px')
 			$('#role-hited-judge').css('width', target.hited_x + 'px')
 			$('#role-hited-judge').css('height', target.hited_y + 'px')
 			$('#role-hited-judge').css('left', target.hited_left + 'px')

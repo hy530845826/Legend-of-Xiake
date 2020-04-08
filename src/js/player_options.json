@@ -3,8 +3,8 @@
         "UName": "plstand",
         "TikTok": 1
     }, {
-        "check_x": 0,
-        "check_y": 0,
+        "img_x": 0,
+        "img_y": 0,
         "hited_x": 67,
         "hited_y": 124,
         "hited_left": 0,
@@ -14,8 +14,8 @@
         "UName": "plmove",
         "TikTok": 1
     }, {
-        "check_x": 0,
-        "check_y": 0,
+        "img_x": 0,
+        "img_y": 0,
         "hited_x": 70,
         "hited_y": 122,
         "hited_left": 0,
@@ -25,21 +25,23 @@
         "UName": "plskill1",
         "TikTok": 10
     }, {
-        "check_x": -64,
-        "check_y": -56,
+        "check_x": 0,
+        "check_y": 10,
+        "img_x": -64,
+        "img_y": -56,
         "hited_x": 68,
         "hited_y": 112,
         "hited_left": 0,
         "hited_top": 0
     }, {
-        "check_x": -64,
-        "check_y": -56
+        "img_x": -64,
+        "img_y": -56
     }, {
-        "check_x": -64,
-        "check_y": -56
+        "img_x": -64,
+        "img_y": -56
     }, {
-        "check_x": -18,
-        "check_y": -56,
+        "img_x": -18,
+        "img_y": -56,
         "hited_x": 89,
         "hited_y": 99,
         "hited_left": 0,
@@ -48,10 +50,10 @@
         "hit_y": 58,
         "hit_left": 60,
         "hit_top": 0,
-        "hited_tophited_top": "hited_top=前者hited_y  -  当前hited_y，  hit_top=画图测量偏移等对应hit_top  +  check_y"
+        "hited_tophited_top": "hited_top=前者hited_y  -  当前hited_y，  hit_top=画图测量偏移等对应hit_top  +  img_y"
     }, {
-        "check_x": -18,
-        "check_y": -56,
+        "img_x": -18,
+        "img_y": -56,
         "hited_x": 77,
         "hited_y": 94,
         "hit_x": 127,
@@ -59,23 +61,23 @@
         "hit_left": -8,
         "hit_top": 51
     }, {
-        "check_x": -40,
-        "check_y": -56,
+        "img_x": -40,
+        "img_y": -56,
         "hit_x": 70,
         "hit_y": 40,
         "hit_left": -8,
         "hit_top": 51
     }, {
-        "check_x": -40,
-        "check_y": -56
+        "img_x": -40,
+        "img_y": -56
     }, {
-        "check_x": -40,
-        "check_y": -56
+        "img_x": -40,
+        "img_y": -56
     }, {
-        "check_x": -40,
-        "check_y": -56
+        "img_x": -40,
+        "img_y": -56
     }, {
-        "check_x": -40,
-        "check_y": -56
+        "img_x": -40,
+        "img_y": -56
     }]
 ]
