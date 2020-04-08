@@ -93,5 +93,55 @@
         "img_y": 56,
         "hited_x": 77,
         "hited_y": 94
+    }],
+    [{
+        "UName": "plskill2",
+        "TikTok": 6
+    }, {
+        "check_x": 0,
+        "check_y": 27,
+        "img_x": 61,
+        "img_y": 59,
+        "hited_x": 77,
+        "hited_y": 97,
+        "hited_left": 0,
+        "hited_top": 0
+    }, {
+        "img_x": 23,
+        "img_y": 59,
+        "hited_x": 85,
+        "hited_y": 97,
+        "hit_x": 83,
+        "hit_y": 29,
+        "hit_left": 84,
+        "hit_top": 7
+    }, {
+        "img_x": 64,
+        "img_y": 59,
+        "hited_x": 73,
+        "hited_y": 97,
+        "hit_x": 132,
+        "hit_y": 44,
+        "hit_left": -40,
+        "hit_top": 18
+    }, {
+        "img_x": 79,
+        "img_y": 59,
+        "hited_x": 78,
+        "hited_y": 97,
+        "hit_x": 73,
+        "hit_y": 39,
+        "hit_left": -73,
+        "hit_top": 10
+    }, {
+        "img_x": 87,
+        "img_y": 59,
+        "hited_x": 78,
+        "hited_y": 97
+    }, {
+        "img_x": 87,
+        "img_y": 59,
+        "hited_x": 78,
+        "hited_y": 97
     }]
 ]

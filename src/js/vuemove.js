@@ -81,14 +81,13 @@ document.onkeydown = function (event) {
 			if (IsFlash == false) {
 				// $('#role-body').css('background-image', 'url(static/images/普通攻击.png)')
 				// ChangePlayerState('plskill1')
-				flash('plskill1', 10, 192, 0, 1)
+				flash('plskill1', 10, 80, 192, 0, 1)
 				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
 			}
 			break;
 		case 83: //S
 			if (IsFlash == false) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(130, 1, 6, 0)
+				flash('plskill2', 6, 120, 192, 0, 1)
 				HitJudgement(pl, enemy, true, 30, 70, 60, 50)
 			}
 			break;
@@ -169,7 +168,7 @@ document.onkeyup = function (event) {
 	}
 }
 
-function flash(StateName, TikTok, width, height, style) {
+function flash(StateName, TikTok, farme, width, height, style) {
 	IsFlash = true
 	var i = 1
 	var xxx = pl.plx, yyy = pl.ply
@@ -192,27 +191,35 @@ function flash(StateName, TikTok, width, height, style) {
 					clearInterval(plflash)
 					IsFlash = false
 					// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
-					ChangePlayerState('plstand')
 					$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+					setTimeout(function () {
+						window.console.log("panding!!!!!!!!!!!!" + IsFlash)
+						if (IsFlash == false) {
+							ChangePlayerState('plstand')
+						}
+					}, 500)
 				}
 			}
-		}, 80);
+		}, farme);
 	} else if (style == 1) {
 		plflash = setInterval(function () {
-			$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * height) + 'px')
 			i++
 			if (i > TikTok) {
 				clearInterval(plflash)
 				IsFlash = false
 				pl.plx = xxx
 				pl.ply = yyy
-				// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
-				ChangePlayerState('plstand')
-				$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+				setTimeout(function () {
+					if (IsFlash == false) {
+						ChangePlayerState('plstand')
+						$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+					}
+				}, 50)
 			} else {
+				$('#role-body').css('background-position', (-width * (i - 1)) + 'px ' + (-width * height) + 'px')
 				CheckPlayerHit(StateName, i)
 			}
-		}, 80);
+		}, farme);
 	}
 }
 
