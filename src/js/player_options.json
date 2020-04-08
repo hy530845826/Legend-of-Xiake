@@ -27,57 +27,71 @@
     }, {
         "check_x": 0,
         "check_y": 10,
-        "img_x": -64,
-        "img_y": -56,
+        "img_x": 64,
+        "img_y": 56,
         "hited_x": 68,
         "hited_y": 112,
         "hited_left": 0,
         "hited_top": 0
     }, {
-        "img_x": -64,
-        "img_y": -56
+        "img_x": 64,
+        "img_y": 56,
+        "hited_x": 68,
+        "hited_y": 112
     }, {
-        "img_x": -64,
-        "img_y": -56
+        "img_x": 64,
+        "img_y": 56,
+        "hited_x": 68,
+        "hited_y": 112
     }, {
-        "img_x": -18,
-        "img_y": -56,
+        "img_x": 18,
+        "img_y": 56,
         "hited_x": 89,
         "hited_y": 99,
         "hited_left": 0,
         "hited_top": 13,
         "hit_x": 97,
         "hit_y": 58,
-        "hit_left": 60,
+        "hit_left": 78,
         "hit_top": 0,
         "hited_tophited_top": "hited_top=前者hited_y  -  当前hited_y，  hit_top=画图测量偏移等对应hit_top  +  img_y"
     }, {
-        "img_x": -18,
-        "img_y": -56,
+        "img_x": 18,
+        "img_y": 56,
         "hited_x": 77,
         "hited_y": 94,
         "hit_x": 127,
         "hit_y": 40,
-        "hit_left": -8,
+        "hit_left": -10,
         "hit_top": 51
     }, {
-        "img_x": -40,
-        "img_y": -56,
+        "img_x": 40,
+        "img_y": 56,
+        "hited_x": 77,
+        "hited_y": 94,
         "hit_x": 70,
         "hit_y": 40,
-        "hit_left": -8,
+        "hit_left": -32,
         "hit_top": 51
     }, {
-        "img_x": -40,
-        "img_y": -56
+        "img_x": 40,
+        "img_y": 56,
+        "hited_x": 77,
+        "hited_y": 94
     }, {
-        "img_x": -40,
-        "img_y": -56
+        "img_x": 40,
+        "img_y": 56,
+        "hited_x": 77,
+        "hited_y": 94
     }, {
-        "img_x": -40,
-        "img_y": -56
+        "img_x": 40,
+        "img_y": 56,
+        "hited_x": 77,
+        "hited_y": 94
     }, {
-        "img_x": -40,
-        "img_y": -56
+        "img_x": 40,
+        "img_y": 56,
+        "hited_x": 77,
+        "hited_y": 94
     }]
 ]

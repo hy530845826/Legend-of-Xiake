@@ -223,27 +223,49 @@ function ChangePlayerState(StateName) {
 
 function CheckPlayerHit(StateName, TikTok) {
 	TikTok = TikTok || 1
-	for (var index in PlayerOptions) {
-		var data = PlayerOptions[index]
-		if (StateName == data[0].UName) {
-			var target = data[TikTok]
-			if (target.check_x != undefined) { pl.plx += target.check_x }
-			if (target.check_y != undefined) { pl.ply += target.check_y }
-			$('#role-body').css('left', target.img_x + 'px')
-			$('#role-body').css('top', target.img_y + 'px')
-			$('#role-hited-judge').css('width', target.hited_x + 'px')
-			$('#role-hited-judge').css('height', target.hited_y + 'px')
-			$('#role-hited-judge').css('left', target.hited_left + 'px')
-			$('#role-hited-judge').css('top', target.hited_top + 'px')
-			$('#role-hit-judge').css('width', target.hit_x || 0 + 'px')
-			$('#role-hit-judge').css('height', target.hit_y || 0 + 'px')
-			$('#role-hit-judge').css('left', target.hit_left || 0 + 'px')
-			$('#role-hit-judge').css('top', target.hit_top || 0 + 'px')
-			break;
+	var imgWidth = parseInt($('#role-body').css('width'))
+	if (pl.xfx) {
+		for (let index in PlayerOptions) {
+			let data = PlayerOptions[index]
+			if (StateName == data[0].UName) {
+				let target = data[TikTok]
+				if (target.check_x != undefined) { pl.plx += target.check_x }
+				if (target.check_y != undefined) { pl.ply += target.check_y }
+				$('#role-body').css('left', -target.img_x + 'px')
+				$('#role-body').css('top', -target.img_y + 'px')
+				$('#role-hited-judge').css('width', target.hited_x + 'px')
+				$('#role-hited-judge').css('height', target.hited_y + 'px')
+				$('#role-hited-judge').css('left', target.hited_left + 'px')
+				$('#role-hited-judge').css('top', target.hited_top + 'px')
+				$('#role-hit-judge').css('width', target.hit_x || 0 + 'px')
+				$('#role-hit-judge').css('height', target.hit_y || 0 + 'px')
+				$('#role-hit-judge').css('left', target.hit_left || 0 + 'px')
+				$('#role-hit-judge').css('top', target.hit_top || 0 + 'px')
+				break;
+			}
+		}
+	} else {
+		for (let index in PlayerOptions) {
+			let data = PlayerOptions[index]
+			if (StateName == data[0].UName) {
+				let target = data[TikTok]
+				if (target.check_x != undefined) { pl.plx += target.check_x }
+				if (target.check_y != undefined) { pl.ply += target.check_y }
+				$('#role-body').css('left', (target.img_x + target.hited_x - imgWidth) + 'px')
+				$('#role-body').css('top', -target.img_y + 'px')
+				$('#role-hited-judge').css('width', target.hited_x + 'px')
+				$('#role-hited-judge').css('height', target.hited_y + 'px')
+				$('#role-hited-judge').css('left', target.hited_left + 'px')
+				$('#role-hited-judge').css('top', target.hited_top + 'px')
+				$('#role-hit-judge').css('width', target.hit_x || 0 + 'px')
+				$('#role-hit-judge').css('height', target.hit_y || 0 + 'px')
+				$('#role-hit-judge').css('left', ((target.hited_x - target.hit_left - target.hit_x)) || 0 + 'px')
+				$('#role-hit-judge').css('top', target.hit_top || 0 + 'px')
+				break;
+			}
 		}
 	}
 }
-
 
 function ChangeMap() {
 	var PortalNumber = GetPortalNumber()
