@@ -33,6 +33,7 @@ document.onkeydown = function (event) {
 					pl.pdy = 40
 					pl.pdw = 120
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
+					$('#skill-body').css({ transition: "transform 0.1s", transform: "rotateY(" + rotateNum + "deg)" })
 					rotateNum += 180;
 				}
 			}
@@ -50,6 +51,7 @@ document.onkeydown = function (event) {
 					pl.pdy = 40
 					pl.pdw = 120
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
+					$('#skill-body').css({ transition: "transform 0.1s", transform: "rotateY(" + rotateNum + "deg)" })
 					rotateNum += 180;
 				}
 			}
@@ -77,17 +79,28 @@ document.onkeydown = function (event) {
 		case 67: //C
 			ChangeMap()
 			break;
+		case 88: //X
+			if (IsFlash == false) {
+				flash('plskill-x', 10, 80, 192, 1)
+				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
+			}
+			break;
+		case 90: //Z
+			if (IsFlash == false) {
+				flash('plskill-z', 6, 120, 192, 1)
+				HitJudgement(pl, enemy, true, 30, 70, 60, 50)
+			}
+			break;
 		case 65: //A
 			if (IsFlash == false) {
-				// $('#role-body').css('background-image', 'url(static/images/普通攻击.png)')
-				// ChangePlayerState('plskill1')
-				flash('plskill1', 10, 80, 192, 0, 1)
+				// ChangePlayerState('plskill-x')
+				flash('plskill-a', 9, 80, 192, 1, 1, 9, 250)
 				HitJudgement(pl, enemy, true, 30, 20, 60, 50)
 			}
 			break;
 		case 83: //S
 			if (IsFlash == false) {
-				flash('plskill2', 6, 120, 192, 0, 1)
+				flash('plskill-z', 6, 120, 192, 1)
 				HitJudgement(pl, enemy, true, 30, 70, 60, 50)
 			}
 			break;
@@ -100,8 +113,7 @@ document.onkeydown = function (event) {
 			break;
 		case 70: //F
 			if (IsFlash == false) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(130, 3, 6, 1)
+				flash('plskill-f', 8, 110, 192, 1, 4, 5, 384)
 				HitJudgement(pl, enemy, true, 50, 20, 60, 70)
 			}
 			break;
@@ -168,9 +180,9 @@ document.onkeyup = function (event) {
 	}
 }
 
-function flash(StateName, TikTok, farme, width, height, style) {
+function flash(StateName, TikTok, farme, width, style, skillstart, skillfarme, skillwidth) {
 	IsFlash = true
-	var i = 1
+	var i = 1, j = 0
 	var xxx = pl.plx, yyy = pl.ply
 	ChangePlayerState(StateName)
 	clearInterval(plflash)
@@ -179,19 +191,18 @@ function flash(StateName, TikTok, farme, width, height, style) {
 	if (style == 0) {
 		plflash = setInterval(function () {
 			if (i >= 0) {
-				$('#role-body').css('background-position', (-width * i) + 'px ' + (-width * height) + 'px')
+				$('#role-body').css('background-position', (-width * i) + 'px ')
 				i++
 				if (i == TikTok - 1) {
 					i = -i
 				}
 			} else {
-				$('#role-body').css('background-position', (width * i) + 'px ' + (-width * height) + 'px')
+				$('#role-body').css('background-position', (width * i) + 'px ')
 				i++
 				if (i == 0) {
 					clearInterval(plflash)
 					IsFlash = false
-					// $('#role-body').css('background-image', 'url(static/images/plstand.gif)')
-					$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+					$('#role-body').css('background-position', 0 + 'px ')
 					setTimeout(function () {
 						window.console.log("panding!!!!!!!!!!!!" + IsFlash)
 						if (IsFlash == false) {
@@ -202,8 +213,18 @@ function flash(StateName, TikTok, farme, width, height, style) {
 			}
 		}, farme);
 	} else if (style == 1) {
+		if (i == skillstart) {
+			$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+			j++
+		}
 		plflash = setInterval(function () {
 			i++
+			if ((j > 0 && j < skillfarme) || (i == skillstart)) {
+				$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+				j++
+			} else {
+				$('#skill-body').css('background-position', skillwidth + 'px ')
+			}
 			if (i > TikTok) {
 				clearInterval(plflash)
 				IsFlash = false
@@ -212,11 +233,11 @@ function flash(StateName, TikTok, farme, width, height, style) {
 				setTimeout(function () {
 					if (IsFlash == false) {
 						ChangePlayerState('plstand')
-						$('#role-body').css('background-position', 0 + 'px ' + 0 + 'px')
+						$('#role-body').css('background-position', 0 + 'px ')
 					}
 				}, 50)
 			} else {
-				$('#role-body').css('background-position', (-width * (i - 1)) + 'px ' + (-width * height) + 'px')
+				$('#role-body').css('background-position', (-width * (i - 1)) + 'px ')
 				CheckPlayerHit(StateName, i)
 			}
 		}, farme);
@@ -231,23 +252,35 @@ function ChangePlayerState(StateName) {
 function CheckPlayerHit(StateName, TikTok) {
 	TikTok = TikTok || 1
 	var imgWidth = parseInt($('#role-body').css('width'))
+	var skillimgWidth = parseInt($('#skill-body').css('width'))
 	if (pl.xfx) {
 		for (let index in PlayerOptions) {
 			let data = PlayerOptions[index]
 			if (StateName == data[0].UName) {
 				let target = data[TikTok]
-				if (target.check_x != undefined) { pl.plx += target.check_x }
-				if (target.check_y != undefined) { pl.ply += target.check_y }
-				$('#role-body').css('left', -target.img_x + 'px')
-				$('#role-body').css('top', -target.img_y + 'px')
-				$('#role-hited-judge').css('width', target.hited_x + 'px')
-				$('#role-hited-judge').css('height', target.hited_y + 'px')
-				$('#role-hited-judge').css('left', target.hited_left + 'px')
-				$('#role-hited-judge').css('top', target.hited_top + 'px')
-				$('#role-hit-judge').css('width', target.hit_x || 0 + 'px')
-				$('#role-hit-judge').css('height', target.hit_y || 0 + 'px')
-				$('#role-hit-judge').css('left', target.hit_left || 0 + 'px')
-				$('#role-hit-judge').css('top', target.hit_top || 0 + 'px')
+				if (target.check_y != undefined) {
+					pl.ply += target.check_y
+					$('#role').css('top', pl.ply + "px")
+				}
+				$('#role-body').css({
+					'left': -target.img_x + 'px',
+					'top': -target.img_y + 'px'
+				})
+				$('#role-hited-judge').css({
+					'width': target.hited_x + 'px',
+					'height': target.hited_y + 'px',
+					'top': target.hited_top + 'px'
+				})
+				$('#role-hit-judge').css({
+					'width': target.hit_x || 0 + 'px',
+					'height': target.hit_y || 0 + 'px',
+					'left': target.hit_left || 0 + 'px',
+					'top': target.hit_top || 0 + 'px'
+				})
+				$('#skill-body').css({
+					'left': -target.skill_left + 'px',
+					'top': -target.skill_top + 'px '
+				})
 				break;
 			}
 		}
@@ -256,18 +289,39 @@ function CheckPlayerHit(StateName, TikTok) {
 			let data = PlayerOptions[index]
 			if (StateName == data[0].UName) {
 				let target = data[TikTok]
-				if (target.check_x != undefined) { pl.plx += target.check_x }
-				if (target.check_y != undefined) { pl.ply += target.check_y }
-				$('#role-body').css('left', (target.img_x + target.hited_x - imgWidth) + 'px')
-				$('#role-body').css('top', -target.img_y + 'px')
-				$('#role-hited-judge').css('width', target.hited_x + 'px')
-				$('#role-hited-judge').css('height', target.hited_y + 'px')
-				$('#role-hited-judge').css('left', target.hited_left + 'px')
-				$('#role-hited-judge').css('top', target.hited_top + 'px')
-				$('#role-hit-judge').css('width', target.hit_x || 0 + 'px')
-				$('#role-hit-judge').css('height', target.hit_y || 0 + 'px')
-				$('#role-hit-judge').css('left', ((target.hited_x - target.hit_left - target.hit_x)) || 0 + 'px')
-				$('#role-hit-judge').css('top', target.hit_top || 0 + 'px')
+				// 移动反向图像左边距，保持右边不变
+				var changeX = 0
+				if (TikTok > 1) {
+					changeX = target.hited_x - data[TikTok - 1].hited_x
+				} else if (StateName != 'plmove') {
+					changeX = target.hited_x - 67//站立
+				}
+				pl.plx -= changeX
+				$('#role').css('left', pl.plx + "px")
+
+				if (target.check_y != undefined) {
+					pl.ply += target.check_y
+					$('#role').css('top', pl.ply + "px")
+				}
+				$('#role-body').css({
+					'left': (target.img_x + target.hited_x - imgWidth) + 'px',
+					'top': -target.img_y + 'px'
+				})
+				$('#role-hited-judge').css({
+					'width': target.hited_x + 'px',
+					'height': target.hited_y + 'px',
+					'top': target.hited_top + 'px'
+				})
+				$('#role-hit-judge').css({
+					'width': target.hit_x || 0 + 'px',
+					'height': target.hit_y || 0 + 'px',
+					'left': ((target.hited_x - target.hit_left - target.hit_x)) || 0 + 'px',
+					'top': target.hit_top || 0 + 'px'
+				})
+				$('#skill-body').css({
+					'left': (target.skill_left + target.hited_x - skillimgWidth) + 'px',
+					'top': -target.skill_top + 'px '
+				})
 				break;
 			}
 		}

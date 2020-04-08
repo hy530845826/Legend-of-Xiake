@@ -14,6 +14,7 @@
     </div>
     <div id="role" class="plstand">
       <div id="role-body"></div>
+      <div id="skill-body"></div>
       <div id="role-hit-judge"></div>
       <div id="role-hited-judge"></div>
       <div></div>

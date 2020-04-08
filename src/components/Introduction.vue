@@ -20,12 +20,20 @@
           <span>C</span>
         </li>
         <li>
-          角色打斗：
+          普通攻击：
+          <span>Z</span>
+          <span>X</span>
+        </li>
+        <li>
+          角色技能：
           <span>A</span>
           <span>S</span>
           <span>D</span>
           <span>F</span>
-          <span>G</span>
+          <span>Q</span>
+          <span>W</span>
+          <span>E</span>
+          <span>R</span>
         </li>
       </ul>
       <div

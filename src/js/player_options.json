@@ -7,7 +7,6 @@
         "img_y": 0,
         "hited_x": 67,
         "hited_y": 124,
-        "hited_left": 0,
         "hited_top": 0
     }],
     [{
@@ -18,20 +17,17 @@
         "img_y": 0,
         "hited_x": 70,
         "hited_y": 122,
-        "hited_left": 0,
         "hited_top": 0
     }],
     [{
-        "UName": "plskill1",
+        "UName": "plskill-x",
         "TikTok": 10
     }, {
-        "check_x": 0,
         "check_y": 10,
         "img_x": 64,
         "img_y": 56,
         "hited_x": 68,
         "hited_y": 112,
-        "hited_left": 0,
         "hited_top": 0
     }, {
         "img_x": 64,
@@ -48,7 +44,6 @@
         "img_y": 56,
         "hited_x": 89,
         "hited_y": 99,
-        "hited_left": 0,
         "hited_top": 13,
         "hit_x": 97,
         "hit_y": 58,
@@ -95,16 +90,14 @@
         "hited_y": 94
     }],
     [{
-        "UName": "plskill2",
+        "UName": "plskill-z",
         "TikTok": 6
     }, {
-        "check_x": 0,
         "check_y": 27,
         "img_x": 61,
         "img_y": 59,
         "hited_x": 77,
         "hited_y": 97,
-        "hited_left": 0,
         "hited_top": 0
     }, {
         "img_x": 23,
@@ -143,5 +136,161 @@
         "img_y": 59,
         "hited_x": 78,
         "hited_y": 97
+    }],
+    [{
+        "UName": "plskill-a",
+        "TikTok": 9
+    }, {
+        "check_y": 31,
+        "img_x": 82,
+        "img_y": 77,
+        "hited_x": 67,
+        "hited_y": 93,
+        "hited_top": 0,
+        "skill_left": 82,
+        "skill_top": 77,
+        "skill_width": 250
+    }, {
+        "img_x": 82,
+        "img_y": 77,
+        "hited_x": 67,
+        "hited_y": 93,
+        "skill_left": 82
+    }, {
+        "check_y": 8,
+        "img_x": 51,
+        "img_y": 85,
+        "hited_x": 68,
+        "hited_y": 85,
+        "hit_x": 68,
+        "hit_y": 72,
+        "hit_left": 56,
+        "hit_top": 12,
+        "skill_left": 51,
+        "skill_top": 50
+    }, {
+        "check_y": -14,
+        "img_x": 27,
+        "img_y": 71,
+        "hited_x": 85,
+        "hited_y": 99,
+        "hit_x": 63,
+        "hit_y": 126,
+        "hit_left": 99,
+        "hit_top": -26,
+        "skill_left": 27,
+        "skill_top": 71
+    }, {
+        "img_x": 27,
+        "img_y": 71,
+        "hited_x": 85,
+        "hited_y": 99,
+        "hit_x": 96,
+        "hit_y": 112,
+        "hit_left": 139,
+        "hit_top": -14,
+        "skill_left": -51,
+        "skill_top": 66
+    }, {
+        "img_x": 27,
+        "img_y": 71,
+        "hited_x": 85,
+        "hited_y": 99,
+        "hit_x": 96,
+        "hit_y": 112,
+        "hit_left": 156,
+        "hit_top": -14,
+        "skill_left": -51
+    }, {
+        "img_x": 27,
+        "img_y": 71,
+        "hited_x": 85,
+        "hited_y": 99,
+        "hit_x": 96,
+        "hit_y": 112,
+        "hit_left": 161,
+        "hit_top": -14,
+        "skill_left": -51
+    }, {
+        "img_x": 27,
+        "img_y": 71,
+        "hited_x": 85,
+        "hited_y": 99,
+        "skill_left": -51
+    }, {
+        "img_x": 27,
+        "img_y": 71,
+        "hited_x": 85,
+        "hited_y": 99,
+        "skill_left": -51
+    }],
+    [{
+        "UName": "plskill-f",
+        "TikTok": 8
+    }, {
+        "check_y": 10,
+        "img_x": 63,
+        "img_y": 54,
+        "hited_x": 71,
+        "hited_y": 114,
+        "hited_top": 0,
+        "skill_left": 210,
+        "skill_top": 95,
+        "skill_width": 384
+    }, {
+        "img_x": 63,
+        "img_y": 54,
+        "hited_x": 71,
+        "hited_y": 114,
+        "skill_left": 210
+    }, {
+        "img_x": 63,
+        "img_y": 54,
+        "hited_x": 71,
+        "hited_y": 114,
+        "skill_left": 210
+    }, {
+        "check_y": 43,
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hit_x": 133,
+        "hit_y": 151,
+        "hit_left": 10,
+        "hit_top": -73,
+        "skill_left": 210
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hit_x": 94,
+        "hit_y": 128,
+        "hit_left": 48,
+        "hit_top": -54,
+        "skill_left": 210
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hit_x": 43,
+        "hit_y": 76,
+        "hit_left": 95,
+        "hit_top": -11,
+        "skill_left": 210
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "skill_left": 210
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "skill_left": 210
     }]
 ]

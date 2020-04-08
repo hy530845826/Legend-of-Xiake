@@ -10,6 +10,13 @@
     left: 0;
 }
 
+#skill-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid purple;
+}
+
 #role-hited-judge {
     width: 67px;
     height: 124px;
@@ -40,17 +47,42 @@
     background: url(../images/plmove.gif) no-repeat;
 }
 
-.plskill1 #role-body {
+.plskill-x #role-body {
     width: 192px;
     height: 192px;
-    background: url(../images/普通攻击.png) no-repeat;
+    background: url(../images/skill-x.png) no-repeat;
 }
 
-.plskill2 #role-body {
+.plskill-z #role-body {
     width: 192px;
     height: 192px;
-    background: url(../images/普通攻击2.png) no-repeat;
+    background: url(../images/skill-z.png) no-repeat;
 }
+
+.plskill-a #role-body {
+    width: 192px;
+    height: 190px;
+    background: url(../images/skill-a.png) no-repeat;
+}
+
+.plskill-a #skill-body {
+    width: 250px;
+    height: 190px;
+    background: url(../images/技能A特效.png) 250px no-repeat;
+}
+
+.plskill-f #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../images/技能F.png) no-repeat;
+}
+
+.plskill-f #skill-body {
+    width: 384px;
+    height: 192px;
+    background: url(../images/技能F特效.png) 384px no-repeat;
+}
+
 
 #enemy {
     position: absolute;
