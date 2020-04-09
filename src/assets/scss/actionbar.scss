@@ -1,0 +1,40 @@
+#action-bar {
+    width: 1200px;
+    height: 50px;
+    overflow: hidden;
+    background: rgba(1, 1, 1, 0.8);
+}
+
+#action-bar ul {
+    margin: 0;
+}
+
+#action-bar #action-skill-bar {
+    overflow: hidden;
+    float: left;
+}
+
+#action-bar #action-skill-bar li {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-left: 4px;
+    border: 1px solid #bbb;
+    background-size: 113% 113%;
+    background-position: center;
+}
+
+#action-bar #action-bag-bar {
+    overflow: hidden;
+    float: right;
+}
+
+#action-bar #action-bag-bar li {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 4px;
+    border: 1px solid #bbb;
+    background-size: 113% 113%;
+    background-position: center;
+}

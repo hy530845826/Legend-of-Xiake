@@ -31,7 +31,6 @@ export default {
   position: relative;
 }
 #app #screen {
-  background: #333;
   width: 1200px;
   height: 725px;
 }
