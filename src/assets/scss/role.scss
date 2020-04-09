@@ -83,33 +83,48 @@
     background: url(../images/技能F特效.png) 384px no-repeat;
 }
 
-
 #enemy {
     position: absolute;
-    overflow: hidden;
+    border: 2px solid white;
+}
+
+#enemy-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#enemy-hited-judge {
+    width: 0px;
+    height: 0px;
     border: 1px solid red;
-    left: -130px;
-    top: -130px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#enemy-hit-judge {
+    width: 0px;
+    height: 0px;
+    border: 1px solid yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #enemy-hp {
-    margin: 5px auto 0;
-    width: 50px;
-    height: 3px;
+    height: 5px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    border: 1px solid #bbb;
 }
 
 #enemy-name {
     text-align: center;
-}
-
-#enemy-body.ellstand,
-#enemy-body.ellmove,
-#enemy-body.ellback,
-#enemy-body.ellhited,
-#enemy-body.ellattack1 {
-    width: 0;
-    height: 0;
-    background: url(../images/plstand.gif) no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #npc {

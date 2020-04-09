@@ -1,4 +1,4 @@
-var ell = new CreateEnemy(-130, -130);
+var ell = new CreateEnemy(-200, -200);
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
@@ -7,7 +7,7 @@ EnemyMove(ell)
 window.console.log(ell)
 import enemy_data from './enemy_data.json'
 var EnemyData = enemy_data
-window.console.log(EnemyData)//已经是一个json对象了
+var EnemyOptions
 
 var Player = require("./player")
 var pl = Player.default.pll
@@ -36,29 +36,21 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
 
     this.speed = 0
 
-    this.ellstandx = 0
-    this.ellstandy = 0
-    this.ellmovex = 0
-    this.ellmovey = 0
-    this.ellbackx = 0
-    this.ellbacky = 0
-    this.ellhitedx = 0
-    this.ellhitedy = 0
-    this.ellhitedt = 0
-    this.elldeadx = 0
-    this.elldeady = 0
-    this.elldeadt = 0
-
-    this.ellattack1x = 0
-    this.ellattack1y = 0
-    this.ellattack1t = 0
+    this.ell_width = 0
+    this.ell_height = 0
+    this.img_x = 0
+    this.img_y = 0
+    this.hited_x = 0
+    this.hited_y = 0
+    this.hited_top = 0
 }
 
 function UpdateEnemy(obj, uid) {
     $('#enemy-body').attr('class', 'ellstand')
-    var enemydata = EnemyData[uid]
-    for (var index in obj) {
-        obj[index] = enemydata[index]
+    EnemyOptions = EnemyData[uid]
+    let datamsg = (EnemyOptions[0])[0]
+    for (let index in obj) {
+        obj[index] = datamsg[index]
     }
     if (pl.plx < obj.plx) {
         obj.imgfx = false
@@ -66,12 +58,86 @@ function UpdateEnemy(obj, uid) {
     } else { obj.imgfx = true }
     obj.hited = false
     obj.IsFlash = false
+    $('#enemy').css('width', ell.ell_width)
+    $('#enemy-body').css({ 'width': ell.ell_width + 'px', 'height': ell.ell_height + 'px' })
     $('#enemy-hp .progress-bar').css('width', 100 + '%')
-    window.console.log(obj)
+    $('#enemy-hp').css({ 'width': 2 * ell.hited_x + 'px', 'left': - (0.5 * ell.hited_x) + 'px' })
+
+}
+
+function ChangeEnemyState(StateName) {
+    $('#enemy').attr('class', StateName)
+    CheckEnemyHit(StateName)
+}
+
+function CheckEnemyHit(StateName, TikTok) {
+    TikTok = TikTok || 1
+    var imgWidth = parseInt($('#enemy-body').css('width'))
+    for (let index in EnemyOptions) {
+        let data = EnemyOptions[index]
+        if (StateName == data[0].UName) {
+            let target = data[TikTok]
+            if (target.check_y != undefined) {
+                ell.ply += target.check_y
+                $('#enemy').css('top', ell.ply + "px")
+            }
+            ell.img_x = -target.img_x
+            ell.img_y = -target.img_y
+            ell.hited_x = target.hited_x
+            ell.hited_y = target.hited_y
+            ell.hited_top = target.hited_top
+            ell.hit_x = target.hit_x || 0
+            ell.hit_y = target.hit_y || 0
+            ell.hit_left = target.hit_left || 0
+            ell.hit_top = target.hit_top || 0
+            ell.name_left = parseInt((ell.hited_x - parseInt($('#enemy-name').css('width'))) / 2)
+            if (ell.imgfx == false) {
+                // 移动反向图像左边距，保持右边不变
+                // var changeX = 0
+                // if (TikTok > 1) {
+                //     changeX = target.hited_x - data[TikTok - 1].hited_x
+                // } else if (StateName != 'plmove') {
+                //     changeX = target.hited_x - 1111 //plstand宽度
+                // }
+                // ell.plx -= changeX
+                $('#enemy').css('left', ell.plx + "px")
+                //反向图像重新校正left
+                ell.img_x = (target.img_x + target.hited_x - imgWidth)
+                ell.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
+            }
+            ChangeEnemyCSS()
+            // if (pl.hit_x != 0 && pl.hit_y != 0) {
+            //     HitJudgement(pl, enemy, true)
+            // }
+            break;
+        }
+    }
+}
+function ChangeEnemyCSS() {
+    $('#enemy-body').css({
+        'left': ell.img_x + 'px',
+        'top': ell.img_y + 'px'
+    })
+    $('#enemy-hited-judge').css({
+        'width': ell.hited_x + 'px',
+        'height': ell.hited_y + 'px',
+        'top': ell.hited_top + 'px'
+    })
+    $('#enemy-hit-judge').css({
+        'width': ell.hit_x + 'px',
+        'height': ell.hit_y + 'px',
+        'left': ell.hit_left + 'px',
+        'top': ell.hit_top + 'px'
+    })
+    $('#enemy-name').css({
+        'left': ell.name_left + 'px',
+        'top': (ell.hited_y + 5) + 'px'
+    })
 }
 
 function EnemyMove(obj) {
-    var fx = RandomFX(0, 5); //停止、下左上右、攻击为012345
+    //var fx = RandomFX(0, 5); //停止、下左上右、攻击为012345
+    var fx = 0
     //随机数[m~n]
     function RandomFX(m, n) {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
@@ -79,18 +145,14 @@ function EnemyMove(obj) {
     }
 
     //0.5秒随机更改方向
-    obj.randomfx = setInterval(function () {
-        fx = RandomFX(0, 5)
-    }, 500);
+    // obj.randomfx = setInterval(function () {
+    //     fx = RandomFX(0, 5)
+    // }, 500);
     var tempspeed = obj.speed
 
     obj.randommove = setInterval(function () {
-        $('#enemy-body.ellstand').css({ 'width': obj.ellstandx + 'px', 'height': obj.ellstandy + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'stand.gif)' })
-        $('#enemy-body.ellmove').css({ 'width': obj.ellmovex + 'px', 'height': obj.ellmovey + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'move.gif)' })
-        $('#enemy-body.ellback').css({ 'width': obj.ellbackx + 'px', 'height': obj.ellbacky + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'back.gif)' })
-        $('#enemy-body.ellhited').css({ 'width': obj.ellhitedx + 'px', 'height': obj.ellhitedy + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'hited.gif)' })
-        $('#enemy-body.elldead').css({ 'width': obj.elldeadx + 'px', 'height': obj.elldeady + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'dead.gif)' })
-        $('#enemy-body.ellattack1').css({ 'width': obj.ellattack1x + 'px', 'height': obj.ellattack1y + 'px', 'background-image': 'url(static/images/e' + obj.UID + 'attack1.gif)' })
+        $('#enemy-body').css({ 'width': obj.ell_width + 'px', 'height': obj.ell_height + 'px' })
+        $('#enemy.ellstand #enemy-body').css({ 'background-image': 'url(static/images/e' + obj.UID + '-stand.gif)' })
 
         obj.speed = tempspeed
 
@@ -107,7 +169,7 @@ function EnemyMove(obj) {
             } else if (obj.HP <= 0 && obj.hited == false) {
                 $('#enemy-body').attr('class', 'elldead')
             } else if (fx == 0) {
-                $('#enemy-body').attr('class', 'ellstand')
+                ChangeEnemyState('ellstand')
                 obj.speed = 0
             } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
                 $('#enemy-body').attr('class', 'ellmove')
@@ -137,12 +199,10 @@ function EnemyMove(obj) {
                 fx = RandomFX(0, 5);
             }
         }
-
         $('#enemy').css('top', obj.ply + "px")
         $('#enemy').css('left', obj.plx + "px")
         $('#enemy').css('z-index', ell.ply)
-    }, 50);
-    window.console.log('mmmmmmmmmmmmmmm')
+    }, 1000);
 }
 
 export default {

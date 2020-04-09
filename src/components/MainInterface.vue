@@ -24,8 +24,10 @@
       <div id="npc-body" @click="RefuseMission"></div>
       <div>{{el_data}}</div>
     </div>
-    <div id="enemy">
-      <div id="enemy-body" class="ellstand"></div>
+    <div id="enemy" class="ellstand">
+      <div id="enemy-body"></div>
+      <div id="enemy-hit-judge"></div>
+      <div id="enemy-hited-judge"></div>
       <div id="enemy-hp" class="progress">
         <div
           class="progress-bar bg-danger"
