@@ -253,7 +253,7 @@ function CheckPlayerHit(StateName, TikTok) {
 	TikTok = TikTok || 1
 	var imgWidth = parseInt($('#role-body').css('width'))
 	var skillimgWidth = parseInt($('#skill-body').css('width'))
-	if (pl.xfx) {
+	if (pl.imgfx) {
 		for (let index in PlayerOptions) {
 			let data = PlayerOptions[index]
 			if (StateName == data[0].UName) {

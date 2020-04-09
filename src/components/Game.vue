@@ -154,27 +154,95 @@
             </div>
           </div>
           <div class="SkillBox">
-            <div class="RoleBoxL">
+            <div class="SkillCheckBox" id="SkillCheckBox">
               <ul>
+                <li class="checked" @click="ChangeSkillPage($event)"></li>
+                <li @click="ChangeSkillPage($event)"></li>
+              </ul>
+            </div>
+            <div class="Skill-Content">
+              <ul class="Skill-page0">
                 <li>
-                  <span class="Skill-Icon"></span>
-                  <div class="Skill-Introduction">回手掏(A):</div>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(A)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">二刀流·鹰波：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
                 </li>
                 <li>
-                  <span class="Skill-Icon"></span>
-                  <div class="Skill-Introduction">回手掏(S):</div>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(S)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">一刀流·居合·狮子歌歌：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
                 </li>
                 <li>
-                  <span class="Skill-Icon"></span>
-                  <div class="Skill-Introduction">回手掏(D):大量文字介绍大量文字介绍大量文字介绍大量文字介绍大量文字介绍大量文字介绍大量文字介介介</div>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(D)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">青龙吟·流水：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
                 </li>
                 <li>
-                  <span class="Skill-Icon"></span>
-                  <div class="Skill-Introduction">回手掏(F):</div>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(F)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">一刀流·鬼斩：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="Skill-page1 hidden">
+                <li>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(Q)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">阿修罗·壹雾银：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
                 </li>
                 <li>
-                  <span class="Skill-Icon"></span>
-                  <div class="Skill-Introduction">回手掏(A):</div>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(W)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">三刀流·百八烦恼风</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(E)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">奥义·三千世界：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="Skill-L">
+                    <span class="Skill-Icon"></span>
+                    <div class="Skill-Key">(R)</div>
+                  </div>
+                  <div class="Skill-R">
+                    <div class="Skill-Name">一大·三千·大千世界：</div>
+                    <div class="Skill-Introduction">z多Stand·The World</div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -429,6 +497,16 @@ export default {
           "url(static/images/skill-" + i + ".png)"
         );
       }
+    },
+    ChangeSkillPage: function(e) {
+      var target = e.currentTarget;
+      var nowIndex = $(target).index();
+      $(target)
+        .siblings()
+        .removeClass("checked");
+      $(target).addClass("checked");
+      $(".Skill-Content ul").addClass("hidden");
+      $(".Skill-Content ul:eq(" + nowIndex + ")").removeClass("hidden");
     }
   },
   mounted() {
