@@ -34,7 +34,7 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.AGI = agi
     this.INT = intt
 
-    this.speed = 10
+    this.speed = 0
 
     this.ellstandx = 0
     this.ellstandy = 0

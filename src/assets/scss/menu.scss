@@ -115,7 +115,7 @@
 	height: 15px;
 	position: absolute;
 	right: 15px;
-	bottom: 0;
+	bottom: 2px;
 }
 
 #Kdiv .SkillBox #SkillCheckBox ul {
@@ -126,7 +126,7 @@
 #Kdiv .SkillBox #SkillCheckBox li {
 	width: 10px;
 	height: 10px;
-	background: #888;
+	background: #666;
 	border-radius: 50%;
 	float: left;
 	margin-left: 12px;
@@ -134,7 +134,7 @@
 }
 
 #Kdiv .SkillBox #SkillCheckBox .checked {
-	background: #bbb;
+	background: #ccc;
 }
 
 #Kdiv .SkillBox .Skill-Content ul.hidden {

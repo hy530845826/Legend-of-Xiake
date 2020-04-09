@@ -1,15 +1,13 @@
-function HitJudgement(obj, obj2, objFlag, TopSpacing, JudegeHeight, LeftSpacing, JudgeWidth) {
+function HitJudgement(obj, obj2, objFlag) {
     var t1, l1, r1, b1
     var t2, l2, r2, b2
     var random_damage
 
     if (objFlag) {
-        //左上角坐标+判定的长宽
-        t1 = obj.ply + TopSpacing
-        b1 = t1 + JudegeHeight
-        //根据player方向定位
-        obj.xfx ? l1 = obj.plx + LeftSpacing : l1 = obj.plx + 130 - LeftSpacing - JudgeWidth
-        r1 = l1 + JudgeWidth
+        t1 = obj.ply + obj.hit_top
+        b1 = t1 + obj.hit_y
+        l1 = obj.plx + obj.hit_left
+        r1 = l1 + obj.hit_x
 
         t2 = obj2.ply;
         l2 = obj2.plx;

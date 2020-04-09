@@ -17,7 +17,7 @@
       <div id="skill-body"></div>
       <div id="role-hit-judge"></div>
       <div id="role-hited-judge"></div>
-      <div>{{st.xfx}}</div>
+      <div>{{st.realfx}}</div>
       <div>{{st.imgfx}}</div>
     </div>
     <div id="npc">

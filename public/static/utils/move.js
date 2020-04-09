@@ -55,7 +55,7 @@ function Player(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, st
 
 	this.speed = 10
 	this.xcd = 0
-	this.xfx = 0 //平X方向：右0左1
+	this.realfx = 0 //平X方向：右0左1
 	this.ccd = 0
 
 }
