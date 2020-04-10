@@ -7,7 +7,8 @@
         "img_y": 0,
         "hited_x": 67,
         "hited_y": 124,
-        "hited_top": 0
+        "hited_top": 0,
+        "hited_left": 0
     }],
     [{
         "UName": "plmove",
@@ -17,7 +18,8 @@
         "img_y": 0,
         "hited_x": 70,
         "hited_y": 122,
-        "hited_top": 0
+        "hited_top": 0,
+        "hited_left": 0
     }],
     [{
         "UName": "plskill-x",
@@ -28,7 +30,8 @@
         "img_y": 56,
         "hited_x": 68,
         "hited_y": 112,
-        "hited_top": 0
+        "hited_top": 0,
+        "hited_left": 0
     }, {
         "img_x": 64,
         "img_y": 56,
@@ -98,7 +101,8 @@
         "img_y": 59,
         "hited_x": 77,
         "hited_y": 97,
-        "hited_top": 0
+        "hited_top": 0,
+        "hited_left": 0
     }, {
         "img_x": 23,
         "img_y": 59,
@@ -147,6 +151,7 @@
         "hited_x": 67,
         "hited_y": 93,
         "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 82,
         "skill_top": 77,
         "skill_width": 250
@@ -234,6 +239,7 @@
         "hited_x": 71,
         "hited_y": 114,
         "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 210,
         "skill_top": 95,
         "skill_width": 384

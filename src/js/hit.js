@@ -14,8 +14,8 @@ function HitJudgement(obj, obj2, objFlag) {
         r2 = obj2.plx + obj.hited_x;
         b2 = obj2.ply + obj.hited_y;
 
-        window.console.log("t1: " + t1 + " l1: " + l1 + " r1: " + r1 + " b1: " + b1)
-        window.console.log("t2: " + t2 + " l2: " + l2 + " r2: " + r2 + " b2: " + b2)
+        // window.console.log("t1: " + t1 + " l1: " + l1 + " r1: " + r1 + " b1: " + b1)
+        // window.console.log("t2: " + t2 + " l2: " + l2 + " r2: " + r2 + " b2: " + b2)
         if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
         else if (obj2.HP > 0) {
             window.console.log('击中')

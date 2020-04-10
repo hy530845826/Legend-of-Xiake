@@ -3,7 +3,7 @@
         [{
             "UID": 0,
             "name": "稻草人",
-            "plx": 400,
+            "plx": 100,
             "ply": 400,
             "LV": 1,
             "HPMAX": 13,
@@ -18,23 +18,85 @@
             "AGI": 1,
             "INT": 1,
             "speed": 10,
-            "ell_width": 222,
-            "ell_height": 189,
-            "img_x": 79,
-            "img_y": 47,
-            "hited_x": 53,
-            "hited_y": 108,
-            "hited_top": 0
+            "div_width": 222,
+            "div_height": 189,
+            "stand_x": 57,
+            "stand_y": 119
         }],
         [{
             "UName": "ellstand",
-            "TikTok": 1
+            "div_width": 222,
+            "div_height": 189,
+            "TikTok_sum": 1
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 53,
+            "hited_y": 108,
+            "hited_top": 0,
+            "hited_left": 0
+        }],
+        [{
+            "UName": "ellmove",
+            "div_width": 222,
+            "div_height": 189,
+            "TikTok_sum": 1
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 53,
+            "hited_y": 108,
+            "hited_top": 0,
+            "hited_left": 0
+        }],
+        [{
+            "UName": "ellattack1",
+            "div_width": 1332,
+            "div_height": 189,
+            "TikTok_sum": 6,
+            "farme": 1000
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 46,
+            "hited_y": 99,
+            "hited_top": 10,
+            "hited_left": 5
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 42,
+            "hited_y": 77,
+            "hited_top": 0,
+            "hited_left": 9
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 38,
+            "hited_y": 77,
+            "hited_left": 16
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 38,
+            "hited_y": 77,
+            "hited_left": 16
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 54,
+            "hited_y": 68,
+            "hited_left": 16,
+            "hit_x": 60,
+            "hit_y": 68,
+            "hit_left": 69,
+            "hit_top": 0
         }, {
             "img_x": 79,
             "img_y": 47,
-            "hited_x": 53,
-            "hited_y": 108,
-            "hited_top": 0
+            "hited_x": 42,
+            "hited_y": 77,
+            "hited_left": 16
         }]
     ],
     []

@@ -36,13 +36,10 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
 
     this.speed = 0
 
-    this.ell_width = 0
-    this.ell_height = 0
-    this.img_x = 0
-    this.img_y = 0
-    this.hited_x = 0
-    this.hited_y = 0
-    this.hited_top = 0
+    this.div_width = 0
+    this.div_height = 0
+    this.stand_x = 53
+    this.stand_y = 167
 }
 
 function UpdateEnemy(obj, uid) {
@@ -58,11 +55,14 @@ function UpdateEnemy(obj, uid) {
     } else { obj.imgfx = true }
     obj.hited = false
     obj.IsFlash = false
-    $('#enemy').css('width', ell.ell_width)
-    $('#enemy-body').css({ 'width': ell.ell_width + 'px', 'height': ell.ell_height + 'px' })
+    $('#enemy').css('width', ell.div_width)//为name提供宽度
+    $('#enemy-body').css({ 'width': ell.div_width + 'px', 'height': ell.div_height + 'px' })
     $('#enemy-hp .progress-bar').css('width', 100 + '%')
-    $('#enemy-hp').css({ 'width': 2 * ell.hited_x + 'px', 'left': - (0.5 * ell.hited_x) + 'px' })
-
+    $('#enemy-hp').css({ 'width': 2 * ell.stand_x + 'px', 'left': - (0.5 * ell.stand_x) + 'px' })
+    setTimeout(function () {//获取namewidth有延迟
+        var name_left = parseInt((ell.stand_x - parseInt($('#enemy-name').css('width'))) / 2)
+        $('#enemy-name').css({ 'left': name_left + 'px', 'top': (ell.stand_y + 5) + 'px' })
+    }, 50)
 }
 
 function ChangeEnemyState(StateName) {
@@ -85,25 +85,32 @@ function CheckEnemyHit(StateName, TikTok) {
             ell.img_y = -target.img_y
             ell.hited_x = target.hited_x
             ell.hited_y = target.hited_y
+            ell.hited_left = target.hited_left
             ell.hited_top = target.hited_top
             ell.hit_x = target.hit_x || 0
             ell.hit_y = target.hit_y || 0
             ell.hit_left = target.hit_left || 0
             ell.hit_top = target.hit_top || 0
-            ell.name_left = parseInt((ell.hited_x - parseInt($('#enemy-name').css('width'))) / 2)
+            ell.div_width = data[0].div_width
+            ell.div_height = data[0].div_height
+            ell.TikTok_sum = data[0].TikTok_sum
+            ell.farme = data[0].farme
             if (ell.imgfx == false) {
                 // 移动反向图像左边距，保持右边不变
-                // var changeX = 0
-                // if (TikTok > 1) {
-                //     changeX = target.hited_x - data[TikTok - 1].hited_x
-                // } else if (StateName != 'plmove') {
-                //     changeX = target.hited_x - 1111 //plstand宽度
-                // }
-                // ell.plx -= changeX
+                var changeX = 0
+                if (TikTok > 1) {
+                    changeX = target.hited_x - data[TikTok - 1].hited_x
+                } else if (StateName != 'ellmove') {
+                    changeX = target.hited_x - ell.stand_x //ellstand宽度
+                }
+                ell.plx -= changeX
                 $('#enemy').css('left', ell.plx + "px")
                 //反向图像重新校正left
                 ell.img_x = (target.img_x + target.hited_x - imgWidth)
+                ell.hited_left = - target.hited_left
                 ell.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
+                // window.console.log(pl.hit_left)
+                // window.console.log(target.hited_x+"`"+target.hit_left +"--"+target.hit_x)
             }
             ChangeEnemyCSS()
             // if (pl.hit_x != 0 && pl.hit_y != 0) {
@@ -121,6 +128,7 @@ function ChangeEnemyCSS() {
     $('#enemy-hited-judge').css({
         'width': ell.hited_x + 'px',
         'height': ell.hited_y + 'px',
+        'left': ell.hited_left + 'px',
         'top': ell.hited_top + 'px'
     })
     $('#enemy-hit-judge').css({
@@ -129,15 +137,14 @@ function ChangeEnemyCSS() {
         'left': ell.hit_left + 'px',
         'top': ell.hit_top + 'px'
     })
-    $('#enemy-name').css({
-        'left': ell.name_left + 'px',
-        'top': (ell.hited_y + 5) + 'px'
-    })
+
+    $('#enemy.ellstand #enemy-body').css({ 'background-image': 'url(static/images/e' + ell.UID + '-stand.gif)' })
+    $('#enemy.ellattack1 #enemy-body').css({ 'background-image': 'url(static/images/e' + ell.UID + '-attack1.png)' })
 }
 
 function EnemyMove(obj) {
     //var fx = RandomFX(0, 5); //停止、下左上右、攻击为012345
-    var fx = 0
+    var fx = 5
     //随机数[m~n]
     function RandomFX(m, n) {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
@@ -151,8 +158,9 @@ function EnemyMove(obj) {
     var tempspeed = obj.speed
 
     obj.randommove = setInterval(function () {
-        $('#enemy-body').css({ 'width': obj.ell_width + 'px', 'height': obj.ell_height + 'px' })
-        $('#enemy.ellstand #enemy-body').css({ 'background-image': 'url(static/images/e' + obj.UID + '-stand.gif)' })
+        // $('#enemy.ellstand #enemy-body').css({ 'background-image': 'url(static/images/e' + obj.UID + '-stand.gif)' })
+        // $('#enemy.ellattack1 #enemy-body').css({ 'background-image': 'url(static/images/e' + obj.UID + '-attack1.png)' })
+
 
         obj.speed = tempspeed
 
@@ -184,17 +192,17 @@ function EnemyMove(obj) {
                 obj.realfx ? $('#enemy-body').attr('class', 'ellback') : $('#enemy-body').attr('class', 'ellmove')
                 obj.plx += obj.speed
             } else if (fx == 5) {
-                $('#enemy-body').attr('class', 'ellattack1')
+                enemyflash('ellattack1')
                 obj.speed = 0
-                obj.IsFlash = true
-                var tempwidth = obj.ellattack1x - obj.ellstandx
-                if (obj.realfx == true) { //位置补正
-                    obj.plx -= tempwidth
-                    setTimeout(() => { obj.plx += tempwidth }, obj.ellattack1t);
-                }
+                // obj.IsFlash = true
+                // var tempwidth = obj.ellattack1x - obj.ellstandx
+                // if (obj.realfx == true) { //位置补正
+                //     obj.plx -= tempwidth
+                //     setTimeout(() => { obj.plx += tempwidth }, obj.ellattack1t);
+                // }
 
-                HitJudgement(obj, pl, false)
-                setTimeout(() => { obj.IsFlash = false }, obj.ellattack1t);
+                window.console.log(HitJudgement(obj, pl, false))
+                // setTimeout(() => { obj.IsFlash = false }, obj.ellattack1t);
             } else if (fx != 5) {
                 fx = RandomFX(0, 5);
             }
@@ -202,7 +210,45 @@ function EnemyMove(obj) {
         $('#enemy').css('top', obj.ply + "px")
         $('#enemy').css('left', obj.plx + "px")
         $('#enemy').css('z-index', ell.ply)
-    }, 1000);
+    }, 2000);
+}
+
+function enemyflash(StateName, skillstart, skillfarme, skillwidth) {
+    ell.IsFlash = true
+    var i = 1, j = 0
+    var xxx = ell.plx, yyy = ell.ply
+    ChangeEnemyState(StateName)
+    let TikTok_sum = ell.TikTok_sum
+    let div_width = ell.div_width / TikTok_sum
+    var ellflash
+    if (i == skillstart) {
+        $('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+        j++
+    }
+    ellflash = setInterval(function () {
+        i++
+        if ((j > 0 && j < skillfarme) || (i == skillstart)) {
+            $('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+            j++
+        } else {
+            $('#skill-body').css('background-position', skillwidth + 'px ')
+        }
+        if (i > TikTok_sum) {
+            clearInterval(ellflash)
+            ell.IsFlash = false
+            ell.plx = xxx
+            ell.ply = yyy
+            setTimeout(function () {
+                if (ell.IsFlash == false) {
+                    ChangeEnemyState('ellstand')
+                    $('#enemy-body').css('background-position', 0 + 'px ')
+                }
+            }, 50)
+        } else {
+            $('#enemy-body').css('background-position', (-div_width * (i - 1)) + 'px ')
+            CheckEnemyHit(StateName, i)
+        }
+    }, ell.farme);
 }
 
 export default {

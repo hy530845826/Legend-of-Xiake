@@ -233,6 +233,7 @@ function CheckPlayerHit(StateName, TikTok) {
 			pl.img_y = -target.img_y
 			pl.hited_x = target.hited_x
 			pl.hited_y = target.hited_y
+			pl.hited_left = target.hited_left
 			pl.hited_top = target.hited_top
 			pl.hit_x = target.hit_x || 0
 			pl.hit_y = target.hit_y || 0
@@ -253,6 +254,8 @@ function CheckPlayerHit(StateName, TikTok) {
 				//反向图像重新校正left
 				pl.img_x = (target.img_x + target.hited_x - imgWidth)
 				pl.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
+				window.console.log(pl.hit_left)
+				window.console.log(target.hited_x+"		"+target.hit_left +"			"+target.hit_x)
 				pl.skill_left = (target.skill_left + target.hited_x - skillimgWidth)
 			}
 			ChangePlayerCSS()
@@ -272,6 +275,7 @@ function ChangePlayerCSS() {
 	$('#role-hited-judge').css({
 		'width': pl.hited_x + 'px',
 		'height': pl.hited_y + 'px',
+		'left': pl.hited_left + 'px',
 		'top': pl.hited_top + 'px'
 	})
 	$('#role-hit-judge').css({
