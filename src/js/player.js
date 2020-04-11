@@ -37,6 +37,7 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.imgfx = true
 	this.ccd = 0
 	this.loading = false //是否加载地图
+	this.IsFlash = false
 }
 
 function LevelUP() {

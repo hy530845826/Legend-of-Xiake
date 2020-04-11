@@ -24,7 +24,7 @@
             "stand_y": 119
         }],
         [{
-            "UName": "ellstand",
+            "UName": "stand",
             "div_width": 222,
             "div_height": 189,
             "TikTok_sum": 1
@@ -33,11 +33,11 @@
             "img_y": 48,
             "hited_x": 53,
             "hited_y": 108,
-            "hited_top": 0,
-            "hited_left": 0
+            "hited_left": 4,
+            "hited_top": 0
         }],
         [{
-            "UName": "ellmove",
+            "UName": "move",
             "div_width": 222,
             "div_height": 189,
             "TikTok_sum": 1
@@ -46,57 +46,140 @@
             "img_y": 48,
             "hited_x": 53,
             "hited_y": 108,
-            "hited_top": 0,
-            "hited_left": 0
+            "hited_left": 4,
+            "hited_top": 0
         }],
         [{
-            "UName": "ellattack1",
+            "UName": "attack1",
             "div_width": 1332,
             "div_height": 189,
             "TikTok_sum": 6,
-            "farme": 1000
+            "farme": 100
         }, {
             "img_x": 79,
             "img_y": 48,
             "hited_x": 46,
             "hited_y": 99,
-            "hited_top": 10,
-            "hited_left": 5
+            "hited_left": 5,
+            "hited_top": 10
         }, {
             "img_x": 79,
-            "img_y": 48,
             "hited_x": 42,
             "hited_y": 77,
-            "hited_top": 0,
-            "hited_left": 9
+            "hited_left": 9,
+            "hited_top": 0
         }, {
             "img_x": 79,
-            "img_y": 48,
             "hited_x": 38,
             "hited_y": 77,
-            "hited_left": 16
+            "hited_left": 16,
+            "hited_top": 0
         }, {
             "img_x": 79,
-            "img_y": 48,
             "hited_x": 38,
             "hited_y": 77,
-            "hited_left": 16
+            "hited_left": 16,
+            "hited_top": 0
         }, {
             "img_x": 79,
-            "img_y": 48,
             "hited_x": 54,
             "hited_y": 68,
             "hited_left": 16,
+            "hited_top": 0,
             "hit_x": 60,
             "hit_y": 68,
             "hit_left": 69,
             "hit_top": 0
         }, {
             "img_x": 79,
-            "img_y": 47,
             "hited_x": 42,
             "hited_y": 77,
-            "hited_left": 16
+            "hited_left": 16,
+            "hited_top": 0
+        }],
+        [{
+            "UName": "attack2",
+            "div_width": 2220,
+            "div_height": 189,
+            "TikTok_sum": 10,
+            "farme": 100
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 48,
+            "hited_y": 85,
+            "hited_left": 11,
+            "hited_top": 32
+        }, {
+            "img_x": 79,
+            "hited_x": 48,
+            "hited_y": 67,
+            "hited_left": 20,
+            "hited_top": 6
+        }, {
+            "img_x": 79,
+            "hited_x": 44,
+            "hited_y": 63,
+            "hited_left": 20,
+            "hited_top": 0
+        }, {
+            "img_x": 79,
+            "hited_x": 0,
+            "hited_y": 0,
+            "hited_left": 0,
+            "hited_top": 0,
+            "hit_x": 123,
+            "hit_y": 114,
+            "hit_left": 8,
+            "hit_top": 0
+        }, {
+            "img_x": 79,
+            "hited_x": 0,
+            "hited_y": 0,
+            "hited_left": 0,
+            "hited_top": 0,
+            "hit_x": 123,
+            "hit_y": 114,
+            "hit_left": 8,
+            "hit_top": 0
+        }, {
+            "img_x": 79,
+            "hited_x": 0,
+            "hited_y": 0,
+            "hited_left": 0,
+            "hited_top": 0,
+            "hit_x": 109,
+            "hit_y": 114,
+            "hit_left": 8,
+            "hit_top": 0
+        }, {
+            "img_x": 79,
+            "hited_x": 0,
+            "hited_y": 0,
+            "hited_left": 0,
+            "hited_top": 0,
+            "hit_x": 109,
+            "hit_y": 114,
+            "hit_left": 8,
+            "hit_top": 0
+        }, {
+            "img_x": 79,
+            "hited_x": 43,
+            "hited_y": 74,
+            "hited_left": 16,
+            "hited_top": -11
+        }, {
+            "img_x": 79,
+            "hited_x": 40,
+            "hited_y": 74,
+            "hited_left": 8,
+            "hited_top": 9
+        }, {
+            "img_x": 79,
+            "hited_x": 40,
+            "hited_y": 74,
+            "hited_left": 8,
+            "hited_top": 17
         }]
     ],
     []

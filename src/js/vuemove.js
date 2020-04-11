@@ -3,7 +3,6 @@ var a = false
 var s = false
 var d = false
 var IsMove = 0
-var IsFlash = false
 var Player = require("./player")
 var pl = Player.default.pll
 var Enemy = require("./enemy")
@@ -24,8 +23,8 @@ document.onkeydown = function (event) {
 			d = true;
 			IsMove += 1;
 			pl.realfx = true;
-			if (IsMove == 1 && !IsFlash) {
-				ChangePlayerState('plmove')
+			if (IsMove == 1 && !pl.IsFlash) {
+				ChangePlayerState(pl, 'plmove')
 				if (pl.realfx != pl.imgfx) {
 					pl.imgfx = true;
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
@@ -38,8 +37,8 @@ document.onkeydown = function (event) {
 			a = true;
 			IsMove += 1;
 			pl.realfx = false;
-			if (IsMove == 1 && !IsFlash) {
-				ChangePlayerState('plmove')
+			if (IsMove == 1 && !pl.IsFlash) {
+				ChangePlayerState(pl, 'plmove')
 				if (pl.realfx != pl.imgfx) {
 					pl.imgfx = false;
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
@@ -51,61 +50,61 @@ document.onkeydown = function (event) {
 		case 38: //↑
 			w = true;
 			IsMove += 1;
-			if (IsMove == 1 && !IsFlash) {
-				ChangePlayerState('plmove')
+			if (IsMove == 1 && !pl.IsFlash) {
+				ChangePlayerState(pl, 'plmove')
 			}
 			break;
 		case 40: //↓
 			s = true;
 			IsMove += 1;
-			if (IsMove == 1 && !IsFlash) {
-				ChangePlayerState('plmove')
+			if (IsMove == 1 && !pl.IsFlash) {
+				ChangePlayerState(pl, 'plmove')
 			}
 			break;
 		case 67: //C
 			ChangeMap()
 			break;
 		case 88: //X
-			if (IsFlash == false) {
-				flash('plskill-x', 10, 80, 192, 1)
+			if (pl.IsFlash == false) {
+				flash(pl, 'plskill-x', 192)
 			}
 			break;
 		case 90: //Z
-			if (IsFlash == false) {
-				flash('plskill-z', 6, 120, 192, 1)
+			if (pl.IsFlash == false) {
+				flash(pl, 'plskill-z', 192)
 			}
 			break;
 		case 65: //A
-			if (IsFlash == false) {
-				flash('plskill-a', 9, 80, 192, 1, 1, 9, 250)
+			if (pl.IsFlash == false) {
+				flash(pl, 'plskill-a', 192, 1, 9, 250)
 			}
 			break;
 		case 83: //S
-			if (IsFlash == false) {
-				flash('plskill-z', 6, 120, 192, 1)
+			if (pl.IsFlash == false) {
+				flash(pl, 'plskill-z', 192)
 			}
 			break;
 		case 68: //D
-			if (IsFlash == false) {
+			if (pl.IsFlash == false) {
 				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(130, 2, 6, 0)
+				flash(pl, 130, 2, 6, 0)
 			}
 			break;
 		case 70: //F
-			if (IsFlash == false) {
-				flash('plskill-f', 8, 110, 192, 1, 4, 5, 384)
+			if (pl.IsFlash == false) {
+				flash(pl, 'plskill-f', 192, 4, 5, 384)
 			}
 			break;
 	}
 }
 setInterval(function () {
-	if (s && !IsFlash && pl.ply < 540) {
+	if (s && !pl.IsFlash && pl.ply < 540) {
 		pl.ply += pl.speed;
-	} else if (w && !IsFlash && pl.ply > 380) {
+	} else if (w && !pl.IsFlash && pl.ply > 380) {
 		pl.ply -= pl.speed;
-	} else if (a && !IsFlash && pl.plx > 0) {
+	} else if (a && !pl.IsFlash && pl.plx > 0) {
 		pl.plx -= pl.speed;
-	} else if (d && !IsFlash && pl.plx < 1070) {
+	} else if (d && !pl.IsFlash && pl.plx < 1070) {
 		pl.plx += pl.speed;
 	}
 	$('#role').css('top', pl.ply + "px")
@@ -119,104 +118,81 @@ document.onkeyup = function (event) {
 		case 39:
 			d = false;
 			IsMove = 0;
-			if (IsMove == 0 && IsFlash == false) {
-				ChangePlayerState('plstand')
+			if (IsMove == 0 && pl.IsFlash == false) {
+				ChangePlayerState(pl, 'plstand')
 			}
 			break; //→
 		case 37:
 			a = false;
 			IsMove = 0;
-			if (IsMove == 0 && IsFlash == false) {
-				ChangePlayerState('plstand')
+			if (IsMove == 0 && pl.IsFlash == false) {
+				ChangePlayerState(pl, 'plstand')
 			}
 			break; //←
 		case 38:
 			w = false;
 			IsMove = 0;
-			if (IsMove == 0 && IsFlash == false) {
-				ChangePlayerState('plstand')
+			if (IsMove == 0 && pl.IsFlash == false) {
+				ChangePlayerState(pl, 'plstand')
 			}
 			break; //↑
 		case 40:
 			s = false;
 			IsMove = 0;
-			if (IsMove == 0 && IsFlash == false) {
-				ChangePlayerState('plstand')
+			if (IsMove == 0 && pl.IsFlash == false) {
+				ChangePlayerState(pl, 'plstand')
 			}
 			break; //↓
 	}
 }
 
-function flash(StateName, TikTok, farme, width, style, skillstart, skillfarme, skillwidth) {
-	IsFlash = true
+function flash(obj, StateName, width, skillstart, skillfarme, skillwidth) {
+	obj.IsFlash = true
 	var i = 1, j = 0
 	var xxx = pl.plx, yyy = pl.ply
-	ChangePlayerState(StateName)
+	ChangePlayerState(obj, StateName)
 	clearInterval(plflash)
+	let TikTok_sum = obj.TikTok_sum
+	// let div_width = obj.div_width / TikTok_sum
 	var plflash
-	//style 0顺序逆序 1顺序
-	if (style == 0) {
-		plflash = setInterval(function () {
-			if (i >= 0) {
-				$('#role-body').css('background-position', (-width * i) + 'px ')
-				i++
-				if (i == TikTok - 1) {
-					i = -i
-				}
-			} else {
-				$('#role-body').css('background-position', (width * i) + 'px ')
-				i++
-				if (i == 0) {
-					clearInterval(plflash)
-					IsFlash = false
-					$('#role-body').css('background-position', 0 + 'px ')
-					setTimeout(function () {
-						window.console.log("panding!!!!!!!!!!!!" + IsFlash)
-						if (IsFlash == false) {
-							ChangePlayerState('plstand')
-						}
-					}, 500)
-				}
-			}
-		}, farme);
-	} else if (style == 1) {
-		if (i == skillstart) {
+
+	if (i == skillstart) {
+		$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+		j++
+	}
+	plflash = setInterval(function () {
+		i++
+		if ((j > 0 && j < skillfarme) || (i == skillstart)) {
 			$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
 			j++
+		} else {
+			$('#skill-body').css('background-position', skillwidth + 'px ')
 		}
-		plflash = setInterval(function () {
-			i++
-			if ((j > 0 && j < skillfarme) || (i == skillstart)) {
-				$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
-				j++
-			} else {
-				$('#skill-body').css('background-position', skillwidth + 'px ')
-			}
-			if (i > TikTok) {
-				clearInterval(plflash)
-				IsFlash = false
-				pl.plx = xxx
-				pl.ply = yyy
-				setTimeout(function () {
-					if (IsFlash == false) {
-						ChangePlayerState('plstand')
-						$('#role-body').css('background-position', 0 + 'px ')
-					}
-				}, 50)
-			} else {
-				$('#role-body').css('background-position', (-width * (i - 1)) + 'px ')
-				CheckPlayerHit(StateName, i)
-			}
-		}, farme);
-	}
+		if (i > TikTok_sum) {
+			clearInterval(plflash)
+			obj.IsFlash = false
+			pl.plx = xxx
+			pl.ply = yyy
+			setTimeout(function () {
+				if (obj.IsFlash == false) {
+					ChangePlayerState(obj, 'plstand')
+					$('#role-body').css('background-position', 0 + 'px ')
+				}
+			}, 50)
+		} else {
+			$('#role-body').css('background-position', (-width * (i - 1)) + 'px ')
+			CheckPlayerHit(obj, StateName, i)
+		}
+	}, obj.farme);
+
 }
 
-function ChangePlayerState(StateName) {
+function ChangePlayerState(obj, StateName) {
 	$('#role').attr('class', StateName)
-	CheckPlayerHit(StateName)
+	CheckPlayerHit(obj, StateName)
 }
 
-function CheckPlayerHit(StateName, TikTok) {
+function CheckPlayerHit(obj, StateName, TikTok) {
 	TikTok = TikTok || 1
 	var imgWidth = parseInt($('#role-body').css('width'))
 	var skillimgWidth = parseInt($('#skill-body').css('width'))
@@ -226,22 +202,24 @@ function CheckPlayerHit(StateName, TikTok) {
 		if (StateName == data[0].UName) {
 			let target = data[TikTok]
 			if (target.check_y != undefined) {
-				pl.ply += target.check_y
-				$('#role').css('top', pl.ply + "px")
+				obj.ply += target.check_y
+				$('#role').css('top', obj.ply + "px")
 			}
-			pl.img_x = -target.img_x
-			pl.img_y = -target.img_y
-			pl.hited_x = target.hited_x
-			pl.hited_y = target.hited_y
-			pl.hited_left = target.hited_left
-			pl.hited_top = target.hited_top
-			pl.hit_x = target.hit_x || 0
-			pl.hit_y = target.hit_y || 0
-			pl.hit_left = target.hit_left || 0
-			pl.hit_top = target.hit_top || 0
-			pl.skill_left = -target.skill_left
-			pl.skill_top = -target.skill_top
-			if (pl.imgfx == false) {
+			obj.img_x = -target.img_x
+			obj.img_y = -target.img_y
+			obj.hited_x = target.hited_x
+			obj.hited_y = target.hited_y
+			obj.hited_left = target.hited_left
+			obj.hited_top = target.hited_top
+			obj.hit_x = target.hit_x || 0
+			obj.hit_y = target.hit_y || 0
+			obj.hit_left = target.hit_left || 0
+			obj.hit_top = target.hit_top || 0
+			obj.skill_left = -target.skill_left
+			obj.skill_top = -target.skill_top
+			obj.TikTok_sum = data[0].TikTok_sum
+			obj.farme = data[0].farme
+			if (obj.imgfx == false) {
 				// 移动反向图像左边距，保持右边不变
 				var changeX = 0
 				if (TikTok > 1) {
@@ -249,18 +227,20 @@ function CheckPlayerHit(StateName, TikTok) {
 				} else if (StateName != 'plmove') {
 					changeX = target.hited_x - 67 //plstand宽度
 				}
-				pl.plx -= changeX
-				$('#role').css('left', pl.plx + "px")
+				obj.plx -= changeX
+				$('#role').css('left', obj.plx + "px")
 				//反向图像重新校正left
-				pl.img_x = (target.img_x + target.hited_x - imgWidth)
-				pl.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
-				window.console.log(pl.hit_left)
-				window.console.log(target.hited_x+"		"+target.hit_left +"			"+target.hit_x)
-				pl.skill_left = (target.skill_left + target.hited_x - skillimgWidth)
+				obj.img_x = (target.img_x + target.hited_x - imgWidth)
+				obj.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
+				obj.skill_left = (target.skill_left + target.hited_x - skillimgWidth)
 			}
 			ChangePlayerCSS()
-			if (pl.hit_x != 0 && pl.hit_y != 0) {
-				HitJudgement(pl, enemy, true)
+			if (obj.hit_x != 0 && obj.hit_y != 0) {
+				if (obj === pl) {
+					HitJudgement(pl, enemy, true)
+				} else if (obj === enemy) {
+					//HitJudgement(pl, enemy, true)
+				}
 			}
 			break;
 		}

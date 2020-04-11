@@ -1,7 +1,7 @@
 [
     [{
         "UName": "plstand",
-        "TikTok": 1
+        "TikTok_sum": 1
     }, {
         "img_x": 0,
         "img_y": 0,
@@ -12,7 +12,7 @@
     }],
     [{
         "UName": "plmove",
-        "TikTok": 1
+        "TikTok_sum": 1
     }, {
         "img_x": 0,
         "img_y": 0,
@@ -23,7 +23,8 @@
     }],
     [{
         "UName": "plskill-x",
-        "TikTok": 10
+        "TikTok_sum": 10,
+        "farme": 80
     }, {
         "check_y": 10,
         "img_x": 64,
@@ -94,7 +95,8 @@
     }],
     [{
         "UName": "plskill-z",
-        "TikTok": 6
+        "TikTok_sum": 6,
+        "farme": 120
     }, {
         "check_y": 27,
         "img_x": 61,
@@ -143,7 +145,8 @@
     }],
     [{
         "UName": "plskill-a",
-        "TikTok": 9
+        "TikTok_sum": 9,
+        "farme": 80
     }, {
         "check_y": 31,
         "img_x": 82,
@@ -231,7 +234,8 @@
     }],
     [{
         "UName": "plskill-f",
-        "TikTok": 8
+        "TikTok_sum": 8,
+        "farme": 110
     }, {
         "check_y": 10,
         "img_x": 63,
