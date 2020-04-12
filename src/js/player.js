@@ -35,6 +35,7 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.speed = 10
 	this.realfx = true //平移方向：右true左false
 	this.imgfx = true
+	this.hit_ID = 0 //技能伤害指示
 	this.ccd = 0
 	this.loading = false //是否加载地图
 	this.IsFlash = false

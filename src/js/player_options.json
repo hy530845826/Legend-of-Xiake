@@ -37,18 +37,24 @@
         "img_x": 64,
         "img_y": 56,
         "hited_x": 68,
-        "hited_y": 112
+        "hited_y": 112,
+        "hited_top": 0,
+        "hited_left": 0
     }, {
         "img_x": 64,
         "img_y": 56,
         "hited_x": 68,
-        "hited_y": 112
+        "hited_y": 112,
+        "hited_top": 0,
+        "hited_left": 0
     }, {
         "img_x": 18,
         "img_y": 56,
         "hited_x": 89,
         "hited_y": 99,
         "hited_top": 13,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 97,
         "hit_y": 58,
         "hit_left": 78,
@@ -59,6 +65,9 @@
         "img_y": 56,
         "hited_x": 77,
         "hited_y": 94,
+        "hited_top": 13,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 127,
         "hit_y": 40,
         "hit_left": -10,
@@ -68,6 +77,9 @@
         "img_y": 56,
         "hited_x": 77,
         "hited_y": 94,
+        "hited_top": 13,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 70,
         "hit_y": 40,
         "hit_left": -32,
@@ -76,22 +88,30 @@
         "img_x": 40,
         "img_y": 56,
         "hited_x": 77,
-        "hited_y": 94
+        "hited_y": 94,
+        "hited_top": 13,
+        "hited_left": 0
     }, {
         "img_x": 40,
         "img_y": 56,
         "hited_x": 77,
-        "hited_y": 94
+        "hited_y": 94,
+        "hited_top": 13,
+        "hited_left": 0
     }, {
         "img_x": 40,
         "img_y": 56,
         "hited_x": 77,
-        "hited_y": 94
+        "hited_y": 94,
+        "hited_top": 13,
+        "hited_left": 0
     }, {
         "img_x": 40,
         "img_y": 56,
         "hited_x": 77,
-        "hited_y": 94
+        "hited_y": 94,
+        "hited_top": 13,
+        "hited_left": 0
     }],
     [{
         "UName": "plskill-z",
@@ -110,6 +130,9 @@
         "img_y": 59,
         "hited_x": 85,
         "hited_y": 97,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 83,
         "hit_y": 29,
         "hit_left": 84,
@@ -119,6 +142,9 @@
         "img_y": 59,
         "hited_x": 73,
         "hited_y": 97,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 132,
         "hit_y": 44,
         "hit_left": -40,
@@ -128,6 +154,9 @@
         "img_y": 59,
         "hited_x": 78,
         "hited_y": 97,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 73,
         "hit_y": 39,
         "hit_left": -73,
@@ -136,12 +165,16 @@
         "img_x": 87,
         "img_y": 59,
         "hited_x": 78,
-        "hited_y": 97
+        "hited_y": 97,
+        "hited_top": 0,
+        "hited_left": 0
     }, {
         "img_x": 87,
         "img_y": 59,
         "hited_x": 78,
-        "hited_y": 97
+        "hited_y": 97,
+        "hited_top": 0,
+        "hited_left": 0
     }],
     [{
         "UName": "plskill-a",
@@ -163,6 +196,8 @@
         "img_y": 77,
         "hited_x": 67,
         "hited_y": 93,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 82
     }, {
         "check_y": 8,
@@ -170,6 +205,9 @@
         "img_y": 85,
         "hited_x": 68,
         "hited_y": 85,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 68,
         "hit_y": 72,
         "hit_left": 56,
@@ -182,6 +220,9 @@
         "img_y": 71,
         "hited_x": 85,
         "hited_y": 99,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 63,
         "hit_y": 126,
         "hit_left": 99,
@@ -193,6 +234,9 @@
         "img_y": 71,
         "hited_x": 85,
         "hited_y": 99,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 2,
         "hit_x": 96,
         "hit_y": 112,
         "hit_left": 139,
@@ -204,6 +248,9 @@
         "img_y": 71,
         "hited_x": 85,
         "hited_y": 99,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 2,
         "hit_x": 96,
         "hit_y": 112,
         "hit_left": 156,
@@ -214,6 +261,9 @@
         "img_y": 71,
         "hited_x": 85,
         "hited_y": 99,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 2,
         "hit_x": 96,
         "hit_y": 112,
         "hit_left": 161,
@@ -224,12 +274,16 @@
         "img_y": 71,
         "hited_x": 85,
         "hited_y": 99,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": -51
     }, {
         "img_x": 27,
         "img_y": 71,
         "hited_x": 85,
         "hited_y": 99,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": -51
     }],
     [{
@@ -252,12 +306,16 @@
         "img_y": 54,
         "hited_x": 71,
         "hited_y": 114,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 210
     }, {
         "img_x": 63,
         "img_y": 54,
         "hited_x": 71,
         "hited_y": 114,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 210
     }, {
         "check_y": 43,
@@ -265,6 +323,9 @@
         "img_y": 97,
         "hited_x": 94,
         "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 133,
         "hit_y": 151,
         "hit_left": 10,
@@ -275,6 +336,9 @@
         "img_y": 97,
         "hited_x": 94,
         "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 94,
         "hit_y": 128,
         "hit_left": 48,
@@ -285,6 +349,9 @@
         "img_y": 97,
         "hited_x": 94,
         "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0,
+        "hit_ID": 1,
         "hit_x": 43,
         "hit_y": 76,
         "hit_left": 95,
@@ -295,12 +362,16 @@
         "img_y": 97,
         "hited_x": 94,
         "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 210
     }, {
         "img_x": 64,
         "img_y": 97,
         "hited_x": 94,
         "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0,
         "skill_left": 210
     }]
 ]

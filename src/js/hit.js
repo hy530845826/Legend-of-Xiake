@@ -1,9 +1,8 @@
-function HitJudgement(obj, obj2, objFlag) {
+function HitJudgement(obj, obj2, HitFlag, hit_ID) {
     var t1, l1, r1, b1
     var t2, l2, r2, b2
     var random_damage
-
-    if (objFlag && obj2.hited_x != 0) {
+    if (obj2.hited_x != 0 && obj2.hited_y != 0) {
         t1 = obj.ply + obj.hit_top
         b1 = t1 + obj.hit_y
         l1 = obj.plx + obj.hit_left
@@ -13,69 +12,51 @@ function HitJudgement(obj, obj2, objFlag) {
         b2 = t2 + obj2.hited_y;
         l2 = obj2.plx + obj2.hited_left;
         r2 = l2 + obj2.hited_x;
-
+        // window.console.log('------------:' + HitFlag)
         // window.console.log("t1: " + t1 + " l1: " + l1 + " r1: " + r1 + " b1: " + b1)
         // window.console.log("t2: " + t2 + " l2: " + l2 + " r2: " + r2 + " b2: " + b2)
         if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
-        else if (obj2.HP > 0) {
-            window.console.log('击中')
-            obj2.hited = true
+        else if (obj2.HP > 0 && obj.hit_ID != hit_ID) {
+            window.console.log(obj.name + '的第' + hit_ID + '次伤害判定：击中' + obj.hit_ID)
+            obj.hit_ID = hit_ID
+            
             random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
             obj2.HP -= random_damage
 
-            TipsHP(t2, l2, random_damage, objFlag)
+            TipsHP(t2, l2, random_damage, HitFlag)
 
-            //HP_progress
-            var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
-            $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
+            if (HitFlag) {//pl打ell
+                obj2.hited = true
+                //HP_progress
+                var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
+                $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
 
-            setTimeout(() => {
-                obj2.hited = false
-                if (obj2.HP <= 0) {
-                    setTimeout(() => { KillJudgement(obj, obj2, objFlag) }, obj2.elldeadt)
-                }
-            }, obj2.ellhitedt)
+                setTimeout(() => {
+                    obj2.hited = false
+                    if (obj2.HP <= 0) {
+                        setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.elldeadt)
+                    }
+                }, obj2.ellhitedt)
+            }
         }
     }
-    // else {
-    //     //左上角坐标+判定的长宽
-    //     t1 = obj.ply
-    //     b1 = obj.ply + 130
-    //     l1 = obj.plx
-    //     r1 = obj.plx + 130
-
-    //     t2 = obj2.ply + obj2.pdy;
-    //     b2 = obj2.ply + 130;
-    //     l2 = obj2.plx + obj2.pdx;
-    //     r2 = obj2.plx + obj2.pdx + obj2.pdw;
-
-    //     // window.console.log("t1: " + t1 + " l1: " + l1 + " r1: " + r1 + " b1: " + b1)
-    //     // window.console.log("t2: " + t2 + " l2: " + l2 + " r2: " + r2 + " b2: " + b2)
-    //     if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
-    //     else if (obj2.HP > 0) {
-    //         //window.console.log('击中')
-    //         random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
-    //         obj2.HP -= random_damage
-
-    //         TipsHP(t2, l2, random_damage, objFlag)
-    //     }
-    // }
-
 }
 
-function KillJudgement(obj, obj2, objFlag) {
-    if (objFlag) {
+function KillJudgement(obj, obj2, HitFlag) {
+    if (HitFlag) {
         obj.EXP += obj2.EXP
-        obj2.plx = -130;
-        obj2.ply = -130;
+        obj2.plx = -200;
+        obj2.ply = -200;
+        $('#enemy').css('top', obj2.ply + "px")
+        $('#enemy').css('left', obj2.plx + "px")
     }
 }
 
-function TipsHP(top, left, random_damage, objFlag) {
+function TipsHP(top, left, random_damage, HitFlag) {
     var random_class = RandomCode(8)
     // var other_top
     //-HP提示
-    if (objFlag) {
+    if (HitFlag) {
         // other_top = $('.damage-font-enemy').css('top')
         // $('.damage-font-enemy').css('top', other_top -= 30 + 'px')
         $("#map").prepend("<div class='damage-font-enemy " + random_class + "'>" + random_damage + "</div>")

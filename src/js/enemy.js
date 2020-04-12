@@ -2,9 +2,6 @@ var ell = new CreateEnemy(-200, -200);
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
-var randomfx_timer, ellMove_timer
-
-window.console.log(ell)
 import enemy_data from './enemy_data.json'
 var EnemyData = enemy_data
 var EnemyOptions
@@ -13,7 +10,6 @@ var Player = require("./player")
 var pl = Player.default.pll
 
 function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, str, agi, intt) {
-    window.console.log('内部消息');
     this.UID = 0
     this.name = 'null'
 
@@ -43,8 +39,9 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
 }
 
 function UpdateEnemy(obj, uid) {
-    clearInterval(randomfx_timer)
-    clearInterval(ellMove_timer)
+    clearInterval(obj.randomfx_timer)
+    clearInterval(obj.ellMove_timer)
+    clearInterval(ell.ellflash)
     $('#enemy-body').attr('class', 'stand')
     EnemyOptions = EnemyData[uid]
     let datamsg = (EnemyOptions[0])[0]
@@ -115,9 +112,9 @@ function CheckEnemyHit(StateName, TikTok) {
                 ell.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
             }
             ChangeEnemyCSS(StateName)
-            // if (pl.hit_x != 0 && pl.hit_y != 0) {
-            //     HitJudgement(pl, enemy, true)
-            // }
+            if (ell.hit_x != 0 && ell.hit_y != 0) {
+                HitJudgement(ell, pl, false, target.hit_ID)
+            }
             break;
         }
     }
@@ -156,15 +153,12 @@ function EnemyMove(obj) {
     }
 
     //0.5秒随机更改方向
-    randomfx_timer = setInterval(function () {
+    obj.randomfx_timer = setInterval(function () {
         fx = RandomFX(0, 5)
     }, 500);
-    window.console.log(obj.ATK)
     var tempspeed = obj.speed
-
-    ellMove_timer = setInterval(function () {
+    obj.ellMove_timer = setInterval(function () {
         obj.speed = tempspeed
-
         pl.plx < obj.plx ? obj.realfx = true : obj.realfx = false
         if (obj.realfx == obj.imgfx) {
             obj.imgfx = !obj.imgfx
@@ -202,7 +196,6 @@ function EnemyMove(obj) {
                 //     setTimeout(() => { obj.plx += tempwidth }, obj.ellattack1t);
                 // }
 
-                HitJudgement(obj, pl, false)
                 // setTimeout(() => { obj.IsFlash = false }, obj.ellattack1t);
             } else if (fx != 5) {
                 window.console.log('wrg?')
@@ -222,12 +215,11 @@ function enemyflash(StateName, skillstart, skillfarme, skillwidth) {
     ChangeEnemyState(StateName)
     let TikTok_sum = ell.TikTok_sum
     let div_width = ell.div_width / TikTok_sum
-    var ellflash
     if (i == skillstart) {
         $('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
         j++
     }
-    ellflash = setInterval(function () {
+    ell.ellflash = setInterval(function () {
         i++
         if ((j > 0 && j < skillfarme) || (i == skillstart)) {
             $('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
@@ -236,10 +228,11 @@ function enemyflash(StateName, skillstart, skillfarme, skillwidth) {
             $('#skill-body').css('background-position', skillwidth + 'px ')
         }
         if (i > TikTok_sum) {
-            clearInterval(ellflash)
+            clearInterval(ell.ellflash)
             ell.IsFlash = false
             ell.plx = xxx
             ell.ply = yyy
+            ell.hit_ID = 0
             setTimeout(function () {
                 if (ell.IsFlash == false) {
                     ChangeEnemyState('stand')

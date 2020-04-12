@@ -173,6 +173,7 @@ function flash(obj, StateName, width, skillstart, skillfarme, skillwidth) {
 			obj.IsFlash = false
 			pl.plx = xxx
 			pl.ply = yyy
+			pl.hit_ID = 0
 			setTimeout(function () {
 				if (obj.IsFlash == false) {
 					ChangePlayerState(obj, 'plstand')
@@ -237,7 +238,7 @@ function CheckPlayerHit(obj, StateName, TikTok) {
 			ChangePlayerCSS()
 			if (obj.hit_x != 0 && obj.hit_y != 0) {
 				if (obj === pl) {
-					HitJudgement(pl, enemy, true)
+					HitJudgement(pl, enemy, true, target.hit_ID)
 				} else if (obj === enemy) {
 					//HitJudgement(pl, enemy, true)
 				}
