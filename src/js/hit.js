@@ -12,14 +12,13 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
         b2 = t2 + obj2.hited_y;
         l2 = obj2.plx + obj2.hited_left;
         r2 = l2 + obj2.hited_x;
-        // window.console.log('------------:' + HitFlag)
         // window.console.log("t1: " + t1 + " l1: " + l1 + " r1: " + r1 + " b1: " + b1)
         // window.console.log("t2: " + t2 + " l2: " + l2 + " r2: " + r2 + " b2: " + b2)
         if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
         else if (obj2.HP > 0 && obj.hit_ID != hit_ID) {
-            window.console.log(obj.name + '的第' + hit_ID + '次伤害判定：击中' + obj.hit_ID)
             obj.hit_ID = hit_ID
-            
+            window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
+
             random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
             obj2.HP -= random_damage
 
