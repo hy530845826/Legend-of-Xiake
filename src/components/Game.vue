@@ -424,7 +424,7 @@ import StatusBar from "./StatusBar.vue";
 import Introduction from "./Introduction.vue";
 import Player from "../js/player";
 import Enemy from "../js/enemy";
-import Npc from "../js/enemy";
+import Npc from "../js/npc";
 import "../js/vueblank";
 
 export default {

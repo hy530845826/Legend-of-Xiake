@@ -22,7 +22,10 @@
     </div>
     <div id="npc">
       <div id="npc-body" @click="RefuseMission"></div>
-      <div>{{el_data}}</div>
+      <div id="npc-name">
+        <span>{{npc_data[0]}}</span>
+        {{npc_data[1]}}
+      </div>
     </div>
     <div id="enemy" class="ellstand">
       <div id="enemy-body"></div>
@@ -62,6 +65,7 @@
 <script>
 import Player from "../js/player";
 import Enemy from "../js/enemy";
+import Npc from "../js/npc";
 import "../js/vuemove";
 
 export default {
@@ -70,7 +74,8 @@ export default {
     return {
       st: Player.pll,
       ShowMission: false,
-      el_data: [Enemy.ell.LV, Enemy.ell.name]
+      el_data: [Enemy.ell.LV, Enemy.ell.name],
+      npc_data: [Npc.npc.appellation, Npc.npc.name]
     };
   },
   methods: {
@@ -84,15 +89,22 @@ export default {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
         return num;
       }
-      window.console.log(fx)
+      window.console.log(fx);
       Enemy.UpdateEnemy(Enemy.ell, 2);
+    },
+    F5: function() {
+      var that = this;
       //重新渲染名字和等级
-      this.$set(this.el_data, 0, "LV." + Enemy.ell.LV);
-      this.$set(this.el_data, 1, Enemy.ell.name);
+      setInterval(function() {
+        that.$set(that.el_data, 0, "LV." + Enemy.ell.LV);
+        that.$set(that.el_data, 1, Enemy.ell.name);
+        that.$set(that.npc_data, 0, Npc.npc.appellation);
+        that.$set(that.npc_data, 1, Npc.npc.name);
+      }, 100);
     }
   },
   mounted() {
-    window.console.log(this.st.ATK);
+    this.F5();
   }
 };
 </script>

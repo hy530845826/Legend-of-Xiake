@@ -121,21 +121,27 @@
 }
 
 #enemy-name {
+    width: 150px;
     text-align: center;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-#npc {
-    left: 700px;
-    top: 500px;
-    z-index: 500;
-}
 
 #npc-body {
-    width: 130px;
-    height: 130px;
-    background: url(../images/npcmed.gif) no-repeat;
+    transition: transform 0.5s;
     cursor: pointer;
+}
+
+#npc-name {
+    width: 150px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#npc-name span {
+    color: yellow;
 }

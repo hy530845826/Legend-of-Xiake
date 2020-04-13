@@ -11,6 +11,7 @@ var pl = Player.default.pll
 
 function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, str, agi, intt) {
     this.UID = 0
+    this.CreateMap = 0//可能bug需要删除
     this.name = 'null'
 
     this.plx = plx
@@ -82,7 +83,6 @@ function DeleteEnemy(obj) {
 }
 
 function CheckCreateMap(PortalToMapID) {
-    window.console.log(PortalToMapID)
     var CreateEnemyUID
     for (var index in EnemyData) {
         var datamsg = ((EnemyData[index])[0])[0]
@@ -92,7 +92,6 @@ function CheckCreateMap(PortalToMapID) {
             break
         }
     }
-    window.console.log(CreateEnemyUID + "   x:  ")
     return CreateEnemyUID
 }
 

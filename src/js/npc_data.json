@@ -1,7 +1,9 @@
 [
     [{
         "UID": 0,
-        "name": "和尚",
+        "CreateMap": 2,
+        "appellation": "混元霹雳手",
+        "name": "成昆",
         "plx": 200,
         "ply": 400,
         "LV": 10,
@@ -17,7 +19,8 @@
         "INT": 1,
         "speed": 10,
         "div_width": 115,
-        "div_height": 101
+        "div_height": 101,
+        "realfx": true
     }],
-    []
+    [{}]
 ]

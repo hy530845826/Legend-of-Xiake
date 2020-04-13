@@ -8,6 +8,9 @@ var pl = Player.default.pll
 var Enemy = require("./enemy")
 var enemy = Enemy.default.ell
 var UpdateEnemy = Enemy.default.UpdateEnemy
+var Npc = require("./npc")
+var npc = Npc.default.npc
+var Updatenpc = Npc.default.Updatenpc
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
@@ -332,6 +335,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 						if (i >= 100) {
 							clearInterval(timer3)
 							UpdateEnemy(enemy, PortalToMapID)
+							Updatenpc(npc, PortalToMapID)
 							MovePlayer(MapIDNumber)
 							//5.允许角色操作，黑屏关闭loading
 							$('#loading-screen').css('display', 'none')
