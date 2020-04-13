@@ -7,6 +7,7 @@ var Player = require("./player")
 var pl = Player.default.pll
 var Enemy = require("./enemy")
 var enemy = Enemy.default.ell
+var UpdateEnemy = Enemy.default.UpdateEnemy
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
@@ -296,10 +297,6 @@ function ChangeMap() {
 			var MapBGMNumber = GetMapBGMNumber()
 
 			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID)
-			// $('#map').attr('class', 'map-' + PortalToMapID)
-			// ChangeBGM(MapBGMNumber, PortalMusicID) //切换BGM
-			// CreatePortal(PortalToMapID)
-			// window.console.log(Loading)
 		}
 	}
 }
@@ -334,6 +331,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 						i += 2
 						if (i >= 100) {
 							clearInterval(timer3)
+							UpdateEnemy(enemy, PortalToMapID)
 							MovePlayer(MapIDNumber)
 							//5.允许角色操作，黑屏关闭loading
 							$('#loading-screen').css('display', 'none')

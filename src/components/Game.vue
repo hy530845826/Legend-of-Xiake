@@ -169,7 +169,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">二刀流·鹰波：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">地裂波动剑</div>
                   </div>
                 </li>
                 <li>
@@ -179,7 +179,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">一刀流·居合·狮子歌歌：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">拔刀斩</div>
                   </div>
                 </li>
                 <li>
@@ -189,7 +189,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">青龙吟·流水：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">三段斩</div>
                   </div>
                 </li>
                 <li>
@@ -199,7 +199,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">一刀流·鬼斩：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">鬼斩</div>
                   </div>
                 </li>
               </ul>
@@ -211,7 +211,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">阿修罗·壹雾银：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">buff</div>
                   </div>
                 </li>
                 <li>
@@ -221,7 +221,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">三刀流·百八烦恼风</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">推波</div>
                   </div>
                 </li>
                 <li>
@@ -231,7 +231,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">奥义·三千世界：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">幻影剑舞</div>
                   </div>
                 </li>
                 <li>
@@ -241,7 +241,7 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">一大·三千·大千世界：</div>
-                    <div class="Skill-Introduction">z多Stand·The World</div>
+                    <div class="Skill-Introduction">Stand·The World</div>
                   </div>
                 </li>
               </ul>
@@ -424,6 +424,7 @@ import StatusBar from "./StatusBar.vue";
 import Introduction from "./Introduction.vue";
 import Player from "../js/player";
 import Enemy from "../js/enemy";
+import Npc from "../js/enemy";
 import "../js/vueblank";
 
 export default {
@@ -433,6 +434,7 @@ export default {
       WindowName: "null",
       st: Player.pll,
       stenemy: Enemy.ell,
+      npc_data: Npc.npc,
       MusicFlag: true,
       MusicFlagText: "开"
     };

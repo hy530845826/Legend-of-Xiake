@@ -2,8 +2,9 @@
     [
         [{
             "UID": 0,
+            "CreateMap": 2,
             "name": "稻草人",
-            "plx": 100,
+            "plx": 600,
             "ply": 400,
             "LV": 1,
             "HPMAX": 13,
@@ -187,6 +188,32 @@
             "hited_top": 17
         }]
     ],
-    []
+    [
+        [{
+            "UID": 1,
+            "CreateMap": 4,
+            "name": "你好稻草人",
+            "plx": 100,
+            "ply": 400,
+            "LV": 1,
+            "HPMAX": 13,
+            "HP": 13,
+            "MPMAX": 50,
+            "MP": 50,
+            "EXP": 40,
+            "ATK": 1,
+            "ATKMAX": 3,
+            "DEF": 0,
+            "STR": 1,
+            "AGI": 1,
+            "INT": 1,
+            "speed": 10,
+            "div_width": 222,
+            "div_height": 189,
+            "stand_x": 57,
+            "stand_y": 119
+        }],
+        []
+    ]
 
 ]

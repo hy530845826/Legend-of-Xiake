@@ -84,7 +84,8 @@ export default {
         var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
         return num;
       }
-      Enemy.UpdateEnemy(Enemy.ell, fx);
+      window.console.log(fx)
+      Enemy.UpdateEnemy(Enemy.ell, 2);
       //重新渲染名字和等级
       this.$set(this.el_data, 0, "LV." + Enemy.ell.LV);
       this.$set(this.el_data, 1, Enemy.ell.name);

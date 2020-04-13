@@ -38,10 +38,13 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.stand_y = 0
 }
 
-function UpdateEnemy(obj, uid) {
-    clearInterval(obj.randomfx_timer)
-    clearInterval(obj.ellMove_timer)
-    clearInterval(ell.ellflash)
+function UpdateEnemy(obj, PortalToMapID) {
+    DeleteEnemy(obj)
+    var uid = CheckCreateMap(PortalToMapID)
+    if (uid == undefined) {
+        window.console.log('map-' + PortalToMapID + 'safe')
+        return 0
+    }
     $('#enemy-body').attr('class', 'stand')
     EnemyOptions = EnemyData[uid]
     let datamsg = (EnemyOptions[0])[0]
@@ -64,6 +67,33 @@ function UpdateEnemy(obj, uid) {
         $('#enemy-name').css({ 'left': name_left + 'px', 'top': (ell.stand_y + 5) + 'px' })
         EnemyMove(obj)
     }, 50)
+}
+
+function DeleteEnemy(obj) {
+    clearInterval(obj.randomfx_timer)
+    clearInterval(obj.ellMove_timer)
+    clearInterval(obj.ellflash)
+    obj.plx = -200;
+    obj.ply = 400;
+    $('#enemy-body').css({ transition: "transform 0.1s", transform: "rotateY(0deg)" })
+    $('#enemy-body').attr('class', 'stand')
+    $('#enemy').css('top', obj.ply + "px")
+    $('#enemy').css('left', obj.plx + "px")
+}
+
+function CheckCreateMap(PortalToMapID) {
+    window.console.log(PortalToMapID)
+    var CreateEnemyUID
+    for (var index in EnemyData) {
+        var datamsg = ((EnemyData[index])[0])[0]
+        var CreateMapID = datamsg.CreateMap
+        if (CreateMapID == PortalToMapID) {
+            CreateEnemyUID = datamsg.UID
+            break
+        }
+    }
+    window.console.log(CreateEnemyUID + "   x:  ")
+    return CreateEnemyUID
 }
 
 function ChangeEnemyState(StateName) {
