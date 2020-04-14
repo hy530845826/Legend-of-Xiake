@@ -9,7 +9,7 @@
       </ul>
     </div>
     <introduction v-if="WindowName=='introduction'" @openWindowMenu="zdy2($event)" />
-    <audio src="./static/sound/home.mp3" class="bgmusic" autoplay></audio>
+    <audio src="./static/sound/bgm/home.mp3" id="HomeBGM" class="bgmusic" autoplay></audio>
   </div>
 </template>
 <script>
@@ -32,6 +32,9 @@ export default {
     zdy2(msg) {
       this.WindowName = msg;
     }
+  },
+  mounted() {
+    $("#HomeBGM")[0].volume = 0.6;
   }
 };
 </script>

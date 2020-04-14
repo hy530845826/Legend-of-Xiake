@@ -1,12 +1,9 @@
-var w = false
-var a = false
-var s = false
-var d = false
-var IsMove = 0
+var Tool = require("./tool")
+var t = Tool.default
 var Player = require("./player")
 var pl = Player.default.pll
 var Enemy = require("./enemy")
-var enemy = Enemy.default.ell
+var ell = Enemy.default.ell
 var UpdateEnemy = Enemy.default.UpdateEnemy
 var Npc = require("./npc")
 var npc = Npc.default.npc
@@ -17,6 +14,11 @@ var HitJudgement = Hit.default.HitJudgement
 import player_options from './player_options.json'
 var PlayerOptions = player_options
 
+var w = false
+var a = false
+var s = false
+var d = false
+var IsMove = 0
 var rotateNum = 180; //旋转角度
 
 document.onkeydown = function (event) {
@@ -28,7 +30,7 @@ document.onkeydown = function (event) {
 			IsMove += 1;
 			pl.realfx = true;
 			if (IsMove == 1 && !pl.IsFlash) {
-				ChangePlayerState(pl, 'plmove')
+				ChangePlayerState(pl, 'move')
 				if (pl.realfx != pl.imgfx) {
 					pl.imgfx = true;
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
@@ -42,7 +44,7 @@ document.onkeydown = function (event) {
 			IsMove += 1;
 			pl.realfx = false;
 			if (IsMove == 1 && !pl.IsFlash) {
-				ChangePlayerState(pl, 'plmove')
+				ChangePlayerState(pl, 'move')
 				if (pl.realfx != pl.imgfx) {
 					pl.imgfx = false;
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
@@ -55,14 +57,14 @@ document.onkeydown = function (event) {
 			w = true;
 			IsMove += 1;
 			if (IsMove == 1 && !pl.IsFlash) {
-				ChangePlayerState(pl, 'plmove')
+				ChangePlayerState(pl, 'move')
 			}
 			break;
 		case 40: //↓
 			s = true;
 			IsMove += 1;
 			if (IsMove == 1 && !pl.IsFlash) {
-				ChangePlayerState(pl, 'plmove')
+				ChangePlayerState(pl, 'move')
 			}
 			break;
 		case 67: //C
@@ -70,32 +72,39 @@ document.onkeydown = function (event) {
 			break;
 		case 88: //X
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-x')
+				flash(pl, 'skillX')
+				GetAudio('pl', 'atk', 3)
 			}
 			break;
 		case 90: //Z
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-z')
+				flash(pl, 'skillZ')
+				GetAudio('pl', 'atk', 3)
 			}
 			break;
 		case 65: //A
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-a')
+				flash(pl, 'skillA')
+				GetAudio('pl', 'skill_a')
 			}
 			break;
 		case 83: //S
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-s')
+				flash(pl, 'skillS')
+				GetAudio('pl', 'skill_s')
 			}
 			break;
 		case 68: //D
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-d', 540)
+				flash(pl, 'skillD', 540)
+				GetAudio('pl', 'skill_d')
 			}
 			break;
 		case 70: //F
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-f')
+				flash(pl, 'skillF')
+				GetAudio('pl', 'skill_f1')
+				setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 			}
 			break;
 	}
@@ -122,28 +131,28 @@ document.onkeyup = function (event) {
 			d = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
-				ChangePlayerState(pl, 'plstand')
+				ChangePlayerState(pl, 'stand')
 			}
 			break; //→
 		case 37:
 			a = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
-				ChangePlayerState(pl, 'plstand')
+				ChangePlayerState(pl, 'stand')
 			}
 			break; //←
 		case 38:
 			w = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
-				ChangePlayerState(pl, 'plstand')
+				ChangePlayerState(pl, 'stand')
 			}
 			break; //↑
 		case 40:
 			s = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
-				ChangePlayerState(pl, 'plstand')
+				ChangePlayerState(pl, 'stand')
 			}
 			break; //↓
 	}
@@ -187,7 +196,7 @@ function flash(obj, StateName, check_x) {
 			pl.hit_ID = 0
 			setTimeout(function () {
 				if (obj.IsFlash == false) {
-					ChangePlayerState(obj, 'plstand')
+					ChangePlayerState(obj, 'stand')
 					$('#role-body').css('background-position', 0 + 'px ')
 				}
 			}, 50)
@@ -258,8 +267,8 @@ function CheckPlayerHit(obj, StateName, TikTok) {
 			ChangePlayerCSS()
 			if (obj.hit_x != 0 && obj.hit_y != 0) {
 				if (obj === pl) {
-					HitJudgement(pl, enemy, true, target.hit_ID)
-				} else if (obj === enemy) {
+					HitJudgement(pl, ell, true, target.hit_ID)
+				} else if (obj === ell) {
 					//HitJudgement(pl, enemy, true)
 				}
 			}
@@ -350,7 +359,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 						i += 2
 						if (i >= 100) {
 							clearInterval(timer3)
-							UpdateEnemy(enemy, PortalToMapID)
+							UpdateEnemy(ell, PortalToMapID)
 							Updatenpc(npc, PortalToMapID)
 							MovePlayer(MapIDNumber)
 							//5.允许角色操作，黑屏关闭loading
@@ -455,7 +464,7 @@ function CreatePortal(PortalToMapID) {
 
 function ChangeBGM(MapBGMNumber, PortalMusicID) {
 	if (MapBGMNumber != PortalMusicID) {
-		$('#BGM').attr('src', './static/sound/map-' + PortalMusicID + '.mp3')
+		$('#BGM').attr('src', './static/sound/bgm/map-' + PortalMusicID + '.mp3')
 	}
 }
 
@@ -490,6 +499,19 @@ function GetPortalNumber() {
 		case 0: PortalNumber = 7; break;
 	}
 	return PortalNumber
+}
+
+function GetAudio(dirName, StateName, RandomNumber) {
+	RandomNumber = RandomNumber || 0
+	let audio = new Audio()
+	if (RandomNumber == 0) {
+		audio.src = "./static/sound/audio/" + dirName + "/" + StateName + ".mp3"
+	}
+	else {
+		RandomNumber = t.RandomNumber(1, RandomNumber)
+		audio.src = "./static/sound/audio/" + dirName + "/" + StateName + "_" + RandomNumber + ".mp3"
+	}
+	audio.play();
 }
 
 export default {

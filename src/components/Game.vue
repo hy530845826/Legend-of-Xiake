@@ -1,6 +1,6 @@
 <template>
   <div id="GameBox">
-    <audio src="./static/sound/map-1.mp3" id="BGM" class="bgmusic" loop autoplay></audio>
+    <audio src="./static/sound/bgm/map-1.mp3" id="BGM" class="bgmusic" loop autoplay></audio>
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="pl.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
@@ -483,10 +483,10 @@ export default {
       this.MusicFlag = !this.MusicFlag;
       if (this.MusicFlag) {
         this.MusicFlagText = "开";
-        $(".bgmusic")[0].play();
+        $("#BGM")[0].play();
       } else {
         this.MusicFlagText = "关";
-        $(".bgmusic")[0].pause();
+        $("#BGM")[0].pause();
       }
     },
     SettingIntroduction: function() {
@@ -535,6 +535,7 @@ export default {
   },
   mounted() {
     this.LoadingSkillIcon();
+    $("#BGM")[0].volume = 0.1;
   }
 };
 </script>

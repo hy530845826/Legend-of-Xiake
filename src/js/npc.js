@@ -1,5 +1,5 @@
 var npc = new CreateNPC(0, 0);
-window.console.log(npc)
+
 import npc_data from './npc_data.json'
 var NPCData = npc_data
 var NPCOptions

@@ -12,7 +12,7 @@
         ></div>
       </div>
     </div>
-    <div id="role" class="plstand">
+    <div id="role" class="stand">
       <div id="role-body"></div>
       <div id="skill-body"></div>
       <div id="role-hit-judge"></div>
@@ -84,12 +84,6 @@ export default {
     },
     AcceptMission: function() {
       this.ShowMission = !this.ShowMission;
-      var fx = RandomFX(0, 0);
-      function RandomFX(m, n) {
-        var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
-        return num;
-      }
-      window.console.log(fx);
       Enemy.UpdateEnemy(Enemy.ell, 2);
     },
     F5: function() {

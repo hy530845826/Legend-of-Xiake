@@ -1,13 +1,15 @@
 var ell = new CreateEnemy(-200, -200);
+
+var Tool = require("./tool")
+var t = Tool.default
+var Player = require("./player")
+var pl = Player.default.pll
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
 import enemy_data from './enemy_data.json'
 var EnemyData = enemy_data
 var EnemyOptions
-
-var Player = require("./player")
-var pl = Player.default.pll
 
 function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, str, agi, intt) {
     this.UID = 0
@@ -182,15 +184,9 @@ function ChangeEnemyCSS(StateName) {
 function EnemyMove(obj) {
     //停止、下左上右、攻击为012345
     var fx = 0
-    //随机数[m~n]
-    function RandomFX(m, n) {
-        var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
-        return num;
-    }
-
     //0.5秒随机更改方向
     obj.randomfx_timer = setInterval(function () {
-        fx = RandomFX(0, 4)
+        fx = t.RandomNumber(0, 4)
     }, 500);
     obj.ellMove_timer = setInterval(function () {
         obj.nowspeed = obj.speed
@@ -227,7 +223,7 @@ function EnemyMove(obj) {
                 enemyflash('attack2')
                 obj.nowspeed = 0
             } else if (fx != 5) {
-                fx = RandomFX(0, 4);
+                fx = t.RandomNumber(0, 4);
             }
         }
         $('#enemy').css('top', obj.ply + "px")

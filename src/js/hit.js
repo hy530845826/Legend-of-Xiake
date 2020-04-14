@@ -1,3 +1,6 @@
+var Tool = require("./tool")
+var t = Tool.default
+
 function HitJudgement(obj, obj2, HitFlag, hit_ID) {
     var t1, l1, r1, b1
     var t2, l2, r2, b2
@@ -19,7 +22,7 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
             obj.hit_ID = hit_ID
             // window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
 
-            random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
+            random_damage = t.RandomNumber(obj.ATK, obj.ATKMAX)
             obj2.HP -= random_damage
 
             TipsHP(t2, l2, random_damage, HitFlag)
@@ -62,7 +65,7 @@ function KillJudgement(obj, obj2, HitFlag) {
 }
 
 function TipsHP(top, left, random_damage, HitFlag) {
-    var random_class = RandomCode(8)
+    var random_class = t.RandomCode(8)
     // var other_top
     //-HP提示
     if (HitFlag) {
@@ -86,23 +89,6 @@ function TipsHP(top, left, random_damage, HitFlag) {
         clearInterval(tik)
         $('.' + random_class).remove('#map .' + random_class)
     }, 1800)
-}
-
-//随机数[m~n]
-function RandomDamage(m, n) {
-    var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
-    return num;
-}
-
-//产生x位数验证码
-function RandomCode(codelength) {
-    var randomcode = "";
-    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
-    for (var i = 0; i < codelength; i++) {
-        var index = Math.floor(Math.random() * 36); //取得索引0~35
-        randomcode += random[index]; //組合字符串
-    }
-    return randomcode;
 }
 
 export default {

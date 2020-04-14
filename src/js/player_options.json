@@ -1,6 +1,6 @@
 [
     [{
-        "UName": "plstand",
+        "UName": "stand",
         "div_width": 192,
         "TikTok_sum": 1
     }, {
@@ -12,7 +12,7 @@
         "hited_left": 0
     }],
     [{
-        "UName": "plmove",
+        "UName": "move",
         "div_width": 192,
         "TikTok_sum": 1
     }, {
@@ -24,7 +24,7 @@
         "hited_left": 0
     }],
     [{
-        "UName": "plskill-x",
+        "UName": "skillX",
         "div_width": 192,
         "TikTok_sum": 10,
         "farme": 80
@@ -116,7 +116,7 @@
         "hited_left": 0
     }],
     [{
-        "UName": "plskill-z",
+        "UName": "skillZ",
         "div_width": 192,
         "TikTok_sum": 6,
         "farme": 120
@@ -180,7 +180,7 @@
         "hited_left": 0
     }],
     [{
-        "UName": "plskill-a",
+        "UName": "skillA",
         "div_width": 192,
         "TikTok_sum": 9,
         "skill_start_TikTok": 1,
@@ -294,7 +294,7 @@
         "skill_left": -51
     }],
     [{
-        "UName": "plskill-s",
+        "UName": "skillS",
         "div_width": 192,
         "TikTok_sum": 11,
         "skill_start_TikTok": 2,
@@ -403,7 +403,7 @@
         "hited_left": 0
     }],
     [{
-        "UName": "plskill-d",
+        "UName": "skillD",
         "div_width": 192,
         "TikTok_sum": 11,
         "skill_start_TikTok": 4,
@@ -525,7 +525,7 @@
         "skill_left": 538
     }],
     [{
-        "UName": "plskill-f",
+        "UName": "skillF",
         "div_width": 192,
         "TikTok_sum": 8,
         "skill_start_TikTok": 4,
