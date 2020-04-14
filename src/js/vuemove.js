@@ -70,22 +70,22 @@ document.onkeydown = function (event) {
 			break;
 		case 88: //X
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-x', 192)
+				flash(pl, 'plskill-x')
 			}
 			break;
 		case 90: //Z
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-z', 192)
+				flash(pl, 'plskill-z')
 			}
 			break;
 		case 65: //A
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-a', 192, 1, 9, 250)
+				flash(pl, 'plskill-a')
 			}
 			break;
 		case 83: //S
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-z', 192)
+				flash(pl, 'plskill-s')
 			}
 			break;
 		case 68: //D
@@ -96,7 +96,7 @@ document.onkeydown = function (event) {
 			break;
 		case 70: //F
 			if (pl.IsFlash == false) {
-				flash(pl, 'plskill-f', 192, 4, 5, 384)
+				flash(pl, 'plskill-f')
 			}
 			break;
 	}
@@ -150,27 +150,32 @@ document.onkeyup = function (event) {
 	}
 }
 
-function flash(obj, StateName, width, skillstart, skillfarme, skillwidth) {
+function flash(obj, StateName) {
 	obj.IsFlash = true
 	var i = 1, j = 0
 	var xxx = pl.plx, yyy = pl.ply
 	ChangePlayerState(obj, StateName)
 	clearInterval(plflash)
 	let TikTok_sum = obj.TikTok_sum
+	let div_width = obj.div_width
+	let skill_start_TikTok = obj.skill_start_TikTok
+	let skill_TikTok_sum = obj.skill_TikTok_sum
+	let skill_width = obj.skill_width
+
 	// let div_width = obj.div_width / TikTok_sum
 	var plflash
 
-	if (i == skillstart) {
-		$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+	if (i == skill_start_TikTok) {
+		$('#skill-body').css('background-position', (-skill_width * j) + 'px ')
 		j++
 	}
 	plflash = setInterval(function () {
 		i++
-		if ((j > 0 && j < skillfarme) || (i == skillstart)) {
-			$('#skill-body').css('background-position', (-skillwidth * j) + 'px ')
+		if ((j > 0 && j < skill_TikTok_sum) || (i == skill_start_TikTok)) {
+			$('#skill-body').css('background-position', (-skill_width * j) + 'px ')
 			j++
 		} else {
-			$('#skill-body').css('background-position', skillwidth + 'px ')
+			$('#skill-body').css('background-position', 1000 + 'px ')
 		}
 		if (i > TikTok_sum) {
 			clearInterval(plflash)
@@ -185,7 +190,7 @@ function flash(obj, StateName, width, skillstart, skillfarme, skillwidth) {
 				}
 			}, 50)
 		} else {
-			$('#role-body').css('background-position', (-width * (i - 1)) + 'px ')
+			$('#role-body').css('background-position', (-div_width * (i - 1)) + 'px ')
 			CheckPlayerHit(obj, StateName, i)
 		}
 	}, obj.farme);
@@ -222,8 +227,12 @@ function CheckPlayerHit(obj, StateName, TikTok) {
 			obj.hit_top = target.hit_top || 0
 			obj.skill_left = -target.skill_left
 			obj.skill_top = -target.skill_top
+			obj.div_width = data[0].div_width
 			obj.TikTok_sum = data[0].TikTok_sum
 			obj.farme = data[0].farme
+			obj.skill_start_TikTok = data[0].skill_start_TikTok
+			obj.skill_TikTok_sum = data[0].skill_TikTok_sum
+			obj.skill_width = data[0].skill_width
 			if (obj.imgfx == false) {
 				// 移动反向图像左边距，保持右边不变
 				var changeX = 0
