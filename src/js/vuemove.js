@@ -90,8 +90,7 @@ document.onkeydown = function (event) {
 			break;
 		case 68: //D
 			if (pl.IsFlash == false) {
-				$('#role-body').css('background-image', 'url(static/images/毕设打斗3.png)')
-				flash(pl, 130, 2, 6, 0)
+				flash(pl, 'plskill-d', 540)
 			}
 			break;
 		case 70: //F
@@ -150,10 +149,13 @@ document.onkeyup = function (event) {
 	}
 }
 
-function flash(obj, StateName) {
+function flash(obj, StateName, check_x) {
 	obj.IsFlash = true
 	var i = 1, j = 0
-	var xxx = pl.plx, yyy = pl.ply
+	var base_x = pl.plx, base_y = pl.ply
+	if (check_x != undefined) {
+		obj.imgfx ? base_x += check_x : base_x -= check_x
+	}
 	ChangePlayerState(obj, StateName)
 	clearInterval(plflash)
 	let TikTok_sum = obj.TikTok_sum
@@ -180,8 +182,8 @@ function flash(obj, StateName) {
 		if (i > TikTok_sum) {
 			clearInterval(plflash)
 			obj.IsFlash = false
-			pl.plx = xxx
-			pl.ply = yyy
+			pl.plx = base_x
+			pl.ply = base_y
 			pl.hit_ID = 0
 			setTimeout(function () {
 				if (obj.IsFlash == false) {
@@ -215,6 +217,10 @@ function CheckPlayerHit(obj, StateName, TikTok) {
 				obj.ply += target.check_y
 				$('#role').css('top', obj.ply + "px")
 			}
+			if (target.check_x != undefined) {
+				obj.imgfx ? obj.plx += target.check_x : obj.plx -= target.check_x
+				$('#role').css('left', obj.plx + "px")
+			}
 			obj.img_x = -target.img_x
 			obj.img_y = -target.img_y
 			obj.hited_x = target.hited_x
@@ -243,6 +249,7 @@ function CheckPlayerHit(obj, StateName, TikTok) {
 				}
 				obj.plx -= changeX
 				$('#role').css('left', obj.plx + "px")
+
 				//反向图像重新校正left
 				obj.img_x = (target.img_x + target.hited_x - imgWidth)
 				obj.hit_left = (target.hited_x - target.hit_left - target.hit_x) || 0
