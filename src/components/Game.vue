@@ -3,7 +3,7 @@
     <audio src="./static/sound/map-1.mp3" id="BGM" class="bgmusic" loop autoplay></audio>
     <main-interface />
     <action-bar />
-    <status-bar :pl_lv="st.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
+    <status-bar :pl_lv="pl.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
     <introduction v-show="WindowName=='introduction'" @openWindowMenu="zdy2($event)" />
     <div id="WindowMenu">
       <div v-show="WindowName=='MenuB'">
@@ -67,16 +67,16 @@
             </div>
             <div class="RoleName">
               <ul>
-                <li>〓{{st.appellation}}〓</li>
-                <li>{{st.name}}</li>
+                <li>〓{{pl.appellation}}〓</li>
+                <li>{{pl.name}}</li>
                 <li>
                   LV.
                   <span id="LV">1</span>
                 </li>
                 <li>
                   历练：
-                  <span id="EXP">{{st.EXP}}</span> /
-                  <span id="EXPMAX">{{st.EXPMAX}}</span>
+                  <span id="EXP">{{pl.EXP}}</span> /
+                  <span id="EXPMAX">{{pl.EXPMAX}}</span>
                 </li>
               </ul>
             </div>
@@ -87,29 +87,29 @@
               <ul>
                 <li>
                   体力：
-                  <span id="CON">{{st.HP}}</span> /
-                  <span id="CONMAX">{{st.HPMAX}}</span>
+                  <span id="CON">{{pl.HP}}</span> /
+                  <span id="CONMAX">{{pl.HPMAX}}</span>
                 </li>
                 <li>
                   攻击：
-                  <span id="ATK">{{st.ATK}}</span> ~
-                  <span id="ATKMAX">{{st.ATKMAX}}</span>
+                  <span id="ATK">{{pl.ATK}}</span> ~
+                  <span id="ATKMAX">{{pl.ATKMAX}}</span>
                 </li>
                 <li>
                   精准：
-                  <span id="HIT">{{st.HIT}}</span>
+                  <span id="HIT">{{pl.HIT}}</span>
                 </li>
                 <li>
                   力量：
-                  <span id="STR">{{st.STR}}</span>
+                  <span id="STR">{{pl.STR}}</span>
                 </li>
                 <li>
                   敏捷：
-                  <span id="AGI">{{st.AGI}}</span>
+                  <span id="AGI">{{pl.AGI}}</span>
                 </li>
                 <li>
                   学识：
-                  <span id="INT">{{st.INT}}</span>
+                  <span id="INT">{{pl.INT}}</span>
                 </li>
               </ul>
             </div>
@@ -117,28 +117,28 @@
               <ul>
                 <li>
                   内力：
-                  <span id="MAG">{{st.MP}}</span> /
-                  <span id="MAGMAX">{{st.MPMAX}}</span>
+                  <span id="MAG">{{pl.MP}}</span> /
+                  <span id="MAGMAX">{{pl.MPMAX}}</span>
                 </li>
                 <li>
                   防御：
-                  <span id="DEF">{{st.DEF}}</span>
+                  <span id="DEF">{{pl.DEF}}</span>
                 </li>
                 <li>
                   身法：
-                  <span id="DEX">{{st.DEX}}</span>
+                  <span id="DEX">{{pl.DEX}}</span>
                 </li>
                 <li>
                   意志：
-                  <span id="WIL">{{st.WIL}}</span>
+                  <span id="WIL">{{pl.WIL}}</span>
                 </li>
                 <li>
                   感知：
-                  <span id="PER">{{st.PER}}</span>
+                  <span id="PER">{{pl.PER}}</span>
                 </li>
                 <li>
                   福缘：
-                  <span id="LUK">{{st.LUK}}</span>
+                  <span id="LUK">{{pl.LUK}}</span>
                 </li>
               </ul>
             </div>
@@ -169,7 +169,10 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">二刀流·鹰波：</div>
-                    <div class="Skill-Introduction">地裂波动剑</div>
+                    <div class="Skill-Introduction">
+                      向前方敌人快速释放波动剑，造成
+                      <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -179,7 +182,10 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">一刀流·居合·狮子歌歌：</div>
-                    <div class="Skill-Introduction">拔刀斩</div>
+                    <div class="Skill-Introduction">
+                      拔刀并快速向周围敌人发出强威力的斩击，造成
+                      <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -189,7 +195,10 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">青龙吟·流水：</div>
-                    <div class="Skill-Introduction">三段斩</div>
+                    <div class="Skill-Introduction">
+                      以极快的速度向前移动一段距离并斩击敌人，造成
+                      <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -199,7 +208,10 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">一刀流·鬼斩：</div>
-                    <div class="Skill-Introduction">鬼斩</div>
+                    <div class="Skill-Introduction">
+                      把鬼神召唤到武器上，并向前方敌人发出强威力的斩击，造成
+                      <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -211,7 +223,11 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">阿修罗·壹雾银：</div>
-                    <div class="Skill-Introduction">buff</div>
+                    <div class="Skill-Introduction">
+                      用心神洞察万物，可以增加
+                      <span>{{pl.ATK}}</span>点攻击，效果持续
+                      <span>20</span>秒。
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -221,7 +237,10 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">三刀流·百八烦恼风</div>
-                    <div class="Skill-Introduction">推波</div>
+                    <div class="Skill-Introduction">
+                      挥剑向前方敌人发出巨大的剑气攻击，造成
+                      <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -231,7 +250,10 @@
                   </div>
                   <div class="Skill-R">
                     <div class="Skill-Name">奥义·三千世界：</div>
-                    <div class="Skill-Introduction">幻影剑舞</div>
+                    <div class="Skill-Introduction">
+                      在原地向敌人发出迅猛的连续斩击，造成
+                      <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -432,8 +454,8 @@ export default {
   data: function() {
     return {
       WindowName: "null",
-      st: Player.pll,
-      stenemy: Enemy.ell,
+      pl: Player.pll,
+      ell: Enemy.ell,
       npc_data: Npc.npc,
       MusicFlag: true,
       MusicFlagText: "开"

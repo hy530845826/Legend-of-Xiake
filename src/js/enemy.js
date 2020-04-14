@@ -32,6 +32,8 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
     this.INT = intt
 
     this.speed = 0
+    this.hited_time = 0
+    this.dead_time = 0
 
     this.div_width = 0
     this.div_height = 0
@@ -58,6 +60,8 @@ function UpdateEnemy(obj, PortalToMapID) {
     } else { obj.imgfx = true }
     obj.hited = false
     obj.IsFlash = false
+    obj.hitedNumber = 0
+    obj.nowspeed = obj.speed
     //获取数据有延迟
     setTimeout(function () {
         $('#enemy').css('width', ell.div_width)//为name提供宽度
@@ -127,14 +131,17 @@ function CheckEnemyHit(StateName, TikTok) {
             ell.farme = data[0].farme
             if (ell.imgfx == false) {
                 // 移动反向图像左边距，保持右边不变
-                var changeX = 0
-                if (TikTok > 1) {
-                    changeX = target.hited_x - data[TikTok - 1].hited_x
-                } else if (StateName != 'move') {
-                    changeX = target.hited_x + target.hited_left - ell.stand_x //ellstand宽度
+                if (StateName != 'hited' && StateName != 'dead') {
+                    var changeX = 0
+                    if (TikTok > 1) {
+                        changeX = target.hited_x - data[TikTok - 1].hited_x
+                    } else if (StateName != 'move') {
+                        changeX = target.hited_x + target.hited_left - ell.stand_x //ellstand宽度
+                    }
+                    ell.plx -= changeX
+                    $('#enemy').css('left', ell.plx + "px")
                 }
-                ell.plx -= changeX
-                $('#enemy').css('left', ell.plx + "px")
+
                 //反向图像重新校正left
                 ell.img_x = (target.img_x + target.hited_x - imgWidth)
                 ell.hited_left = - target.hited_left
@@ -165,7 +172,7 @@ function ChangeEnemyCSS(StateName) {
         'left': ell.hit_left + 'px',
         'top': ell.hit_top + 'px'
     })
-    if (StateName == 'stand' || StateName == 'move') {
+    if (StateName == 'stand' || StateName == 'move' || StateName == 'hited' || StateName == 'dead') {
         $('#enemy.' + StateName + ' #enemy-body').css({ 'background-image': 'url(static/images/e' + ell.UID + '-' + StateName + '.gif)' })
     } else {
         $('#enemy.' + StateName + ' #enemy-body').css({ 'background-image': 'url(static/images/e' + ell.UID + '-' + StateName + '.png)' })
@@ -183,52 +190,44 @@ function EnemyMove(obj) {
 
     //0.5秒随机更改方向
     obj.randomfx_timer = setInterval(function () {
-        fx = RandomFX(0, 5)
+        fx = RandomFX(0, 4)
     }, 500);
-    var tempspeed = obj.speed
     obj.ellMove_timer = setInterval(function () {
-        obj.speed = tempspeed
+        obj.nowspeed = obj.speed
         pl.plx < obj.plx ? obj.realfx = true : obj.realfx = false
-        if (obj.realfx == obj.imgfx) {
+        if (obj.realfx == obj.imgfx && obj.HP > 0) {
             obj.imgfx = !obj.imgfx
             pl.plx < obj.plx ? $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(180deg)" }) : $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(0deg)" })
         }
-
         if (obj.IsFlash == false) {
             if (obj.hited == true) {
-                $('#enemy-body').attr('class', 'ellhited')
-                obj.speed = 0
+                ChangeEnemyState('hited')
+                obj.IsFlash = true
+                obj.nowspeed = 0
             } else if (obj.HP <= 0 && obj.hited == false) {
-                $('#enemy-body').attr('class', 'elldead')
+                ChangeEnemyState('dead')
             } else if (fx == 0) {
                 ChangeEnemyState('stand')
-                obj.speed = 0
+                obj.nowspeed = 0
             } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
-                $('#enemy-body').attr('class', 'move')
-                obj.ply += obj.speed
+                ChangeEnemyState('move')
+                obj.ply += obj.nowspeed
             } else if (fx == 3 && obj.ply > 380) {
-                $('#enemy-body').attr('class', 'move')
-                obj.ply -= obj.speed
+                ChangeEnemyState('move')
+                obj.ply -= obj.nowspeed
             } else if (fx == 2 && obj.plx > 0) {
-                obj.realfx ? $('#enemy-body').attr('class', 'move') : $('#enemy-body').attr('class', 'ellback')
-                obj.plx -= obj.speed
+                // obj.realfx ? ChangeEnemyState('move') : ChangeEnemyState('back')
+                ChangeEnemyState('move')
+                obj.plx -= obj.nowspeed
             } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
-                obj.realfx ? $('#enemy-body').attr('class', 'ellback') : $('#enemy-body').attr('class', 'move')
-                obj.plx += obj.speed
+                // obj.realfx ? ChangeEnemyState('back') : ChangeEnemyState('move')
+                ChangeEnemyState('move')
+                obj.plx += obj.nowspeed
             } else if (fx == 5) {
                 enemyflash('attack2')
-                obj.speed = 0
-                // obj.IsFlash = true
-                // var tempwidth = obj.ellattack1x - obj.ellstandx
-                // if (obj.realfx == true) { //位置补正
-                //     obj.plx -= tempwidth
-                //     setTimeout(() => { obj.plx += tempwidth }, obj.ellattack1t);
-                // }
-
-                // setTimeout(() => { obj.IsFlash = false }, obj.ellattack1t);
+                obj.nowspeed = 0
             } else if (fx != 5) {
-                window.console.log('wrg?')
-                fx = RandomFX(0, 5);
+                fx = RandomFX(0, 4);
             }
         }
         $('#enemy').css('top', obj.ply + "px")

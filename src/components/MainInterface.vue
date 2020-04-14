@@ -17,8 +17,8 @@
       <div id="skill-body"></div>
       <div id="role-hit-judge"></div>
       <div id="role-hited-judge"></div>
-      <div>{{st.realfx}}</div>
-      <div>{{st.imgfx}}</div>
+      <div>{{pl.realfx}}</div>
+      <div>{{pl.imgfx}}</div>
     </div>
     <div id="npc">
       <div id="npc-body" @click="RefuseMission"></div>
@@ -51,7 +51,7 @@
           <div>这是一个很长的故事巴拉巴拉巴拉，在很久很久以前有一个蓝精灵，他重来也不骑小毛驴。</div>
           <div>
             <span>任务说明:</span>
-            你好，勇士{{st.name}}//这里用变量确定委托的名字（可能需要组件）
+            你好，勇士{{pl.name}}//这里用变量确定委托的名字（可能需要组件）
           </div>
         </div>
         <div class="MissionBottom">
@@ -72,7 +72,7 @@ export default {
   name: "main-interface",
   data: function() {
     return {
-      st: Player.pll,
+      pl: Player.pll,
       ShowMission: false,
       el_data: [Enemy.ell.LV, Enemy.ell.name],
       npc_data: [Npc.npc.appellation, Npc.npc.name]

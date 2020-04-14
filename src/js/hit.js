@@ -17,7 +17,7 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
         if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
         else if (obj2.HP > 0 && obj.hit_ID != hit_ID) {
             obj.hit_ID = hit_ID
-            window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
+            // window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
 
             random_damage = RandomDamage(obj.ATK, obj.ATKMAX)
             obj2.HP -= random_damage
@@ -26,16 +26,22 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
 
             if (HitFlag) {//pl打ell
                 obj2.hited = true
+                obj2.hitedNumber += 1
                 //HP_progress
                 var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
                 $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
-
                 setTimeout(() => {
-                    obj2.hited = false
-                    if (obj2.HP <= 0) {
-                        setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.elldeadt)
+                    if (obj2.hitedNumber == 1) {//连续hit
+                        obj2.hited = false
+                        obj2.IsFlash = false
+                        obj2.hitedNumber = 0
+                        if (obj2.HP <= 0) {
+                            setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.dead_time)
+                        }
+                    } else {
+                        obj2.hitedNumber -= 1
                     }
-                }, obj2.ellhitedt)
+                }, obj2.hited_time)
             }
         }
     }
@@ -44,8 +50,12 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
 function KillJudgement(obj, obj2, HitFlag) {
     if (HitFlag) {
         obj.EXP += obj2.EXP
+        clearInterval(obj2.randomfx_timer)
+        clearInterval(obj2.ellMove_timer)
+        clearInterval(obj2.ellflash)
         obj2.plx = -200;
-        obj2.ply = -200;
+        obj2.ply = 400;
+        $('#enemy-body').css({ transition: "transform 0.1s", transform: "rotateY(0deg)" })
         $('#enemy').css('top', obj2.ply + "px")
         $('#enemy').css('left', obj2.plx + "px")
     }

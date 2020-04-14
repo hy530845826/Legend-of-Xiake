@@ -19,6 +19,8 @@
             "AGI": 1,
             "INT": 1,
             "speed": 10,
+            "hited_time": 500,
+            "dead_time": 1800,
             "div_width": 222,
             "div_height": 189,
             "stand_x": 57,
@@ -48,6 +50,32 @@
             "hited_x": 53,
             "hited_y": 108,
             "hited_left": 4,
+            "hited_top": 0
+        }],
+        [{
+            "UName": "hited",
+            "div_width": 222,
+            "div_height": 189,
+            "TikTok_sum": 1
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 50,
+            "hited_y": 76,
+            "hited_left": -9,
+            "hited_top": 0
+        }],
+        [{
+            "UName": "dead",
+            "div_width": 222,
+            "div_height": 189,
+            "TikTok_sum": 1
+        }, {
+            "img_x": 79,
+            "img_y": 48,
+            "hited_x": 0,
+            "hited_y": 0,
+            "hited_left": 0,
             "hited_top": 0
         }],
         [{
@@ -104,7 +132,7 @@
             "div_width": 2220,
             "div_height": 189,
             "TikTok_sum": 10,
-            "farme": 100
+            "farme": 1000
         }, {
             "img_x": 79,
             "img_y": 48,
