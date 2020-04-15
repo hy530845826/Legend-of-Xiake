@@ -13,9 +13,7 @@ var HitJudgement = Hit.default.HitJudgement
 
 import player_options from './data/player_options.json'
 var PlayerOptions = player_options
-import Map_options from './data/map_data.json'
-var MapOptions = Map_options
-UpdateStopPosition(1)
+t.UpdateStopPosition(pl, 1)
 
 var w = false
 var a = false
@@ -368,7 +366,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 	$('#map-' + MapIDNumber).attr('class', '')
 	$('#map-' + PortalToMapID).attr('class', 'Player-Position')
 	//1.8获取新地图可移动区域
-	UpdateStopPosition(PortalToMapID)
+	t.UpdateStopPosition(pl, PortalToMapID)
 	//2.计时器timer结束执行-ChangeBGM(200ms)
 	var timer = setInterval(function () {
 		i += 2
@@ -402,14 +400,6 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 		}
 		$('#loading-screen .progress-bar').css('width', i + '%')
 	}, 10)
-}
-
-function UpdateStopPosition(PortalToMapID) {
-	var datamsg = MapOptions[PortalToMapID]
-	pl.stop_l = datamsg.stop_left
-	pl.stop_t = datamsg.stop_top - pl.stand_y
-	pl.stop_r = pl.stop_l + datamsg.stop_width - pl.stand_x
-	pl.stop_b = pl.stop_t + datamsg.stop_height
 }
 
 function CreatePortal(PortalToMapID) {

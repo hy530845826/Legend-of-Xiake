@@ -64,6 +64,7 @@ function UpdateEnemy(obj, PortalToMapID) {
     obj.IsFlash = false
     obj.hitedNumber = 0
     obj.nowspeed = obj.speed
+    t.UpdateStopPosition(obj, PortalToMapID)
     //获取数据有延迟
     setTimeout(function () {
         $('#enemy').css('width', ell.div_width)//为name提供宽度
@@ -205,17 +206,17 @@ function EnemyMove(obj) {
             } else if (fx == 0) {
                 ChangeEnemyState('stand')
                 obj.nowspeed = 0
-            } else if (fx == 1 && obj.ply < 540 && obj.ply >= 0) {
+            } else if (fx == 1 && obj.ply < obj.stop_b && obj.ply >= 0) {
                 ChangeEnemyState('move')
                 obj.ply += obj.nowspeed
-            } else if (fx == 3 && obj.ply > 380) {
+            } else if (fx == 3 && obj.ply > obj.stop_t) {
                 ChangeEnemyState('move')
                 obj.ply -= obj.nowspeed
-            } else if (fx == 2 && obj.plx > 0) {
+            } else if (fx == 2 && obj.plx > obj.stop_l) {
                 // obj.realfx ? ChangeEnemyState('move') : ChangeEnemyState('back')
                 ChangeEnemyState('move')
                 obj.plx -= obj.nowspeed
-            } else if (fx == 4 && obj.plx < 1070 && obj.plx >= 0) {
+            } else if (fx == 4 && obj.plx < obj.stop_r && obj.plx >= 0) {
                 // obj.realfx ? ChangeEnemyState('back') : ChangeEnemyState('move')
                 ChangeEnemyState('move')
                 obj.plx += obj.nowspeed

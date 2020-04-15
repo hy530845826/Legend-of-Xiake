@@ -1,3 +1,6 @@
+import Map_options from './data/map_data.json'
+var MapOptions = Map_options
+
 //随机数[m~n]
 function RandomNumber(m, n) {
     var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
@@ -15,6 +18,15 @@ function RandomCode(codelength) {
     return randomcode;
 }
 
+//获取新地图可移动区域
+function UpdateStopPosition(obj, PortalToMapID) {
+    var datamsg = MapOptions[PortalToMapID]
+    obj.stop_l = datamsg.stop_left
+    obj.stop_t = datamsg.stop_top - obj.stand_y
+    obj.stop_r = obj.stop_l + datamsg.stop_width - obj.stand_x
+    obj.stop_b = obj.stop_t + datamsg.stop_height
+}
+
 export default {
-    RandomNumber, RandomCode
+    RandomNumber, RandomCode, UpdateStopPosition
 }
