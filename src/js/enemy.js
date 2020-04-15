@@ -7,7 +7,7 @@ var pl = Player.default.pll
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
-import enemy_data from './enemy_data.json'
+import enemy_data from './data/enemy_data.json'
 var EnemyData = enemy_data
 var EnemyOptions
 

@@ -1,0 +1,161 @@
+[{
+        "UID": 0,
+        "name": "中原",
+        "stop_left": 0,
+        "stop_top": 400,
+        "stop_width": 1200,
+        "stop_height": 50
+    },
+    {
+        "UID": 1,
+        "name": "少林1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 2,
+        "name": "少林2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 3,
+        "name": "木人巷1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 4,
+        "name": "木人巷2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 5,
+        "name": "嵩山1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 6,
+        "name": "嵩山2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 7,
+        "name": "武当1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 8,
+        "name": "武当2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 9,
+        "name": "武当道场",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 10,
+        "name": "铁掌峰",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 11,
+        "name": "蜀南竹海1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 12,
+        "name": "蜀南竹海2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 13,
+        "name": "唐门",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 14,
+        "name": "绝情谷1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 15,
+        "name": "绝情谷2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 16,
+        "name": "峨眉",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 17,
+        "name": "大沙漠1",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 18,
+        "name": "大沙漠2",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    },
+    {
+        "UID": 19,
+        "name": "魔教",
+        "stop_left": 0,
+        "stop_top": 510,
+        "stop_width": 1200,
+        "stop_height": 160
+    }
+]

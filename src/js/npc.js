@@ -1,6 +1,6 @@
 var npc = new CreateNPC(0, 0);
 
-import npc_data from './npc_data.json'
+import npc_data from './data/npc_data.json'
 var NPCData = npc_data
 var NPCOptions
 

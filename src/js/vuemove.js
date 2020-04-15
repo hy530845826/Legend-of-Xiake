@@ -11,8 +11,11 @@ var Updatenpc = Npc.default.Updatenpc
 var Hit = require("./hit")
 var HitJudgement = Hit.default.HitJudgement
 
-import player_options from './player_options.json'
+import player_options from './data/player_options.json'
 var PlayerOptions = player_options
+import Map_options from './data/map_data.json'
+var MapOptions = Map_options
+UpdateStopPosition(1)
 
 var w = false
 var a = false
@@ -134,13 +137,13 @@ document.onkeydown = function (event) {
 	}
 }
 setInterval(function () {
-	if (s && !pl.IsFlash && pl.ply < 540) {
+	if (s && !pl.IsFlash && pl.ply < pl.stop_b) {
 		pl.ply += pl.speed;
-	} else if (w && !pl.IsFlash && pl.ply > 380) {
+	} else if (w && !pl.IsFlash && pl.ply > pl.stop_t) {
 		pl.ply -= pl.speed;
-	} else if (a && !pl.IsFlash && pl.plx > 0) {
+	} else if (a && !pl.IsFlash && pl.plx > pl.stop_l) {
 		pl.plx -= pl.speed;
-	} else if (d && !pl.IsFlash && pl.plx < 1070) {
+	} else if (d && !pl.IsFlash && pl.plx < pl.stop_r) {
 		pl.plx += pl.speed;
 	}
 	$('#role').css('top', pl.ply + "px")
@@ -277,8 +280,8 @@ function CheckPlayerHit(obj, StateName, TikTok) {
 				var changeX = 0
 				if (TikTok > 1) {
 					changeX = target.hited_x - data[TikTok - 1].hited_x
-				} else if (StateName != 'plmove') {
-					changeX = target.hited_x - 67 //plstand宽度
+				} else if (StateName != 'move') {
+					changeX = target.hited_x - obj.stand_x
 				}
 				obj.plx -= changeX
 				$('#role').css('left', obj.plx + "px")
@@ -347,7 +350,6 @@ function ChangeMap() {
 			var PortalMusicID = parseInt(targetObj.className.match(/music-(\S*)/)[1]) //获取bgmID
 			var MapIDNumber = GetMapIDNumber()
 			var MapBGMNumber = GetMapBGMNumber()
-
 			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID)
 		}
 	}
@@ -365,6 +367,8 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 	//1.5修改小地图坐标
 	$('#map-' + MapIDNumber).attr('class', '')
 	$('#map-' + PortalToMapID).attr('class', 'Player-Position')
+	//1.8获取新地图可移动区域
+	UpdateStopPosition(PortalToMapID)
 	//2.计时器timer结束执行-ChangeBGM(200ms)
 	var timer = setInterval(function () {
 		i += 2
@@ -398,6 +402,14 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 		}
 		$('#loading-screen .progress-bar').css('width', i + '%')
 	}, 10)
+}
+
+function UpdateStopPosition(PortalToMapID) {
+	var datamsg = MapOptions[PortalToMapID]
+	pl.stop_l = datamsg.stop_left
+	pl.stop_t = datamsg.stop_top - pl.stand_y
+	pl.stop_r = pl.stop_l + datamsg.stop_width - pl.stand_x
+	pl.stop_b = pl.stop_t + datamsg.stop_height
 }
 
 function CreatePortal(PortalToMapID) {

@@ -39,6 +39,13 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.loading = false //是否加载地图
 	this.IsFlash = false
 
+	this.stand_x = 67
+	this.stand_y = 124
+	this.stop_l = 0
+	this.stop_t = 0
+	this.stop_r = 0
+	this.stop_b = 0
+
 	this.CD_flag = 0
 	this.CD_a = 0
 	this.CD_s = 0
