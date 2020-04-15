@@ -86,10 +86,10 @@ document.onkeydown = function (event) {
 			if (pl.IsFlash == false) {
 				if (pl.CD_a == 0) {
 					flash(pl, 'skillA')
-					CDSkill(pl, "skillA", 60)
+					CDSkill(pl, 0, 60)
 					GetAudio('pl', 'skill_a')
 				} else if (pl.CD_flag == 0) {
-					CDSkill(pl, "CD_flag", 20)
+					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
 				}
 			}
@@ -98,10 +98,10 @@ document.onkeydown = function (event) {
 			if (pl.IsFlash == false) {
 				if (pl.CD_s == 0) {
 					flash(pl, 'skillS')
-					CDSkill(pl, "skillS", 60)
+					CDSkill(pl, 1, 60)
 					GetAudio('pl', 'skill_s')
 				} else if (pl.CD_flag == 0) {
-					CDSkill(pl, "CD_flag", 20)
+					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
 				}
 			}
@@ -110,10 +110,10 @@ document.onkeydown = function (event) {
 			if (pl.IsFlash == false) {
 				if (pl.CD_d == 0) {
 					flash(pl, 'skillD', 540)
-					CDSkill(pl, "skillD", 60)
+					CDSkill(pl, 2, 60)
 					GetAudio('pl', 'skill_d')
 				} else if (pl.CD_flag == 0) {
-					CDSkill(pl, "CD_flag", 20)
+					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
 				}
 			}
@@ -122,11 +122,11 @@ document.onkeydown = function (event) {
 			if (pl.IsFlash == false) {
 				if (pl.CD_f == 0) {
 					flash(pl, 'skillF')
-					CDSkill(pl, "skillF", 60)
+					CDSkill(pl, 3, 60)
 					GetAudio('pl', 'skill_f1')
 					setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 				} else if (pl.CD_flag == 0) {
-					CDSkill(pl, "CD_flag", 20)
+					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
 				}
 			}
@@ -539,13 +539,11 @@ function GetAudio(dirName, StateName, RandomNumber) {
 }
 
 //技能CD(cd1s→20)
-function CDSkill(obj, cdName, cd) {
+function CDSkill(obj, cdNumber, cd) {
 	var cd_timer, cd_icon
-	if (cdName != 'CD_flag') {
-		$('#action-' + cdName).attr('class', 'cding')
-	}
-	switch (cdName) {
-		case 'CD_flag':
+	var targetIcon = $($("#action-skillcd-bar li")[cdNumber])
+	switch (cdNumber) {
+		case -1:
 			cd_timer = setInterval(function () {
 				obj.CD_flag++
 				if (obj.CD_flag == cd) {
@@ -554,59 +552,70 @@ function CDSkill(obj, cdName, cd) {
 				}
 			}, 50);
 			break;
-		case 'skillA':
+		case 0:
 			cd_timer = setInterval(function () {
 				cd_icon = parseInt((obj.CD_a / cd) * 100)
-				$('#action-' + cdName).css('top', cd_icon + '%')
+				targetIcon.css('top', cd_icon + '%')
 				obj.CD_a++
 				if (obj.CD_a == cd) {
 					obj.CD_a = 0;
-					$('#action-' + cdName).attr('class', '')
-					$('#action-' + cdName).css('top', 0)
+					SkillBling(targetIcon)
 					clearInterval(cd_timer);
 				}
 			}, 50);
 			break;
-		case 'skillS':
+		case 1:
 			cd_timer = setInterval(function () {
 				cd_icon = parseInt((obj.CD_s / cd) * 100)
-				$('#action-' + cdName).css('top', cd_icon + '%')
+				targetIcon.css('top', cd_icon + '%')
 				obj.CD_s++
 				if (obj.CD_s == cd) {
 					obj.CD_s = 0;
-					$('#action-' + cdName).attr('class', '')
-					$('#action-' + cdName).css('top', 0)
+					SkillBling(targetIcon)
 					clearInterval(cd_timer);
 				}
 			}, 50);
 			break;
-		case 'skillD':
+		case 2:
 			cd_timer = setInterval(function () {
 				cd_icon = parseInt((obj.CD_d / cd) * 100)
-				$('#action-' + cdName).css('top', cd_icon + '%')
+				targetIcon.css('top', cd_icon + '%')
 				obj.CD_d++
 				if (obj.CD_d == cd) {
 					obj.CD_d = 0;
-					$('#action-' + cdName).attr('class', '')
-					$('#action-' + cdName).css('top', 0)
+					SkillBling(targetIcon)
 					clearInterval(cd_timer);
 				}
 			}, 50)
 			break;
-		case 'skillF':
+		case 3:
 			cd_timer = setInterval(function () {
 				cd_icon = parseInt((obj.CD_f / cd) * 100)
-				$('#action-' + cdName).css('top', cd_icon + '%')
+				targetIcon.css('top', cd_icon + '%')
 				obj.CD_f++
 				if (obj.CD_f == cd) {
 					obj.CD_f = 0;
-					$('#action-' + cdName).attr('class', '')
-					$('#action-' + cdName).css('top', 0)
+					SkillBling(targetIcon)
 					clearInterval(cd_timer);
 				}
 			}, 50)
 			break;
 	}
+}
+
+function SkillBling(targetIcon) {
+	targetIcon.css('top', 0)
+	targetIcon.attr('class', 'bling')
+	setTimeout(function () {
+		targetIcon.attr('class', '')
+		setTimeout(function () {
+			targetIcon.attr('class', 'bling')
+			setTimeout(function () {
+				targetIcon.css('top', '100%')
+				targetIcon.attr('class', '')
+			}, 200)
+		}, 150)
+	}, 150)
 }
 
 export default {

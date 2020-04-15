@@ -11,10 +11,10 @@
       <li>R</li>
     </ul>
     <ul id="action-skillcd-bar">
-      <li id="action-skillA"></li>
-      <li id="action-skillS"></li>
-      <li id="action-skillD"></li>
-      <li id="action-skillF"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
       <li></li>
       <li></li>
       <li></li>

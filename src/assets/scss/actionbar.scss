@@ -32,6 +32,7 @@
     height: 50px;
     position: absolute;
     left: 0;
+    filter: drop-shadow(0 0 10px #fff);
 }
 
 #action-bar #action-skillcd-bar li {
@@ -39,13 +40,14 @@
     width: 50px;
     height: 50px;
     margin-left: 4px;
-    background: rgba(1, 1, 1, 0);
+    background: rgba(1, 1, 1, 0.6);
     position: absolute;
-    top: 0;
+    top: 100%;
 }
 
-#action-bar #action-skillcd-bar .cding {
-    background: rgba(1, 1, 1, 0.6);
+#action-bar #action-skillcd-bar .bling {
+    background: rgba(1, 1, 1, 0.05);
+    border: 2px solid #fff;
 }
 
 #action-bar #action-bag-bar {
@@ -61,4 +63,5 @@
     border: 1px solid #bbb;
     background-size: 113% 113%;
     background-position: center;
+    padding-left: 2px;
 }
