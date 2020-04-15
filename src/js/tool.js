@@ -1,9 +1,14 @@
 import Map_options from './data/map_data.json'
 var MapOptions = Map_options
 
-//随机数[m~n]
+//随机整数[m~n]
 function RandomNumber(m, n) {
     var num = Math.floor(Math.random() * (m - n - 1) + n + 1);
+    return num;
+}
+//随机整数(m~n)
+function RandomNumber2(m, n) {
+    var num = Math.floor(Math.random() * (m - n + 1) + n);
     return num;
 }
 
@@ -28,5 +33,5 @@ function UpdateStopPosition(obj, PortalToMapID) {
 }
 
 export default {
-    RandomNumber, RandomCode, UpdateStopPosition
+    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition
 }

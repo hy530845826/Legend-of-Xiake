@@ -151,7 +151,6 @@ setInterval(function () {
 
 document.onkeyup = function (event) {
 	event = event || window.event;
-	window.console.log(event)
 	switch (event.keyCode) {
 		case 39:
 			d = false;
@@ -346,15 +345,16 @@ function ChangeMap() {
 		if ((b1 + tempPosition) < b2 || (b1 - tempPosition) > b2 || (l1 - tempPosition) > l2 || (r1 + tempPosition) < r2) { /*没碰到*/ }
 		else {
 			var PortalToMapID = parseInt(targetObj.className.match(/to-map-(\S*)/)[1]) //获取传送门的to-mapID
-			var PortalMusicID = parseInt(targetObj.className.match(/music-(\S*)/)[1]) //获取bgmID
+			// var PortalMusicID = parseInt(targetObj.className.match(/music-(\S*)/)[1]) //获取bgmID
+			var PortalMusicID = SearchBGMNumber(PortalToMapID)
 			var MapIDNumber = GetMapIDNumber()
 			var MapBGMNumber = GetMapBGMNumber()
-			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID)
+			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, true)
 		}
 	}
 }
 
-function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
+function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, FlyFlag) {
 	//0.禁止角色操作，黑屏显示loading
 	$('#loading-screen').css('display', 'block')
 	pl.loading = true
@@ -388,7 +388,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID) {
 							clearInterval(timer3)
 							UpdateEnemy(ell, PortalToMapID)
 							Updatenpc(npc, PortalToMapID)
-							MovePlayer(MapIDNumber)
+							FlyFlag ? MovePlayer(MapIDNumber) : MovePlayer()
 							//5.允许角色操作，黑屏关闭loading
 							$('#loading-screen').css('display', 'none')
 							pl.loading = false
@@ -496,12 +496,37 @@ function ChangeBGM(MapBGMNumber, PortalMusicID) {
 }
 
 function MovePlayer(MapIDNumber) {
-	var targetObj = $('.to-map-' + MapIDNumber)[0]
-	window.console.log($('.to-map-' + MapIDNumber))
-	var t2 = targetObj.offsetTop
-	var l2 = targetObj.offsetLeft
-	pl.plx = l2
-	pl.ply = t2 - 70
+	if (MapIDNumber != undefined) {
+		var targetObj = $('.to-map-' + MapIDNumber)[0]
+		window.console.log($('.to-map-' + MapIDNumber))
+		var t2 = targetObj.offsetTop
+		var l2 = targetObj.offsetLeft
+		pl.plx = l2
+		pl.ply = t2 - 70
+	} else {
+		pl.plx = t.RandomNumber2(pl.stop_l, pl.stop_r)
+		pl.ply = t.RandomNumber2(pl.stop_t, pl.stop_b)
+	}
+}
+
+function SearchBGMNumber(PortalToMapID) {
+	var MapBGMNumber
+	switch (PortalToMapID) {
+		case 0: MapBGMNumber = 0; break;
+		case 1: case 2: MapBGMNumber = 1; break;
+		case 3: case 4: MapBGMNumber = 2; break;
+		case 5: case 6: MapBGMNumber = 3; break;
+		case 7: case 8: MapBGMNumber = 4; break;
+		case 9: MapBGMNumber = 5; break;
+		case 10: MapBGMNumber = 6; break;
+		case 11: case 12: MapBGMNumber = 7; break;
+		case 13: MapBGMNumber = 8; break;
+		case 14: case 15: MapBGMNumber = 9; break;
+		case 16: MapBGMNumber = 10; break;
+		case 17: case 18: MapBGMNumber = 11; break;
+		case 19: MapBGMNumber = 12; break;
+	}
+	return MapBGMNumber
 }
 
 function GetMapIDNumber() {
@@ -622,5 +647,5 @@ function SkillBling(targetIcon) {
 }
 
 export default {
-	flash, CDSkill, GetAudio
+	flash, CDSkill, GetAudio, SearchBGMNumber, GetMapIDNumber, GetMapBGMNumber, Loading
 };

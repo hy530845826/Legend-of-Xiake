@@ -44,7 +44,7 @@
         <div>作者：黄尧</div>
         <div class="little-font">※Legend-of-Xiake※</div>
         <div class="little-font">BY：Han$on from CQUPT</div>
-        <div>GitHub：hy530845826</div>
+        <div>B站：BIG主教 / 直播间13715775</div>
       </div>
     </div>
   </div>

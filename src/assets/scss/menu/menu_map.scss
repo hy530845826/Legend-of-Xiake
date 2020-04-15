@@ -18,11 +18,17 @@
     text-align: center;
     background: rgba(68, 68, 68, 0.5);
     border: 1px solid #888;
+    cursor: pointer;
+}
+
+#Mdiv #MapContent td:hover {
+    background: rgba(255, 205, 1, 0.5);
 }
 
 #Mdiv #MapContent .no-space {
     border: none;
     opacity: 0;
+    cursor: default;
 }
 
 #Mdiv #MapContent .Player-Position {
