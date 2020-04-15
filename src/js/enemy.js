@@ -61,6 +61,7 @@ function UpdateEnemy(obj, PortalToMapID) {
         $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(" + 180 + "deg)" })
     } else { obj.imgfx = true }
     obj.hited = false
+    obj.IsMove = true
     obj.IsFlash = false
     obj.hitedNumber = 0
     obj.nowspeed = obj.speed
@@ -206,22 +207,28 @@ function EnemyMove(obj) {
             } else if (fx == 0) {
                 ChangeEnemyState('stand')
                 obj.nowspeed = 0
+                obj.IsMove = true
             } else if (fx == 1 && obj.ply < obj.stop_b && obj.ply >= 0) {
                 ChangeEnemyState('move')
+                obj.IsMove = true
                 obj.ply += obj.nowspeed
             } else if (fx == 3 && obj.ply > obj.stop_t) {
                 ChangeEnemyState('move')
+                obj.IsMove = true
                 obj.ply -= obj.nowspeed
             } else if (fx == 2 && obj.plx > obj.stop_l) {
                 // obj.realfx ? ChangeEnemyState('move') : ChangeEnemyState('back')
                 ChangeEnemyState('move')
+                obj.IsMove = true
                 obj.plx -= obj.nowspeed
             } else if (fx == 4 && obj.plx < obj.stop_r && obj.plx >= 0) {
                 // obj.realfx ? ChangeEnemyState('back') : ChangeEnemyState('move')
                 ChangeEnemyState('move')
+                obj.IsMove = true
                 obj.plx += obj.nowspeed
             } else if (fx == 5) {
                 enemyflash('attack2')
+                obj.IsMove = false
                 obj.nowspeed = 0
             } else if (fx != 5) {
                 fx = t.RandomNumber(0, 4);
@@ -261,6 +268,7 @@ function enemyflash(StateName, skillstart, skillfarme, skillwidth) {
             setTimeout(function () {
                 if (ell.IsFlash == false) {
                     ChangeEnemyState('stand')
+                    ell.IsMove = true
                     $('#enemy-body').css('background-position', 0 + 'px ')
                 }
             }, 100)

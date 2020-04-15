@@ -66,7 +66,7 @@
 import Player from "../js/player";
 import Enemy from "../js/enemy";
 import Npc from "../js/npc";
-import "../js/vuemove";
+// import "../js/vuemove";
 
 export default {
   name: "main-interface",

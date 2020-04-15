@@ -25,6 +25,8 @@
               <div class="Skill-Introduction">
                 向前方敌人快速释放波动剑，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                冷却时间:
+                <span>3</span>秒
               </div>
             </div>
           </li>
@@ -38,6 +40,8 @@
               <div class="Skill-Introduction">
                 拔刀并快速向周围敌人发出强威力的斩击，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                冷却时间:
+                <span>6</span>秒
               </div>
             </div>
           </li>
@@ -51,6 +55,8 @@
               <div class="Skill-Introduction">
                 以极快的速度向前移动一段距离并斩击敌人，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                冷却时间:
+                <span>6</span>秒
               </div>
             </div>
           </li>
@@ -64,6 +70,8 @@
               <div class="Skill-Introduction">
                 把鬼神召唤到武器上，并向前方敌人发出强威力的斩击，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                冷却时间:
+                <span>3</span>秒
               </div>
             </div>
           </li>
@@ -80,6 +88,8 @@
                 用心神洞察万物，可以增加
                 <span>{{pl.ATK}}</span>点攻击，效果持续
                 <span>20</span>秒。
+                冷却时间:
+                <span>3</span>秒
               </div>
             </div>
           </li>
@@ -93,6 +103,8 @@
               <div class="Skill-Introduction">
                 挥剑向前方敌人发出巨大的剑气攻击，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                冷却时间:
+                <span>3</span>秒
               </div>
             </div>
           </li>
@@ -106,6 +118,8 @@
               <div class="Skill-Introduction">
                 在原地向敌人发出迅猛的连续斩击，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
+                冷却时间:
+                <span>3</span>秒
               </div>
             </div>
           </li>
@@ -116,7 +130,8 @@
             </div>
             <div class="Skill-R">
               <div class="Skill-Name">一大·三千·大千世界：</div>
-              <div class="Skill-Introduction">Stand·The World</div>
+              <div class="Skill-Introduction">Stand·The World</div>冷却时间:
+              <span>3</span>秒
             </div>
           </li>
         </ul>

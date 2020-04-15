@@ -11,10 +11,10 @@
       <li>R</li>
     </ul>
     <ul id="action-skillcd-bar">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li @click="ClickSkill($event)"></li>
+      <li @click="ClickSkill($event)"></li>
+      <li @click="ClickSkill($event)"></li>
+      <li @click="ClickSkill($event)"></li>
       <li></li>
       <li></li>
       <li></li>
@@ -31,6 +31,9 @@
   </div>
 </template>
 <script>
+import Player from "../js/player";
+var pl = Player.pll;
+import v from "../js/vuemove";
 export default {
   name: "test",
   methods: {
@@ -44,6 +47,63 @@ export default {
           "url(static/images/skill-" + i + ".png)"
         );
         $(SkillCDArr[i]).css("left", 54 * i + "px");
+      }
+    },
+    ClickSkill: function(e) {
+      var target = e.currentTarget;
+      var nowIndex = $(target).index();
+      switch (nowIndex) {
+        case 0: //A
+          if (pl.IsFlash == false) {
+            if (pl.CD_a == 0) {
+              v.flash(pl, "skillA");
+              v.CDSkill(pl, 0, 60);
+              v.GetAudio("pl", "skill_a");
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
+        case 1: //S
+          if (pl.IsFlash == false) {
+            if (pl.CD_s == 0) {
+              v.flash(pl, "skillS");
+              v.CDSkill(pl, 1, 120);
+              v.GetAudio("pl", "skill_s");
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
+        case 2: //D
+          if (pl.IsFlash == false) {
+            if (pl.CD_d == 0) {
+              v.flash(pl, "skillD", 540);
+              v.CDSkill(pl, 2, 120);
+              v.GetAudio("pl", "skill_d");
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
+        case 3: //F
+          if (pl.IsFlash == false) {
+            if (pl.CD_f == 0) {
+              v.flash(pl, "skillF");
+              v.CDSkill(pl, 3, 60);
+              v.GetAudio("pl", "skill_f1");
+              setTimeout(function() {
+                v.GetAudio("pl", "skill_f2");
+              }, 600);
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
       }
     }
   },

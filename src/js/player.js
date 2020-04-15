@@ -58,6 +58,8 @@ function LevelUP() {
 	pll.HP = pll.HPMAX
 	pll.MP = pll.MPMAX
 	pll.LV += 1
+	pll.ATK++
+	pll.ATKMAX++
 	$('#Level').innerHTML = "LV." + pll.LV
 	window.console.log("LEVEL UP")
 }

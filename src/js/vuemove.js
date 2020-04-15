@@ -99,7 +99,7 @@ document.onkeydown = function (event) {
 			if (pl.IsFlash == false) {
 				if (pl.CD_s == 0) {
 					flash(pl, 'skillS')
-					CDSkill(pl, 1, 60)
+					CDSkill(pl, 1, 120)
 					GetAudio('pl', 'skill_s')
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -111,7 +111,7 @@ document.onkeydown = function (event) {
 			if (pl.IsFlash == false) {
 				if (pl.CD_d == 0) {
 					flash(pl, 'skillD', 540)
-					CDSkill(pl, 2, 60)
+					CDSkill(pl, 2, 120)
 					GetAudio('pl', 'skill_d')
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -151,6 +151,7 @@ setInterval(function () {
 
 document.onkeyup = function (event) {
 	event = event || window.event;
+	window.console.log(event)
 	switch (event.keyCode) {
 		case 39:
 			d = false;
@@ -544,6 +545,7 @@ function GetAudio(dirName, StateName, RandomNumber) {
 function CDSkill(obj, cdNumber, cd) {
 	var cd_timer, cd_icon
 	var targetIcon = $($("#action-skillcd-bar li")[cdNumber])
+	targetIcon.attr('class', 'cding')
 	switch (cdNumber) {
 		case -1:
 			cd_timer = setInterval(function () {
@@ -613,7 +615,6 @@ function SkillBling(targetIcon) {
 		setTimeout(function () {
 			targetIcon.attr('class', 'bling')
 			setTimeout(function () {
-				targetIcon.css('top', '100%')
 				targetIcon.attr('class', '')
 			}, 200)
 		}, 150)
@@ -621,5 +622,5 @@ function SkillBling(targetIcon) {
 }
 
 export default {
-	onkeydown, onkeyup
+	flash, CDSkill, GetAudio
 };
