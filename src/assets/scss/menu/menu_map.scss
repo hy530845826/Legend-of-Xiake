@@ -1,0 +1,30 @@
+#Mdiv {
+    width: 960px;
+    height: 470px;
+    position: absolute;
+    top: 100px;
+    left: 120px;
+}
+
+#Mdiv #MapContent {
+    background: url(../../images/map.png) no-repeat;
+}
+
+#Mdiv #MapContent td {
+    font-size: 14px;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: rgba(68, 68, 68, 0.5);
+    border: 1px solid #888;
+}
+
+#Mdiv #MapContent .no-space {
+    border: none;
+    opacity: 0;
+}
+
+#Mdiv #MapContent .Player-Position {
+    border: 2px solid yellow;
+}

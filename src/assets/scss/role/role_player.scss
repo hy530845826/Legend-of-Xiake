@@ -1,0 +1,107 @@
+#role {
+    position: absolute;
+    border: 2px solid white;
+}
+
+#role-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#skill-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid purple;
+}
+
+#role-hited-judge {
+    width: 67px;
+    height: 124px;
+    border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#role-hit-judge {
+    width: 0px;
+    height: 0px;
+    border: 1px solid yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.stand #role-body {
+    width: 67px;
+    height: 124px;
+    background: url(../../images/plstand.gif) no-repeat;
+}
+
+.move #role-body {
+    width: 70px;
+    height: 122px;
+    background: url(../../images/plmove.gif) no-repeat;
+}
+
+.skillX #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/skill-x.png) no-repeat;
+}
+
+.skillZ #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/skill-z.png) no-repeat;
+}
+
+.skillA #role-body {
+    width: 192px;
+    height: 190px;
+    background: url(../../images/skill-a.png) no-repeat;
+}
+
+.skillA #skill-body {
+    width: 250px;
+    height: 190px;
+    background: url(../../images/技能A特效.png) 250px no-repeat;
+}
+
+.skillS #role-body {
+    width: 192px;
+    height: 190px;
+    background: url(../../images/skill-s.png) no-repeat;
+}
+
+.skillS #skill-body {
+    width: 580px;
+    height: 216px;
+    background: url(../../images/技能S特效.png) 580px no-repeat;
+}
+
+.skillD #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/skill-d.png) no-repeat;
+}
+
+.skillD #skill-body {
+    width: 576px;
+    height: 192px;
+    background: url(../../images/技能D特效.png) 576px no-repeat;
+}
+
+.skillF #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/skill-f.png) no-repeat;
+}
+
+.skillF #skill-body {
+    width: 384px;
+    height: 192px;
+    background: url(../../images/技能F特效.png) 384px no-repeat;
+}

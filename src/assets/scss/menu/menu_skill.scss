@@ -1,0 +1,88 @@
+#Kdiv .SkillBox #SkillCheckBox {
+    height: 15px;
+    position: absolute;
+    right: 15px;
+    bottom: 2px;
+}
+
+#Kdiv .SkillBox #SkillCheckBox ul {
+    height: 10px;
+    margin-bottom: 5px;
+}
+
+#Kdiv .SkillBox #SkillCheckBox li {
+    width: 10px;
+    height: 10px;
+    background: #666;
+    border-radius: 50%;
+    float: left;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+#Kdiv .SkillBox #SkillCheckBox .checked {
+    background: #ccc;
+}
+
+#Kdiv .SkillBox .Skill-Content ul.hidden {
+    display: none;
+}
+
+#Kdiv .SkillBox .Skill-Content ul {
+    position: absolute;
+    top: 30px;
+    padding: 15px 10px 0;
+    margin-bottom: 0;
+}
+
+#Kdiv .SkillBox .Skill-Content li {
+    height: 90px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#Kdiv .SkillBox .Skill-Content li .Skill-L {
+    width: 64px;
+    height: 90px;
+    float: left;
+    margin-right: 6px;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-Icon {
+    display: inline-block;
+    border: 3px solid #888;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-Icon:hover {
+    border-color: #bbb;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-Icon {
+    background-position: center;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-Key {
+    position: relative;
+    top: -5px;
+    text-align: center;
+    color: #bbb;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R {
+    background-color: #444;
+    width: 270px;
+    height: 90px;
+    line-height: 21px;
+    float: right;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R .Skill-Name {
+    color: yellow;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R span {
+    color: yellow;
+}

@@ -36,7 +36,7 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
                 setTimeout(() => {
                     if (obj2.hitedNumber == 1) {//连续hit
                         obj2.hited = false
-                        obj2.IsFlash = false
+                        if ($('#enemy').attr('class') == 'stand' || $('#enemy').attr('class') == 'move') { obj2.IsFlash = false }
                         obj2.hitedNumber = 0
                         if (obj2.HP <= 0) {
                             setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.dead_time)

@@ -1,0 +1,44 @@
+#enemy {
+    position: absolute;
+    border: 2px solid white;
+}
+
+#enemy-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#enemy-hited-judge {
+    width: 0px;
+    height: 0px;
+    border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#enemy-hit-judge {
+    width: 0px;
+    height: 0px;
+    border: 1px solid yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#enemy-hp {
+    height: 5px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    border: 1px solid #bbb;
+}
+
+#enemy-name {
+    width: 150px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

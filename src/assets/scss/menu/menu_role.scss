@@ -1,0 +1,40 @@
+#Idiv .RoleHead {
+    padding-bottom: 20px;
+    height: 150px;
+}
+
+#Idiv .Iimg img {
+    display: block;
+    margin: 15px auto 0;
+}
+
+#Idiv .RoleName {
+    padding-top: 24px;
+    text-align: center;
+}
+
+#Idiv .RoleName li {
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+#Idiv .RoleHead,
+#Idiv .RoleBox {
+    overflow: hidden;
+}
+
+#Idiv .RoleHead div,
+#Idiv .RoleBox div {
+    margin: 0 auto;
+    width: 180px;
+    float: left;
+}
+
+#Idiv .RoleBox li {
+    padding-top: 5px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    padding-left: 30px;
+}

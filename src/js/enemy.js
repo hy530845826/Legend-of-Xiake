@@ -263,7 +263,7 @@ function enemyflash(StateName, skillstart, skillfarme, skillwidth) {
                     ChangeEnemyState('stand')
                     $('#enemy-body').css('background-position', 0 + 'px ')
                 }
-            }, 50)
+            }, 100)
         } else {
             $('#enemy-body').css('background-position', (-div_width * (i - 1)) + 'px ')
             CheckEnemyHit(StateName, i)

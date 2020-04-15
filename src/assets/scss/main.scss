@@ -3,9 +3,8 @@
 @import "statusbar.scss";
 @import "actionbar.scss";
 @import "map.scss";
-@import "menu.scss";
-@import "role.scss";
+@import "./menu/menu_main.scss";
+@import "./role/role_main.scss";
 @import "portal.scss";
 @import "mission.scss";
-@import "introduction.scss";
 @import '../bootstrap/css/bootstrap.min.css';

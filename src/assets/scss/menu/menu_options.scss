@@ -1,0 +1,28 @@
+#Pdiv {
+    color: red;
+    width: 210px;
+    height: 330px;
+    background: #222;
+    position: absolute;
+    top: 175px;
+    left: 495px;
+}
+
+#Pdiv .SettingBox ul {
+    width: 90px;
+    margin: 15px auto 0;
+}
+
+#Pdiv .SettingBox li {
+    cursor: pointer;
+    margin-bottom: 15px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    background: #555;
+    border: 1px solid #900;
+}
+
+#Pdiv .SettingBox li:hover {
+    color: yellow;
+}
