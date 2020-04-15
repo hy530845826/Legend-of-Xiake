@@ -540,7 +540,10 @@ function GetAudio(dirName, StateName, RandomNumber) {
 
 //技能CD(cd1s→20)
 function CDSkill(obj, cdName, cd) {
-	var cd_timer
+	var cd_timer, cd_icon
+	if (cdName != 'CD_flag') {
+		$('#action-' + cdName).attr('class', 'cding')
+	}
 	switch (cdName) {
 		case 'CD_flag':
 			cd_timer = setInterval(function () {
@@ -553,36 +556,52 @@ function CDSkill(obj, cdName, cd) {
 			break;
 		case 'skillA':
 			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_a / cd) * 100)
+				$('#action-' + cdName).css('top', cd_icon + '%')
 				obj.CD_a++
 				if (obj.CD_a == cd) {
 					obj.CD_a = 0;
+					$('#action-' + cdName).attr('class', '')
+					$('#action-' + cdName).css('top', 0)
 					clearInterval(cd_timer);
 				}
 			}, 50);
 			break;
 		case 'skillS':
 			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_s / cd) * 100)
+				$('#action-' + cdName).css('top', cd_icon + '%')
 				obj.CD_s++
 				if (obj.CD_s == cd) {
 					obj.CD_s = 0;
+					$('#action-' + cdName).attr('class', '')
+					$('#action-' + cdName).css('top', 0)
 					clearInterval(cd_timer);
 				}
 			}, 50);
 			break;
 		case 'skillD':
 			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_d / cd) * 100)
+				$('#action-' + cdName).css('top', cd_icon + '%')
 				obj.CD_d++
 				if (obj.CD_d == cd) {
 					obj.CD_d = 0;
+					$('#action-' + cdName).attr('class', '')
+					$('#action-' + cdName).css('top', 0)
 					clearInterval(cd_timer);
 				}
 			}, 50)
 			break;
 		case 'skillF':
 			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_f / cd) * 100)
+				$('#action-' + cdName).css('top', cd_icon + '%')
 				obj.CD_f++
 				if (obj.CD_f == cd) {
 					obj.CD_f = 0;
+					$('#action-' + cdName).attr('class', '')
+					$('#action-' + cdName).css('top', 0)
 					clearInterval(cd_timer);
 				}
 			}, 50)

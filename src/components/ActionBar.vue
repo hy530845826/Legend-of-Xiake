@@ -10,6 +10,16 @@
       <li>E</li>
       <li>R</li>
     </ul>
+    <ul id="action-skillcd-bar">
+      <li id="action-skillA"></li>
+      <li id="action-skillS"></li>
+      <li id="action-skillD"></li>
+      <li id="action-skillF"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
     <ul id="action-bag-bar">
       <li>1</li>
       <li>2</li>
@@ -19,7 +29,6 @@
       <li>6</li>
     </ul>
   </div>
-  
 </template>
 <script>
 export default {
@@ -27,12 +36,14 @@ export default {
   methods: {
     LoadingSkillBar: function() {
       var SkillIconArr = $("#action-skill-bar li");
+      var SkillCDArr = $("#action-skillcd-bar li");
       var sum = SkillIconArr.length;
       for (let i = 0; i < sum; i++) {
         $(SkillIconArr[i]).css(
           "background-image",
           "url(static/images/skill-" + i + ".png)"
         );
+        $(SkillCDArr[i]).css("left", 54 * i + "px");
       }
     }
   },
