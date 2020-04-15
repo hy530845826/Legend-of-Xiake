@@ -84,27 +84,51 @@ document.onkeydown = function (event) {
 			break;
 		case 65: //A
 			if (pl.IsFlash == false) {
-				flash(pl, 'skillA')
-				GetAudio('pl', 'skill_a')
+				if (pl.CD_a == 0) {
+					flash(pl, 'skillA')
+					CDSkill(pl, "skillA", 60)
+					GetAudio('pl', 'skill_a')
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, "CD_flag", 20)
+					GetAudio('pl', 'cd')
+				}
 			}
 			break;
 		case 83: //S
 			if (pl.IsFlash == false) {
-				flash(pl, 'skillS')
-				GetAudio('pl', 'skill_s')
+				if (pl.CD_s == 0) {
+					flash(pl, 'skillS')
+					CDSkill(pl, "skillS", 60)
+					GetAudio('pl', 'skill_s')
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, "CD_flag", 20)
+					GetAudio('pl', 'cd')
+				}
 			}
 			break;
 		case 68: //D
 			if (pl.IsFlash == false) {
-				flash(pl, 'skillD', 540)
-				GetAudio('pl', 'skill_d')
+				if (pl.CD_d == 0) {
+					flash(pl, 'skillD', 540)
+					CDSkill(pl, "skillD", 60)
+					GetAudio('pl', 'skill_d')
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, "CD_flag", 20)
+					GetAudio('pl', 'cd')
+				}
 			}
 			break;
 		case 70: //F
 			if (pl.IsFlash == false) {
-				flash(pl, 'skillF')
-				GetAudio('pl', 'skill_f1')
-				setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
+				if (pl.CD_f == 0) {
+					flash(pl, 'skillF')
+					CDSkill(pl, "skillF", 60)
+					GetAudio('pl', 'skill_f1')
+					setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, "CD_flag", 20)
+					GetAudio('pl', 'cd')
+				}
 			}
 			break;
 	}
@@ -514,7 +538,58 @@ function GetAudio(dirName, StateName, RandomNumber) {
 	audio.play();
 }
 
+//技能CD(cd1s→20)
+function CDSkill(obj, cdName, cd) {
+	var cd_timer
+	switch (cdName) {
+		case 'CD_flag':
+			cd_timer = setInterval(function () {
+				obj.CD_flag++
+				if (obj.CD_flag == cd) {
+					obj.CD_flag = 0;
+					clearInterval(cd_timer);
+				}
+			}, 50);
+			break;
+		case 'skillA':
+			cd_timer = setInterval(function () {
+				obj.CD_a++
+				if (obj.CD_a == cd) {
+					obj.CD_a = 0;
+					clearInterval(cd_timer);
+				}
+			}, 50);
+			break;
+		case 'skillS':
+			cd_timer = setInterval(function () {
+				obj.CD_s++
+				if (obj.CD_s == cd) {
+					obj.CD_s = 0;
+					clearInterval(cd_timer);
+				}
+			}, 50);
+			break;
+		case 'skillD':
+			cd_timer = setInterval(function () {
+				obj.CD_d++
+				if (obj.CD_d == cd) {
+					obj.CD_d = 0;
+					clearInterval(cd_timer);
+				}
+			}, 50)
+			break;
+		case 'skillF':
+			cd_timer = setInterval(function () {
+				obj.CD_f++
+				if (obj.CD_f == cd) {
+					obj.CD_f = 0;
+					clearInterval(cd_timer);
+				}
+			}, 50)
+			break;
+	}
+}
+
 export default {
 	onkeydown, onkeyup
 };
-
