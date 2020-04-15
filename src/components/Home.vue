@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import Introduction from "./Introduction.vue";
+import Introduction from "./window/Introduction.vue";
 
 export default {
   name: "home",

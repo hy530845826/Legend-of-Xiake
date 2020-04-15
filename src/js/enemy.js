@@ -187,7 +187,7 @@ function EnemyMove(obj) {
     var fx = 0
     //0.5秒随机更改方向
     obj.randomfx_timer = setInterval(function () {
-        fx = t.RandomNumber(0, 4)
+        fx = t.RandomNumber(0, 5)
     }, 500);
     obj.ellMove_timer = setInterval(function () {
         obj.nowspeed = obj.speed
