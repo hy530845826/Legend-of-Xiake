@@ -149,9 +149,10 @@ setInterval(function () {
 		pl.plx += pl.speed;
 	}
 	if (pl.plx > pl.Audio_move_l && pl.plx < pl.Audio_move_r) {
-		if (npc.CD_audio == 0) {
-			t.CDAudio(npc, npc.CD_move);
-			GetAudio("npc", "npc" + npc.UID + "_move");
+		if (npc.CD_audio == 0 && npc.moveAudioFlag == false) {
+			npc.moveAudioFlag == true
+			t.CDAudio(npc, false);
+			GetAudio("npc", "npc" + npc.UID + "_move", npc.style_move);
 		}
 	}
 	$('#role').css('top', pl.ply + "px")

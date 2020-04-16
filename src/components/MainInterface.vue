@@ -84,18 +84,30 @@ export default {
     RefuseMission: function() {
       this.ShowMission = !this.ShowMission;
       //说话
-      if (this.npc.CD_audio == 0) {
+      if (this.npc.CD_audio == 0 || this.npc.CD_audio > 4) {
         if (this.ShowMission == true) {
-          t.CDAudio(this.npc, this.npc.CD_talk);
-          v.GetAudio("npc", "npc" + this.npc.UID + "_talk");
+          t.CDAudio(this.npc, true);
+          v.GetAudio(
+            "npc",
+            "npc" + this.npc.UID + "_talk",
+            this.npc.style_talk
+          );
         } else {
-          t.CDAudio(this.npc, this.npc.CD_over);
-          v.GetAudio("npc", "npc" + this.npc.UID + "_over");
+          t.CDAudio(this.npc, true);
+          v.GetAudio(
+            "npc",
+            "npc" + this.npc.UID + "_over",
+            this.npc.style_over
+          );
         }
       }
     },
     AcceptMission: function() {
       this.ShowMission = !this.ShowMission;
+      if (this.npc.CD_audio == 0 || this.npc.CD_audio > 4) {
+        t.CDAudio(this.npc, true);
+        v.GetAudio("npc", "npc" + this.npc.UID + "_over", this.npc.style_over);
+      }
       Enemy.UpdateEnemy(Enemy.ell, 3);
     },
     F5: function() {

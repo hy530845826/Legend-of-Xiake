@@ -4,7 +4,7 @@ import npc_data from './data/npc_data.json'
 var NPCData = npc_data
 var NPCOptions
 
-function CreateNPC(plx, ply, lv, hpmax, hp, mpmax, mp, atk, atkmax, def, str, agi, intt) {
+function CreateNPC(plx, ply, lv) {
     this.UID = 0
     this.appellation = 'null'
     this.name = 'null'
@@ -13,27 +13,14 @@ function CreateNPC(plx, ply, lv, hpmax, hp, mpmax, mp, atk, atkmax, def, str, ag
     this.ply = ply
 
     this.LV = lv
-    this.HPMAX = hpmax
-    this.HP = hp
-    this.MPMAX = mpmax
-    this.MP = mp
-
-    this.ATK = atk
-    this.ATKMAX = atkmax
-    this.DEF = def
-    this.STR = str
-    this.AGI = agi
-    this.INT = intt
-
-    this.speed = 0
 
     this.div_width = 0
     this.div_height = 0
     this.realfx = true
 
-    this.CD_talk = 0
-    this.CD_over = 0
-    this.CD_move = 0
+    this.style_talk = 0
+    this.style_over = 0
+    this.style_move = 0
 }
 
 function Updatenpc(obj, PortalToMapID) {
@@ -50,6 +37,7 @@ function Updatenpc(obj, PortalToMapID) {
     }
     obj.realfx ? $('#npc-body').css("transform", "rotateY(" + 0 + "deg)") : $('#npc-body').css("transform", "rotateY(" + 180 + "deg)")
     obj.CD_audio = 0
+    obj.moveAudioFlag = false
     //获取数据有延迟
     setTimeout(function () {
         $('#npc').css({ 'width': npc.div_width, 'top': obj.ply + "px", 'left': obj.plx + "px", 'z-index': npc.ply })//为name提供宽度

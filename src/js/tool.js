@@ -32,14 +32,19 @@ function UpdateStopPosition(obj, PortalToMapID) {
     obj.stop_b = obj.stop_t + datamsg.stop_height
 }
 
-function CDAudio(obj, cd) {
-    var cd_timer = setInterval(function () {
-        obj.CD_audio++;
-        if (obj.CD_audio == cd) {
+function CDAudio(obj, cdFlag) {
+    clearInterval(obj.cd_timer);
+    obj.CD_audio = 1
+    var cd
+    cdFlag ? cd = 4 : cd = 16 //3s和15s
+    obj.cd_timer = setInterval(function () {
+        obj.CD_audio++
+        if (obj.CD_audio >= cd) {
             obj.CD_audio = 0;
-            clearInterval(cd_timer);
+            if (obj.moveAudioFlag) { obj.moveAudioFlag = false }
+            clearInterval(obj.cd_timer);
         }
-    }, 50);
+    }, 1000);
 }
 
 export default {
