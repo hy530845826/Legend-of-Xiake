@@ -10,9 +10,9 @@
         "UID": 1,
         "name": "少林1",
         "stop_left": 0,
-        "stop_top": 630,
+        "stop_top": 620,
         "stop_width": 745,
-        "stop_height": 30
+        "stop_height": 50
     },
     {
         "UID": 2,

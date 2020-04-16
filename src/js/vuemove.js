@@ -139,20 +139,26 @@ document.onkeydown = function (event) {
 }
 
 setInterval(function () {
-	if (s && !pl.IsFlash && pl.ply < pl.stop_b) {
-		pl.ply += pl.speed;
-	} else if (w && !pl.IsFlash && pl.ply > pl.stop_t) {
-		pl.ply -= pl.speed;
-	} else if (a && !pl.IsFlash && pl.plx > pl.stop_l) {
-		pl.plx -= pl.speed;
-	} else if (d && !pl.IsFlash && pl.plx < pl.stop_r) {
-		pl.plx += pl.speed;
-	}
-	if (pl.plx > pl.Audio_move_l && pl.plx < pl.Audio_move_r) {
-		if (npc.CD_audio == 0 && npc.moveAudioFlag == false) {
-			npc.moveAudioFlag == true
-			t.CDAudio(npc, false);
-			GetAudio("npc", "npc" + npc.UID + "_move", npc.style_move);
+	if (!pl.IsFlash) {
+		if (s && pl.ply < pl.stop_b) {
+			pl.ply += pl.speed;
+		} else if (w && pl.ply > pl.stop_t) {
+			pl.ply -= pl.speed;
+		} else if (a && pl.plx > pl.stop_l) {
+			pl.plx -= pl.speed;
+		} else if (d && pl.plx < pl.stop_r) {
+			pl.plx += pl.speed;
+		}
+		if (pl.ply > pl.stop_b) { pl.ply = pl.stop_b }
+		if (pl.ply < pl.stop_t) { pl.ply = pl.stop_t }
+		if (pl.plx < pl.stop_l) { pl.plx = pl.stop_l }
+		if (pl.plx > pl.stop_r) { pl.plx = pl.stop_r }
+		if (pl.plx > pl.Audio_move_l && pl.plx < pl.Audio_move_r) {
+			if (npc.CD_audio == 0 && npc.moveAudioFlag == false) {
+				npc.moveAudioFlag == true
+				t.CDAudio(npc, false);
+				GetAudio("npc", "npc" + npc.UID + "_move", npc.style_move);
+			}
 		}
 	}
 	$('#role').css('top', pl.ply + "px")

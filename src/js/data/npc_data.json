@@ -10,6 +10,8 @@
         "div_width": 93,
         "div_height": 104,
         "realfx": true,
+        "CD_audio_talk": 4,
+        "CD_audio_move": 16,
         "style_talk": 2,
         "style_over": 3,
         "style_move": 2
@@ -25,6 +27,8 @@
         "div_width": 115,
         "div_height": 101,
         "realfx": true,
+        "CD_audio_talk": 4,
+        "CD_audio_move": 16,
         "style_talk": 0,
         "style_over": 2,
         "style_move": 0

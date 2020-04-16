@@ -18,6 +18,8 @@ function CreateNPC(plx, ply, lv) {
     this.div_height = 0
     this.realfx = true
 
+    this.CD_audio_talk = 0
+    this.CD_audio_move = 0
     this.style_talk = 0
     this.style_over = 0
     this.style_move = 0

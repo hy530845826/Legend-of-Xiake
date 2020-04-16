@@ -36,7 +36,7 @@ function CDAudio(obj, cdFlag) {
     clearInterval(obj.cd_timer);
     obj.CD_audio = 1
     var cd
-    cdFlag ? cd = 4 : cd = 16 //3s和15s
+    cdFlag ? cd = obj.CD_audio_talk : cd = obj.CD_audio_move //3s和15s
     obj.cd_timer = setInterval(function () {
         obj.CD_audio++
         if (obj.CD_audio >= cd) {
