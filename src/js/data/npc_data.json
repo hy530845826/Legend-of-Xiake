@@ -4,7 +4,7 @@
         "CreateMap": 2,
         "appellation": "酒僧",
         "name": "风振",
-        "plx": 200,
+        "plx": 700,
         "ply": 400,
         "LV": 10,
         "HPMAX": 50,
@@ -27,8 +27,8 @@
         "CreateMap": 3,
         "appellation": "混元霹雳手",
         "name": "成昆",
-        "plx": 200,
-        "ply": 400,
+        "plx": 372,
+        "ply": 155,
         "LV": 10,
         "HPMAX": 50,
         "HP": 50,
@@ -43,7 +43,10 @@
         "speed": 10,
         "div_width": 115,
         "div_height": 101,
-        "realfx": true
+        "realfx": true,
+        "CD_talk": 40,
+        "CD_over": 40,
+        "CD_move": 80
     }],
     [{}]
 ]

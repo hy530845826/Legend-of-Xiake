@@ -38,6 +38,8 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.hit_ID = 0 //技能伤害指示
 	this.loading = false //是否加载地图
 	this.IsFlash = false
+	this.Audio_move_l = -200 //路过npc触发语音坐标
+	this.Audio_move_r = -200
 
 	this.stand_x = 67
 	this.stand_y = 124

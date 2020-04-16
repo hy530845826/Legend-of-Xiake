@@ -66,13 +66,15 @@
 import Player from "../js/player";
 import Enemy from "../js/enemy";
 import Npc from "../js/npc";
-// import "../js/vuemove";
+import v from "../js/vuemove";
+import t from "../js/tool";
 
 export default {
   name: "main-interface",
   data: function() {
     return {
       pl: Player.pll,
+      npc: Npc.npc,
       ShowMission: false,
       el_data: [Enemy.ell.LV, Enemy.ell.name],
       npc_data: [Npc.npc.appellation, Npc.npc.name]
@@ -81,10 +83,20 @@ export default {
   methods: {
     RefuseMission: function() {
       this.ShowMission = !this.ShowMission;
+      //说话
+      if (this.npc.CD_audio == 0) {
+        if (this.ShowMission == true) {
+          t.CDAudio(this.npc, this.npc.CD_talk);
+          v.GetAudio("npc", "npc" + this.npc.UID + "_talk");
+        } else {
+          t.CDAudio(this.npc, this.npc.CD_over);
+          v.GetAudio("npc", "npc" + this.npc.UID + "_over");
+        }
+      }
     },
     AcceptMission: function() {
       this.ShowMission = !this.ShowMission;
-      Enemy.UpdateEnemy(Enemy.ell, 2);
+      Enemy.UpdateEnemy(Enemy.ell, 3);
     },
     F5: function() {
       var that = this;

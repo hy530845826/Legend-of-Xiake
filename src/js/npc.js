@@ -30,6 +30,10 @@ function CreateNPC(plx, ply, lv, hpmax, hp, mpmax, mp, atk, atkmax, def, str, ag
     this.div_width = 0
     this.div_height = 0
     this.realfx = true
+
+    this.CD_talk = 0
+    this.CD_over = 0
+    this.CD_move = 0
 }
 
 function Updatenpc(obj, PortalToMapID) {
@@ -45,7 +49,7 @@ function Updatenpc(obj, PortalToMapID) {
         obj[index] = datamsg[index]
     }
     obj.realfx ? $('#npc-body').css("transform", "rotateY(" + 0 + "deg)") : $('#npc-body').css("transform", "rotateY(" + 180 + "deg)")
-
+    obj.CD_audio = 0
     //获取数据有延迟
     setTimeout(function () {
         $('#npc').css({ 'width': npc.div_width, 'top': obj.ply + "px", 'left': obj.plx + "px", 'z-index': npc.ply })//为name提供宽度

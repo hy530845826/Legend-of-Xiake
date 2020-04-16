@@ -32,6 +32,16 @@ function UpdateStopPosition(obj, PortalToMapID) {
     obj.stop_b = obj.stop_t + datamsg.stop_height
 }
 
+function CDAudio(obj, cd) {
+    var cd_timer = setInterval(function () {
+        obj.CD_audio++;
+        if (obj.CD_audio == cd) {
+            obj.CD_audio = 0;
+            clearInterval(cd_timer);
+        }
+    }, 50);
+}
+
 export default {
-    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition
+    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio
 }

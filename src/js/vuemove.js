@@ -15,8 +15,8 @@ import player_options from './data/player_options.json'
 var PlayerOptions = player_options
 
 //初始化
-// t.UpdateStopPosition(pl, 1)
-Loading(1, 1, 1, 1, 'garden', false)
+t.UpdateStopPosition(pl, 1)
+// Loading(1, 1, 1, 1, 'garden', false)
 
 var w = false
 var a = false
@@ -137,6 +137,7 @@ document.onkeydown = function (event) {
 			break;
 	}
 }
+
 setInterval(function () {
 	if (s && !pl.IsFlash && pl.ply < pl.stop_b) {
 		pl.ply += pl.speed;
@@ -146,6 +147,12 @@ setInterval(function () {
 		pl.plx -= pl.speed;
 	} else if (d && !pl.IsFlash && pl.plx < pl.stop_r) {
 		pl.plx += pl.speed;
+	}
+	if (pl.plx > pl.Audio_move_l && pl.plx < pl.Audio_move_r) {
+		if (npc.CD_audio == 0) {
+			t.CDAudio(npc, npc.CD_move);
+			GetAudio("npc", "npc" + npc.UID + "_move");
+		}
 	}
 	$('#role').css('top', pl.ply + "px")
 	$('#role').css('left', pl.plx + "px")
@@ -393,6 +400,8 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioN
 							clearInterval(timer3)
 							UpdateEnemy(ell, PortalToMapID)
 							Updatenpc(npc, PortalToMapID)
+							pl.Audio_move_l = npc.plx - 100
+							pl.Audio_move_r = npc.plx + npc.div_width + 100
 							FlyFlag ? MovePlayer(MapIDNumber) : MovePlayer()
 							//5.允许角色操作，黑屏关闭loading
 							$('#loading-screen').css('display', 'none')
