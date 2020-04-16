@@ -2,7 +2,7 @@
     [
         [{
             "UID": 0,
-            "CreateMap": 2,
+            "CreateMap": 3,
             "name": "稻草人",
             "plx": 600,
             "ply": 400,

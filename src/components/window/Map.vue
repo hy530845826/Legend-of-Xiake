@@ -159,10 +159,19 @@ export default {
     ClickMap: function(e) {
       var target = e.currentTarget.id;
       var PortalToMapID = parseInt(target.replace(/[^0-9]/gi, ""));
-      var PortalMusicID = v.SearchBGMNumber(PortalToMapID);
+      var PortalMusicID = v.GetMapBGMNumber(PortalToMapID);
+      var AudioName = v.GetAudioName(PortalToMapID);
       var MapIDNumber = v.GetMapIDNumber();
-      var MapBGMNumber = v.GetMapBGMNumber();
-      v.Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, false);
+      var MapBGMNumber = v.GetMapBGMNumber(MapIDNumber);
+      v.Loading(
+        MapIDNumber,
+        PortalToMapID,
+        MapBGMNumber,
+        PortalMusicID,
+        AudioName,
+        false
+      );
+      this.CloseWindow();
     }
   }
 };

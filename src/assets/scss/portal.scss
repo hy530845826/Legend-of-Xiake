@@ -5,7 +5,7 @@
     opacity: 0.5;
     position: absolute;
     z-index: 1000;
-    display: none;
+    display: block;
 }
 
 #loading-progress {
@@ -21,24 +21,31 @@
     width: 100px;
     height: 80px;
     background: url(../images/portal.png) no-repeat;
+    border: 1px solid cyan;
 }
 
 .Portal-L {
-    top: 450px;
+    top: 550px;
     left: 0px;
-    z-index: 400;
+    z-index: 500;
 }
 
 .Portal-R {
-    top: 450px;
+    top: 550px;
     right: 0px;
-    z-index: 400;
+    z-index: 500;
 }
 
 .Portal-M {
     top: 450px;
     left: 550px;
     z-index: 400;
+}
+
+.Portal-birth {
+    top: 555px;
+    left: 620px;
+    z-index: 505;
 }
 
 .Portal-songshan {

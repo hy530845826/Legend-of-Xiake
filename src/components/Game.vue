@@ -1,6 +1,7 @@
 <template>
   <div id="GameBox">
-    <audio src="./static/sound/bgm/map-1.mp3" id="BGM" class="bgmusic" loop autoplay></audio>
+    <audio src id="BGM" class="bgmusic" loop autoplay></audio>
+    <audio src id="EnAudio" class="bgmusic" loop autoplay></audio>
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="pl.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
@@ -125,7 +126,8 @@ export default {
   },
   mounted() {
     this.LoadingSkillIcon();
-    $("#BGM")[0].volume = 0.1;
+    $("#BGM")[0].volume = 0.25;
+    $("#EnAudio")[0].volume = 0.25;
   }
 };
 </script>

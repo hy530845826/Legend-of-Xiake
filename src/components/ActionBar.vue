@@ -50,6 +50,7 @@ export default {
       }
     },
     ClickSkill: function(e) {
+      if (pl.loading) { return }
       var target = e.currentTarget;
       var nowIndex = $(target).index();
       switch (nowIndex) {

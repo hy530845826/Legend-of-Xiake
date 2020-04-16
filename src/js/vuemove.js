@@ -13,7 +13,10 @@ var HitJudgement = Hit.default.HitJudgement
 
 import player_options from './data/player_options.json'
 var PlayerOptions = player_options
-t.UpdateStopPosition(pl, 1)
+
+//初始化
+// t.UpdateStopPosition(pl, 1)
+Loading(1, 1, 1, 1, 'garden', false)
 
 var w = false
 var a = false
@@ -328,11 +331,10 @@ function ChangePlayerCSS() {
 function ChangeMap() {
 	var PortalNumber = GetPortalNumber()
 	var l1, r1, b1
-	var tempPosition = 20
 
-	b1 = pl.ply + 130
+	b1 = pl.ply + pl.stand_y
 	l1 = pl.plx
-	r1 = pl.plx + 130
+	r1 = pl.plx + pl.stand_x
 
 	for (let i = 0; i < PortalNumber; i++) { //根据传送门个数判定是否进入
 		var t2, l2, r2, b2
@@ -342,19 +344,20 @@ function ChangeMap() {
 		r2 = l2 + 100;
 		b2 = t2 + 80;
 
-		if ((b1 + tempPosition) < b2 || (b1 - tempPosition) > b2 || (l1 - tempPosition) > l2 || (r1 + tempPosition) < r2) { /*没碰到*/ }
+		if (b1 < (b2 - 30) || b1 > (b2 + 10) || l1 < (l2 - 10) || r1 > (r2 + 10)) { /*没碰到*/ }
 		else {
 			var PortalToMapID = parseInt(targetObj.className.match(/to-map-(\S*)/)[1]) //获取传送门的to-mapID
 			// var PortalMusicID = parseInt(targetObj.className.match(/music-(\S*)/)[1]) //获取bgmID
-			var PortalMusicID = SearchBGMNumber(PortalToMapID)
+			var PortalMusicID = GetMapBGMNumber(PortalToMapID)
+			var AudioName = GetAudioName(PortalToMapID)
 			var MapIDNumber = GetMapIDNumber()
-			var MapBGMNumber = GetMapBGMNumber()
-			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, true)
+			var MapBGMNumber = GetMapBGMNumber(MapIDNumber)
+			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioName, true)
 		}
 	}
 }
 
-function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, FlyFlag) {
+function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioName, FlyFlag) {
 	//0.禁止角色操作，黑屏显示loading
 	$('#loading-screen').css('display', 'block')
 	pl.loading = true
@@ -376,11 +379,13 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, FlyFla
 			window.console.log("当前BGM:" + MapBGMNumber + ".mp3	切换至:" + PortalMusicID + ".mp3")
 			ChangeBGM(MapBGMNumber, PortalMusicID)
 			//3.计时器timer2结束执行-CreatePortal(3200ms)
+			//3.5获取环境音乐
 			var timer2 = setInterval(function () {
 				i++
 				if (i >= 90) {
 					clearInterval(timer2)
 					CreatePortal(PortalToMapID)
+					GetEnAudio('environment', AudioName)
 					//4.计时器timer3结束执行-MovePlayer(2000ms)
 					var timer3 = setInterval(function () {
 						i += 2
@@ -407,91 +412,95 @@ function CreatePortal(PortalToMapID) {
 	$('.Portal').remove('#map .Portal')
 	switch (PortalToMapID) {
 		case 0:
-			$("#map").prepend("<div class='Portal Portal-songshan to-map-6 music-3'> </div>");
-			$("#map").prepend("<div class='Portal Portal-wudang to-map-7 music-4'> </div>");
-			$("#map").prepend("<div class='Portal Portal-tiezhangfeng to-map-10 music-6'> </div>");
-			$("#map").prepend("<div class='Portal Portal-shunanzhuhai to-map-11 music-7'> </div>");
-			$("#map").prepend("<div class='Portal Portal-jueqinggu to-map-14 music-9'> </div>");
-			$("#map").prepend("<div class='Portal Portal-emei to-map-16 music-10'> </div>");
-			$("#map").prepend("<div class='Portal Portal-dashamo to-map-17 music-11'> </div>");
+			$("#map").prepend("<div class='Portal Portal-songshan to-map-6'> </div>");
+			$("#map").prepend("<div class='Portal Portal-wudang to-map-7'> </div>");
+			$("#map").prepend("<div class='Portal Portal-tiezhangfeng to-map-10'> </div>");
+			$("#map").prepend("<div class='Portal Portal-shunanzhuhai to-map-11'> </div>");
+			$("#map").prepend("<div class='Portal Portal-jueqinggu to-map-14'> </div>");
+			$("#map").prepend("<div class='Portal Portal-emei to-map-16'> </div>");
+			$("#map").prepend("<div class='Portal Portal-dashamo to-map-17'> </div>");
 			break;
 		case 1:
-			$("#map").prepend("<div class='Portal Portal-R to-map-2 music-1'> </div>");
+			$("#map").prepend("<div class='Portal Portal-birth to-map-2'> </div>");
 			break;
 		case 2:
-			$("#map").prepend("<div class='Portal Portal-L to-map-1 music-1'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-5 music-3'> </div>");
-			$("#map").prepend("<div class='Portal Portal-M to-map-3 music-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-1'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-5'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-3'> </div>");
 			break;
 		case 3:
-			$("#map").prepend("<div class='Portal Portal-L to-map-2 music-1'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-4 music-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-4'> </div>");
 			break;
 		case 4:
-			$("#map").prepend("<div class='Portal Portal-L to-map-3 music-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-3'> </div>");
 			break;
 		case 5:
-			$("#map").prepend("<div class='Portal Portal-L to-map-2 music-1'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-6 music-3'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-6'> </div>");
 			break;
 		case 6:
-			$("#map").prepend("<div class='Portal Portal-L to-map-5 music-3'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-5'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-0'> </div>");
 			break;
 		case 7:
-			$("#map").prepend("<div class='Portal Portal-L to-map-0 music-0'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-8 music-4'> </div>");
-			$("#map").prepend("<div class='Portal Portal-M to-map-10 music-6'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-8'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-10'> </div>");
 			break;
 		case 8:
-			$("#map").prepend("<div class='Portal Portal-L to-map-7 music-4'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-9 music-5'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-7'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-9'> </div>");
 			break;
 		case 9:
-			$("#map").prepend("<div class='Portal Portal-L to-map-8 music-4'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-8'> </div>");
 			break;
 		case 10:
-			$("#map").prepend("<div class='Portal Portal-L to-map-0 music-0'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-7 music-4'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-7'> </div>");
 			break;
 		case 11:
-			$("#map").prepend("<div class='Portal Portal-L to-map-12 music-7'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-12'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-0'> </div>");
 			break;
 		case 12:
-			$("#map").prepend("<div class='Portal Portal-L to-map-13 music-8'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-11 music-7'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-13'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-11'> </div>");
 			break;
 		case 13:
-			$("#map").prepend("<div class='Portal Portal-R to-map-12 music-7'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-12'> </div>");
 			break;
 		case 14:
-			$("#map").prepend("<div class='Portal Portal-L to-map-0 music-0'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-15 music-9'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-15'> </div>");
 			break;
 		case 15:
-			$("#map").prepend("<div class='Portal Portal-L to-map-14 music-9'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-14'> </div>");
 			break;
 		case 16:
-			$("#map").prepend("<div class='Portal Portal-M to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-0'> </div>");
 			break;
 		case 17:
-			$("#map").prepend("<div class='Portal Portal-L to-map-18 music-11'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-0 music-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-18'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-0'> </div>");
 			break;
 		case 18:
-			$("#map").prepend("<div class='Portal Portal-M to-map-19 music-12'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-17 music-11'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-19'> </div>");
+			$("#map").prepend("<div class='Portal Portal-R to-map-17'> </div>");
 			break;
 		case 19:
-			$("#map").prepend("<div class='Portal Portal-L to-map-18 music-11'> </div>");
+			$("#map").prepend("<div class='Portal Portal-L to-map-18'> </div>");
 			break;
 	}
 }
 
 function ChangeBGM(MapBGMNumber, PortalMusicID) {
 	if (MapBGMNumber != PortalMusicID) {
-		$('#BGM').attr('src', './static/sound/bgm/map-' + PortalMusicID + '.mp3')
+		if (PortalMusicID != undefined) {
+			$('#BGM').attr('src', './static/sound/bgm/map-' + PortalMusicID + '.mp3')
+		} else {
+			$('#BGM').attr('src', '')
+		}
 	}
 }
 
@@ -501,19 +510,42 @@ function MovePlayer(MapIDNumber) {
 		window.console.log($('.to-map-' + MapIDNumber))
 		var t2 = targetObj.offsetTop
 		var l2 = targetObj.offsetLeft
-		pl.plx = l2
-		pl.ply = t2 - 70
+		pl.plx = l2 + 15
+		pl.ply = t2 - 60
 	} else {
 		pl.plx = t.RandomNumber2(pl.stop_l, pl.stop_r)
 		pl.ply = t.RandomNumber2(pl.stop_t, pl.stop_b)
 	}
 }
 
-function SearchBGMNumber(PortalToMapID) {
+
+function GetAudioName(MapID) {
+	var AudioName
+	switch (MapID) {
+		case 0: AudioName = undefined; break;
+		case 1: AudioName = 'garden'; break;
+		case 2: AudioName = 'wind_1'; break;
+		case 3: case 4: AudioName = 'wind_1'; break;
+		case 5: case 6: AudioName = 'wind_1'; break;
+		case 7: case 8: AudioName = 'wind_1'; break;
+		case 9: AudioName = 'wind_1'; break;
+		case 10: AudioName = 'wind_1'; break;
+		case 11: case 12: AudioName = 7; break;
+		case 13: AudioName = 8; break;
+		case 14: case 15: AudioName = 9; break;
+		case 16: AudioName = 10; break;
+		case 17: case 18: AudioName = 11; break;
+		case 19: AudioName = 12; break;
+	}
+	return AudioName
+}
+
+function GetMapBGMNumber(MapID) {
 	var MapBGMNumber
-	switch (PortalToMapID) {
+	switch (MapID) {
 		case 0: MapBGMNumber = 0; break;
-		case 1: case 2: MapBGMNumber = 1; break;
+		case 1: MapBGMNumber = undefined; break;
+		case 2: MapBGMNumber = 1; break;
 		case 3: case 4: MapBGMNumber = 2; break;
 		case 5: case 6: MapBGMNumber = 3; break;
 		case 7: case 8: MapBGMNumber = 4; break;
@@ -535,11 +567,11 @@ function GetMapIDNumber() {
 	return MapIDNumber
 }
 
-function GetMapBGMNumber() {
-	var MapID = $("#BGM").attr("src")
-	var MapBGMNumber = parseInt(MapID.match(/(\d*)\.mp3/)[1]) //map-1.mp3→1
-	return MapBGMNumber
-}
+// function GetMapBGMNumber() {
+// 	var MapID = $("#BGM").attr("src")
+// 	var MapBGMNumber = parseInt(MapID.match(/(\d*)\.mp3/)[1]) //map-1.mp3→1
+// 	return MapBGMNumber
+// }
 
 function GetPortalNumber() {
 	var MapIDNumber = GetMapIDNumber()
@@ -551,6 +583,14 @@ function GetPortalNumber() {
 		case 0: PortalNumber = 7; break;
 	}
 	return PortalNumber
+}
+
+function GetEnAudio(dirName, StateName) {
+	if (StateName != undefined) {
+		$('#EnAudio').attr('src', './static/sound/audio/' + dirName + '/' + StateName + '.mp3')
+	} else {
+		$('#EnAudio').attr('src', '')
+	}
 }
 
 function GetAudio(dirName, StateName, RandomNumber) {
@@ -647,5 +687,5 @@ function SkillBling(targetIcon) {
 }
 
 export default {
-	flash, CDSkill, GetAudio, SearchBGMNumber, GetMapIDNumber, GetMapBGMNumber, Loading
+	flash, CDSkill, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
 };

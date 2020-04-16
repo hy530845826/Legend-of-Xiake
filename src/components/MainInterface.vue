@@ -5,8 +5,8 @@
         <div
           class="progress-bar"
           role="progressbar"
-          style="width: 100%;"
-          aria-valuenow="100"
+          style="width: 10%;"
+          aria-valuenow="10"
           aria-valuemin="0"
           aria-valuemax="100"
         ></div>
@@ -43,7 +43,7 @@
       </div>
       <div id="enemy-name">{{el_data[0]}} {{el_data[1]}}</div>
     </div>
-    <div class="Portal Portal-R to-map-2 music-1"></div>
+    <div class="Portal Portal-birth to-map-2"></div>
     <div v-if="ShowMission">
       <div id="Mission" class="Mission">
         <div class="MenuTitle">委托name</div>

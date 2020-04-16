@@ -2,17 +2,17 @@
         "UID": 0,
         "name": "中原",
         "stop_left": 0,
-        "stop_top": 400,
+        "stop_top": 140,
         "stop_width": 1200,
-        "stop_height": 50
+        "stop_height": 520
     },
     {
         "UID": 1,
         "name": "少林1",
         "stop_left": 0,
-        "stop_top": 510,
-        "stop_width": 1200,
-        "stop_height": 160
+        "stop_top": 630,
+        "stop_width": 745,
+        "stop_height": 30
     },
     {
         "UID": 2,
