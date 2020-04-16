@@ -44,7 +44,7 @@ export default {
       for (let i = 0; i < sum; i++) {
         $(SkillIconArr[i]).css(
           "background-image",
-          "url(static/images/skill-" + i + ".png)"
+          "url(static/images/skill/skill-" + i + ".png)"
         );
         $(SkillCDArr[i]).css("left", 54 * i + "px");
       }

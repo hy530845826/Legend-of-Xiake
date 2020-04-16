@@ -65,8 +65,8 @@
       </tr>
       <tr>
         <td class="no-space"></td>
-        <td id="map-17" @click="ClickMap($event)">大沙漠2</td>
-        <td id="map-18" @click="ClickMap($event)">大沙漠1</td>
+        <td id="map-18" @click="ClickMap($event)">大沙漠2</td>
+        <td id="map-17" @click="ClickMap($event)">大沙漠1</td>
         <td class="no-space"></td>
         <td class="no-space"></td>
         <td class="no-space"></td>

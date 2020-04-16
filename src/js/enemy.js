@@ -177,9 +177,9 @@ function ChangeEnemyCSS(StateName) {
         'top': ell.hit_top + 'px'
     })
     if (StateName == 'stand' || StateName == 'move' || StateName == 'hited' || StateName == 'dead') {
-        $('#enemy.' + StateName + ' #enemy-body').css({ 'background-image': 'url(static/images/e' + ell.UID + '-' + StateName + '.gif)' })
+        $('#enemy.' + StateName + ' #enemy-body').css({ 'background-image': 'url(static/images/enemy/e' + ell.UID + '-' + StateName + '.gif)' })
     } else {
-        $('#enemy.' + StateName + ' #enemy-body').css({ 'background-image': 'url(static/images/e' + ell.UID + '-' + StateName + '.png)' })
+        $('#enemy.' + StateName + ' #enemy-body').css({ 'background-image': 'url(static/images/enemy/e' + ell.UID + '-' + StateName + '.png)' })
     }
 }
 

@@ -119,7 +119,7 @@ export default {
       for (let i = 0; i < sum; i++) {
         $(SkillIconArr[i]).css(
           "background-image",
-          "url(static/images/skill-" + i + ".png)"
+          "url(static/images/skill/skill-" + i + ".png)"
         );
       }
     }

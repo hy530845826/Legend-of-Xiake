@@ -46,7 +46,7 @@ function Updatenpc(obj, PortalToMapID) {
         $('#npc-body').css({ 'width': npc.div_width + 'px', 'height': npc.div_height + 'px' })
         var name_left = parseInt((npc.div_width - parseInt($('#npc-name').css('width'))) / 2)
         $('#npc-name').css({ 'left': name_left + 'px', 'top': (npc.div_height + 5) + 'px' })
-        $('#npc-body').css({ 'background-image': 'url(static/images/npc' + npc.UID + '.gif)' })
+        $('#npc-body').css({ 'background-image': 'url(static/images/npc/npc' + npc.UID + '.gif)' })
     }, 50)
 }
 
