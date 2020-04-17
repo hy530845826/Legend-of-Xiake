@@ -39,10 +39,10 @@
     <ul id="action-bagcd-bar">
       <li @click="ClickBag($event)"></li>
       <li @click="ClickBag($event)"></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li @click="ClickBag($event)"></li>
+      <li @click="ClickBag($event)"></li>
+      <li @click="ClickBag($event)"></li>
+      <li @click="ClickBag($event)"></li>
     </ul>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
   data: function() {
     return {
       mp_data: [],
-      bagnum_data: [3, 3, 0, 0, 0, 0]
+      bagnum_data: [12, 12, 6, 12, 3, 1]
     };
   },
   methods: {
@@ -85,6 +85,22 @@ export default {
       $(BagIconArr[1]).css(
         "background-image",
         "url(static/images/bag/potion-mp-0.jpg)"
+      );
+      $(BagIconArr[2]).css(
+        "background-image",
+        "url(static/images/bag/potion-hmp-0.jpg)"
+      );
+      $(BagIconArr[3]).css(
+        "background-image",
+        "url(static/images/bag/food-fruit-0.jpg)"
+      );
+      $(BagIconArr[4]).css(
+        "background-image",
+        "url(static/images/bag/food-meat-0.jpg)"
+      );
+      $(BagIconArr[5]).css(
+        "background-image",
+        "url(static/images/bag/drug-flower-0.jpg)"
       );
       for (let i = 0; i < sum; i++) {
         $(BagCDArr[i]).css("left", 54 * i + "px");
@@ -187,10 +203,23 @@ export default {
       if (bagFlag) {
         switch (nowIndex) {
           case 0: //1
-            t.UseConsumables(pl, "HP", 10);
+            t.UseConsumables(pl, "HP", 25);
             break;
           case 1: //2
-            t.UseConsumables(pl, "MP", 20);
+            t.UseConsumables(pl, "MP", 25);
+            break;
+          case 2:
+            t.UseConsumables(pl, "HP", 50);
+            t.UseConsumables(pl, "MP", 50);
+            break;
+          case 3:
+            t.UseConsumables(pl, "SPE", 10, true, 1);
+            break;
+          case 4:
+            t.UseConsumables(pl, "ATK", 5, true, 10);
+            break;
+          case 5:
+            t.UseConsumables(pl, "PER", 1);
             break;
         }
       }

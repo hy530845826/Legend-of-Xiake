@@ -69,6 +69,7 @@ function UseSkillMP(obj, needMP) {
 
 function UseConsumables(obj, style, value, temporary, buff_time) {
     temporary = temporary || false
+    buff_time = buff_time * 1000 || 0
     if (temporary) {
         switch (style) {
             case "HPMAX": obj.HPMAX += value; setTimeout(() => { obj.HPMAX -= value }, buff_time); break;
@@ -83,6 +84,7 @@ function UseConsumables(obj, style, value, temporary, buff_time) {
             case "WIL": obj.WIL += value; setTimeout(() => { obj.WIL -= value }, buff_time); break;
             case "PER": obj.PER += value; setTimeout(() => { obj.PER -= value }, buff_time); break;
             case "LUK": obj.LUK += value; setTimeout(() => { obj.LUK -= value }, buff_time); break;
+            case "SPE": obj.speed += value; setTimeout(() => { obj.speed -= value }, buff_time); break;
         }
     }
     else {
@@ -101,8 +103,29 @@ function UseConsumables(obj, style, value, temporary, buff_time) {
             case "WIL": obj.WIL += value; break;
             case "PER": obj.PER += value; break;
             case "LUK": obj.LUK += value; break;
+            case "SPE": obj.speed += value; break;
         }
     }
+    TipsConsumables(obj, style, value)
+}
+
+function TipsConsumables(obj, style, value) {
+    var top = obj.ply + obj.hited_top;
+    var left = obj.plx + obj.hited_left;
+    var random_class = RandomCode(8)
+    $("#map").prepend("<div class='TipsBag bag-" + style + " " + random_class + "'>" + style + "+" + value + "</div>")
+
+    left += 10
+    var opa = 1
+    $('.' + random_class).css({ 'top': top + 'px', 'left': left + 'px' })
+    var tik = setInterval(function () {
+        top -= 1, opa -= 0.01
+        $('.' + random_class).css({ 'top': top + "px", 'left': left + "px", 'opacity': opa })
+    }, 30)
+    setTimeout(function () {
+        clearInterval(tik)
+        $('.' + random_class).remove('#map .' + random_class)
+    }, 1800)
 }
 
 export default {

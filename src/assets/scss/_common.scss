@@ -27,13 +27,32 @@ body {
 .damage-font-enemy {
 	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 	font-size: 25px;
-	color: #f50;
 	position: absolute;
+	color: #f50;
 }
 
 .damage-font-player {
 	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
 	font-size: 30px;
-	color: #c0c;
 	position: absolute;
+	color: #c0c;
+}
+
+.TipsBag {
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	font-size: 25px;
+	position: absolute;
+	color: red;
+}
+
+div.bag-HP {
+	color: greenyellow
+}
+
+div.bag-MP {
+	color: blue;
+}
+
+div.bag-SPE {
+	color: yellow;
 }
