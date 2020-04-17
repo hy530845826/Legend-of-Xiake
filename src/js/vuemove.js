@@ -55,7 +55,7 @@ document.onkeydown = function (event) {
 					pl.imgfx = false;
 					$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
 					$('#skill-body').css({ transition: "transform 0.1s", transform: "rotateY(" + rotateNum + "deg)" })
-					rotateNum += 180;
+					rotateNum -= 180;
 				}
 			}
 			break;
@@ -178,6 +178,19 @@ setInterval(function () {
 				GetAudio("npc", "npc" + npc.UID + "_move", npc.style_move);
 			}
 		}
+		if (pl.realfx != pl.imgfx) {
+			if (pl.realfx) {
+				pl.imgfx = true;
+				$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
+				$('#skill-body').css({ transition: "transform 0.1s", transform: "rotateY(" + rotateNum + "deg)" })
+				rotateNum += 180;
+			} else {
+				pl.imgfx = false;
+				$('#role-body').css({ transition: "transform 0.5s", transform: "rotateY(" + rotateNum + "deg)" })
+				$('#skill-body').css({ transition: "transform 0.1s", transform: "rotateY(" + rotateNum + "deg)" })
+				rotateNum -= 180;
+			}
+		}
 	}
 	$('#role').css('top', pl.ply + "px")
 	$('#role').css('left', pl.plx + "px")
@@ -256,7 +269,7 @@ function flash(obj, StateName, check_x) {
 			pl.hit_ID = 0
 			setTimeout(function () {
 				if (obj.IsFlash == false) {
-					ChangePlayerState(obj, 'stand')
+					ChangePlayerState(obj, 'move')
 					$('#role-body').css('background-position', 0 + 'px ')
 				}
 			}, 50)
