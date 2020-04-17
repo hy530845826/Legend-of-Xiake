@@ -182,7 +182,7 @@
     [{
         "UName": "skillA",
         "UseCD": 60,
-        "UseMP": 1,
+        "UseMP": 5,
         "div_width": 192,
         "TikTok_sum": 9,
         "skill_start_TikTok": 1,
@@ -298,7 +298,7 @@
     [{
         "UName": "skillS",
         "UseCD": 120,
-        "UseMP": 2,
+        "UseMP": 15,
         "div_width": 192,
         "TikTok_sum": 11,
         "skill_start_TikTok": 2,
@@ -409,7 +409,7 @@
     [{
         "UName": "skillD",
         "UseCD": 120,
-        "UseMP": 3,
+        "UseMP": 20,
         "div_width": 192,
         "TikTok_sum": 11,
         "skill_start_TikTok": 4,
@@ -533,7 +533,7 @@
     [{
         "UName": "skillF",
         "UseCD": 60,
-        "UseMP": 4,
+        "UseMP": 10,
         "div_width": 192,
         "TikTok_sum": 8,
         "skill_start_TikTok": 4,

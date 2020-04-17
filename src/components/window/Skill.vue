@@ -25,7 +25,8 @@
               <div class="Skill-Introduction">
                 向前方敌人快速释放波动剑，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
-                冷却时间:
+                消耗:
+                <span>5</span>真气，冷却时间:
                 <span>3</span>秒
               </div>
             </div>
@@ -40,7 +41,8 @@
               <div class="Skill-Introduction">
                 拔刀并快速向周围敌人发出强威力的斩击，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
-                冷却时间:
+                消耗:
+                <span>15</span>真气，冷却时间:
                 <span>6</span>秒
               </div>
             </div>
@@ -55,7 +57,8 @@
               <div class="Skill-Introduction">
                 以极快的速度向前移动一段距离并斩击敌人，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
-                冷却时间:
+                消耗:
+                <span>20</span>真气，冷却时间:
                 <span>6</span>秒
               </div>
             </div>
@@ -70,7 +73,8 @@
               <div class="Skill-Introduction">
                 把鬼神召唤到武器上，并向前方敌人发出强威力的斩击，造成
                 <span>{{pl.ATK}}-{{pl.ATKMAX}}</span>点伤害。
-                冷却时间:
+                消耗:
+                <span>10</span>真气，冷却时间:
                 <span>3</span>秒
               </div>
             </div>

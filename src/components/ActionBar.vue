@@ -156,12 +156,27 @@ export default {
       }
       var target = e.currentTarget;
       var nowIndex = $(target).index();
-      if (pl.CD_bag == 0) {
-        v.CDBag(pl, nowIndex);
-        v.GetAudio("pl", "skill_a");
-      } else if (pl.CD_flag == 0) {
-        v.CDBag(pl, -1);
-        v.GetAudio("pl", "cd");
+      switch (nowIndex) {
+        case 0: //1
+          if (pl.CD_bag == 0) {
+            t.UseConsumables(pl, "HP", 10);
+            v.CDBag(pl, nowIndex);
+            v.GetAudio("pl", "skill_a");
+          } else if (pl.CD_flag == 0) {
+            v.CDBag(pl, -1);
+            v.GetAudio("pl", "cd");
+          }
+          break;
+        case 1: //2
+          if (pl.CD_bag == 0) {
+            t.UseConsumables(pl, "MP", 10);
+            v.CDBag(pl, nowIndex);
+            v.GetAudio("pl", "skill_a");
+          } else if (pl.CD_flag == 0) {
+            v.CDBag(pl, -1);
+            v.GetAudio("pl", "cd");
+          }
+          break;
       }
     }
   },

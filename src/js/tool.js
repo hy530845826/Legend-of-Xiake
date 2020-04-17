@@ -67,6 +67,44 @@ function UseSkillMP(obj, needMP) {
     }
 }
 
+function UseConsumables(obj, style, value, temporary, buff_time) {
+    temporary = temporary || false
+    if (temporary) {
+        switch (style) {
+            case "HPMAX": obj.HPMAX += value; setTimeout(() => { obj.HPMAX -= value }, buff_time); break;
+            case "MPMAX": obj.MPMAX += value; setTimeout(() => { obj.MPMAX -= value }, buff_time); break;
+            case "ATK": obj.ATK += value; obj.ATKMAX += value; setTimeout(() => { obj.ATK -= value; obj.ATKMAX -= value; }, buff_time); break;
+            case "DEF": obj.DEF += value; setTimeout(() => { obj.DEF -= value }, buff_time); break;
+            case "HIT": obj.HIT += value; setTimeout(() => { obj.HIT -= value }, buff_time); break;
+            case "DEX": obj.DEX += value; setTimeout(() => { obj.DEX -= value }, buff_time); break;
+            case "STR": obj.STR += value; setTimeout(() => { obj.STR -= value }, buff_time); break;
+            case "AGI": obj.AGI += value; setTimeout(() => { obj.AGI -= value }, buff_time); break;
+            case "INT": obj.INT += value; setTimeout(() => { obj.INT -= value }, buff_time); break;
+            case "WIL": obj.WIL += value; setTimeout(() => { obj.WIL -= value }, buff_time); break;
+            case "PER": obj.PER += value; setTimeout(() => { obj.PER -= value }, buff_time); break;
+            case "LUK": obj.LUK += value; setTimeout(() => { obj.LUK -= value }, buff_time); break;
+        }
+    }
+    else {
+        switch (style) {
+            case "HP": ((obj.HP + value) > obj.HPMAX) ? obj.HP = obj.HPMAX : obj.HP += value; break;
+            case "MP": ((obj.MP + value) > obj.MPMAX) ? obj.MP = obj.MPMAX : obj.MP += value; break;
+            case "HPMAX": obj.HPMAX += value; break;
+            case "MPMAX": obj.MPMAX += value; break;
+            case "ATK": obj.ATK += value; obj.ATKMAX += value; break;
+            case "DEF": obj.DEF += value; break;
+            case "HIT": obj.HIT += value; break;
+            case "DEX": obj.DEX += value; break;
+            case "STR": obj.STR += value; break;
+            case "AGI": obj.AGI += value; break;
+            case "INT": obj.INT += value; break;
+            case "WIL": obj.WIL += value; break;
+            case "PER": obj.PER += value; break;
+            case "LUK": obj.LUK += value; break;
+        }
+    }
+}
+
 export default {
-    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio, DeleteEnemy, UseSkillMP
+    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio, DeleteEnemy, UseSkillMP, UseConsumables
 }
