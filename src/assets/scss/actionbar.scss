@@ -10,12 +10,12 @@
     margin: 0;
 }
 
-#action-bar #action-skill-bar {
+#action-skill-bar {
     overflow: hidden;
     float: left;
 }
 
-#action-bar #action-skill-bar li {
+#action-skill-bar li {
     float: left;
     width: 50px;
     height: 50px;
@@ -26,7 +26,7 @@
     padding-left: 2px;
 }
 
-#action-bar #action-skillcd-bar {
+#action-skillcd-bar {
     overflow: hidden;
     width: 432px;
     height: 50px;
@@ -35,7 +35,7 @@
     filter: drop-shadow(0 0 10px #fff);
 }
 
-#action-bar #action-skillcd-bar li {
+#action-skillcd-bar li {
     float: left;
     width: 50px;
     height: 50px;
@@ -46,21 +46,21 @@
     cursor: pointer;
 }
 
-#action-bar #action-skillcd-bar .cding {
+#action-bar .cding {
     background: rgba(1, 1, 1, 0.6);
 }
 
-#action-bar #action-skillcd-bar .bling {
+#action-bar .bling {
     background: rgba(1, 1, 1, 0.05);
     border: 2px solid #fff;
 }
 
-#action-bar #action-bag-bar {
+#action-bag-bar {
     overflow: hidden;
     float: right;
 }
 
-#action-bar #action-bag-bar li {
+#action-bag-bar li {
     float: left;
     width: 50px;
     height: 50px;
@@ -69,4 +69,24 @@
     background-size: 113% 113%;
     background-position: center;
     padding-left: 2px;
+}
+
+#action-bagcd-bar {
+    overflow: hidden;
+    width: 324px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    filter: drop-shadow(0 0 5px cyan);
+}
+
+#action-bagcd-bar li {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 4px;
+    background: rgba(1, 1, 1, 0);
+    position: absolute;
+    top: 0;
+    cursor: pointer;
 }

@@ -690,6 +690,35 @@ function CDSkill(obj, cdNumber, cd) {
 	}
 }
 
+function CDBag(obj, cdNumber) {
+	var cd_timer, cd_icon
+	var AllIcon = $("#action-bagcd-bar li")
+	var targetIcon = $(AllIcon[cdNumber])
+	AllIcon.attr('class', 'cding')
+	if (cdNumber == -1) {
+		cd_timer = setInterval(function () {
+			obj.CD_flag++
+			if (obj.CD_flag == obj.CD_bagMax) {
+				obj.CD_flag = 0;
+				clearInterval(cd_timer);
+			}
+		}, 50);
+	} else {
+		cd_timer = setInterval(function () {
+			cd_icon = parseInt((obj.CD_bag / obj.CD_bagMax) * 100)
+			AllIcon.css('top', cd_icon + '%')
+			obj.CD_bag++
+			if (obj.CD_bag == obj.CD_bagMax) {
+				obj.CD_bag = 0;
+				AllIcon.css('top', 0)
+				AllIcon.attr('class', '')
+				SkillBling(targetIcon)
+				clearInterval(cd_timer);
+			}
+		}, 50);
+	}
+}
+
 function SkillBling(targetIcon) {
 	targetIcon.css('top', 0)
 	targetIcon.attr('class', 'bling')
@@ -705,5 +734,5 @@ function SkillBling(targetIcon) {
 }
 
 export default {
-	flash, CDSkill, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
+	flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
 };

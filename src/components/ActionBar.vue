@@ -28,6 +28,14 @@
       <li>5</li>
       <li>6</li>
     </ul>
+    <ul id="action-bagcd-bar">
+      <li @click="ClickBag($event)"></li>
+      <li @click="ClickBag($event)"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
 </template>
 <script>
@@ -49,8 +57,26 @@ export default {
         $(SkillCDArr[i]).css("left", 54 * i + "px");
       }
     },
+    LoadingBagBar: function() {
+      var BagIconArr = $("#action-bag-bar li");
+      var BagCDArr = $("#action-bagcd-bar li");
+      var sum = BagIconArr.length;
+      $(BagIconArr[0]).css(
+        "background-image",
+        "url(static/images/bag/potion-hp-0.jpg)"
+      );
+      $(BagIconArr[1]).css(
+        "background-image",
+        "url(static/images/bag/potion-mp-0.jpg)"
+      );
+      for (let i = 0; i < sum; i++) {
+        $(BagCDArr[i]).css("left", 54 * i + "px");
+      }
+    },
     ClickSkill: function(e) {
-      if (pl.loading) { return }
+      if (pl.loading) {
+        return;
+      }
       var target = e.currentTarget;
       var nowIndex = $(target).index();
       switch (nowIndex) {
@@ -106,10 +132,25 @@ export default {
           }
           break;
       }
+    },
+    ClickBag: function(e) {
+      if (pl.loading) {
+        return;
+      }
+      var target = e.currentTarget;
+      var nowIndex = $(target).index();
+      if (pl.CD_bag == 0) {
+        v.CDBag(pl, nowIndex);
+        v.GetAudio("pl", "skill_a");
+      } else if (pl.CD_flag == 0) {
+        v.CDBag(pl, -1);
+        v.GetAudio("pl", "cd");
+      }
     }
   },
   mounted() {
     this.LoadingSkillBar();
+    this.LoadingBagBar();
   }
 };
 </script>
