@@ -84,10 +84,11 @@ export default {
         case 0: //A
           if (pl.IsFlash == false) {
             if (pl.CD_a == 0) {
-              pl.IsMana = t.UseSkillMP(pl, 10);
+              v.GetUseCDMP(pl, "skillA");
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillA");
-                v.CDSkill(pl, 0, 60);
+                v.CDSkill(pl, 0, pl.needCD);
                 v.GetAudio("pl", "skill_a");
               }
             } else if (pl.CD_flag == 0) {
@@ -99,10 +100,11 @@ export default {
         case 1: //S
           if (pl.IsFlash == false) {
             if (pl.CD_s == 0) {
-              pl.IsMana = t.UseSkillMP(pl, 10);
+              v.GetUseCDMP(pl, "skillS");
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillS");
-                v.CDSkill(pl, 1, 120);
+                v.CDSkill(pl, 1, pl.needCD);
                 v.GetAudio("pl", "skill_s");
               }
             } else if (pl.CD_flag == 0) {
@@ -114,10 +116,11 @@ export default {
         case 2: //D
           if (pl.IsFlash == false) {
             if (pl.CD_d == 0) {
-              pl.IsMana = t.UseSkillMP(pl, 10);
+              v.GetUseCDMP(pl, "skillD");
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillD", 540);
-                v.CDSkill(pl, 2, 120);
+                v.CDSkill(pl, 2, pl.needCD);
                 v.GetAudio("pl", "skill_d");
               }
             } else if (pl.CD_flag == 0) {
@@ -129,10 +132,11 @@ export default {
         case 3: //F
           if (pl.IsFlash == false) {
             if (pl.CD_f == 0) {
-              pl.IsMana = t.UseSkillMP(pl, 10);
+              v.GetUseCDMP(pl, "skillF");
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillF");
-                v.CDSkill(pl, 3, 60);
+                v.CDSkill(pl, 3, pl.needCD);
                 v.GetAudio("pl", "skill_f1");
               }
               setTimeout(function() {

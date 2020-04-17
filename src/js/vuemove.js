@@ -89,10 +89,11 @@ document.onkeydown = function (event) {
 		case 65: //A
 			if (pl.IsFlash == false) {
 				if (pl.CD_a == 0) {
-					pl.IsMana = t.UseSkillMP(pl, 10)
+					GetUseCDMP(pl, 'skillA')
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillA')
-						CDSkill(pl, 0, 60)
+						CDSkill(pl, 0, pl.needCD)
 						GetAudio('pl', 'skill_a')
 					}
 				} else if (pl.CD_flag == 0) {
@@ -104,10 +105,11 @@ document.onkeydown = function (event) {
 		case 83: //S
 			if (pl.IsFlash == false) {
 				if (pl.CD_s == 0) {
-					pl.IsMana = t.UseSkillMP(pl, 10)
+					GetUseCDMP(pl, 'skillS')
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillS')
-						CDSkill(pl, 1, 120)
+						CDSkill(pl, 1, pl.needCD)
 						GetAudio('pl', 'skill_s')
 					}
 				} else if (pl.CD_flag == 0) {
@@ -119,10 +121,11 @@ document.onkeydown = function (event) {
 		case 68: //D
 			if (pl.IsFlash == false) {
 				if (pl.CD_d == 0) {
-					pl.IsMana = t.UseSkillMP(pl, 10)
+					GetUseCDMP(pl, 'skillD')
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillD', 540)
-						CDSkill(pl, 2, 120)
+						CDSkill(pl, 2, pl.needCD)
 						GetAudio('pl', 'skill_d')
 					}
 				} else if (pl.CD_flag == 0) {
@@ -134,10 +137,11 @@ document.onkeydown = function (event) {
 		case 70: //F
 			if (pl.IsFlash == false) {
 				if (pl.CD_f == 0) {
-					pl.IsMana = t.UseSkillMP(pl, 10)
+					GetUseCDMP(pl, 'skillF')
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillF')
-						CDSkill(pl, 3, 60)
+						CDSkill(pl, 3, pl.needCD)
 						GetAudio('pl', 'skill_f1')
 					}
 					setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
@@ -745,8 +749,17 @@ function SkillBling(targetIcon) {
 	}, 150)
 }
 
-
+function GetUseCDMP(obj, StateName) {
+	for (let index in PlayerOptions) {
+		let data = PlayerOptions[index]
+		if (StateName == data[0].UName) {
+			obj.needCD = data[0].UseCD
+			obj.needMP = data[0].UseMP
+			break
+		}
+	}
+}
 
 export default {
-	flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
+	GetUseCDMP, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
 };
