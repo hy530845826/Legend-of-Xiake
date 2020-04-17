@@ -15,10 +15,12 @@ import player_options from './data/player_options.json'
 var PlayerOptions = player_options
 import player_data from './data/player_data.json'
 var PlayerSkillData = player_data[1]
+var PlayerBagData = player_data[2]
 
 //初始化
 t.UpdateStopPosition(pl, 1)
 // Loading(1, 1, 1, 1, 'garden', false)
+pl.BAG = PlayerBagData
 
 var w = false
 var a = false
@@ -153,6 +155,90 @@ document.onkeydown = function (event) {
 				}
 			}
 			break;
+		case 49: //1
+			if (pl.CD_bag == 0) {
+				GetBagNum(pl, 0)
+				if (pl.bagNum) {
+					UpdateBag(pl, 0, 1)
+					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
+					CDBag(pl);
+					GetAudio("pl", "skill_a");
+				}
+			} else if (pl.CD_flag == 0) {
+				CDBag(pl, true);
+				GetAudio("pl", "cd");
+			}
+			break;
+		case 50: //2
+			if (pl.CD_bag == 0) {
+				GetBagNum(pl, 1)
+				if (pl.bagNum) {
+					UpdateBag(pl, 1, 1)
+					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
+					CDBag(pl);
+					GetAudio("pl", "skill_a");
+				}
+			} else if (pl.CD_flag == 0) {
+				CDBag(pl, true);
+				GetAudio("pl", "cd");
+			}
+			break;
+		case 51: //3
+			if (pl.CD_bag == 0) {
+				GetBagNum(pl, 2)
+				if (pl.bagNum) {
+					UpdateBag(pl, 2, 1)
+					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
+					CDBag(pl);
+					GetAudio("pl", "skill_a");
+				}
+			} else if (pl.CD_flag == 0) {
+				CDBag(pl, true);
+				GetAudio("pl", "cd");
+			}
+			break;
+		case 52: //4
+			if (pl.CD_bag == 0) {
+				GetBagNum(pl, 3)
+				if (pl.bagNum) {
+					UpdateBag(pl, 3, 1)
+					t.UseConsumables(pl, pl.bagStyle, pl.bagValue, pl.bagTemporary, pl.bagTime);
+					CDBag(pl);
+					GetAudio("pl", "skill_a");
+				}
+			} else if (pl.CD_flag == 0) {
+				CDBag(pl, true);
+				GetAudio("pl", "cd");
+			}
+			break;
+		case 53: //5
+			if (pl.CD_bag == 0) {
+				GetBagNum(pl, 4)
+				if (pl.bagNum) {
+					UpdateBag(pl, 4, 1)
+					t.UseConsumables(pl, pl.bagStyle, pl.bagValue, pl.bagTemporary, pl.bagTime);
+					CDBag(pl);
+					GetAudio("pl", "skill_a");
+				}
+			} else if (pl.CD_flag == 0) {
+				CDBag(pl, true);
+				GetAudio("pl", "cd");
+			}
+			break;
+		case 54: //6
+			if (pl.CD_bag == 0) {
+				GetBagNum(pl, 5)
+				if (pl.bagNum) {
+					UpdateBag(pl, 5, 1)
+					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
+					CDBag(pl);
+					GetAudio("pl", "skill_a");
+				}
+			} else if (pl.CD_flag == 0) {
+				CDBag(pl, true);
+				GetAudio("pl", "cd");
+			}
+			break;
 	}
 }
 
@@ -269,7 +355,7 @@ function flash(obj, StateName, check_x) {
 			pl.hit_ID = 0
 			setTimeout(function () {
 				if (obj.IsFlash == false) {
-					ChangePlayerState(obj, 'move')
+					(w || a || s || d) ? ChangePlayerState(obj, 'move') : ChangePlayerState(obj, 'stand')
 					$('#role-body').css('background-position', 0 + 'px ')
 				}
 			}, 50)
@@ -721,11 +807,11 @@ function CDSkill(obj, cdNumber, cd) {
 	}
 }
 
-function CDBag(obj, cdNumber) {
+function CDBag(obj, cdBagFlag = false) {
 	var cd_timer, cd_icon
 	var AllIcon = $("#action-bagcd-bar li")
 	AllIcon.attr('class', 'cding')
-	if (cdNumber == -1) {
+	if (cdBagFlag) {
 		cd_timer = setInterval(function () {
 			obj.CD_flag++
 			if (obj.CD_flag == obj.CD_bagMax) {
@@ -764,10 +850,48 @@ function SkillBling(targetIcon) {
 
 function GetUseCDMP(obj, index) {
 	let data = PlayerSkillData[index]
-	obj.needCD = data[0].UseCD
-	obj.needMP = data[0].UseMP
+	obj.needCD = data.UseCD
+	obj.needMP = data.UseMP
+}
+
+function GetBagNum(obj, index) {
+	let data = obj.BAG[index]
+	obj.bagNum = data.Num
+	obj.bagValue = data.Value
+	obj.bagStyle = data.Style
+	obj.bagTemporary = data.Temporary
+	obj.bagTime = data.Time
+}
+
+function UpdateBag(obj, key, Num, NumFlag = true) {
+	var JSONArr = obj.BAG
+	var JSONArr2 = []
+	var tempJSON = {}
+	for (let index in JSONArr) {
+		tempJSON = {}
+		tempJSON['value'] = JSONArr[index].document
+		JSONArr2[index] = tempJSON
+		tempJSON = {}
+		tempJSON['UName'] = JSONArr[index].UName
+		if (index == key) {
+			if (NumFlag) {
+				tempJSON['Num'] = JSONArr[index].Num - Num
+			} else {
+				tempJSON['Num'] = JSONArr[index].Num + Num
+			}
+		} else {
+			tempJSON['Num'] = JSONArr[index].Num
+		}
+		tempJSON['Style'] = JSONArr[index].Style
+		tempJSON['Value'] = JSONArr[index].Value
+		tempJSON['Temporary'] = JSONArr[index].Temporary
+		tempJSON['Time'] = JSONArr[index].Time
+		JSONArr2[index] = tempJSON
+	}
+	obj.BAG = JSONArr2;
+	window.console.log((obj.BAG[key]).Num)
 }
 
 export default {
-	GetUseCDMP, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
+	GetUseCDMP, GetBagNum, UpdateBag, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
 };

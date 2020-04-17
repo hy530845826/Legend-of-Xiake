@@ -1,46 +1,85 @@
 [
     [],
-    [
-        [{
+    [{
             "UName": "二刀流·鹰波",
             "UseCD": 60,
             "UseMP": 5
-        }],
-        [{
+        },
+        {
             "UName": "一刀流·居合·狮子歌歌",
             "UseCD": 120,
             "UseMP": 15
-        }],
-        [{
+        },
+        {
             "UName": "青龙吟·流水",
             "UseCD": 120,
             "UseMP": 20
-        }],
-        [{
+        },
+        {
             "UName": "一刀流·鬼斩",
             "UseCD": 60,
             "UseMP": 10
-        }],
-        [{
+        },
+        {
             "UName": "阿修罗·壹雾银",
             "UseCD": 60,
             "UseMP": 5
-        }],
-        [{
+        },
+        {
             "UName": "三刀流·百八烦恼风",
             "UseCD": 60,
             "UseMP": 5
-        }],
-        [{
+        },
+        {
             "UName": "奥义·三千世界",
             "UseCD": 60,
             "UseMP": 5
-        }],
-        [{
+        },
+        {
             "UName": "一大·三千·大千世界",
             "UseCD": 60,
             "UseMP": 5
-        }]
+        }
     ],
-    []
+    [{
+            "UName": "治疗药水",
+            "Num": 12,
+            "Style": "HP",
+            "Value": 25
+        },
+        {
+            "UName": "元气药水",
+            "Num": 12,
+            "Style": "MP",
+            "Value": 25
+        },
+        {
+            "UName": "全能药水",
+            "Num": 6,
+            "Style": "HP/MP",
+            "Value": 50
+        },
+        {
+            "UName": "泰兰德的风干香蕉",
+            "Num": 12,
+            "Style": "SPE",
+            "Value": 10,
+            "Temporary": true,
+            "Time": 1
+        },
+        {
+            "UName": "肯德基",
+            "Num": 3,
+            "Style": "ATK",
+            "Value": 5,
+            "Temporary": true,
+            "Time": 10
+        },
+        {
+            "UName": "故事的小菊花",
+            "Num": 1,
+            "Style": "PER",
+            "Value": 1
+        }
+    ]
 ]

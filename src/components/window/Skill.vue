@@ -179,9 +179,9 @@ export default {
     LoadingSkillContent: function() {
       for (let index in PlayerSkillData) {
         var data = PlayerSkillData[index];
-        this.name_data.push(data[0].UName);
-        this.cd_data.push(data[0].UseCD / 20);
-        this.mp_data.push(data[0].UseMP);
+        this.name_data.push(data.UName);
+        this.cd_data.push(data.UseCD / 20);
+        this.mp_data.push(data.UseMP);
       }
     }
   },

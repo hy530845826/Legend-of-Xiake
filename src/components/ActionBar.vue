@@ -53,12 +53,13 @@ import v from "../js/vuemove";
 import t from "../js/tool";
 import player_data from "../js/data/player_data.json";
 var PlayerSkillData = player_data[1];
+var PlayerBagData = player_data[2];
 export default {
   name: "action-bar",
   data: function() {
     return {
       mp_data: [],
-      bagnum_data: [12, 12, 6, 12, 3, 1]
+      bagnum_data: []
     };
   },
   methods: {
@@ -188,46 +189,36 @@ export default {
       }
       var target = e.currentTarget;
       var nowIndex = $(target).index();
-      var bagFlag = false;
       if (pl.CD_bag == 0) {
-        if (this.bagnum_data[nowIndex]) {
-          this.$set(this.bagnum_data, nowIndex, this.bagnum_data[nowIndex] - 1);
-          bagFlag = true;
-          v.CDBag(pl, nowIndex);
+        v.GetBagNum(pl, nowIndex);
+        if (pl.bagNum) {
+          v.UpdateBag(pl, nowIndex, 1);
+          this.$set(this.bagnum_data, nowIndex, pl.bagNum - 1);
+          t.UseConsumables(
+            pl,
+            pl.bagStyle,
+            pl.bagValue,
+            pl.bagTemporary,
+            pl.bagTime
+          );
+          v.CDBag(pl);
           v.GetAudio("pl", "skill_a");
         }
       } else if (pl.CD_flag == 0) {
-        v.CDBag(pl, -1);
+        v.CDBag(pl, true);
         v.GetAudio("pl", "cd");
-      }
-      if (bagFlag) {
-        switch (nowIndex) {
-          case 0: //1
-            t.UseConsumables(pl, "HP", 25);
-            break;
-          case 1: //2
-            t.UseConsumables(pl, "MP", 25);
-            break;
-          case 2:
-            t.UseConsumables(pl, "HP", 50);
-            t.UseConsumables(pl, "MP", 50);
-            break;
-          case 3:
-            t.UseConsumables(pl, "SPE", 10, true, 1);
-            break;
-          case 4:
-            t.UseConsumables(pl, "ATK", 5, true, 10);
-            break;
-          case 5:
-            t.UseConsumables(pl, "PER", 1);
-            break;
-        }
       }
     },
     LoadingSkillContent: function() {
       for (let index in PlayerSkillData) {
         var data = PlayerSkillData[index];
-        this.mp_data.push(data[0].UseMP);
+        this.mp_data.push(data.UseMP);
+      }
+    },
+    LoadingBagContent: function() {
+      for (let index in PlayerBagData) {
+        var data = PlayerBagData[index];
+        this.bagnum_data.push(data.Num);
       }
     },
     CheckSkillMP: function() {
@@ -256,14 +247,25 @@ export default {
             : $(BagNumArr[index]).attr("class", "nomana");
         }
       }, 500);
+    },
+    Updatebagdata: function() {
+      var that = this;
+      setInterval(function() {
+        for (let index in that.bagnum_data) {
+          v.GetBagNum(pl, index);
+          that.$set(that.bagnum_data, index, pl.bagNum);
+        }
+      }, 500);
     }
   },
   mounted() {
     this.LoadingSkillBar();
     this.LoadingBagBar();
     this.LoadingSkillContent();
+    this.LoadingBagContent();
     this.CheckSkillMP();
     this.CheckBagNum();
+    this.Updatebagdata();
   }
 };
 </script>

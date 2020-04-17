@@ -106,7 +106,10 @@ function UseConsumables(obj, style, value, temporary, buff_time) {
             case "SPE": obj.speed += value; break;
         }
     }
-    TipsConsumables(obj, style, value)
+    if (style == "HP/MP") {
+        UseConsumables(obj, "HP", value)
+        UseConsumables(obj, "MP", value)
+    } else { TipsConsumables(obj, style, value) }
 }
 
 function TipsConsumables(obj, style, value) {
