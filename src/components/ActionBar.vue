@@ -43,8 +43,15 @@ import Player from "../js/player";
 var pl = Player.pll;
 import v from "../js/vuemove";
 import t from "../js/tool";
+import player_data from "../js/data/player_data.json";
+var PlayerSkillData = player_data[1];
 export default {
-  name: "test",
+  name: "action-bar",
+  data: function() {
+    return {
+      mp_data: []
+    };
+  },
   methods: {
     LoadingSkillBar: function() {
       var SkillIconArr = $("#action-skill-bar li");
@@ -178,11 +185,34 @@ export default {
           }
           break;
       }
+    },
+    LoadingSkillContent: function() {
+      for (let index in PlayerSkillData) {
+        var data = PlayerSkillData[index];
+        this.mp_data.push(data[0].UseMP);
+      }
+    },
+    CheckSkillMP: function() {
+      var that = this;
+      setInterval(function() {
+        var SkillIconArr = $("#action-skill-bar li");
+        var plMP = pl.MP;
+        for (let index in that.mp_data) {
+          var needMP = that.mp_data[index];
+          if (plMP < needMP) {
+            $(SkillIconArr[index]).attr("class", "nomana");
+          } else {
+            $(SkillIconArr[index]).attr("class", "");
+          }
+        }
+      }, 500);
     }
   },
   mounted() {
     this.LoadingSkillBar();
     this.LoadingBagBar();
+    this.LoadingSkillContent();
+    this.CheckSkillMP();
   }
 };
 </script>

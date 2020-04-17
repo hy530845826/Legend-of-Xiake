@@ -24,6 +24,17 @@
     background-size: 113% 113%;
     background-position: center;
     padding-left: 2px;
+    position: relative;
+}
+
+#action-skill-bar .nomana::after {
+    content: '';
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(25, 25, 150, 0.7);
 }
 
 #action-skillcd-bar {
