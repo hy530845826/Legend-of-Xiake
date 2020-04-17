@@ -76,9 +76,9 @@ export default {
     },
     ShowMission: function() {
       this.MissionFlag = !this.MissionFlag;
-      if (this.npc.CD_audio == 0 || this.npc.CD_audio > this.npc.CD_audio) {
-        if (this.MissionFlag == true) {
-          m.UpdateMission(this.npc.mission_UID);
+      if (this.MissionFlag == true) {
+        m.UpdateMission(this.npc.mission_UID);
+        if (this.npc.CD_audio == 0 || this.npc.CD_audio > this.npc.CD_audio) {
           t.CDAudio(this.npc, true);
           v.GetAudio(
             "npc",

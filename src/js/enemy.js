@@ -44,7 +44,7 @@ function CreateEnemy(plx, ply, lv, hpmax, hp, mpmax, mp, exp, atk, atkmax, def, 
 }
 
 function UpdateEnemy(obj, PortalToMapID) {
-    DeleteEnemy(obj)
+    t.DeleteEnemy(obj)
     var uid = CheckCreateMap(PortalToMapID)
     if (uid == undefined) {
         window.console.log('map-' + PortalToMapID + 'safe')
@@ -76,18 +76,6 @@ function UpdateEnemy(obj, PortalToMapID) {
         $('#enemy-name').css({ 'left': name_left + 'px', 'top': (ell.stand_y + 5) + 'px' })
         EnemyMove(obj)
     }, 50)
-}
-
-function DeleteEnemy(obj) {
-    clearInterval(obj.randomfx_timer)
-    clearInterval(obj.ellMove_timer)
-    clearInterval(obj.ellflash)
-    obj.plx = -200;
-    obj.ply = 400;
-    $('#enemy-body').css({ transition: "transform 0.1s", transform: "rotateY(0deg)" })
-    $('#enemy-body').attr('class', 'stand')
-    $('#enemy').css('top', obj.ply + "px")
-    $('#enemy').css('left', obj.plx + "px")
 }
 
 function CheckCreateMap(PortalToMapID) {
@@ -265,13 +253,8 @@ function enemyflash(StateName, skillstart, skillfarme, skillwidth) {
             ell.plx = xxx
             ell.ply = yyy
             ell.hit_ID = 0
-            setTimeout(function () {
-                if (ell.IsFlash == false) {
-                    ChangeEnemyState('stand')
-                    ell.IsMove = true
-                    $('#enemy-body').css('background-position', 0 + 'px ')
-                }
-            }, 100)
+            ell.IsMove = true
+            $('#enemy-body').css('background-position', 0 + 'px ')
         } else {
             $('#enemy-body').css('background-position', (-div_width * (i - 1)) + 'px ')
             CheckEnemyHit(StateName, i)

@@ -28,7 +28,7 @@ function CreateNPC(plx, ply, lv) {
 }
 
 function Updatenpc(obj, PortalToMapID) {
-    DeleteEnemy(obj)
+    DeleteNpc(obj)
     var uid = CheckCreateMap(PortalToMapID)
     if (uid == undefined) {
         window.console.log('map-' + PortalToMapID + ':no-npc')
@@ -52,7 +52,7 @@ function Updatenpc(obj, PortalToMapID) {
     }, 50)
 }
 
-function DeleteEnemy(obj) {
+function DeleteNpc(obj) {
     obj.plx = -200;
     obj.ply = 200;
     $('#npc').css('top', obj.ply + "px")

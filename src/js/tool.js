@@ -47,6 +47,17 @@ function CDAudio(obj, cdFlag) {
     }, 1000);
 }
 
+function DeleteEnemy(obj) {
+    clearInterval(obj.randomfx_timer)
+    clearInterval(obj.ellMove_timer)
+    clearInterval(obj.ellflash)
+    obj.plx = -200;
+    obj.ply = -200;
+    $('#enemy-body').css({ transition: "transform 0.1s", transform: "rotateY(0deg)" })
+    $('#enemy').css('top', obj.ply + "px")
+    $('#enemy').css('left', obj.plx + "px")
+}
+
 export default {
-    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio
+    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio, DeleteEnemy
 }

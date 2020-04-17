@@ -7,7 +7,6 @@ var MissionOptions
 function CreateMission() {
     this.UID = 0
     this.name = 'null'
-    this.introduction = 'null'
 
     this.style = 0
     this.target_UID = 0

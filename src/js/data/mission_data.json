@@ -1,19 +1,19 @@
 [
     [{
         "UID": 0,
-        "name": "打怪",
-        "introduction": "真的吗",
-        "style": 0,
-        "target_UID": 0,
-        "target_num": 5
+        "name": "江湖告急！",
+        "style": 3,
+        "target_UID": 3,
+        "target_num": 0
     }],
     [{
         "UID": 1,
-        "name": "挖菜",
-        "introduction": "是啊",
-        "style": 0,
-        "target_UID": 0,
+        "name": "木人巷试炼（甲）",
+        "style": 1,
+        "target_UID": 3,
         "target_num": 5
     }],
-    [{}]
+    [{
+        "style说明": "0:找npc 1:杀怪 2:收集材料 3:现场挑战"
+    }]
 ]

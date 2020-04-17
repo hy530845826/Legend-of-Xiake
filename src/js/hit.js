@@ -1,6 +1,12 @@
 var Tool = require("./tool")
 var t = Tool.default
 
+var UpdateEnemy
+setTimeout(() => {
+    var Enemy = require("./enemy")
+    UpdateEnemy = Enemy.default.UpdateEnemy
+}, 1000)
+
 function HitJudgement(obj, obj2, HitFlag, hit_ID) {
     var t1, l1, r1, b1
     var t2, l2, r2, b2
@@ -53,14 +59,8 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
 function KillJudgement(obj, obj2, HitFlag) {
     if (HitFlag) {
         obj.EXP += obj2.EXP
-        clearInterval(obj2.randomfx_timer)
-        clearInterval(obj2.ellMove_timer)
-        clearInterval(obj2.ellflash)
-        obj2.plx = -200;
-        obj2.ply = 400;
-        $('#enemy-body').css({ transition: "transform 0.1s", transform: "rotateY(0deg)" })
-        $('#enemy').css('top', obj2.ply + "px")
-        $('#enemy').css('left', obj2.plx + "px")
+        t.DeleteEnemy(obj2)
+        setTimeout(() => { UpdateEnemy(obj2, obj2.CreateMap) }, 2000)
     }
 }
 

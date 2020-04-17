@@ -377,12 +377,11 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioN
 	pl.loading = true
 	var i = 10
 	$('#loading-screen .progress-bar').css('width', i + '%')
+	//0.5删除enemy
+	t.DeleteEnemy(ell)
 	//1.加载地图
 	window.console.log("当前地图map-" + MapIDNumber + "	切换至:map-" + PortalToMapID)
 	$('#map').attr('class', 'map-' + PortalToMapID)
-	//1.5修改小地图坐标
-	$('#map-' + MapIDNumber).attr('class', '')
-	$('#map-' + PortalToMapID).attr('class', 'Player-Position')
 	//1.8获取新地图可移动区域
 	t.UpdateStopPosition(pl, PortalToMapID)
 	//2.计时器timer结束执行-ChangeBGM(200ms)
@@ -392,6 +391,9 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioN
 			clearInterval(timer)
 			window.console.log("当前BGM:" + MapBGMNumber + ".mp3	切换至:" + PortalMusicID + ".mp3")
 			ChangeBGM(MapBGMNumber, PortalMusicID)
+			//2.5修改小地图坐标
+			$('#map-' + MapIDNumber).attr('class', '')
+			$('#map-' + PortalToMapID).attr('class', 'Player-Position')
 			//3.计时器timer2结束执行-CreatePortal(3200ms)
 			//3.5获取环境音乐
 			var timer2 = setInterval(function () {
@@ -400,7 +402,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioN
 					clearInterval(timer2)
 					CreatePortal(PortalToMapID)
 					GetEnAudio('environment', AudioName)
-					//4.计时器timer3结束执行-MovePlayer(2000ms)
+					//4.计时器timer3结束执行-UpdateEnemy、Updatenpc、MovePlayer(2000ms)
 					var timer3 = setInterval(function () {
 						i += 2
 						if (i >= 100) {

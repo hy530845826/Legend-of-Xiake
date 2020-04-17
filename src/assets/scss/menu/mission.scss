@@ -16,24 +16,34 @@
 	line-height: 30px;
 }
 
-#Mission .MissionContent div,
-#Mission .MissionContent span {
-	font-family: "仿宋";
-	font-size: 18px;
+#Mission .MenuClose {
+	float: right;
+	padding-right: 5px;
+	cursor: pointer;
+	font-size: 16px;
 }
 
-#Mission .MissionContent div:first-child {
-	text-indent: 2em;
-	padding-bottom: 25px;
+#Mission .MenuClose:hover {
+	color: yellow;
+}
+
+#Mission .MissionContent {
+	font-size: 18px;
+	line-height: 20px;
+}
+
+#Mission .MissionContent div {
+	font-family: "仿宋";
+	margin-bottom: 15px;
 }
 
 #Mission .MissionContent b {
-	font-size: 18px;
 	font-weight: bold;
+	line-height: 28px;
+	margin: 6px 0;
 }
 
-#Mission .MissionContent em {
-	font-style: normal;
+#Mission .MissionContent span {
 	font-family: "仿宋";
 	color: yellow;
 }
