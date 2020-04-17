@@ -1,0 +1,19 @@
+[
+    [{
+        "UID": 0,
+        "name": "打怪",
+        "introduction": "真的吗",
+        "style": 0,
+        "target_UID": 0,
+        "target_num": 5
+    }],
+    [{
+        "UID": 1,
+        "name": "挖菜",
+        "introduction": "是啊",
+        "style": 0,
+        "target_UID": 0,
+        "target_num": 5
+    }],
+    [{}]
+]

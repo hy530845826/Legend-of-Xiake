@@ -16,7 +16,8 @@
 	line-height: 30px;
 }
 
-#Mission .MissionContent div {
+#Mission .MissionContent div,
+#Mission .MissionContent span {
 	font-family: "仿宋";
 	font-size: 18px;
 }
@@ -26,9 +27,15 @@
 	padding-bottom: 25px;
 }
 
-#Mission .MissionContent span {
+#Mission .MissionContent b {
 	font-size: 18px;
 	font-weight: bold;
+}
+
+#Mission .MissionContent em {
+	font-style: normal;
+	font-family: "仿宋";
+	color: yellow;
 }
 
 #Mission .MissionBottom {

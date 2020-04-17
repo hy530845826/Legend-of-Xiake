@@ -23,6 +23,8 @@ function CreateNPC(plx, ply, lv) {
     this.style_talk = 0
     this.style_over = 0
     this.style_move = 0
+
+    this.mission_UID = undefined
 }
 
 function Updatenpc(obj, PortalToMapID) {

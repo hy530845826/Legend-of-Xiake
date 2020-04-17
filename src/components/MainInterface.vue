@@ -21,7 +21,7 @@
       <div>{{pl.imgfx}}</div>
     </div>
     <div id="npc">
-      <div id="npc-body" @click="RefuseMission"></div>
+      <div id="npc-body" @click="ShowMission"></div>
       <div id="npc-name">
         <span>{{npc_data[0]}}</span>
         {{npc_data[1]}}
@@ -44,30 +44,17 @@
       <div id="enemy-name">{{el_data[0]}} {{el_data[1]}}</div>
     </div>
     <div class="Portal Portal-birth to-map-2"></div>
-    <div v-if="ShowMission">
-      <div id="Mission" class="Mission">
-        <div class="MenuTitle">委托name</div>
-        <div class="MissionContent">
-          <div>这是一个很长的故事巴拉巴拉巴拉，在很久很久以前有一个蓝精灵，他重来也不骑小毛驴。</div>
-          <div>
-            <span>任务说明:</span>
-            你好，勇士{{pl.name}}//这里用变量确定委托的名字（可能需要组件）
-          </div>
-        </div>
-        <div class="MissionBottom">
-          <span @click="AcceptMission">接受委托</span>
-          <span @click="RefuseMission">拒绝委托</span>
-        </div>
-      </div>
-    </div>
+    <Mission v-if="MissionFlag" :mission_UID="npc.mission_UID" @openWindowMission="zdy($event)" />
   </div>
 </template>
 <script>
+import Mission from "./window/Mission.vue";
 import Player from "../js/player";
 import Enemy from "../js/enemy";
 import Npc from "../js/npc";
 import v from "../js/vuemove";
 import t from "../js/tool";
+import m from "../js/mission";
 
 export default {
   name: "main-interface",
@@ -75,40 +62,31 @@ export default {
     return {
       pl: Player.pll,
       npc: Npc.npc,
-      ShowMission: false,
+      MissionFlag: false,
       el_data: [Enemy.ell.LV, Enemy.ell.name],
       npc_data: [Npc.npc.appellation, Npc.npc.name]
     };
   },
+  components: {
+    Mission
+  },
   methods: {
-    RefuseMission: function() {
-      this.ShowMission = !this.ShowMission;
-      //说话
-      if (this.npc.CD_audio == 0 || this.npc.CD_audio > 4) {
-        if (this.ShowMission == true) {
+    zdy(msg) {
+      this.MissionFlag = msg;
+    },
+    ShowMission: function() {
+      this.MissionFlag = !this.MissionFlag;
+      if (this.npc.CD_audio == 0 || this.npc.CD_audio > this.npc.CD_audio) {
+        if (this.MissionFlag == true) {
+          m.UpdateMission(this.npc.mission_UID);
           t.CDAudio(this.npc, true);
           v.GetAudio(
             "npc",
             "npc" + this.npc.UID + "_talk",
             this.npc.style_talk
           );
-        } else {
-          t.CDAudio(this.npc, true);
-          v.GetAudio(
-            "npc",
-            "npc" + this.npc.UID + "_over",
-            this.npc.style_over
-          );
         }
       }
-    },
-    AcceptMission: function() {
-      this.ShowMission = !this.ShowMission;
-      if (this.npc.CD_audio == 0 || this.npc.CD_audio > 4) {
-        t.CDAudio(this.npc, true);
-        v.GetAudio("npc", "npc" + this.npc.UID + "_over", this.npc.style_over);
-      }
-      Enemy.UpdateEnemy(Enemy.ell, 3);
     },
     F5: function() {
       var that = this;

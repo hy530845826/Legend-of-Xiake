@@ -8,7 +8,7 @@
         <li @click="SettingIntroduction()">游戏说明</li>
       </ul>
     </div>
-    <introduction v-if="WindowName=='introduction'" @openWindowMenu="zdy2($event)" />
+    <introduction v-if="WindowName=='introduction'" @openWindowMenu="zdy($event)" />
     <audio src="./static/sound/bgm/home.mp3" id="HomeBGM" class="bgmusic" autoplay></audio>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
     SettingIntroduction: function() {
       this.WindowName = "introduction";
     },
-    zdy2(msg) {
+    zdy(msg) {
       this.WindowName = msg;
     }
   },
