@@ -40,6 +40,7 @@ function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, arm
 	this.IsFlash = false
 	this.Audio_move_l = -200 //路过npc触发语音坐标
 	this.Audio_move_r = -200
+	this.IsMana = true //本次技能是否够蓝
 
 	this.stand_x = 67
 	this.stand_y = 124

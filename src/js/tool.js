@@ -58,6 +58,15 @@ function DeleteEnemy(obj) {
     $('#enemy').css('left', obj.plx + "px")
 }
 
+function UseSkillMP(obj, needMP) {
+    if (obj.MP >= needMP) {
+        obj.MP -= needMP
+        return true
+    } else {
+        return false
+    }
+}
+
 export default {
-    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio, DeleteEnemy
+    RandomNumber, RandomNumber2, RandomCode, UpdateStopPosition, CDAudio, DeleteEnemy, UseSkillMP
 }

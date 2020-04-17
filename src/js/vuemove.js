@@ -89,9 +89,12 @@ document.onkeydown = function (event) {
 		case 65: //A
 			if (pl.IsFlash == false) {
 				if (pl.CD_a == 0) {
-					flash(pl, 'skillA')
-					CDSkill(pl, 0, 60)
-					GetAudio('pl', 'skill_a')
+					pl.IsMana = t.UseSkillMP(pl, 10)
+					if (pl.IsMana) {
+						flash(pl, 'skillA')
+						CDSkill(pl, 0, 60)
+						GetAudio('pl', 'skill_a')
+					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
@@ -101,9 +104,12 @@ document.onkeydown = function (event) {
 		case 83: //S
 			if (pl.IsFlash == false) {
 				if (pl.CD_s == 0) {
-					flash(pl, 'skillS')
-					CDSkill(pl, 1, 120)
-					GetAudio('pl', 'skill_s')
+					pl.IsMana = t.UseSkillMP(pl, 10)
+					if (pl.IsMana) {
+						flash(pl, 'skillS')
+						CDSkill(pl, 1, 120)
+						GetAudio('pl', 'skill_s')
+					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
@@ -113,9 +119,12 @@ document.onkeydown = function (event) {
 		case 68: //D
 			if (pl.IsFlash == false) {
 				if (pl.CD_d == 0) {
-					flash(pl, 'skillD', 540)
-					CDSkill(pl, 2, 120)
-					GetAudio('pl', 'skill_d')
+					pl.IsMana = t.UseSkillMP(pl, 10)
+					if (pl.IsMana) {
+						flash(pl, 'skillD', 540)
+						CDSkill(pl, 2, 120)
+						GetAudio('pl', 'skill_d')
+					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
@@ -125,9 +134,12 @@ document.onkeydown = function (event) {
 		case 70: //F
 			if (pl.IsFlash == false) {
 				if (pl.CD_f == 0) {
-					flash(pl, 'skillF')
-					CDSkill(pl, 3, 60)
-					GetAudio('pl', 'skill_f1')
+					pl.IsMana = t.UseSkillMP(pl, 10)
+					if (pl.IsMana) {
+						flash(pl, 'skillF')
+						CDSkill(pl, 3, 60)
+						GetAudio('pl', 'skill_f1')
+					}
 					setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -732,6 +744,8 @@ function SkillBling(targetIcon) {
 		}, 150)
 	}, 150)
 }
+
+
 
 export default {
 	flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading

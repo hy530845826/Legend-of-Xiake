@@ -42,6 +42,7 @@
 import Player from "../js/player";
 var pl = Player.pll;
 import v from "../js/vuemove";
+import t from "../js/tool";
 export default {
   name: "test",
   methods: {
@@ -83,9 +84,12 @@ export default {
         case 0: //A
           if (pl.IsFlash == false) {
             if (pl.CD_a == 0) {
-              v.flash(pl, "skillA");
-              v.CDSkill(pl, 0, 60);
-              v.GetAudio("pl", "skill_a");
+              pl.IsMana = t.UseSkillMP(pl, 10);
+              if (pl.IsMana) {
+                v.flash(pl, "skillA");
+                v.CDSkill(pl, 0, 60);
+                v.GetAudio("pl", "skill_a");
+              }
             } else if (pl.CD_flag == 0) {
               v.CDSkill(pl, -1, 20);
               v.GetAudio("pl", "cd");
@@ -95,9 +99,12 @@ export default {
         case 1: //S
           if (pl.IsFlash == false) {
             if (pl.CD_s == 0) {
-              v.flash(pl, "skillS");
-              v.CDSkill(pl, 1, 120);
-              v.GetAudio("pl", "skill_s");
+              pl.IsMana = t.UseSkillMP(pl, 10);
+              if (pl.IsMana) {
+                v.flash(pl, "skillS");
+                v.CDSkill(pl, 1, 120);
+                v.GetAudio("pl", "skill_s");
+              }
             } else if (pl.CD_flag == 0) {
               v.CDSkill(pl, -1, 20);
               v.GetAudio("pl", "cd");
@@ -107,9 +114,12 @@ export default {
         case 2: //D
           if (pl.IsFlash == false) {
             if (pl.CD_d == 0) {
-              v.flash(pl, "skillD", 540);
-              v.CDSkill(pl, 2, 120);
-              v.GetAudio("pl", "skill_d");
+              pl.IsMana = t.UseSkillMP(pl, 10);
+              if (pl.IsMana) {
+                v.flash(pl, "skillD", 540);
+                v.CDSkill(pl, 2, 120);
+                v.GetAudio("pl", "skill_d");
+              }
             } else if (pl.CD_flag == 0) {
               v.CDSkill(pl, -1, 20);
               v.GetAudio("pl", "cd");
@@ -119,9 +129,12 @@ export default {
         case 3: //F
           if (pl.IsFlash == false) {
             if (pl.CD_f == 0) {
-              v.flash(pl, "skillF");
-              v.CDSkill(pl, 3, 60);
-              v.GetAudio("pl", "skill_f1");
+              pl.IsMana = t.UseSkillMP(pl, 10);
+              if (pl.IsMana) {
+                v.flash(pl, "skillF");
+                v.CDSkill(pl, 3, 60);
+                v.GetAudio("pl", "skill_f1");
+              }
               setTimeout(function() {
                 v.GetAudio("pl", "skill_f2");
               }, 600);
