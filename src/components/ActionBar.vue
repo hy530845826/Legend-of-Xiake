@@ -28,6 +28,14 @@
       <li>5</li>
       <li>6</li>
     </ul>
+    <ul id="action-bagnum-bar">
+      <li>{{bagnum_data[0]}}</li>
+      <li>{{bagnum_data[1]}}</li>
+      <li>{{bagnum_data[2]}}</li>
+      <li>{{bagnum_data[3]}}</li>
+      <li>{{bagnum_data[4]}}</li>
+      <li>{{bagnum_data[5]}}</li>
+    </ul>
     <ul id="action-bagcd-bar">
       <li @click="ClickBag($event)"></li>
       <li @click="ClickBag($event)"></li>
@@ -49,7 +57,8 @@ export default {
   name: "action-bar",
   data: function() {
     return {
-      mp_data: []
+      mp_data: [],
+      bagnum_data: [3, 3, 0, 0, 0, 0]
     };
   },
   methods: {
@@ -163,27 +172,27 @@ export default {
       }
       var target = e.currentTarget;
       var nowIndex = $(target).index();
-      switch (nowIndex) {
-        case 0: //1
-          if (pl.CD_bag == 0) {
+      var bagFlag = false;
+      if (pl.CD_bag == 0) {
+        if (this.bagnum_data[nowIndex]) {
+          this.$set(this.bagnum_data, nowIndex, this.bagnum_data[nowIndex] - 1);
+          bagFlag = true;
+          v.CDBag(pl, nowIndex);
+          v.GetAudio("pl", "skill_a");
+        }
+      } else if (pl.CD_flag == 0) {
+        v.CDBag(pl, -1);
+        v.GetAudio("pl", "cd");
+      }
+      if (bagFlag) {
+        switch (nowIndex) {
+          case 0: //1
             t.UseConsumables(pl, "HP", 10);
-            v.CDBag(pl, nowIndex);
-            v.GetAudio("pl", "skill_a");
-          } else if (pl.CD_flag == 0) {
-            v.CDBag(pl, -1);
-            v.GetAudio("pl", "cd");
-          }
-          break;
-        case 1: //2
-          if (pl.CD_bag == 0) {
-            t.UseConsumables(pl, "MP", 10);
-            v.CDBag(pl, nowIndex);
-            v.GetAudio("pl", "skill_a");
-          } else if (pl.CD_flag == 0) {
-            v.CDBag(pl, -1);
-            v.GetAudio("pl", "cd");
-          }
-          break;
+            break;
+          case 1: //2
+            t.UseConsumables(pl, "MP", 20);
+            break;
+        }
       }
     },
     LoadingSkillContent: function() {
@@ -206,6 +215,18 @@ export default {
           }
         }
       }, 500);
+    },
+    CheckBagNum: function() {
+      var that = this;
+      setInterval(function() {
+        var BagNumArr = $("#action-bagnum-bar li");
+        for (let index in that.bagnum_data) {
+          var bagnum = that.bagnum_data[index];
+          bagnum
+            ? $(BagNumArr[index]).attr("class", "")
+            : $(BagNumArr[index]).attr("class", "nomana");
+        }
+      }, 500);
     }
   },
   mounted() {
@@ -213,6 +234,7 @@ export default {
     this.LoadingBagBar();
     this.LoadingSkillContent();
     this.CheckSkillMP();
+    this.CheckBagNum();
   }
 };
 </script>
