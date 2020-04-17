@@ -13,6 +13,8 @@ var HitJudgement = Hit.default.HitJudgement
 
 import player_options from './data/player_options.json'
 var PlayerOptions = player_options
+import player_data from './data/player_data.json'
+var PlayerSkillData = player_data[1]
 
 //初始化
 t.UpdateStopPosition(pl, 1)
@@ -89,7 +91,7 @@ document.onkeydown = function (event) {
 		case 65: //A
 			if (pl.IsFlash == false) {
 				if (pl.CD_a == 0) {
-					GetUseCDMP(pl, 'skillA')
+					GetUseCDMP(pl, 0)
 					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillA')
@@ -105,7 +107,7 @@ document.onkeydown = function (event) {
 		case 83: //S
 			if (pl.IsFlash == false) {
 				if (pl.CD_s == 0) {
-					GetUseCDMP(pl, 'skillS')
+					GetUseCDMP(pl, 1)
 					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillS')
@@ -121,7 +123,7 @@ document.onkeydown = function (event) {
 		case 68: //D
 			if (pl.IsFlash == false) {
 				if (pl.CD_d == 0) {
-					GetUseCDMP(pl, 'skillD')
+					GetUseCDMP(pl, 2)
 					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillD', 540)
@@ -137,7 +139,7 @@ document.onkeydown = function (event) {
 		case 70: //F
 			if (pl.IsFlash == false) {
 				if (pl.CD_f == 0) {
-					GetUseCDMP(pl, 'skillF')
+					GetUseCDMP(pl, 3)
 					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillF')
@@ -709,7 +711,6 @@ function CDSkill(obj, cdNumber, cd) {
 function CDBag(obj, cdNumber) {
 	var cd_timer, cd_icon
 	var AllIcon = $("#action-bagcd-bar li")
-	var targetIcon = $(AllIcon[cdNumber])
 	AllIcon.attr('class', 'cding')
 	if (cdNumber == -1) {
 		cd_timer = setInterval(function () {
@@ -728,7 +729,6 @@ function CDBag(obj, cdNumber) {
 				obj.CD_bag = 0;
 				AllIcon.css('top', 0)
 				AllIcon.attr('class', '')
-				SkillBling(targetIcon)
 				clearInterval(cd_timer);
 			}
 		}, 50);
@@ -749,15 +749,10 @@ function SkillBling(targetIcon) {
 	}, 150)
 }
 
-function GetUseCDMP(obj, StateName) {
-	for (let index in PlayerOptions) {
-		let data = PlayerOptions[index]
-		if (StateName == data[0].UName) {
-			obj.needCD = data[0].UseCD
-			obj.needMP = data[0].UseMP
-			break
-		}
-	}
+function GetUseCDMP(obj, index) {
+	let data = PlayerSkillData[index]
+	obj.needCD = data[0].UseCD
+	obj.needMP = data[0].UseMP
 }
 
 export default {

@@ -24,6 +24,30 @@
         "hited_left": 0
     }],
     [{
+        "UName": "hited",
+        "div_width": 192,
+        "TikTok_sum": 1
+    }, {
+        "img_x": 0,
+        "img_y": 0,
+        "hited_x": 70,
+        "hited_y": 122,
+        "hited_top": 0,
+        "hited_left": 0
+    }],
+    [{
+        "UName": "dead",
+        "div_width": 192,
+        "TikTok_sum": 1
+    }, {
+        "img_x": 0,
+        "img_y": 0,
+        "hited_x": 70,
+        "hited_y": 122,
+        "hited_top": 0,
+        "hited_left": 0
+    }],
+    [{
         "UName": "skillX",
         "div_width": 192,
         "TikTok_sum": 10,
@@ -181,8 +205,6 @@
     }],
     [{
         "UName": "skillA",
-        "UseCD": 60,
-        "UseMP": 5,
         "div_width": 192,
         "TikTok_sum": 9,
         "skill_start_TikTok": 1,
@@ -297,8 +319,6 @@
     }],
     [{
         "UName": "skillS",
-        "UseCD": 120,
-        "UseMP": 15,
         "div_width": 192,
         "TikTok_sum": 11,
         "skill_start_TikTok": 2,
@@ -408,8 +428,6 @@
     }],
     [{
         "UName": "skillD",
-        "UseCD": 120,
-        "UseMP": 20,
         "div_width": 192,
         "TikTok_sum": 11,
         "skill_start_TikTok": 4,
@@ -532,8 +550,6 @@
     }],
     [{
         "UName": "skillF",
-        "UseCD": 60,
-        "UseMP": 10,
         "div_width": 192,
         "TikTok_sum": 8,
         "skill_start_TikTok": 4,

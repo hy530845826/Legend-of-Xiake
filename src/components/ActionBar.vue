@@ -84,7 +84,7 @@ export default {
         case 0: //A
           if (pl.IsFlash == false) {
             if (pl.CD_a == 0) {
-              v.GetUseCDMP(pl, "skillA");
+              v.GetUseCDMP(pl, nowIndex);
               pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillA");
@@ -100,7 +100,7 @@ export default {
         case 1: //S
           if (pl.IsFlash == false) {
             if (pl.CD_s == 0) {
-              v.GetUseCDMP(pl, "skillS");
+              v.GetUseCDMP(pl, nowIndex);
               pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillS");
@@ -116,7 +116,7 @@ export default {
         case 2: //D
           if (pl.IsFlash == false) {
             if (pl.CD_d == 0) {
-              v.GetUseCDMP(pl, "skillD");
+              v.GetUseCDMP(pl, nowIndex);
               pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillD", 540);
@@ -132,7 +132,7 @@ export default {
         case 3: //F
           if (pl.IsFlash == false) {
             if (pl.CD_f == 0) {
-              v.GetUseCDMP(pl, "skillF");
+              v.GetUseCDMP(pl, nowIndex);
               pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillF");
