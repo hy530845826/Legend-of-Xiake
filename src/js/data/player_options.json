@@ -28,10 +28,10 @@
         "div_width": 192,
         "TikTok_sum": 1
     }, {
-        "img_x": 0,
-        "img_y": 0,
-        "hited_x": 70,
-        "hited_y": 122,
+        "img_x": 62,
+        "img_y": 45,
+        "hited_x": 62,
+        "hited_y": 114,
         "hited_top": 0,
         "hited_left": 0
     }],
@@ -40,10 +40,10 @@
         "div_width": 192,
         "TikTok_sum": 1
     }, {
-        "img_x": 0,
-        "img_y": 0,
-        "hited_x": 70,
-        "hited_y": 122,
+        "img_x": 63,
+        "img_y": 46,
+        "hited_x": 0,
+        "hited_y": 0,
         "hited_top": 0,
         "hited_left": 0
     }],

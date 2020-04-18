@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    $("#HomeBGM")[0].volume = 0.6;
+    $("#HomeBGM")[0].volume = 0.5;
   }
 };
 </script>

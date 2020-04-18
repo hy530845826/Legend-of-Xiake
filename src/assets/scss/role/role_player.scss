@@ -46,6 +46,18 @@
     background: url(../../images/plmove.gif) no-repeat;
 }
 
+.hited #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/plhited.gif) no-repeat;
+}
+
+.dead #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/pldead.gif) no-repeat;
+}
+
 .skillX #role-body {
     width: 192px;
     height: 192px;

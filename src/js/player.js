@@ -1,5 +1,5 @@
 var pll = new CreatePlayer('初入江湖', '黄富贵', 0, 500,
-	1, 50, 50, 50, 50, 100, 0,
+	1, 100, 100, 50, 50, 100, 0,
 	0, 0,
 	90, 0, 1, 1, 1, 0, 0, 0)
 
@@ -21,7 +21,7 @@ function CreatePlayer(appellation, name, plx, ply, lv, hpmax, hp, mpmax, mp, exp
 	this.ARMOR = armor
 
 	this.ATK = weap + str
-	this.ATKMAX = weap + str * 3
+	this.ATKMAX = weap + str + 3
 	this.HIT = hit
 	this.DEF = armor + dex
 	this.DEX = dex
@@ -41,6 +41,16 @@ function CreatePlayer(appellation, name, plx, ply, lv, hpmax, hp, mpmax, mp, exp
 	this.Audio_move_l = -200 //路过npc触发语音坐标
 	this.Audio_move_r = -200
 	this.IsMana = true //本次技能是否够蓝
+	this.hited = false
+	this.IsMove = true
+	this.hitedNumber = 0
+	this.hited_time = 500
+	this.dead_time = 2000
+
+	this.w = false
+	this.a = false
+	this.s = false
+	this.d = false
 
 	this.stand_x = 67
 	this.stand_y = 124
@@ -60,11 +70,21 @@ function CreatePlayer(appellation, name, plx, ply, lv, hpmax, hp, mpmax, mp, exp
 
 function LevelUP() {
 	pll.EXP = pll.EXP - pll.EXPMAX
+	pll.HPMAX += 10
+	pll.MPMAX += 5
 	pll.HP = pll.HPMAX
 	pll.MP = pll.MPMAX
 	pll.LV += 1
-	pll.ATK++
-	pll.ATKMAX++
+
+	pll.DEX += 1
+	pll.STR += 1
+	pll.AGI += 1
+	pll.INT += 1
+
+	pll.ATK = pll.WEAP + pll.STR
+	pll.ATKMAX = pll.ATK + 3
+	pll.DEF = pll.ARMOR + pll.DEX
+
 	$('#Level').innerHTML = "LV." + pll.LV
 	window.console.log("LEVEL UP")
 }

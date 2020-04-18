@@ -16,10 +16,6 @@ var PlayerOptions = player_options
 import player_data from './data/player_data.json'
 var PlayerSkillData = player_data[1]
 
-var w = false
-var a = false
-var s = false
-var d = false
 var IsMove = 0
 var rotateNum = 180; //旋转角度
 
@@ -28,7 +24,7 @@ document.onkeydown = function (event) {
 	event = event || window.event
 	switch (event.keyCode) {
 		case 39: //→
-			d = true;
+			pl.d = true;
 			IsMove += 1;
 			pl.realfx = true;
 			if (IsMove == 1 && !pl.IsFlash) {
@@ -42,7 +38,7 @@ document.onkeydown = function (event) {
 			}
 			break;
 		case 37: //←
-			a = true;
+			pl.a = true;
 			IsMove += 1;
 			pl.realfx = false;
 			if (IsMove == 1 && !pl.IsFlash) {
@@ -56,14 +52,14 @@ document.onkeydown = function (event) {
 			}
 			break;
 		case 38: //↑
-			w = true;
+			pl.w = true;
 			IsMove += 1;
 			if (IsMove == 1 && !pl.IsFlash) {
 				ChangePlayerState(pl, 'move')
 			}
 			break;
 		case 40: //↓
-			s = true;
+			pl.s = true;
 			IsMove += 1;
 			if (IsMove == 1 && !pl.IsFlash) {
 				ChangePlayerState(pl, 'move')
@@ -238,13 +234,13 @@ document.onkeydown = function (event) {
 
 setInterval(function () {
 	if (!pl.IsFlash) {
-		if (s && pl.ply < pl.stop_b) {
+		if (pl.s && pl.ply < pl.stop_b) {
 			pl.ply += pl.speed;
-		} else if (w && pl.ply > pl.stop_t) {
+		} else if (pl.w && pl.ply > pl.stop_t) {
 			pl.ply -= pl.speed;
-		} else if (a && pl.plx > pl.stop_l) {
+		} else if (pl.a && pl.plx > pl.stop_l) {
 			pl.plx -= pl.speed;
-		} else if (d && pl.plx < pl.stop_r) {
+		} else if (pl.d && pl.plx < pl.stop_r) {
 			pl.plx += pl.speed;
 		}
 		if (pl.ply > pl.stop_b) { pl.ply = pl.stop_b }
@@ -281,28 +277,28 @@ document.onkeyup = function (event) {
 	event = event || window.event;
 	switch (event.keyCode) {
 		case 39:
-			d = false;
+			pl.d = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
 				ChangePlayerState(pl, 'stand')
 			}
 			break; //→
 		case 37:
-			a = false;
+			pl.a = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
 				ChangePlayerState(pl, 'stand')
 			}
 			break; //←
 		case 38:
-			w = false;
+			pl.w = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
 				ChangePlayerState(pl, 'stand')
 			}
 			break; //↑
 		case 40:
-			s = false;
+			pl.s = false;
 			IsMove = 0;
 			if (IsMove == 0 && pl.IsFlash == false) {
 				ChangePlayerState(pl, 'stand')
@@ -313,6 +309,7 @@ document.onkeyup = function (event) {
 
 function flash(obj, StateName, check_x) {
 	obj.IsFlash = true
+	obj.IsMove = false
 	var i = 1, j = 0
 	var base_x = pl.plx, base_y = pl.ply
 	if (check_x != undefined) {
@@ -344,12 +341,13 @@ function flash(obj, StateName, check_x) {
 		if (i > TikTok_sum) {
 			clearInterval(plflash)
 			obj.IsFlash = false
+			obj.IsMove = true
 			pl.plx = base_x
 			pl.ply = base_y
 			pl.hit_ID = 0
 			setTimeout(function () {
 				if (obj.IsFlash == false) {
-					(w || a || s || d) ? ChangePlayerState(obj, 'move') : ChangePlayerState(obj, 'stand')
+					(pl.w || pl.a || pl.s || pl.d) ? ChangePlayerState(obj, 'move') : ChangePlayerState(obj, 'stand')
 					$('#role-body').css('background-position', 0 + 'px ')
 				}
 			}, 50)
@@ -886,5 +884,5 @@ function UpdateBag(obj, key, Num, NumFlag = true) {
 }
 
 export default {
-	GetUseCDMP, GetBagNum, UpdateBag, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading
+	GetUseCDMP, GetBagNum, UpdateBag, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading, ChangePlayerState
 };

@@ -1,10 +1,13 @@
 var Tool = require("./tool")
 var t = Tool.default
 
-var UpdateEnemy
+var UpdateEnemy, ChangePlayerState, GetAudio
 setTimeout(() => {
     var Enemy = require("./enemy")
+    var Vuemove = require("./vuemove")
     UpdateEnemy = Enemy.default.UpdateEnemy
+    ChangePlayerState = Vuemove.default.ChangePlayerState
+    GetAudio = Vuemove.default.GetAudio
 }, 1000)
 
 function HitJudgement(obj, obj2, HitFlag, hit_ID) {
@@ -31,28 +34,63 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
             random_damage = t.RandomNumber(obj.ATK, obj.ATKMAX)
             obj2.HP -= random_damage
 
-            TipsHP(t2, l2, random_damage, HitFlag)
+            HitFlash(obj, obj2, HitFlag)
 
-            if (HitFlag) {//pl打ell
-                obj2.hited = true
-                obj2.hitedNumber += 1
-                //HP_progress
-                var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
-                $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
-                setTimeout(() => {
-                    if (obj2.hitedNumber == 1) {//连续hit
-                        obj2.hited = false
-                        if (obj2.IsMove == true) { obj2.IsFlash = false }
-                        obj2.hitedNumber = 0
-                        if (obj2.HP <= 0) {
-                            setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.dead_time)
-                        }
-                    } else {
-                        obj2.hitedNumber -= 1
-                    }
-                }, obj2.hited_time)
-            }
+            TipsHP(t2, l2, random_damage, HitFlag)
         }
+    }
+}
+
+function HitFlash(obj, obj2, HitFlag) {
+    obj2.hited = true
+    obj2.hitedNumber += 1
+    //HP_progress
+    if (HitFlag) {
+        var enemy_hp_progress = parseInt((obj2.HP / obj2.HPMAX) * 100)
+        $('#enemy-hp .progress-bar').css('width', enemy_hp_progress + '%')
+        setTimeout(() => {
+            if (obj2.hitedNumber == 1) {//连续hit
+                obj2.hited = false
+                if (obj2.IsMove == true) { obj2.IsFlash = false }
+                obj2.hitedNumber = 0
+                if (obj2.HP <= 0) {
+                    setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.dead_time)
+                }
+            } else {
+                obj2.hitedNumber -= 1
+            }
+        }, obj2.hited_time)
+    } else {
+        obj2.IsFlash = true
+        if (obj2.IsMove == true) { ChangePlayerState(obj2, 'hited') }
+        var HPNow = parseInt((obj2.HP / obj2.HPMAX) * 100)
+        $('#JdtHP .progress-bar').css('width', HPNow + '%')
+        $('#JdtHP .progress-bar').text(HPNow + '%')
+        setTimeout(() => {
+            if (obj2.hitedNumber == 1) {//连续hit
+                obj2.hited = false
+                if (obj2.IsMove == true && obj2.HP > 0) {
+                    (obj2.w || obj2.a || obj2.s || obj2.d) ? ChangePlayerState(obj2, 'move') : ChangePlayerState(obj2, 'stand')
+                    obj2.IsFlash = false
+                }
+                obj2.hitedNumber = 0
+                if (obj2.HP <= 0) {
+                    var bgm_value = $("#BGM")[0].volume
+                    var bgm_timer = setInterval(function () {
+                        bgm_value -= 0.01;
+                        $("#BGM")[0].volume = bgm_value
+                        if (bgm_value == 0) { clearInterval(bgm_timer) }
+                    }, 100)
+                    document.onkeydown = null
+                    document.onkeyup = null
+                    ChangePlayerState(obj2, 'dead')
+                    GetAudio("pl", "dead")
+                    setTimeout(() => { KillJudgement(obj, obj2, HitFlag) }, obj2.dead_time)
+                }
+            } else {
+                obj2.hitedNumber -= 1
+            }
+        }, obj2.hited_time)
     }
 }
 
@@ -60,7 +98,22 @@ function KillJudgement(obj, obj2, HitFlag) {
     if (HitFlag) {
         obj.EXP += obj2.EXP
         t.DeleteEnemy(obj2)
-        setTimeout(() => { UpdateEnemy(obj2, obj2.CreateMap) }, 2000)
+        setTimeout(() => { UpdateEnemy(obj2, obj2.CreateMap) }, 5000)
+    } else {
+        $("#EnAudio")[0].volume = 0.5;
+        $('#EnAudio').attr('src', './static/sound/audio/environment/fire.mp3')
+        $('#dead-screen').css('display', 'block')
+        $('#dead-html').css({ 'display': 'block', 'height': $(window).height() })
+
+        var opa = 0
+        var dead_timer = setInterval(function () {
+            opa += 0.01
+            $('#dead-screen').css('opacity', opa)
+            $('#dead-html').css('opacity', opa)
+            if (opa > 1) {
+                clearInterval(dead_timer)
+            }
+        }, 100)
     }
 }
 

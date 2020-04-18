@@ -26,12 +26,12 @@ export default {
 @import "./assets/scss/main.scss";
 #app {
   width: 1200px;
-  height: 725px;
+  height: 780px;
   margin: 75px auto 25px;
   position: relative;
 }
 #app #screen {
   width: 1200px;
-  height: 725px;
+  height: 780px;
 }
 </style>

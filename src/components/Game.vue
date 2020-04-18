@@ -2,6 +2,7 @@
   <div id="GameBox">
     <audio src id="BGM" class="bgmusic" loop autoplay></audio>
     <audio src id="EnAudio" class="bgmusic" loop autoplay></audio>
+    <div id="dead-screen"></div>
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="pl.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />
@@ -226,7 +227,7 @@ export default {
         WEAP: objpl.WEAP,
         ARMOR: objpl.ARMOR,
         ATK: objpl.WEAP + objpl.STR,
-        ATKMAX: objpl.WEAP + objpl.STR * 3,
+        ATKMAX: objpl.WEAP + objpl.STR + 3,
         HIT: objpl.HIT,
         DEF: objpl.ARMOR + objpl.DEX,
         DEX: objpl.DEX,
@@ -292,7 +293,7 @@ export default {
   mounted() {
     this.CheckLoad();
     this.LoadingSkillIcon();
-    $("#BGM")[0].volume = 0.25;
+    $("#BGM")[0].volume = 0.5;
     $("#EnAudio")[0].volume = 0.25;
   }
 };

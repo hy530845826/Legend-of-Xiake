@@ -1,4 +1,3 @@
-window.console.log('blankjs里面函数')
 var Player = require("./player")
 var pl = Player.default.pll
 
@@ -20,7 +19,6 @@ var hp_timer = setInterval(function () {
     //死亡HP=0
     if (pl.HP <= 0) {
         $('#JdtHP .progress-bar').css({ width: 0 + "%" })
-        alert("死")
         window.console.log("DEAD")
         clearInterval(hp_timer)
     }
