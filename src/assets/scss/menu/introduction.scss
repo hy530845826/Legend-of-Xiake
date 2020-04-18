@@ -1,11 +1,11 @@
 #IntroductionDiv {
-    color: red;
     width: 360px;
     height: 460px;
     background: #222;
     position: absolute;
     top: 100px;
     left: 420px;
+    z-index: 900;
 }
 
 #IntroductionDiv .MenuTitle {

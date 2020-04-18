@@ -21,10 +21,110 @@
               <li @click="ReturnGame">返回游戏</li>
               <li id="SettingMusic" @click="SettingMusic()">音乐：{{MusicFlagText}}</li>
               <li id="SettingIntroduction" @click="SettingIntroduction()">游戏说明</li>
-              <li id="SettingSaveGame" @click="SettingConfirm($event)">保存游戏</li>
-              <li id="SettingLoadGame" @click="SettingConfirm($event)">读取游戏</li>
-              <li id="SettingQuitGame" @click="SettingConfirm($event)">退出游戏</li>
+              <li
+                id="SettingSaveGame"
+                data-toggle="modal"
+                data-target="#SettingConfirm"
+                @click="SettingConfirm($event)"
+              >保存游戏</li>
+              <li
+                id="SettingLoadGame"
+                data-toggle="modal"
+                data-target="#SettingConfirm"
+                @click="SettingConfirm($event)"
+              >读取游戏</li>
+              <li
+                id="SettingQuitGame"
+                data-toggle="modal"
+                data-target="#SettingConfirm"
+                @click="SettingConfirm($event)"
+              >退出游戏</li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="SettingConfirm"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title" id="staticBackdropLabel">
+              <span>江湖来信</span>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" v-if="SettingConfirmStyle=='SettingSaveGame'">
+            <div>
+              <span class="plname">心若冰清,天塌不惊</span>
+            </div>
+            <div>
+              <span class="plname">万变犹定,神怡气静</span>
+            </div>
+            <div>
+              <span class="plname">忘我守一,六根大定</span>
+            </div>
+            <div>
+              冰心诀能将体能素质锁定，固本培元。阁下确定要
+              <span>保存游戏</span>吗？
+            </div>
+            <div class="warning">注意：本次操作将会覆盖之前的存档</div>
+          </div>
+          <div class="modal-body" v-if="SettingConfirmStyle=='SettingLoadGame'">
+            <div>
+              大侠
+              <span class="plname">{{pl.name}}</span>：
+            </div>
+            <div>
+              江湖传言大侠寻得奇物月光宝盒，据传可以进行前尘忆梦，穿越时光回到过去。阁下确定要
+              <span>读取游戏</span>吗？
+            </div>
+            <div class="warning">注意：未保存的进度将会丢失</div>
+          </div>
+          <div class="modal-body" v-if="SettingConfirmStyle=='SettingQuitGame'">
+            <div>
+              大侠
+              <span class="plname">{{pl.name}}</span>：
+            </div>
+            <div>
+              江湖传言大侠有意隐居山林，退出江湖。抗击魔教的大业又该落到何人之上？阁下确定要
+              <span>退出游戏</span>吗？
+            </div>
+            <div class="warning">注意：未保存的进度将会丢失</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              v-if="SettingConfirmStyle=='SettingSaveGame'"
+              data-dismiss="modal"
+              @click="SaveGame()"
+            >确定</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              v-if="SettingConfirmStyle=='SettingLoadGame'"
+              data-dismiss="modal"
+              @click="LoadGame()"
+            >确定</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              v-if="SettingConfirmStyle=='SettingQuitGame'"
+              data-dismiss="modal"
+              @click="QuitGame()"
+            >确定</button>
           </div>
         </div>
       </div>
@@ -59,6 +159,7 @@ export default {
       npc_data: Npc.npc,
       MusicFlag: true,
       MusicFlagText: "开",
+      SettingConfirmStyle: "null",
       IsLoad: this.$route.params.load
     };
   },
@@ -100,23 +201,10 @@ export default {
     SettingConfirm: function(e) {
       this.ReturnGame();
       var SettingID = e.currentTarget.id;
-      switch (SettingID) {
-        case "SettingSaveGame":
-          if (confirm("确定要保存游戏吗？保存进度将会被覆盖") == true) {
-            this.SaveGame();
-          }
-          break;
-        case "SettingLoadGame":
-          if (confirm("确定要读取游戏吗？当前进度可能尚未保存") == true) {
-            this.LoadGame();
-          }
-          break;
-        case "SettingQuitGame":
-          if (confirm("确定要退出游戏吗？当前进度可能尚未保存") == true) {
-            this.$router.push({ path: "/Home" });
-          }
-          break;
-      }
+      this.SettingConfirmStyle = SettingID;
+    },
+    QuitGame: function() {
+      this.$router.push({ path: "/Home" });
     },
     SaveGame: function() {
       var objpl = this.pl;

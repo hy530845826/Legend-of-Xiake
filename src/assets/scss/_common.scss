@@ -4,7 +4,6 @@
 	color: #fff;
 	list-style: none;
 	font-family: "Helvetica Neue", Helvetica, "PingFang SC", Tahoma, Arial, sans-serif;
-	z-index: 900;
 }
 
 img {
@@ -53,7 +52,35 @@ div.bag-MP {
 	color: blue;
 }
 
-
 div.bag-SPE {
 	color: yellow;
+}
+
+#SettingConfirm .modal-title {
+	font-size: 20px;
+	font-weight: bold;
+	color: #222;
+}
+
+#SettingConfirm .modal-title span {
+	color: blue;
+}
+
+#SettingConfirm .modal-body div {
+	color: #222;
+	text-indent: 2em;
+}
+
+#SettingConfirm .modal-body div.warning {
+	margin-top: 25px;
+	font-weight: bold;
+	color: red;
+}
+
+#SettingConfirm .modal-body span.plname {
+	color: blue;
+}
+
+#SettingConfirm .modal-body span {
+	color: red;
 }

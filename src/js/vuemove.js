@@ -883,7 +883,6 @@ function UpdateBag(obj, key, Num, NumFlag = true) {
 		JSONArr2[index] = tempJSON
 	}
 	obj.BAG = JSONArr2;
-	window.console.log((obj.BAG[key]).Num)
 }
 
 export default {

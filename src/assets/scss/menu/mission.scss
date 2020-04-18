@@ -1,11 +1,11 @@
 #Mission {
-	color: red;
 	width: 360px;
 	height: 460px;
 	background: #222;
 	position: absolute;
 	top: 100px;
 	left: 150px;
+	z-index: 900;
 }
 
 #Mission .MenuTitle {
