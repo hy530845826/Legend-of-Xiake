@@ -4,10 +4,22 @@ import router from './router'
 import $ from 'jquery'
 import './assets/bootstrap/js/bootstrap.min.js'
 
+// // 路由跳转
+// Vue.prototype.$goRoute = function (index) {
+//   this.$router.push(index)
+// }
+
 // 路由跳转
 Vue.prototype.$goRoute = function (index) {
   window.console.log(index)
-  this.$router.push(index)
+  switch (index) {
+    case 'NewGame':
+      this.$router.push('/Game');
+      break;
+    case 'LoadGame':
+      this.$router.push({ name: "Game", params: { load: true } });
+      break;
+  }
 }
 
 $(function () {

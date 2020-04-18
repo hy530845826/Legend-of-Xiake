@@ -3,8 +3,8 @@
     <div id="HomeMenu">
       <div id="logoimg"></div>
       <ul>
-        <li @click="$goRoute('/Game')">开始游戏</li>
-        <li>读取游戏</li>
+        <li @click="$goRoute('NewGame')">开始游戏</li>
+        <li @click="$goRoute('LoadGame')">读取游戏</li>
         <li @click="SettingIntroduction()">游戏说明</li>
       </ul>
     </div>

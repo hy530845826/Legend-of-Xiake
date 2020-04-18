@@ -15,12 +15,6 @@ import player_options from './data/player_options.json'
 var PlayerOptions = player_options
 import player_data from './data/player_data.json'
 var PlayerSkillData = player_data[1]
-var PlayerBagData = player_data[2]
-
-//初始化
-// t.UpdateStopPosition(pl, 1)
-Loading(1, 1, 1, 1, 'garden', false, false)
-pl.BAG = PlayerBagData
 
 var w = false
 var a = false

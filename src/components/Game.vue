@@ -21,8 +21,8 @@
               <li @click="ReturnGame">返回游戏</li>
               <li id="SettingMusic" @click="SettingMusic()">音乐：{{MusicFlagText}}</li>
               <li id="SettingIntroduction" @click="SettingIntroduction()">游戏说明</li>
-              <li id="SettingSaveGame" @click="SaveGame()">保存游戏</li>
-              <li id="SettingLoadGame" @click="LoadGame()">读取游戏</li>
+              <li id="SettingSaveGame" @click="SettingConfirm($event)">保存游戏</li>
+              <li id="SettingLoadGame" @click="SettingConfirm($event)">读取游戏</li>
               <li id="SettingQuitGame" @click="SettingConfirm($event)">退出游戏</li>
             </ul>
           </div>
@@ -46,6 +46,8 @@ import Enemy from "../js/enemy";
 import Npc from "../js/npc";
 import v from "../js/vuemove";
 import "../js/vueblank";
+import player_data from "../js/data/player_data.json";
+var PlayerBagData = player_data[2];
 
 export default {
   name: "game",
@@ -56,7 +58,8 @@ export default {
       ell: Enemy.ell,
       npc_data: Npc.npc,
       MusicFlag: true,
-      MusicFlagText: "开"
+      MusicFlagText: "开",
+      IsLoad: this.$route.params.load
     };
   },
   components: {
@@ -95,8 +98,19 @@ export default {
       this.WindowName = "introduction";
     },
     SettingConfirm: function(e) {
+      this.ReturnGame();
       var SettingID = e.currentTarget.id;
       switch (SettingID) {
+        case "SettingSaveGame":
+          if (confirm("确定要保存游戏吗？保存进度将会被覆盖") == true) {
+            this.SaveGame();
+          }
+          break;
+        case "SettingLoadGame":
+          if (confirm("确定要读取游戏吗？当前进度可能尚未保存") == true) {
+            this.LoadGame();
+          }
+          break;
         case "SettingQuitGame":
           if (confirm("确定要退出游戏吗？当前进度可能尚未保存") == true) {
             this.$router.push({ path: "/Home" });
@@ -105,75 +119,67 @@ export default {
       }
     },
     SaveGame: function() {
-      this.ReturnGame();
-      if (confirm("确定要保存游戏吗？保存进度将会被覆盖") == true) {
-        var objpl = this.pl;
-        var BAG_DATA = this.pl.BAG;
-        localStorage.setItem("BAG_DATA", JSON.stringify(BAG_DATA));
-        var PL_DATA = [];
-        PL_DATA.push({
-          appellation: objpl.appellation,
-          name: objpl.name,
-          plx: objpl.plx,
-          ply: objpl.ply,
-          LV: objpl.LV,
-          HPMAX: objpl.HPMAX,
-          HP: objpl.HP,
-          MPMAX: objpl.MPMAX,
-          MP: objpl.MP,
-          EXPMAX: objpl.EXPMAX,
-          EXP: objpl.EXP,
-          WEAP: objpl.WEAP,
-          ARMOR: objpl.ARMOR,
-          ATK: objpl.WEAP + objpl.STR,
-          ATKMAX: objpl.WEAP + objpl.STR * 3,
-          HIT: objpl.HIT,
-          DEF: objpl.ARMOR + objpl.DEX,
-          DEX: objpl.DEX,
-          STR: objpl.STR,
-          AGI: objpl.AGI,
-          INT: objpl.INT,
-          WIL: objpl.WIL,
-          PER: objpl.PER,
-          LUK: objpl.LUK
-        });
-        localStorage.setItem("PL_DATA", JSON.stringify(PL_DATA));
-        var MAP_DATA = [];
-        var MapIDNumber = v.GetMapIDNumber();
-        var MapBGMNumber = v.GetMapBGMNumber(MapIDNumber);
-        var AudioName = v.GetAudioName(MapIDNumber);
-        MAP_DATA.push({
-          PortalToMapID: MapIDNumber,
-          PortalMusicID: MapBGMNumber,
-          AudioName: AudioName,
-          MapIDNumber: -1,
-          MapBGMNumber: -1
-        });
-        localStorage.setItem("MAP_DATA", JSON.stringify(MAP_DATA));
-        return true;
-      }
+      var objpl = this.pl;
+      var BAG_DATA = this.pl.BAG;
+      localStorage.setItem("BAG_DATA", JSON.stringify(BAG_DATA));
+      var PL_DATA = [];
+      PL_DATA.push({
+        appellation: objpl.appellation,
+        name: objpl.name,
+        plx: objpl.plx,
+        ply: objpl.ply,
+        LV: objpl.LV,
+        HPMAX: objpl.HPMAX,
+        HP: objpl.HP,
+        MPMAX: objpl.MPMAX,
+        MP: objpl.MP,
+        EXPMAX: objpl.EXPMAX,
+        EXP: objpl.EXP,
+        WEAP: objpl.WEAP,
+        ARMOR: objpl.ARMOR,
+        ATK: objpl.WEAP + objpl.STR,
+        ATKMAX: objpl.WEAP + objpl.STR * 3,
+        HIT: objpl.HIT,
+        DEF: objpl.ARMOR + objpl.DEX,
+        DEX: objpl.DEX,
+        STR: objpl.STR,
+        AGI: objpl.AGI,
+        INT: objpl.INT,
+        WIL: objpl.WIL,
+        PER: objpl.PER,
+        LUK: objpl.LUK
+      });
+      localStorage.setItem("PL_DATA", JSON.stringify(PL_DATA));
+      var MAP_DATA = [];
+      var MapIDNumber = v.GetMapIDNumber();
+      var MapBGMNumber = v.GetMapBGMNumber(MapIDNumber);
+      var AudioName = v.GetAudioName(MapIDNumber);
+      MAP_DATA.push({
+        PortalToMapID: MapIDNumber,
+        PortalMusicID: MapBGMNumber,
+        AudioName: AudioName,
+        MapIDNumber: -1,
+        MapBGMNumber: -1
+      });
+      localStorage.setItem("MAP_DATA", JSON.stringify(MAP_DATA));
     },
     LoadGame: function() {
-      this.ReturnGame();
-      if (confirm("确定要读取游戏吗？当前进度可能尚未保存") == true) {
-        var BAG_DATA = localStorage.getItem("BAG_DATA");
-        var PL_DATA = localStorage.getItem("PL_DATA");
-        var MAP_DATA = localStorage.getItem("MAP_DATA");
-        var pl_data = JSON.parse(PL_DATA)[0];
-        var map_data = JSON.parse(MAP_DATA)[0];
-        Object.assign(this.pl, pl_data);
-        this.pl.BAG = JSON.parse(BAG_DATA);
-        v.Loading(
-          map_data.MapIDNumber,
-          map_data.PortalToMapID,
-          map_data.MapBGMNumber,
-          map_data.PortalMusicID,
-          map_data.AudioName,
-          false,
-          false
-        );
-        return true;
-      }
+      var BAG_DATA = localStorage.getItem("BAG_DATA");
+      var PL_DATA = localStorage.getItem("PL_DATA");
+      var MAP_DATA = localStorage.getItem("MAP_DATA");
+      var pl_data = JSON.parse(PL_DATA)[0];
+      var map_data = JSON.parse(MAP_DATA)[0];
+      Object.assign(this.pl, pl_data);
+      this.pl.BAG = JSON.parse(BAG_DATA);
+      v.Loading(
+        map_data.MapIDNumber,
+        map_data.PortalToMapID,
+        map_data.MapBGMNumber,
+        map_data.PortalMusicID,
+        map_data.AudioName,
+        false,
+        false
+      );
     },
     LoadingSkillIcon: function() {
       var SkillIconArr = $("#Kdiv .SkillBox li .Skill-Icon");
@@ -184,9 +190,19 @@ export default {
           "url(static/images/skill/skill-" + i + ".png)"
         );
       }
+    },
+    CheckLoad: function() {
+      window.console.log(this.IsLoad);
+      if (this.IsLoad) {
+        this.LoadGame();
+      } else {
+        v.Loading(1, 1, 1, 1, "garden", false, false);
+        this.pl.BAG = PlayerBagData;
+      }
     }
   },
   mounted() {
+    this.CheckLoad();
     this.LoadingSkillIcon();
     $("#BGM")[0].volume = 0.25;
     $("#EnAudio")[0].volume = 0.25;
