@@ -169,7 +169,7 @@ export default {
         MapBGMNumber,
         PortalMusicID,
         AudioName,
-        false
+        true
       );
       this.CloseWindow();
     }

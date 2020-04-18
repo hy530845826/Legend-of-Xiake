@@ -18,8 +18,8 @@ var PlayerSkillData = player_data[1]
 var PlayerBagData = player_data[2]
 
 //初始化
-t.UpdateStopPosition(pl, 1)
-// Loading(1, 1, 1, 1, 'garden', false)
+// t.UpdateStopPosition(pl, 1)
+Loading(1, 1, 1, 1, 'garden', false, false)
 pl.BAG = PlayerBagData
 
 var w = false
@@ -483,12 +483,12 @@ function ChangeMap() {
 			var AudioName = GetAudioName(PortalToMapID)
 			var MapIDNumber = GetMapIDNumber()
 			var MapBGMNumber = GetMapBGMNumber(MapIDNumber)
-			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioName, true)
+			Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioName, false)
 		}
 	}
 }
 
-function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioName, FlyFlag) {
+function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioName, FlyFlag, MoveFlag = true) {
 	//0.禁止角色操作，黑屏显示loading
 	$('#loading-screen').css('display', 'block')
 	pl.loading = true
@@ -528,7 +528,7 @@ function Loading(MapIDNumber, PortalToMapID, MapBGMNumber, PortalMusicID, AudioN
 							Updatenpc(npc, PortalToMapID)
 							pl.Audio_move_l = npc.plx - 100
 							pl.Audio_move_r = npc.plx + npc.div_width + 100
-							FlyFlag ? MovePlayer(MapIDNumber) : MovePlayer()
+							if (MoveFlag) { FlyFlag ? MovePlayer() : MovePlayer(MapIDNumber) }
 							//5.允许角色操作，黑屏关闭loading
 							$('#loading-screen').css('display', 'none')
 							pl.loading = false

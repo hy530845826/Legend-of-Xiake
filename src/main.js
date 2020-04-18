@@ -6,6 +6,7 @@ import './assets/bootstrap/js/bootstrap.min.js'
 
 // 路由跳转
 Vue.prototype.$goRoute = function (index) {
+  window.console.log(index)
   this.$router.push(index)
 }
 

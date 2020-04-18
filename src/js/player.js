@@ -1,11 +1,11 @@
-var pll = new CreatePlayer(0, 500,
+var pll = new CreatePlayer('初入江湖', '黄富贵', 0, 500,
 	1, 50, 50, 50, 50, 100, 0,
 	0, 0,
 	90, 0, 1, 1, 1, 0, 0, 0)
 
-function CreatePlayer(plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
-	this.appellation = '初入江湖'
-	this.name = '黄富贵'
+function CreatePlayer(appellation, name, plx, ply, lv, hpmax, hp, mpmax, mp, expmax, exp, weap, armor, hit, dex, str, agi, intt, wil, per, luk) {
+	this.appellation = appellation
+	this.name = name
 	this.plx = plx
 	this.ply = ply
 
