@@ -137,8 +137,8 @@ document.onkeydown = function (event) {
 						flash(pl, 'skillF')
 						CDSkill(pl, 3, pl.needCD)
 						GetAudio('pl', 'skill_f1')
+						setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 					}
-					setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
 					GetAudio('pl', 'cd')
@@ -842,6 +842,7 @@ function SkillBling(targetIcon) {
 
 function GetUseCDMP(obj, index) {
 	let data = PlayerSkillData[index]
+	obj.damageStyle = data.damageStyle
 	obj.needCD = data.UseCD
 	obj.needMP = data.UseMP
 }

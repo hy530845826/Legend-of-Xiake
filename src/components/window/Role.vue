@@ -16,7 +16,7 @@
           <li>{{pl.name}}</li>
           <li>
             LV.
-            <span id="LV">1</span>
+            <span id="LV">{{pl.LV}}</span>
           </li>
           <li>
             历练：

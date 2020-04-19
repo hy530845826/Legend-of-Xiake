@@ -7,7 +7,7 @@
 
 #Kdiv .SkillBox #SkillCheckBox ul {
     height: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 #Kdiv .SkillBox #SkillCheckBox li {
@@ -36,7 +36,7 @@
 }
 
 #Kdiv .SkillBox .Skill-Content li {
-    height: 90px;
+    height: 180px;
     margin-bottom: 10px;
     overflow: hidden;
 }
@@ -74,13 +74,36 @@
 #Kdiv .SkillBox .Skill-Content .Skill-R {
     background-color: #444;
     width: 270px;
-    height: 90px;
+    height: 180px;
     line-height: 21px;
     float: right;
+    position: relative;
 }
 
 #Kdiv .SkillBox .Skill-Content .Skill-R .Skill-Name {
     color: yellow;
+    margin-bottom: 5px;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R .Skill-Introduction {
+    color: #bbb;
+    text-indent: 2em;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R b {
+    color: #fff;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R .Skill-Value {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+}
+
+#Kdiv .SkillBox .Skill-Content .Skill-R p {
+    margin-bottom: 0px;
+    color: #bbb;
+    text-indent: 1em;
 }
 
 #Kdiv .SkillBox .Skill-Content .Skill-R span {

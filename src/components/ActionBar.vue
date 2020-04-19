@@ -171,10 +171,10 @@ export default {
                 v.flash(pl, "skillF");
                 v.CDSkill(pl, 3, pl.needCD);
                 v.GetAudio("pl", "skill_f1");
+                setTimeout(function() {
+                  v.GetAudio("pl", "skill_f2");
+                }, 600);
               }
-              setTimeout(function() {
-                v.GetAudio("pl", "skill_f2");
-              }, 600);
             } else if (pl.CD_flag == 0) {
               v.CDSkill(pl, -1, 20);
               v.GetAudio("pl", "cd");

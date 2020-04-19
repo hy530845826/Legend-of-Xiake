@@ -13,7 +13,7 @@ setTimeout(() => {
 function HitJudgement(obj, obj2, HitFlag, hit_ID) {
     var t1, l1, r1, b1
     var t2, l2, r2, b2
-    var random_damage
+    var damage
     if (obj2.hited_x != 0 && obj2.hited_y != 0) {
         t1 = obj.ply + obj.hit_top
         b1 = t1 + obj.hit_y
@@ -30,15 +30,51 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
         else if (obj2.HP > 0 && obj.hit_ID != hit_ID) {
             obj.hit_ID = hit_ID
             // window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
-
-            random_damage = t.RandomNumber(obj.ATK, obj.ATKMAX)
-            obj2.HP -= random_damage
+            damage = DamageJudgement(obj, HitFlag)
+            obj2.HP -= damage
 
             HitFlash(obj, obj2, HitFlag)
 
-            TipsHP(t2, l2, random_damage, HitFlag)
+            TipsHP(t2, l2, damage, HitFlag)
         }
     }
+}
+
+function DamageJudgement(obj, HitFlag) {
+    var damageValue, damageMin, damageMax
+    if (HitFlag) {
+        switch (obj.damageStyle) {
+            case "skillA":
+                damageMin = obj.ATK
+                damageMax = obj.ATK + 2
+                break;
+            case "skillS":
+                damageMin = (obj.ATK * 2) + obj.PER
+                damageMax = (obj.ATKMAX * 2) + obj.PER
+                break;
+            case "skillD":
+                damageMin = obj.ATK + parseInt(obj.AGI * 1.5) - obj.LV
+                damageMax = obj.ATKMAX + parseInt(obj.AGI * 1.5) - obj.LV
+                break;
+            case "skillF":
+                damageMin = obj.ATK + (obj.STR) + 2
+                damageMax = obj.ATKMAX + (obj.STR) + 1
+                break;
+            case "skillQ":
+                break;
+            case "skillW":
+                break;
+            case "skillE":
+                break;
+            case "skillR":
+                break;
+        }
+    } else {
+        damageMin = obj.ATK
+        damageMax = obj.ATKMAX
+    }
+    damageValue = t.RandomNumber(damageMin, damageMax);
+    return damageValue
 }
 
 function HitFlash(obj, obj2, HitFlag) {

@@ -58,11 +58,13 @@
   </div>
 </template>
 <script>
+import Player from "../js/player";
 export default {
   name: "test",
   data: function() {
     return {
-      MenuFlag: "null"
+      MenuFlag: "null",
+      pl: Player.pll
     };
   },
   props: ["pl_lv"],
@@ -78,7 +80,9 @@ export default {
         this.$emit("openWindowMenu", FlagID);
       }
     },
-    addexp: function() {}
+    addexp: function() {
+      this.pl.EXP += 50;
+    }
   }
 };
 </script>
