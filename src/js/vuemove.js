@@ -88,7 +88,7 @@ document.onkeydown = function (event) {
 					if (pl.IsMana) {
 						flash(pl, 'skillA')
 						CDSkill(pl, 0, pl.needCD)
-						GetAudio('pl', 'skill_a')
+						GetAudio('pl', 'skill_a', 2)
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -104,7 +104,8 @@ document.onkeydown = function (event) {
 					if (pl.IsMana) {
 						flash(pl, 'skillS')
 						CDSkill(pl, 1, pl.needCD)
-						GetAudio('pl', 'skill_s')
+						GetAudio('pl', 'skill_s1', 2)
+						setTimeout(function () { GetAudio('pl', 'skill_s2') }, 300)
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -120,7 +121,8 @@ document.onkeydown = function (event) {
 					if (pl.IsMana) {
 						flash(pl, 'skillD', 540)
 						CDSkill(pl, 2, pl.needCD)
-						GetAudio('pl', 'skill_d')
+						GetAudio('pl', 'skill_d1')
+						setTimeout(function () { GetAudio('pl', 'skill_d2') }, 700)
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -137,7 +139,25 @@ document.onkeydown = function (event) {
 						flash(pl, 'skillF')
 						CDSkill(pl, 3, pl.needCD)
 						GetAudio('pl', 'skill_f1')
-						setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
+						setTimeout(function () { GetAudio('pl', 'skill_f2') }, 700)
+					}
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, -1, 20)
+					GetAudio('pl', 'cd')
+				}
+			}
+			break;
+		case 81: //Q
+			if (pl.IsFlash == false) {
+				if (pl.CD_q == 0) {
+					GetUseCDMP(pl, 4)
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
+					if (pl.IsMana) {
+						flash(pl, 'skillQ')
+						CDSkill(pl, 4, pl.needCD)
+						t.UseConsumables(pl, "ATK", pl.LV, true, 10)
+						GetAudio('pl', 'skill_q', 2)
+						// setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -791,6 +811,54 @@ function CDSkill(obj, cdNumber, cd) {
 				obj.CD_f++
 				if (obj.CD_f == cd) {
 					obj.CD_f = 0;
+					SkillBling(targetIcon)
+					clearInterval(cd_timer);
+				}
+			}, 50)
+			break;
+		case 4:
+			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_q / cd) * 100)
+				targetIcon.css('top', cd_icon + '%')
+				obj.CD_q++
+				if (obj.CD_q == cd) {
+					obj.CD_q = 0;
+					SkillBling(targetIcon)
+					clearInterval(cd_timer);
+				}
+			}, 50)
+			break;
+		case 5:
+			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_w / cd) * 100)
+				targetIcon.css('top', cd_icon + '%')
+				obj.CD_w++
+				if (obj.CD_w == cd) {
+					obj.CD_w = 0;
+					SkillBling(targetIcon)
+					clearInterval(cd_timer);
+				}
+			}, 50)
+			break;
+		case 6:
+			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_e / cd) * 100)
+				targetIcon.css('top', cd_icon + '%')
+				obj.CD_e++
+				if (obj.CD_e == cd) {
+					obj.CD_e = 0;
+					SkillBling(targetIcon)
+					clearInterval(cd_timer);
+				}
+			}, 50)
+			break;
+		case 7:
+			cd_timer = setInterval(function () {
+				cd_icon = parseInt((obj.CD_r / cd) * 100)
+				targetIcon.css('top', cd_icon + '%')
+				obj.CD_r++
+				if (obj.CD_r == cd) {
+					obj.CD_r = 0;
 					SkillBling(targetIcon)
 					clearInterval(cd_timer);
 				}

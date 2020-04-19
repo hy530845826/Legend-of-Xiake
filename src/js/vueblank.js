@@ -1,5 +1,7 @@
 var Player = require("./player")
 var pl = Player.default.pll
+var Vuemove = require("./vuemove")
+var GetAudio = Vuemove.default.GetAudio
 
 var hp_timer = setInterval(function () {
     var HPNow = parseInt((pl.HP / pl.HPMAX) * 100)
@@ -15,6 +17,7 @@ var hp_timer = setInterval(function () {
     //升级
     if (pl.EXP >= pl.EXPMAX) {
         Player.default.LevelUP()
+        GetAudio('pl', 'lvup')
     }
     //死亡HP=0
     if (pl.HP <= 0) {

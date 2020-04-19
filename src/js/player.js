@@ -64,6 +64,10 @@ function CreatePlayer(appellation, name, plx, ply, lv, hpmax, hp, mpmax, mp, exp
 	this.CD_s = 0
 	this.CD_d = 0
 	this.CD_f = 0
+	this.CD_q = 0
+	this.CD_w = 0
+	this.CD_e = 0
+	this.CD_r = 0
 	this.CD_bag = 0
 	this.CD_bagMax = 20
 }
@@ -88,6 +92,12 @@ function LevelUP() {
 	$('#Level').innerHTML = "LV." + pll.LV
 	window.console.log("LEVEL UP")
 }
+
+pll.hf_timer = setInterval(function () {
+	// window.console.log($('#role')[0].className)
+	if (pll.MP < pll.MPMAX) pll.MP++
+	if (pll.HP <= 0) clearInterval(pll.hf_timer)
+}, 2000)
 
 window.console.log(pll)
 export default {

@@ -639,5 +639,57 @@
         "hited_top": 0,
         "hited_left": 0,
         "skill_left": 210
+    }],
+    [{
+        "UName": "skillQ",
+        "div_width": 192,
+        "TikTok_sum": 6,
+        "skill_start_TikTok": 4,
+        "skill_TikTok_sum": 5,
+        "skill_width": 384,
+        "farme": 100
+    }, {
+        "check_y": 0,
+        "img_x": 67,
+        "img_y": 46,
+        "hited_x": 63,
+        "hited_y": 106,
+        "hited_top": 18,
+        "hited_left": 0
+    }, {
+        "img_x": 67,
+        "img_y": 46,
+        "hited_x": 63,
+        "hited_y": 106,
+        "hited_top": 18,
+        "hited_left": 0
+    }, {
+        "img_x": 67,
+        "img_y": 46,
+        "hited_x": 45,
+        "hited_y": 123,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 67,
+        "img_y": 46,
+        "hited_x": 45,
+        "hited_y": 123,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 67,
+        "img_y": 46,
+        "hited_x": 45,
+        "hited_y": 123,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 67,
+        "img_y": 46,
+        "hited_x": 45,
+        "hited_y": 123,
+        "hited_top": 0,
+        "hited_left": 0
     }]
 ]

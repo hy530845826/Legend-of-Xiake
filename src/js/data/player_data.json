@@ -27,8 +27,8 @@
         {
             "UName": "阿修罗·壹雾银",
             "damageStyle": "skillQ",
-            "UseCD": 60,
-            "UseMP": 5
+            "UseCD": 400,
+            "UseMP": 15
         },
         {
             "UName": "三刀流·百八烦恼风",

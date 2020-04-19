@@ -135,15 +135,23 @@
             </div>
             <div class="Skill-R">
               <div class="Skill-Name">{{name_data[4]}}：</div>
-              <div class="Skill-Introduction">用心神洞察万物。</div>
+              <div class="Skill-Introduction">
+                用心神洞察万物。在一定时间内提升角色
+                <b>攻击</b>。技能效果受到角色
+                <b>等级</b>额外加成。
+              </div>
               <div class="Skill-Value">
                 <p>
-                  伤害：
-                  <span>{{pl.ATK}} - {{pl.ATK + 2}}</span>点
+                  提升攻击：
+                  <span>{{pl.LV}}</span>点
                 </p>
                 <p>
                   消耗：
                   <span>{{mp_data[4]}}</span>真气
+                </p>
+                <p>
+                  持续时间：
+                  <span>10</span>秒
                 </p>
                 <p>
                   冷却时间：
