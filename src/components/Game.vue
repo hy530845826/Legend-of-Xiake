@@ -2,7 +2,6 @@
   <div id="GameBox">
     <audio src id="BGM" class="bgmusic" loop autoplay></audio>
     <audio src id="EnAudio" class="bgmusic" loop autoplay></audio>
-    <div id="dead-screen"></div>
     <main-interface />
     <action-bar />
     <status-bar :pl_lv="pl.LV" @openWindowMenu="zdy($event)" ref="StatusBar" />

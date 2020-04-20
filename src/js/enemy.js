@@ -63,6 +63,7 @@ function UpdateEnemy(obj, PortalToMapID) {
     obj.hited = false
     obj.IsMove = true
     obj.IsFlash = false
+    obj.IsPause = false
     obj.hitedNumber = 0
     obj.nowspeed = obj.speed
     t.UpdateStopPosition(obj, PortalToMapID)
@@ -181,11 +182,11 @@ function EnemyMove(obj) {
     obj.ellMove_timer = setInterval(function () {
         obj.nowspeed = obj.speed
         pl.plx < obj.plx ? obj.realfx = true : obj.realfx = false
-        if (obj.realfx == obj.imgfx && obj.HP > 0) {
+        if (obj.realfx == obj.imgfx && obj.HP > 0 && obj.IsPause == false) {
             obj.imgfx = !obj.imgfx
             pl.plx < obj.plx ? $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(180deg)" }) : $('#enemy-body').css({ transition: "transform 0.5s", transform: "rotateY(0deg)" })
         }
-        if (obj.IsFlash == false) {
+        if (obj.IsFlash == false && obj.IsPause == false) {
             if (obj.hited == true) {
                 ChangeEnemyState('hited')
                 obj.IsFlash = true

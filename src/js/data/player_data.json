@@ -4,49 +4,49 @@
             "UName": "二刀流·鹰波",
             "damageStyle": "skillA",
             "UseCD": 60,
-            "UseMP": 5
+            "UseMP": 6
         },
         {
             "UName": "一刀流·居合·狮子歌歌",
             "damageStyle": "skillS",
             "UseCD": 120,
-            "UseMP": 20
+            "UseMP": 15
         },
         {
             "UName": "青龙吟·流水",
             "damageStyle": "skillD",
             "UseCD": 120,
-            "UseMP": 15
+            "UseMP": 12
         },
         {
             "UName": "一刀流·鬼斩",
             "damageStyle": "skillF",
             "UseCD": 60,
-            "UseMP": 10
+            "UseMP": 8
         },
         {
             "UName": "阿修罗·壹雾银",
             "damageStyle": "skillQ",
             "UseCD": 400,
-            "UseMP": 15
+            "UseMP": 10
         },
         {
             "UName": "三刀流·百八烦恼风",
             "damageStyle": "skillW",
-            "UseCD": 60,
-            "UseMP": 5
+            "UseCD": 120,
+            "UseMP": 12
         },
         {
             "UName": "奥义·三千世界",
             "damageStyle": "skillE",
-            "UseCD": 60,
-            "UseMP": 5
+            "UseCD": 240,
+            "UseMP": 25
         },
         {
             "UName": "一大·三千·大千世界",
             "damageStyle": "skillR",
-            "UseCD": 60,
-            "UseMP": 5
+            "UseCD": 600,
+            "UseMP": 30
         }
     ],
     [{

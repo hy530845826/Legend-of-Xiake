@@ -225,7 +225,7 @@ export default {
             pl.bagTime
           );
           v.CDBag(pl);
-          v.GetAudio("pl", "skill_a");
+          v.GetAudio("pl", "bag");
         }
       } else if (pl.CD_flag == 0) {
         v.CDBag(pl, true);

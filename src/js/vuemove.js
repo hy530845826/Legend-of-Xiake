@@ -70,12 +70,14 @@ document.onkeydown = function (event) {
 			break;
 		case 88: //X
 			if (pl.IsFlash == false) {
+				pl.damageStyle = "attack"
 				flash(pl, 'skillX')
 				GetAudio('pl', 'atk', 3)
 			}
 			break;
 		case 90: //Z
 			if (pl.IsFlash == false) {
+				pl.damageStyle = "attack"
 				flash(pl, 'skillZ')
 				GetAudio('pl', 'atk', 3)
 			}
@@ -165,6 +167,24 @@ document.onkeydown = function (event) {
 				}
 			}
 			break;
+		case 82: //R
+			if (pl.IsFlash == false) {
+				if (pl.CD_r == 0) {
+					GetUseCDMP(pl, 7)
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
+					if (pl.IsMana) {
+						flash(pl, 'skillQ')
+						CDSkill(pl, 7, pl.needCD)
+						GetAudio('pl', 'skill_r')
+						theWorld()
+						// setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
+					}
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, -1, 20)
+					GetAudio('pl', 'cd')
+				}
+			}
+			break;
 		case 49: //1
 			if (pl.CD_bag == 0) {
 				GetBagNum(pl, 0)
@@ -172,7 +192,7 @@ document.onkeydown = function (event) {
 					UpdateBag(pl, 0, 1)
 					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
 					CDBag(pl);
-					GetAudio("pl", "skill_a");
+					GetAudio("pl", "bag");
 				}
 			} else if (pl.CD_flag == 0) {
 				CDBag(pl, true);
@@ -186,7 +206,7 @@ document.onkeydown = function (event) {
 					UpdateBag(pl, 1, 1)
 					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
 					CDBag(pl);
-					GetAudio("pl", "skill_a");
+					GetAudio("pl", "bag");
 				}
 			} else if (pl.CD_flag == 0) {
 				CDBag(pl, true);
@@ -200,7 +220,7 @@ document.onkeydown = function (event) {
 					UpdateBag(pl, 2, 1)
 					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
 					CDBag(pl);
-					GetAudio("pl", "skill_a");
+					GetAudio("pl", "bag");
 				}
 			} else if (pl.CD_flag == 0) {
 				CDBag(pl, true);
@@ -214,7 +234,7 @@ document.onkeydown = function (event) {
 					UpdateBag(pl, 3, 1)
 					t.UseConsumables(pl, pl.bagStyle, pl.bagValue, pl.bagTemporary, pl.bagTime);
 					CDBag(pl);
-					GetAudio("pl", "skill_a");
+					GetAudio("pl", "bag");
 				}
 			} else if (pl.CD_flag == 0) {
 				CDBag(pl, true);
@@ -228,7 +248,7 @@ document.onkeydown = function (event) {
 					UpdateBag(pl, 4, 1)
 					t.UseConsumables(pl, pl.bagStyle, pl.bagValue, pl.bagTemporary, pl.bagTime);
 					CDBag(pl);
-					GetAudio("pl", "skill_a");
+					GetAudio("pl", "bag");
 				}
 			} else if (pl.CD_flag == 0) {
 				CDBag(pl, true);
@@ -242,7 +262,7 @@ document.onkeydown = function (event) {
 					UpdateBag(pl, 5, 1)
 					t.UseConsumables(pl, pl.bagStyle, pl.bagValue);
 					CDBag(pl);
-					GetAudio("pl", "skill_a");
+					GetAudio("pl", "bag");
 				}
 			} else if (pl.CD_flag == 0) {
 				CDBag(pl, true);
@@ -906,6 +926,51 @@ function SkillBling(targetIcon) {
 			}, 200)
 		}, 150)
 	}, 150)
+}
+
+function theWorld() {
+	$("#BGM")[0].volume = 0;
+	$("#EnAudio")[0].volume = 0;
+	$('#world-screen').remove('#map #world-screen')
+	$("#map").prepend("<div id='world-screen'></div>");
+	var x = pl.plx - 66, y = pl.ply - 40
+	var w = 200
+	$('#world-screen').css({ "left": x + "px", "top": y + "px", "width": w + "px", "height": w + "px" })
+	var i = 0
+	var opa = 0
+	ell.IsPause = true
+	clearInterval(ell.ellflash)
+	setTimeout(() => {
+		GetAudio("environment", "tiktok");
+		setTimeout(() => {
+			ell.IsPause = false
+			ell.IsFlash = false
+			ell.hit_ID = 0
+			ell.IsMove = true
+			$('#enemy-body').css('background-position', 0 + 'px ')
+			$('#map').css({ "filter": "invert(0%)" })
+			$('#role').css({ "filter": "invert(0%)" })
+			$("#BGM")[0].volume = 0.5;
+			$("#EnAudio")[0].volume = 0.25;
+		}, 6000)
+	}, 4700)
+	var world_timer = setInterval(function () {
+		if (w < 2400) {
+			i += 1
+			w += (2 * i)
+			x -= i
+			y -= i
+			$('#world-screen').css({ "left": x + "px", "top": y + "px", "width": w + "px", "height": w + "px" })
+		} else {
+			$('#world-screen').remove('#map #world-screen')
+		}
+		opa += 2
+		$('#map').css({ "filter": "invert(" + opa + "%)" })
+		$('#role').css({ "filter": "invert(" + opa + "%)" })
+		if (opa > 100) {
+			clearInterval(world_timer)
+		}
+	}, 20)
 }
 
 function GetUseCDMP(obj, index) {

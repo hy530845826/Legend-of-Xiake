@@ -86,7 +86,7 @@
               <div class="Skill-Value">
                 <p>
                   伤害：
-                  <span>{{pl.ATK + parseInt(pl.AGI * 1.5) + (0 - pl.LV)}} - {{pl.ATKMAX + parseInt(pl.AGI * 1.5) + (0 - pl.LV)}}</span>点
+                  <span>{{pl.ATK + (pl.AGI * 2) - pl.LV}} - {{pl.ATKMAX + (pl.AGI * 2) - pl.LV}}</span>点
                 </p>
                 <p>
                   消耗：
@@ -113,7 +113,7 @@
               <div class="Skill-Value">
                 <p>
                   伤害：
-                  <span>{{pl.ATK + (pl.STR) + 2}} - {{pl.ATKMAX + (pl.STR) + 1}}</span>点
+                  <span>{{pl.ATK + (pl.STR) + 2 - pl.LV}} - {{pl.ATKMAX + (pl.STR) + 1 - pl.LV}}</span>点
                 </p>
                 <p>
                   消耗：

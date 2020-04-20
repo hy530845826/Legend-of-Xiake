@@ -44,6 +44,10 @@ function DamageJudgement(obj, HitFlag) {
     var damageValue, damageMin, damageMax
     if (HitFlag) {
         switch (obj.damageStyle) {
+            case "attack":
+                damageMin = obj.ATK
+                damageMax = obj.ATKMAX
+                break;
             case "skillA":
                 damageMin = obj.ATK
                 damageMax = obj.ATK + 2
@@ -53,12 +57,12 @@ function DamageJudgement(obj, HitFlag) {
                 damageMax = (obj.ATKMAX * 2) + obj.PER
                 break;
             case "skillD":
-                damageMin = obj.ATK + parseInt(obj.AGI * 1.5) - obj.LV
-                damageMax = obj.ATKMAX + parseInt(obj.AGI * 1.5) - obj.LV
+                damageMin = obj.ATK + (obj.AGI * 2) - obj.LV
+                damageMax = obj.ATKMAX + (obj.AGI * 2) - obj.LV
                 break;
             case "skillF":
-                damageMin = obj.ATK + (obj.STR) + 2
-                damageMax = obj.ATKMAX + (obj.STR) + 1
+                damageMin = obj.ATK + (obj.STR) + 2 - obj.LV
+                damageMax = obj.ATKMAX + (obj.STR) + 1 - obj.LV
                 break;
             case "skillQ":
                 break;
@@ -136,6 +140,8 @@ function KillJudgement(obj, obj2, HitFlag) {
         t.DeleteEnemy(obj2)
         setTimeout(() => { UpdateEnemy(obj2, obj2.CreateMap) }, 5000)
     } else {
+        $("#GameBox").prepend("<div id='dead-screen'></div>");
+        $("body").prepend("<div id='dead-html'></div>");
         $("#EnAudio")[0].volume = 0.5;
         $('#EnAudio').attr('src', './static/sound/audio/environment/fire.mp3')
         $('#dead-screen').css('display', 'block')

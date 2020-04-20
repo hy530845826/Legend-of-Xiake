@@ -17,10 +17,22 @@ body {
 	user-select: none;
 }
 
+#app {
+	overflow: hidden;
+}
+
 #GameBox {
 	width: 1200px;
 	height: 780px;
 	position: relative;
+	overflow: hidden;
+}
+
+#world-screen {
+	background: rgba(1, 1, 1, 0.4);
+	border-radius: 50%;
+	position: absolute;
+	z-index: 888;
 }
 
 #dead-html {
