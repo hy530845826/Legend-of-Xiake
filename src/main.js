@@ -11,7 +11,6 @@ import './assets/bootstrap/js/bootstrap.min.js'
 
 // 路由跳转
 Vue.prototype.$goRoute = function (index) {
-  window.console.log(index)
   switch (index) {
     case 'NewGame':
       this.$router.push('/Game');

@@ -214,8 +214,55 @@ export default {
                 v.CDSkill(pl, nowIndex, pl.needCD);
                 v.GetAudio("pl", "skill_w", 2);
                 setTimeout(function() {
-                  v.CreateZD(pl, pl.plx, pl.ply - 50);
+                  v.CreateZD(pl, pl.plx, pl.ply - 50, "skillW");
                 }, 400);
+              }
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
+        case 6: //E
+          if (pl.IsFlash == false) {
+            if (pl.CD_e == 0) {
+              v.GetUseCDMP(pl, nowIndex);
+              pl.needMP = parseInt(0.3 * pl.MPMAX);
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
+              if (pl.IsMana) {
+                v.flash(pl, "skillX", 0, 35, () => {
+                  v.GetAudio("pl", "skill_e3");
+                  v.CreateZD(pl, pl.plx, pl.ply - 50, "attack");
+                  v.flash(pl, "skillZ", 0, 35, () => {
+                    v.GetAudio("pl", "skill_e4");
+                    v.flash(pl, "skillX", 0, 30, () => {
+                      v.GetAudio("pl", "skill_e5");
+                      v.CreateZD(pl, pl.plx, pl.ply - 50, "attack");
+                      v.flash(pl, "skillZ", 0, 30, () => {
+                        v.GetAudio("pl", "skill_e6");
+                        v.flash(pl, "skillX", 0, 25, () => {
+                          v.GetAudio("pl", "skill_e7");
+                          v.flash(pl, "skillZ", 0, 25, () => {
+                            v.flash(pl, "skillX", 0, 20, () => {
+                              v.flash(pl, "skillZ", 0, 20, () => {
+                                v.flash(pl, "skillS", 0, 40, () => {
+                                  v.flash(pl, "skillF", 0, 110);
+                                  setTimeout(function() {
+                                    v.GetAudio("pl", "skill_e8");
+                                    v.CreateZD(pl, pl.plx, pl.ply - 50, "attack");
+                                  }, 300);
+                                });
+                              });
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+                v.CDSkill(pl, 6, pl.needCD);
+                v.GetAudio("pl", "skill_e1");
+                v.GetAudio("pl", "skill_e2");
               }
             } else if (pl.CD_flag == 0) {
               v.CDSkill(pl, -1, 20);
@@ -227,6 +274,7 @@ export default {
           if (pl.IsFlash == false) {
             if (pl.CD_r == 0) {
               v.GetUseCDMP(pl, nowIndex);
+              pl.needMP = parseInt(0.5 * pl.MPMAX);
               pl.IsMana = t.UseSkillMP(pl, pl.needMP);
               if (pl.IsMana) {
                 v.flash(pl, "skillQ");

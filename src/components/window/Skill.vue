@@ -204,11 +204,11 @@
               <div class="Skill-Value">
                 <p>
                   伤害：
-                  <span>{{pl.ATK}} - {{pl.ATK + 2}}</span>点
+                  <span>({{pl.ATK}} - {{pl.ATK + 1}}) × 13</span>点
                 </p>
                 <p>
                   消耗：
-                  <span>{{mp_data[6]}}</span>真气
+                  <span>30%</span>最大真气
                 </p>
                 <p>
                   冷却时间：
@@ -229,10 +229,6 @@
                 <b>暂停时间</b>数秒，在被暂停的时间中只有替身及其本体可以行动。
               </div>
               <div class="Skill-Value">
-                <p>
-                  伤害：
-                  <span>{{pl.ATK}} - {{pl.ATK + 2}}</span>点
-                </p>
                 <p>
                   消耗：
                   <span>50%</span>最大真气

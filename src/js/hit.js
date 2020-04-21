@@ -29,8 +29,8 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID, ZDFlag = false, obj3 = null) {
         if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) { /*表示没击中obj2*/ }
         else if (obj2.HP > 0 && obj.hit_ID != hit_ID) {
             obj.hit_ID = hit_ID
-            // window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
-            ZDFlag ? damage = DamageJudgement(obj3, HitFlag) : damage = DamageJudgement(obj, HitFlag)
+            window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
+            ZDFlag ? damage = DamageJudgement(obj3, HitFlag, ZDFlag, obj) : damage = DamageJudgement(obj, HitFlag)
             obj2.HP -= damage
 
             HitFlash(obj, obj2, HitFlag)
@@ -40,10 +40,11 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID, ZDFlag = false, obj3 = null) {
     }
 }
 
-function DamageJudgement(obj, HitFlag) {
-    var damageValue, damageMin, damageMax
+function DamageJudgement(obj, HitFlag, ZDFlag = false, objzd = null) {
+    var damageStyle, damageValue, damageMin, damageMax
+    ZDFlag ? damageStyle = objzd.damageStyle : damageStyle = obj.damageStyle
     if (HitFlag) {
-        switch (obj.damageStyle) {
+        switch (damageStyle) {
             case "attack":
                 damageMin = obj.ATK
                 damageMax = obj.ATKMAX
@@ -69,6 +70,8 @@ function DamageJudgement(obj, HitFlag) {
                 damageMax = obj.ATKMAX + 2 - obj.LV
                 break;
             case "skillE":
+                damageMin = obj.ATK
+                damageMax = obj.ATK + 1
                 break;
         }
     } else {

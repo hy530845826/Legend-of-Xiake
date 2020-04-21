@@ -140,8 +140,7 @@ document.onkeydown = function (event) {
 					if (pl.IsMana) {
 						flash(pl, 'skillF')
 						CDSkill(pl, 3, pl.needCD)
-						GetAudio('pl', 'skill_f1')
-						setTimeout(function () { GetAudio('pl', 'skill_f2') }, 700)
+						GetAudio('pl', 'skill_f')
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -176,7 +175,54 @@ document.onkeydown = function (event) {
 						flash(pl, 'skillW')
 						CDSkill(pl, 5, pl.needCD)
 						GetAudio('pl', 'skill_w', 2)
-						setTimeout(function () { CreateZD(pl, pl.plx, (pl.ply - 50)) }, 400)
+						setTimeout(function () { CreateZD(pl, pl.plx, (pl.ply - 50), "skillW") }, 400)
+					}
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, -1, 20)
+					GetAudio('pl', 'cd')
+				}
+			}
+			break;
+		case 69: //E
+			if (pl.IsFlash == false) {
+				if (pl.CD_e == 0) {
+					GetUseCDMP(pl, 6)
+					pl.needMP = parseInt(0.3 * pl.MPMAX)
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
+					if (pl.IsMana) {
+						flash(pl, 'skillX', 0, 35, () => {
+							GetAudio('pl', 'skill_e3')
+							CreateZD(pl, pl.plx, (pl.ply - 50), "attack")
+							flash(pl, 'skillZ', 0, 35, () => {
+								GetAudio('pl', 'skill_e4')
+								flash(pl, 'skillX', 0, 30, () => {
+									GetAudio('pl', 'skill_e5')
+									CreateZD(pl, pl.plx, (pl.ply - 50), "attack")
+									flash(pl, 'skillZ', 0, 30, () => {
+										GetAudio('pl', 'skill_e6')
+										flash(pl, 'skillX', 0, 25, () => {
+											GetAudio('pl', 'skill_e7')
+											flash(pl, 'skillZ', 0, 25, () => {
+												flash(pl, 'skillX', 0, 20, () => {
+													flash(pl, 'skillZ', 0, 20, () => {
+														flash(pl, 'skillS', 0, 40, () => {
+															flash(pl, 'skillF', 0, 110)
+															setTimeout(function () {
+																GetAudio('pl', 'skill_e8')
+																CreateZD(pl, pl.plx, (pl.ply - 50), "attack")
+															}, 300)
+														})
+													})
+												})
+											})
+										})
+									})
+								})
+							})
+						})
+						CDSkill(pl, 6, pl.needCD)
+						GetAudio('pl', 'skill_e1')
+						GetAudio('pl', 'skill_e2')
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -364,7 +410,7 @@ document.onkeyup = function (event) {
 	}
 }
 
-function flash(obj, StateName, check_x) {
+function flash(obj, StateName, check_x, farme, callback) {
 	obj.IsFlash = true
 	obj.IsMove = false
 	var i = 1, j = 0
@@ -373,21 +419,21 @@ function flash(obj, StateName, check_x) {
 		obj.imgfx ? base_x += check_x : base_x -= check_x
 	}
 	ChangePlayerState(obj, StateName)
-	clearInterval(plflash)
+	clearInterval(obj.plflash)
 	let TikTok_sum = obj.TikTok_sum
 	let div_width = obj.div_width
 	let skill_start_TikTok = obj.skill_start_TikTok
 	let skill_TikTok_sum = obj.skill_TikTok_sum
 	let skill_width = obj.skill_width
-
+	farme ? farme : farme = obj.farme
 	// let div_width = obj.div_width / TikTok_sum
-	var plflash
+	// var plflash
 
 	if (i == skill_start_TikTok) {
 		$('#skill-body').css('background-position', (-skill_width * j) + 'px ')
 		j++
 	}
-	plflash = setInterval(function () {
+	obj.plflash = setInterval(function () {
 		i++
 		if ((j > 0 && j < skill_TikTok_sum) || (i == skill_start_TikTok)) {
 			$('#skill-body').css('background-position', (-skill_width * j) + 'px ')
@@ -396,23 +442,28 @@ function flash(obj, StateName, check_x) {
 			$('#skill-body').css('background-position', 1000 + 'px ')
 		}
 		if (i > TikTok_sum) {
-			clearInterval(plflash)
+			clearInterval(obj.plflash)
 			obj.IsFlash = false
 			obj.IsMove = true
 			pl.plx = base_x
 			pl.ply = base_y
 			pl.hit_ID = 0
-			setTimeout(function () {
-				if (obj.IsFlash == false) {
-					(pl.w || pl.a || pl.s || pl.d) ? ChangePlayerState(obj, 'move') : ChangePlayerState(obj, 'stand')
-					$('#role-body').css('background-position', 0 + 'px ')
-				}
-			}, 50)
+			if (callback) {
+				$('#role-body').css('background-position', 0 + 'px ')
+				callback()
+			} else {
+				setTimeout(function () {
+					if (obj.IsFlash == false) {
+						(pl.w || pl.a || pl.s || pl.d) ? ChangePlayerState(obj, 'move') : ChangePlayerState(obj, 'stand')
+						$('#role-body').css('background-position', 0 + 'px ')
+					}
+				}, 50)
+			}
 		} else {
 			$('#role-body').css('background-position', (-div_width * (i - 1)) + 'px ')
 			CheckPlayerHit(obj, StateName, i)
 		}
-	}, obj.farme);
+	}, farme);
 
 }
 
@@ -780,6 +831,7 @@ function GetEnAudio(dirName, StateName) {
 function GetAudio(dirName, StateName, RandomNumber) {
 	RandomNumber = RandomNumber || 0
 	let audio = new Audio()
+	audio.volume = 0.75
 	if (RandomNumber == 0) {
 		audio.src = "./static/sound/audio/" + dirName + "/" + StateName + ".mp3"
 	}
@@ -945,7 +997,7 @@ function SkillBling(targetIcon) {
 	}, 150)
 }
 
-function CreateZD(obj, x, y) {
+function CreateZD(obj, x, y, dmgstyle) {
 	var random_class = t.RandomCode(8)
 	$("#map").prepend("<div class='skill-ZD " + random_class + "'></div>")
 	var zd = $('.' + random_class)
@@ -957,8 +1009,8 @@ function CreateZD(obj, x, y) {
 	zd.hit_y = 144
 	zd.hit_left = 0
 	zd.hit_x = 145
-	zd.damageStyle = "skillW"
-	zd.css({ 'top': zd.ply + 'px', 'left': zd.plx + 'px' })
+	zd.damageStyle = dmgstyle
+	zd.css({ 'top': zd.ply + 'px', 'left': zd.plx + 'px', "z-index": zd.ply })
 	var target
 	if (zd.zdfx) {
 		target = zd.plx + 500 + (obj.LV * 50)
@@ -979,7 +1031,6 @@ function CreateZD(obj, x, y) {
 function zdmove(obj, target, speed, callback) {
 	clearInterval(obj.timer)
 	var current = obj.plx
-	window.console.log(current)
 	if (current > target) {
 		speed = -speed
 	}

@@ -9,7 +9,7 @@
         {
             "UName": "一刀流·居合·狮子歌歌",
             "damageStyle": "skillS",
-            "UseCD": 120,
+            "UseCD": 140,
             "UseMP": 15
         },
         {
@@ -21,7 +21,7 @@
         {
             "UName": "一刀流·鬼斩",
             "damageStyle": "skillF",
-            "UseCD": 60,
+            "UseCD": 80,
             "UseMP": 8
         },
         {
@@ -33,19 +33,19 @@
         {
             "UName": "三刀流·百八烦恼风",
             "damageStyle": "skillW",
-            "UseCD": 120,
+            "UseCD": 180,
             "UseMP": 12
         },
         {
             "UName": "奥义·三千世界",
             "damageStyle": "skillE",
-            "UseCD": 240,
+            "UseCD": 600,
             "UseMP": 25
         },
         {
             "UName": "一大·三千·大千世界",
             "damageStyle": "skillR",
-            "UseCD": 600,
+            "UseCD": 1200,
             "UseMP": 30
         }
     ],
