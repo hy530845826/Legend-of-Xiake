@@ -167,17 +167,34 @@ document.onkeydown = function (event) {
 				}
 			}
 			break;
+		case 87: //W
+			if (pl.IsFlash == false) {
+				if (pl.CD_w == 0) {
+					GetUseCDMP(pl, 5)
+					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
+					if (pl.IsMana) {
+						flash(pl, 'skillW')
+						CDSkill(pl, 5, pl.needCD)
+						GetAudio('pl', 'skill_w', 2)
+						setTimeout(function () { CreateZD(pl, pl.plx, (pl.ply - 50)) }, 400)
+					}
+				} else if (pl.CD_flag == 0) {
+					CDSkill(pl, -1, 20)
+					GetAudio('pl', 'cd')
+				}
+			}
+			break;
 		case 82: //R
 			if (pl.IsFlash == false) {
 				if (pl.CD_r == 0) {
 					GetUseCDMP(pl, 7)
+					pl.needMP = parseInt(0.5 * pl.MPMAX)
 					pl.IsMana = t.UseSkillMP(pl, pl.needMP)
 					if (pl.IsMana) {
 						flash(pl, 'skillQ')
 						CDSkill(pl, 7, pl.needCD)
 						GetAudio('pl', 'skill_r')
 						theWorld()
-						// setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 					}
 				} else if (pl.CD_flag == 0) {
 					CDSkill(pl, -1, 20)
@@ -928,11 +945,68 @@ function SkillBling(targetIcon) {
 	}, 150)
 }
 
+function CreateZD(obj, x, y) {
+	var random_class = t.RandomCode(8)
+	$("#map").prepend("<div class='skill-ZD " + random_class + "'></div>")
+	var zd = $('.' + random_class)
+	zd.plx = x
+	zd.ply = y
+	zd.zdfx = obj.imgfx
+	zd.hit_ID = 0
+	zd.hit_top = 0
+	zd.hit_y = 144
+	zd.hit_left = 0
+	zd.hit_x = 145
+	zd.damageStyle = "skillW"
+	zd.css({ 'top': zd.ply + 'px', 'left': zd.plx + 'px' })
+	var target
+	if (zd.zdfx) {
+		target = zd.plx + 500 + (obj.LV * 50)
+		if (target > (zd.plx + 1000)) { target = zd.plx + 1000 }
+		zdmove(zd, target, 8, () => {
+			$('.' + random_class).remove('#map .' + random_class)
+		})
+	} else {
+		target = zd.plx - 500 - (obj.LV * 50)
+		if (target < (zd.plx - 1000)) { target = zd.plx - 1000 }
+		zd.css({ transition: "transform 0.1s", transform: "rotateY(" + 180 + "deg)" })
+		zdmove(zd, target, 8, () => {
+			$('.' + random_class).remove('#map .' + random_class)
+		})
+	}
+}
+
+function zdmove(obj, target, speed, callback) {
+	clearInterval(obj.timer)
+	var current = obj.plx
+	window.console.log(current)
+	if (current > target) {
+		speed = -speed
+	}
+
+	obj.timer = setInterval(function () {
+		var oldvalue = obj.plx
+		var newvalue = oldvalue + speed
+		if ((speed < 0 && newvalue < target) || (speed > 0 && newvalue > target)) {
+			newvalue = target
+		}
+		obj.plx = newvalue
+		obj.css('left', obj.plx + "px")
+
+		HitJudgement(obj, ell, true, 1, true, pl)
+
+		if (newvalue == target) {
+			clearInterval(obj.timer)
+			callback && callback()
+		}
+	}, 20)
+}
+
 function theWorld() {
 	$("#BGM")[0].volume = 0;
 	$("#EnAudio")[0].volume = 0;
 	$('#world-screen').remove('#map #world-screen')
-	$("#map").prepend("<div id='world-screen'></div>");
+	$("#map").prepend("<div id='world-screen'></div>")
 	var x = pl.plx - 66, y = pl.ply - 40
 	var w = 200
 	$('#world-screen').css({ "left": x + "px", "top": y + "px", "width": w + "px", "height": w + "px" })
@@ -1018,5 +1092,5 @@ function UpdateBag(obj, key, Num, NumFlag = true) {
 }
 
 export default {
-	GetUseCDMP, GetBagNum, UpdateBag, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading, ChangePlayerState
+	GetUseCDMP, GetBagNum, UpdateBag, flash, CDSkill, CDBag, GetAudio, GetAudioName, GetMapBGMNumber, GetMapIDNumber, Loading, ChangePlayerState, theWorld, CreateZD
 };

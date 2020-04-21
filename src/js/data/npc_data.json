@@ -2,10 +2,10 @@
     [{
         "UID": 0,
         "CreateMap": 2,
-        "appellation": "酒僧",
+        "appellation": "扫地僧",
         "name": "无名",
-        "plx": 700,
-        "ply": 400,
+        "plx": 310,
+        "ply": 420,
         "LV": 10,
         "div_width": 93,
         "div_height": 104,

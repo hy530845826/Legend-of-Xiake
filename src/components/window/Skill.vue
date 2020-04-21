@@ -167,15 +167,22 @@
             </div>
             <div class="Skill-R">
               <div class="Skill-Name">{{name_data[5]}}</div>
-              <div class="Skill-Introduction">挥剑向前方敌人发出巨大的剑气攻击。</div>
+              <div class="Skill-Introduction">
+                挥剑向前方敌人发出巨大的剑气攻击。技能飞行距离受到角色
+                <b>等级</b>额外加成。
+              </div>
               <div class="Skill-Value">
                 <p>
                   伤害：
-                  <span>{{pl.ATK}} - {{pl.ATK + 2}}</span>点
+                  <span>{{pl.ATK + 3}} - {{pl.ATKMAX + 2}}</span>点
                 </p>
                 <p>
                   消耗：
                   <span>{{mp_data[5]}}</span>真气
+                </p>
+                <p>
+                  飞行距离：
+                  <span>500</span>码
                 </p>
                 <p>
                   冷却时间：
@@ -217,7 +224,10 @@
             </div>
             <div class="Skill-R">
               <div class="Skill-Name">{{name_data[7]}}：</div>
-              <div class="Skill-Introduction">Stand·The World</div>
+              <div class="Skill-Introduction">
+                Stand·The World(ザ·ワールド)的能力可以
+                <b>暂停时间</b>数秒，在被暂停的时间中只有替身及其本体可以行动。
+              </div>
               <div class="Skill-Value">
                 <p>
                   伤害：
@@ -225,7 +235,7 @@
                 </p>
                 <p>
                   消耗：
-                  <span>{{mp_data[7]}}</span>真气
+                  <span>50%</span>最大真气
                 </p>
                 <p>
                   冷却时间：

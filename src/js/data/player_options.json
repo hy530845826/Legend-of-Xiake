@@ -688,5 +688,69 @@
         "hited_y": 123,
         "hited_top": 0,
         "hited_left": 0
+    }],
+    [{
+        "UName": "skillW",
+        "div_width": 192,
+        "TikTok_sum": 8,
+        "farme": 110
+    }, {
+        "check_y": 10,
+        "img_x": 63,
+        "img_y": 54,
+        "hited_x": 71,
+        "hited_y": 114,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 63,
+        "img_y": 54,
+        "hited_x": 71,
+        "hited_y": 114,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 63,
+        "img_y": 54,
+        "hited_x": 71,
+        "hited_y": 114,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "check_y": 43,
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0
+    }, {
+        "img_x": 64,
+        "img_y": 97,
+        "hited_x": 94,
+        "hited_y": 71,
+        "hited_top": 0,
+        "hited_left": 0
     }]
 ]

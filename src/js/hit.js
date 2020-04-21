@@ -10,7 +10,7 @@ setTimeout(() => {
     GetAudio = Vuemove.default.GetAudio
 }, 1000)
 
-function HitJudgement(obj, obj2, HitFlag, hit_ID) {
+function HitJudgement(obj, obj2, HitFlag, hit_ID, ZDFlag = false, obj3 = null) {
     var t1, l1, r1, b1
     var t2, l2, r2, b2
     var damage
@@ -30,7 +30,7 @@ function HitJudgement(obj, obj2, HitFlag, hit_ID) {
         else if (obj2.HP > 0 && obj.hit_ID != hit_ID) {
             obj.hit_ID = hit_ID
             // window.console.log('伤害判定：  ' + obj.name + '    第' + obj.hit_ID + '次：击中')
-            damage = DamageJudgement(obj, HitFlag)
+            ZDFlag ? damage = DamageJudgement(obj3, HitFlag) : damage = DamageJudgement(obj, HitFlag)
             obj2.HP -= damage
 
             HitFlash(obj, obj2, HitFlag)
@@ -64,13 +64,11 @@ function DamageJudgement(obj, HitFlag) {
                 damageMin = obj.ATK + (obj.STR) + 2 - obj.LV
                 damageMax = obj.ATKMAX + (obj.STR) + 1 - obj.LV
                 break;
-            case "skillQ":
-                break;
             case "skillW":
+                damageMin = obj.ATK + 3 - obj.LV
+                damageMax = obj.ATKMAX + 2 - obj.LV
                 break;
             case "skillE":
-                break;
-            case "skillR":
                 break;
         }
     } else {
@@ -102,7 +100,10 @@ function HitFlash(obj, obj2, HitFlag) {
         }, obj2.hited_time)
     } else {
         obj2.IsFlash = true
-        if (obj2.IsMove == true) { ChangePlayerState(obj2, 'hited') }
+        if (obj2.IsMove == true) {
+            ChangePlayerState(obj2, 'hited')
+            GetAudio("pl", "hited", 3)
+        }
         var HPNow = parseInt((obj2.HP / obj2.HPMAX) * 100)
         $('#JdtHP .progress-bar').css('width', HPNow + '%')
         $('#JdtHP .progress-bar').text(HPNow + '%')
@@ -115,10 +116,10 @@ function HitFlash(obj, obj2, HitFlag) {
                 }
                 obj2.hitedNumber = 0
                 if (obj2.HP <= 0) {
-                    var bgm_value = $("#BGM")[0].volume
+                    var bgm_value = ($("#BGM")[0].volume * 100)
                     var bgm_timer = setInterval(function () {
-                        bgm_value -= 0.01;
-                        $("#BGM")[0].volume = bgm_value
+                        bgm_value -= 1;
+                        $("#BGM")[0].volume = (bgm_value / 100)
                         if (bgm_value == 0) { clearInterval(bgm_timer) }
                     }, 100)
                     document.onkeydown = null

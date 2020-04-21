@@ -204,6 +204,42 @@ export default {
             }
           }
           break;
+        case 5: //W
+          if (pl.IsFlash == false) {
+            if (pl.CD_w == 0) {
+              v.GetUseCDMP(pl, nowIndex);
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
+              if (pl.IsMana) {
+                v.flash(pl, "skillW");
+                v.CDSkill(pl, nowIndex, pl.needCD);
+                v.GetAudio("pl", "skill_w", 2);
+                setTimeout(function() {
+                  v.CreateZD(pl, pl.plx, pl.ply - 50);
+                }, 400);
+              }
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
+        case 7: //R
+          if (pl.IsFlash == false) {
+            if (pl.CD_r == 0) {
+              v.GetUseCDMP(pl, nowIndex);
+              pl.IsMana = t.UseSkillMP(pl, pl.needMP);
+              if (pl.IsMana) {
+                v.flash(pl, "skillQ");
+                v.CDSkill(pl, nowIndex, pl.needCD);
+                v.GetAudio("pl", "skill_r");
+                v.theWorld();
+              }
+            } else if (pl.CD_flag == 0) {
+              v.CDSkill(pl, -1, 20);
+              v.GetAudio("pl", "cd");
+            }
+          }
+          break;
       }
     },
     ClickBag: function(e) {

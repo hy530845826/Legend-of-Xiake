@@ -79,7 +79,7 @@
 .skillA #skill-body {
     width: 250px;
     height: 190px;
-    background: url(../../images/技能A特效.png) 250px no-repeat;
+    background: url(../../images/skill-atx.png) 250px no-repeat;
 }
 
 .skillS #role-body {
@@ -91,7 +91,7 @@
 .skillS #skill-body {
     width: 580px;
     height: 216px;
-    background: url(../../images/技能S特效.png) 580px no-repeat;
+    background: url(../../images/skill-stx.png) 580px no-repeat;
 }
 
 .skillD #role-body {
@@ -103,7 +103,7 @@
 .skillD #skill-body {
     width: 576px;
     height: 192px;
-    background: url(../../images/技能D特效.png) 576px no-repeat;
+    background: url(../../images/skill-dtx.png) 576px no-repeat;
 }
 
 .skillF #role-body {
@@ -115,11 +115,25 @@
 .skillF #skill-body {
     width: 384px;
     height: 192px;
-    background: url(../../images/技能F特效.png) 384px no-repeat;
+    background: url(../../images/skill-ftx.png) 384px no-repeat;
 }
 
 .skillQ #role-body {
     width: 192px;
     height: 192px;
     background: url(../../images/skill-q.png) no-repeat;
+}
+
+.skillW #role-body {
+    width: 192px;
+    height: 192px;
+    background: url(../../images/skill-f.png) no-repeat;
+}
+
+.skill-ZD {
+    position: absolute;
+    border: 1px solid palegreen;
+    width: 145px;
+    height: 144px;
+    background: url(../../images/skill-wtx.png) no-repeat;
 }

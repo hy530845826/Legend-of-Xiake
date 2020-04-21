@@ -77,8 +77,8 @@
         },
         {
             "UName": "肯德基",
-            "Num": 3,
-            "Style": "ATK",
+            "Num": 6,
+            "Style": "STR",
             "Value": 5,
             "Temporary": true,
             "Time": 10
