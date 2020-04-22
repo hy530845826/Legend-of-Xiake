@@ -143,7 +143,7 @@
               <div class="Skill-Value">
                 <p>
                   提升攻击：
-                  <span>{{pl.LV}}</span>点
+                  <span>{{pl.LV*2}}</span>点
                 </p>
                 <p>
                   消耗：

@@ -156,7 +156,7 @@ document.onkeydown = function (event) {
 					if (pl.IsMana) {
 						flash(pl, 'skillQ')
 						CDSkill(pl, 4, pl.needCD)
-						t.UseConsumables(pl, "ATK", pl.LV, true, 10)
+						t.UseConsumables(pl, "ATK", pl.LV * 2, true, 10)
 						GetAudio('pl', 'skill_q', 2)
 						// setTimeout(function () { GetAudio('pl', 'skill_f2') }, 600)
 					}
@@ -671,16 +671,16 @@ function CreatePortal(PortalToMapID) {
 			$("#map").prepend("<div class='Portal Portal-L to-map-3'> </div>");
 			break;
 		case 5:
-			$("#map").prepend("<div class='Portal Portal-L to-map-2'> </div>");
+			$("#map").prepend("<div class='Portal Portal-M to-map-2'> </div>");
 			$("#map").prepend("<div class='Portal Portal-R to-map-6'> </div>");
 			break;
 		case 6:
-			$("#map").prepend("<div class='Portal Portal-L to-map-5'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bL to-map-5'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bR to-map-0'> </div>");
 			break;
 		case 7:
-			$("#map").prepend("<div class='Portal Portal-L to-map-0'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-8'> </div>");
+			$("#map").prepend("<div class='Portal Portal-wudangl to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bR to-map-8'> </div>");
 			$("#map").prepend("<div class='Portal Portal-M to-map-10'> </div>");
 			break;
 		case 8:
@@ -688,19 +688,19 @@ function CreatePortal(PortalToMapID) {
 			$("#map").prepend("<div class='Portal Portal-R to-map-9'> </div>");
 			break;
 		case 9:
-			$("#map").prepend("<div class='Portal Portal-L to-map-8'> </div>");
+			$("#map").prepend("<div class='Portal Portal-wudangl to-map-8'> </div>");
 			break;
 		case 10:
 			$("#map").prepend("<div class='Portal Portal-L to-map-0'> </div>");
 			$("#map").prepend("<div class='Portal Portal-R to-map-7'> </div>");
 			break;
 		case 11:
-			$("#map").prepend("<div class='Portal Portal-L to-map-12'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bL to-map-12'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bR to-map-0'> </div>");
 			break;
 		case 12:
-			$("#map").prepend("<div class='Portal Portal-L to-map-13'> </div>");
-			$("#map").prepend("<div class='Portal Portal-R to-map-11'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bL to-map-13'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bR to-map-11'> </div>");
 			break;
 		case 13:
 			$("#map").prepend("<div class='Portal Portal-R to-map-12'> </div>");
@@ -713,7 +713,7 @@ function CreatePortal(PortalToMapID) {
 			$("#map").prepend("<div class='Portal Portal-L to-map-14'> </div>");
 			break;
 		case 16:
-			$("#map").prepend("<div class='Portal Portal-M to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-bR to-map-0'> </div>");
 			break;
 		case 17:
 			$("#map").prepend("<div class='Portal Portal-L to-map-18'> </div>");

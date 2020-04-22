@@ -42,41 +42,41 @@
         "UID": 5,
         "name": "嵩山1",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 490,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 180
     },
     {
         "UID": 6,
         "name": "嵩山2",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 570,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 100
     },
     {
         "UID": 7,
         "name": "武当1",
-        "stop_left": 0,
-        "stop_top": 510,
-        "stop_width": 1200,
-        "stop_height": 160
+        "stop_left": 70,
+        "stop_top": 580,
+        "stop_width": 1130,
+        "stop_height": 90
     },
     {
         "UID": 8,
         "name": "武当2",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 580,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 90
     },
     {
         "UID": 9,
         "name": "武当道场",
-        "stop_left": 0,
-        "stop_top": 510,
-        "stop_width": 1200,
-        "stop_height": 160
+        "stop_left": 70,
+        "stop_top": 600,
+        "stop_width": 1060,
+        "stop_height": 70
     },
     {
         "UID": 10,
@@ -90,25 +90,25 @@
         "UID": 11,
         "name": "蜀南竹海1",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 625,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 45
     },
     {
         "UID": 12,
         "name": "蜀南竹海2",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 625,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 45
     },
     {
         "UID": 13,
         "name": "唐门",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 550,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 120
     },
     {
         "UID": 14,
@@ -129,33 +129,33 @@
     {
         "UID": 16,
         "name": "峨眉",
-        "stop_left": 0,
-        "stop_top": 510,
-        "stop_width": 1200,
-        "stop_height": 160
+        "stop_left": 550,
+        "stop_top": 560,
+        "stop_width": 650,
+        "stop_height": 110
     },
     {
         "UID": 17,
         "name": "大沙漠1",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 475,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 195
     },
     {
         "UID": 18,
         "name": "大沙漠2",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 540,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 130
     },
     {
         "UID": 19,
         "name": "魔教",
         "stop_left": 0,
-        "stop_top": 510,
+        "stop_top": 540,
         "stop_width": 1200,
-        "stop_height": 160
+        "stop_height": 130
     }
 ]
