@@ -675,8 +675,8 @@ function CreatePortal(PortalToMapID) {
 			$("#map").prepend("<div class='Portal Portal-R to-map-6'> </div>");
 			break;
 		case 6:
-			$("#map").prepend("<div class='Portal Portal-bL to-map-5'> </div>");
-			$("#map").prepend("<div class='Portal Portal-bR to-map-0'> </div>");
+			$("#map").prepend("<div class='Portal Portal-songshanl to-map-5'> </div>");
+			$("#map").prepend("<div class='Portal Portal-songshanb to-map-0'> </div>");
 			break;
 		case 7:
 			$("#map").prepend("<div class='Portal Portal-wudangl to-map-0'> </div>");

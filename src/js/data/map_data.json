@@ -50,9 +50,9 @@
         "UID": 6,
         "name": "嵩山2",
         "stop_left": 0,
-        "stop_top": 570,
+        "stop_top": 500,
         "stop_width": 1200,
-        "stop_height": 100
+        "stop_height": 170
     },
     {
         "UID": 7,
